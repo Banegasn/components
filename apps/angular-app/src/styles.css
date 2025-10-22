@@ -66,6 +66,7 @@ p {
   --md-sys-color-on-surface: #141414;
   --md-sys-color-on-surface-variant: #292929;
   --md-sys-color-secondary-container: #d8e3f0;
+  --md-sys-color-on-secondary-container: #1d192b;
 }
 
 :root[theme="dark"] {
@@ -76,6 +77,7 @@ p {
   --md-sys-color-on-surface: #f5f5f5;
   --md-sys-color-on-surface-variant: #dfdfdf;
   --md-sys-color-secondary-container: #336daf;
+  --md-sys-color-on-secondary-container: #ffffff;
 }
 
 .material-symbols-outlined {
