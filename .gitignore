@@ -32,6 +32,9 @@ lerna-debug.log*
 # Vercel
 .vercel
 
+# Angular
+.angular/
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
