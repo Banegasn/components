@@ -51,7 +51,7 @@ Create `package.json` in your project root:
 
 ```json
 {
-  "name": "@components/monorepo",
+  "name": "@banegasn/components",
   "version": "1.0.0",
   "private": true,
   "description": "Multi-framework component library monorepo",
@@ -202,7 +202,7 @@ mkdir -p packages/lit-components/src
 **2. Create `packages/lit-components/package.json`:**
 ```json
 {
-  "name": "@components/lit-components",
+  "name": "@banegasn/lit-components",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -277,7 +277,7 @@ mkdir -p packages/svelte-components/src
 **2. Create `packages/svelte-components/package.json`:**
 ```json
 {
-  "name": "@components/svelte-components",
+  "name": "@banegasn/svelte-components",
   "version": "1.0.0",
   "type": "module",
   "svelte": "./dist/index.js",
@@ -328,8 +328,8 @@ npx @angular/cli@latest new angular-app
 ```json
 {
   "dependencies": {
-    "@components/lit-components": "workspace:*",
-    "@components/svelte-components": "workspace:*"
+    "@banegasn/lit-components": "workspace:*",
+    "@banegasn/svelte-components": "workspace:*"
   }
 }
 ```
@@ -339,7 +339,7 @@ npx @angular/cli@latest new angular-app
 For Lit (web components):
 ```typescript
 // app.component.ts
-import '@components/lit-components';
+import '@banegasn/lit-components';
 
 @Component({
   template: '<my-button label="Hello"></my-button>',
@@ -397,7 +397,7 @@ pnpm build
 
 ### Build specific package
 ```bash
-pnpm --filter @components/lit-components build
+pnpm --filter @banegasn/lit-components build
 ```
 
 ### Build specific app
@@ -417,7 +417,7 @@ mkdir -p packages/react-components/src
 **2. Create `package.json`:**
 ```json
 {
-  "name": "@components/react-components",
+  "name": "@banegasn/react-components",
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
@@ -440,7 +440,7 @@ PNPM automatically discovers the new package.
 
 From the root:
 ```bash
-pnpm --filter @components/lit-components add lit-html
+pnpm --filter @banegasn/lit-components add lit-html
 ```
 
 Or from the package directory:
@@ -455,7 +455,7 @@ Use `workspace:*` protocol:
 ```json
 {
   "dependencies": {
-    "@components/lit-components": "workspace:*"
+    "@banegasn/lit-components": "workspace:*"
   }
 }
 ```
@@ -465,7 +465,7 @@ Use `workspace:*` protocol:
 ### 1. Use workspace protocol
 Always reference workspace packages with `workspace:*`:
 ```json
-"@components/my-package": "workspace:*"
+"@banegasn/my-package": "workspace:*"
 ```
 
 ### 2. Extend shared configs
@@ -522,7 +522,7 @@ rm -rf .turbo
 
 ### Reinstall specific package
 ```bash
-pnpm --filter @components/lit-components install --force
+pnpm --filter @banegasn/lit-components install --force
 ```
 
 ### Check workspace structure

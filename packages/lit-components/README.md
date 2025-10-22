@@ -1,4 +1,4 @@
-# @components/lit-components
+# @banegasn/lit-components
 
 Lit-based web components library.
 

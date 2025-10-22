@@ -1,4 +1,4 @@
-# @components/svelte-components
+# @banegasn/svelte-components
 
 Svelte-based component library.
 
@@ -12,7 +12,7 @@ A customizable button component built with Svelte.
 
 ```svelte
 <script>
-  import { SvelteButton } from '@components/svelte-components';
+  import { SvelteButton } from '@banegasn/svelte-components';
 </script>
 
 <SvelteButton label="Click me" on:svelte-button-click={handleClick} />

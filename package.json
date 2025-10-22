@@ -1,15 +1,25 @@
 {
-  "name": "@components/monorepo",
+  "name": "@banegasn/components",
   "version": "1.0.0",
   "private": true,
-  "description": "Multi-framework component library monorepo using Turborepo and PNPM",
+  "description": "Banegasn component library monorepo using Turborepo and PNPM",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "clean": "turbo run clean && rm -rf node_modules .turbo"
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "publish:packages": "pnpm build && pnpm publish -r --filter './packages/*' --no-git-checks",
+    "version:patch": "pnpm --filter './packages/*' exec -- npm version patch",
+    "version:minor": "pnpm --filter './packages/*' exec -- npm version minor",
+    "version:major": "pnpm --filter './packages/*' exec -- npm version major"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banegasn/components.git"
+  },
+  "author": "banegasn",
+  "license": "MIT",
   "devDependencies": {
     "turbo": "^2.1.3"
   },

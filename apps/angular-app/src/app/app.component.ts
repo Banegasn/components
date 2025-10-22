@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 // Import Lit components (web components work directly in Angular)
-import '@components/lit-components';
+import '@banegasn/lit-components';
 
 @Component({
   selector: 'app-root',

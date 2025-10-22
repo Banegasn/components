@@ -1,6 +1,7 @@
 {
-  "name": "@components/svelte-components",
+  "name": "@banegasn/svelte-components",
   "version": "1.0.0",
+  "description": "Svelte components library",
   "type": "module",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,12 +18,29 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "svelte-package -i src",
     "dev": "svelte-package -i src --watch",
     "clean": "rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banegasn/components.git",
+    "directory": "packages/svelte-components"
+  },
+  "keywords": [
+    "svelte",
+    "components",
+    "ui"
+  ],
+  "author": "banegasn",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "dependencies": {
     "svelte": "^4.2.19"

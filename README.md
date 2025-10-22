@@ -10,6 +10,7 @@ A production-ready monorepo demonstrating how to build and manage a multi-framew
 
 - **[Setup Guide](SETUP_GUIDE.md)** - Complete step-by-step guide for building this monorepo from scratch
 - **[Architecture](ARCHITECTURE.md)** - Detailed architecture documentation and design decisions
+- **[Publishing Guide](PUBLISHING.md)** - How to publish packages to GitHub Packages
 - **[API Documentation](#packages)** - Component library API references
 
 ## 🏗️ Architecture
@@ -73,10 +74,10 @@ pnpm dev
 pnpm build
 
 # Build specific package
-pnpm --filter @components/lit-components build
+pnpm --filter @banegasn/lit-components build
 
 # Build specific app
-pnpm --filter @apps/angular-app build
+pnpm --filter angular-app build
 ```
 
 ### Development Commands
@@ -111,7 +112,7 @@ pnpm clean
 
 ## 📦 Packages
 
-### @components/lit-components
+### @banegasn/lit-components
 
 Web components built with Lit Element.
 
@@ -121,9 +122,14 @@ Web components built with Lit Element.
 - Shadow DOM encapsulation
 - Framework-agnostic (works everywhere)
 
+**Installation:**
+```bash
+npm install @banegasn/lit-components
+```
+
 **Usage:**
 ```typescript
-import '@components/lit-components';
+import '@banegasn/lit-components';
 
 // In HTML
 <lit-button label="Click me"></lit-button>
@@ -131,7 +137,7 @@ import '@components/lit-components';
 
 See [packages/lit-components/README.md](packages/lit-components/README.md) for details.
 
-### @components/svelte-components
+### @banegasn/svelte-components
 
 Svelte components for modern web applications.
 
@@ -141,10 +147,15 @@ Svelte components for modern web applications.
 - Scoped CSS
 - TypeScript support
 
+**Installation:**
+```bash
+npm install @banegasn/svelte-components
+```
+
 **Usage:**
 ```svelte
 <script>
-  import { SvelteButton } from '@components/svelte-components';
+  import { SvelteButton } from '@banegasn/svelte-components';
 </script>
 
 <SvelteButton label="Click me" on:svelte-button-click={handleClick} />
@@ -197,7 +208,7 @@ mkdir -p packages/my-components/src
 2. Create `package.json`:
 ```json
 {
-  "name": "@components/my-components",
+  "name": "@banegasn/my-components",
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
@@ -224,7 +235,7 @@ mkdir -p apps/my-app
 ```json
 {
   "dependencies": {
-    "@components/lit-components": "workspace:*"
+    "@banegasn/lit-components": "workspace:*"
   }
 }
 ```
@@ -259,6 +270,20 @@ Turborepo will:
 1. Build packages in dependency order
 2. Cache successful builds
 3. Only rebuild what changed
+
+## 📤 Publishing Packages
+
+To publish packages to GitHub Packages:
+
+```bash
+# Bump version
+pnpm version:patch  # or version:minor, version:major
+
+# Publish all packages
+pnpm publish:packages
+```
+
+See [PUBLISHING.md](PUBLISHING.md) for detailed publishing instructions and GitHub Actions setup.
 
 ## 📚 Best Practices
 

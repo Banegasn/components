@@ -1,0 +1,80 @@
+name: Publish Packages
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: false
+        type: choice
+        options:
+          - none
+          - patch
+          - minor
+          - major
+        default: 'none'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.12.1
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@banegasn'
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Build packages
+        run: pnpm build
+      
+      - name: Bump version
+        if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          pnpm version:${{ github.event.inputs.version_type }}
+          git add .
+          git commit -m "chore: bump version (${{ github.event.inputs.version_type }})"
+          git push
+      
+      - name: Publish packages
+        run: pnpm publish -r --filter './packages/*' --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create git tags
+        if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
+        run: |
+          # Get versions and create tags for each package
+          cd packages/lit-components
+          LIT_VERSION=$(node -p "require('./package.json').version")
+          git tag "@banegasn/lit-components@${LIT_VERSION}" || true
+          
+          cd ../svelte-components
+          SVELTE_VERSION=$(node -p "require('./package.json').version")
+          git tag "@banegasn/svelte-components@${SVELTE_VERSION}" || true
+          
+          cd ../..
+          git push --tags || true
+

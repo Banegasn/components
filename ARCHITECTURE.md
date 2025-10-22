@@ -102,7 +102,7 @@ components/                          # Monorepo root
            ├─────────────────────┐
            │                     │
 ┌──────────▼──────────┐  ┌───────▼────────────┐
-│@components/         │  │@components/        │
+│@banegasn/         │  │@banegasn/        │
 │  lit-components     │  │ svelte-components  │
 └─────────────────────┘  └────────────────────┘
 ```
@@ -208,7 +208,7 @@ packages:
 ```json
 {
   "dependencies": {
-    "@components/lit-components": "workspace:*"
+    "@banegasn/lit-components": "workspace:*"
   }
 }
 ```
@@ -286,7 +286,7 @@ tsconfig.json (root)
 
 ```typescript
 // 1. Import component package
-import '@components/lit-components';
+import '@banegasn/lit-components';
 
 // 2. Enable custom elements
 @Component({
@@ -302,7 +302,7 @@ template: '<lit-button label="Click"></lit-button>'
 ```svelte
 <script>
   // Direct import from workspace package
-  import { SvelteButton } from '@components/svelte-components';
+  import { SvelteButton } from '@banegasn/svelte-components';
 </script>
 
 <SvelteButton label="Click" />
@@ -312,7 +312,7 @@ template: '<lit-button label="Click"></lit-button>'
 
 ```typescript
 // Lit components work as-is
-import '@components/lit-components';
+import '@banegasn/lit-components';
 <lit-button label="Click" />
 
 // Svelte via wrapper or web component build

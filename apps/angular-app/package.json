@@ -19,8 +19,8 @@
     "@angular/platform-browser": "^18.2.11",
     "@angular/platform-browser-dynamic": "^18.2.11",
     "@angular/router": "^18.2.11",
-    "@components/lit-components": "workspace:*",
-    "@components/svelte-components": "workspace:*",
+    "@banegasn/lit-components": "workspace:*",
+    "@banegasn/svelte-components": "workspace:*",
     "rxjs": "^7.8.1",
     "tslib": "^2.8.0",
     "zone.js": "^0.14.10"
