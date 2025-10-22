@@ -2,6 +2,16 @@
 
 A production-ready monorepo demonstrating how to build and manage a multi-framework component library using **Turborepo** and **PNPM Workspaces**.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![PNPM](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg)](https://pnpm.io/)
+[![Turborepo](https://img.shields.io/badge/built%20with-Turborepo-ef4444.svg)](https://turbo.build/repo)
+
+## 📚 Documentation
+
+- **[Setup Guide](SETUP_GUIDE.md)** - Complete step-by-step guide for building this monorepo from scratch
+- **[Architecture](ARCHITECTURE.md)** - Detailed architecture documentation and design decisions
+- **[API Documentation](#packages)** - Component library API references
+
 ## 🏗️ Architecture
 
 This monorepo supports:
@@ -16,30 +26,16 @@ This monorepo supports:
 .
 ├── apps/
 │   └── angular-app/          # Angular application example
-│       ├── src/
-│       ├── angular.json
-│       ├── package.json
-│       └── tsconfig.json
 ├── packages/
 │   ├── lit-components/       # Lit-based web components
-│   │   ├── src/
-│   │   │   ├── lit-button.ts
-│   │   │   └── index.ts
-│   │   ├── package.json
-│   │   └── tsconfig.json
 │   └── svelte-components/    # Svelte components
-│       ├── src/
-│       │   ├── SvelteButton.svelte
-│       │   └── index.js
-│       ├── package.json
-│       └── svelte.config.js
 ├── package.json              # Root package.json
 ├── pnpm-workspace.yaml       # PNPM workspace configuration
 ├── turbo.json                # Turborepo configuration
 └── tsconfig.json             # Shared TypeScript config
 ```
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -53,46 +49,65 @@ npm install -g pnpm@9.12.1
 
 ### Installation
 
-1. Clone the repository:
 ```bash
+# Clone the repository
 git clone <repository-url>
 cd components
-```
 
-2. Install dependencies:
-```bash
+# Install dependencies
 pnpm install
-```
 
-This will install dependencies for all packages and apps in the workspace.
-
-## 🛠️ Development
-
-### Build all packages and apps
-```bash
+# Build all packages and apps
 pnpm build
-```
 
-### Run development servers
-```bash
+# Run development servers
 pnpm dev
 ```
 
-This will start all development servers in parallel using Turborepo.
+## 🛠️ Development
 
-### Build specific package
+### Build Commands
+
 ```bash
-cd packages/lit-components
+# Build all packages and apps
 pnpm build
+
+# Build specific package
+pnpm --filter @components/lit-components build
+
+# Build specific app
+pnpm --filter @apps/angular-app build
 ```
 
-### Run Angular app
+### Development Commands
+
 ```bash
+# Run all dev servers
+pnpm dev
+
+# Run specific package in dev mode
+cd packages/lit-components
+pnpm dev
+
+# Run specific app
 cd apps/angular-app
 pnpm dev
 ```
 
 The Angular app will be available at `http://localhost:4200`
+
+### Other Commands
+
+```bash
+# Run linters
+pnpm lint
+
+# Run tests
+pnpm test
+
+# Clean all build artifacts
+pnpm clean
+```
 
 ## 📦 Packages
 
@@ -214,6 +229,8 @@ mkdir -p apps/my-app
 }
 ```
 
+See the [Setup Guide](SETUP_GUIDE.md) for detailed instructions.
+
 ## 🧪 Testing
 
 Add test scripts to individual packages:
@@ -256,7 +273,7 @@ Turborepo will:
 ### Clear all caches:
 ```bash
 pnpm clean
-rm -rf node_modules
+rm -rf node_modules pnpm-lock.yaml
 pnpm install
 ```
 
@@ -269,6 +286,8 @@ rm -rf .turbo
 ```bash
 pnpm install --force
 ```
+
+See [SETUP_GUIDE.md](SETUP_GUIDE.md#troubleshooting) for more troubleshooting tips.
 
 ## 📖 Resources
 
@@ -288,3 +307,7 @@ pnpm install --force
 ## 📄 License
 
 MIT
+
+---
+
+**Built with ❤️ using Turborepo and PNPM**
