@@ -1,4 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 import '@banegasn/m3-navigation-rail';
@@ -12,18 +13,37 @@ import '@banegasn/m3-navigation-rail';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  #document = inject(DOCUMENT);
   title = 'Multi-Framework Components Demo';
-  litClickCount = 0;
 
   ngOnInit() {
-    // Listen for Lit button clicks
-    document.addEventListener('lit-button-click', () => {
-      this.litClickCount++;
-    });
+    // Initialize theme
+    this.initializeTheme();
+  }
+
+  initializeTheme() {
+    // Check localStorage first, then fall back to system preference
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      // Use saved theme
+      this.#document.documentElement.setAttribute('theme', savedTheme);
+    } else {
+      // Use system preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = systemPrefersDark ? 'dark' : 'light';
+      this.#document.documentElement.setAttribute('theme', theme);
+    }
   }
 
   toggleTheme() {
-    const theme = document.documentElement.getAttribute('theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('theme', theme);
+    const currentTheme = this.#document.documentElement.getAttribute('theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // Set the theme
+    this.#document.documentElement.setAttribute('theme', newTheme);
+    
+    // Save to localStorage
+    localStorage.setItem('theme', newTheme);
   }
 }

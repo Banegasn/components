@@ -68,10 +68,10 @@ p {
 }
 
 :root[theme="dark"] {
-  --md-sys-color-surface: #141414;
+  --md-sys-color-surface: #1f1f1f;
   --md-sys-color-surface-variant: #292929;
   --md-sys-color-outline: #b9b9b9;
-  --md-sys-color-outline-variant: #5c5c5c;
+  --md-sys-color-outline-variant: #353535;
   --md-sys-color-on-surface: #f5f5f5;
   --md-sys-color-on-surface-variant: #dfdfdf;
   --md-sys-color-secondary-container: #336daf;
