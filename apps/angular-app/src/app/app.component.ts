@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 
 // Import Lit components (web components work directly in Angular)
 import '@banegasn/lit-components';
+import '@banegasn/m3-navigation-rail';
 
 @Component({
   selector: 'app-root',
