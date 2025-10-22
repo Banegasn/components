@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 @customElement('m3-navigation-rail')
 export class M3NavigationRail extends LitElement {
+    
   static styles = css`
     :host {
       display: block;
@@ -16,7 +17,6 @@ export class M3NavigationRail extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 100%;
       padding: 8px 0;
       gap: 12px;
     }

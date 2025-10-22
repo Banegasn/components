@@ -1,58 +1,19 @@
+<m3-navigation-rail>
+  <m3-navigation-rail-item label="Home" active badge="1">
+    <span slot="icon">🏠</span>
+  </m3-navigation-rail-item>
+  <m3-navigation-rail-item label="About">
+    <span slot="icon">ℹ️</span>
+  </m3-navigation-rail-item>
+  <m3-navigation-rail-item label="Contact">
+    <span slot="icon">🤝</span>
+  </m3-navigation-rail-item>
+</m3-navigation-rail>
+
 <div class="container">
   <h1>{{ title }}</h1>
+  <p>This is a demo of the M3 navigation rail component.</p>
 
-
-  <m3-navigation-rail>
-    <m3-navigation-rail-item label="Home" icon="home"></m3-navigation-rail-item>
-    <m3-navigation-rail-item label="About" icon="info"></m3-navigation-rail-item>
-    <m3-navigation-rail-item label="Contact" icon="contact"></m3-navigation-rail-item>
-  </m3-navigation-rail>
-  
-  <p>
-    This Angular application demonstrates the use of components from different frameworks
-    within a Turborepo + PNPM workspace monorepo.
-  </p>
-
-  <div class="demo-section">
-    <h2>Lit Components (Web Components)</h2>
-    <p>These are Lit-based web components that work seamlessly with Angular:</p>
-    
-    <div class="button-group" (lit-button-click)="handleLitClick()">
-      <lit-button label="Lit Button"></lit-button>
-      <lit-button label="Disabled" disabled="true"></lit-button>
-      <lit-button label="Custom Label"></lit-button>
-    </div>
-    
-    <p *ngIf="litClickCount > 0" style="margin-top: 1rem;">
-      Lit button clicked {{ litClickCount }} time(s)
-    </p>
-  </div>
-
-  <div class="demo-section">
-    <h2>Svelte Components</h2>
-    <p>
-      Svelte components can be integrated using a wrapper or build configuration.
-      This demo shows the monorepo structure - for full Svelte integration in Angular,
-      you would typically use a custom build setup or web component wrapper.
-    </p>
-    <p style="font-style: italic; color: #9ca3af;">
-      Note: The Svelte component package is available in the workspace and can be used
-      in Svelte-based apps or wrapped as web components for use in Angular.
-    </p>
-  </div>
-
-  <div class="demo-section">
-    <h2>Monorepo Structure</h2>
-    <p>This project demonstrates:</p>
-    <ul style="list-style: disc; margin-left: 2rem; color: #6b7280;">
-      <li>Turborepo for build orchestration</li>
-      <li>PNPM workspaces for dependency management</li>
-      <li>Multi-framework component libraries (Lit, Svelte)</li>
-      <li>Angular application consuming workspace packages</li>
-      <li>TypeScript configuration inheritance</li>
-      <li>Shared build and dev scripts</li>
-    </ul>
-  </div>
+  <lit-button label="Hello World"></lit-button>
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet />

@@ -1,3 +1,11 @@
 :host {
-  display: block;
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
+
+.container {
+  flex: 1;
+  padding: 1rem;
+}
+
