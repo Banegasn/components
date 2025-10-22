@@ -15,6 +15,7 @@ export const navigationRailToggleStyles = css`
     color: var(--md-sys-color-on-surface-variant, #49454f);
     place-self: flex-start;
     margin: 0;
+    position: relative;
   }
 
   .toggle-button:hover {

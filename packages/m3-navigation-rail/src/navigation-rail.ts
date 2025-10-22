@@ -6,7 +6,8 @@ export class M3NavigationRail extends LitElement {
     
   static styles = css`
     :host {
-      display: block;
+      display: flex;
+      flex-direction: column;
       width: 80px;
       height: 100%;
       background-color: var(--md-sys-color-surface, #fef7ff);
@@ -20,9 +21,10 @@ export class M3NavigationRail extends LitElement {
 
     .rail {
       display: flex;
+      height: 100%;
       flex-direction: column;
       align-items: center;
-      padding: 8px 0;
+      padding: 16px 0;
       gap: 12px;
       min-width: 80px;
     }
@@ -30,7 +32,7 @@ export class M3NavigationRail extends LitElement {
     :host([expanded]) .rail {
       min-width: 256px;
       align-items: flex-start;
-      padding: 8px 12px;
+      padding: 16px 12px;
       box-sizing: border-box;
     }
 
@@ -95,14 +97,11 @@ export class M3NavigationRail extends LitElement {
   render() {
     return html`
       <nav class="rail">
-        ${this.showFab ? html`
-          <div class="fab-slot">
-            <slot name="fab"></slot>
-          </div>
-        ` : ''}
-        
         <div class="items">
           <slot @toggle-click=${this._handleToggleClick}></slot>
+        </div>
+        <div class="bottom-items">
+          <slot name="bottom"></slot>
         </div>
       </nav>
     `;
