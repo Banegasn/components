@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/lit-components",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Lit web components library",
   "type": "module",
   "main": "./dist/index.js",
