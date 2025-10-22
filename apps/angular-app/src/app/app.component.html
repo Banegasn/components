@@ -1,10 +1,10 @@
 <m3-navigation-rail>
   <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
-  <m3-navigation-rail-item label="Home" active badge="1">
+  <m3-navigation-rail-item label="Home" active badge="1" [routerLink]="['/']">
     <span slot="icon"><span class="material-symbols-outlined">home</span></span>
   </m3-navigation-rail-item>
-  <m3-navigation-rail-item label="About">
-    <span slot="icon"><span class="material-symbols-outlined">info</span></span>
+  <m3-navigation-rail-item label="Components" [routerLink]="['/components']">
+    <span slot="icon"><span class="material-symbols-outlined">browse</span></span>
   </m3-navigation-rail-item>
   <m3-navigation-rail-item label="Contact">
     <span slot="icon"><span class="material-symbols-outlined">person</span></span>
@@ -21,9 +21,5 @@
 </m3-navigation-rail>
 
 <div class="container">
-  <h1>{{ title }}</h1>
-  <p>This is a demo of the M3 navigation rail component.</p>
-
-  <lit-button label="Hello World"></lit-button>
   <router-outlet></router-outlet>
 </div>
