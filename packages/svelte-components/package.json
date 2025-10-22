@@ -1,0 +1,30 @@
+{
+  "name": "@components/svelte-components",
+  "version": "1.0.0",
+  "type": "module",
+  "svelte": "./src/index.js",
+  "exports": {
+    ".": {
+      "svelte": "./src/index.js"
+    },
+    "./SvelteButton.svelte": "./src/SvelteButton.svelte"
+  },
+  "scripts": {
+    "build": "svelte-package -i src -o dist",
+    "dev": "svelte-package -i src -o dist --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "svelte": "^4.2.19"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.3.5",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "svelte-check": "^4.0.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9"
+  },
+  "peerDependencies": {
+    "svelte": "^4.0.0"
+  }
+}
