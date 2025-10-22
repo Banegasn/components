@@ -2,16 +2,26 @@
   "name": "@components/svelte-components",
   "version": "1.0.0",
   "type": "module",
-  "svelte": "./src/index.js",
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "svelte": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "./SvelteButton.svelte": "./src/SvelteButton.svelte"
+    "./SvelteButton.svelte": {
+      "types": "./dist/SvelteButton.svelte.d.ts",
+      "svelte": "./dist/SvelteButton.svelte",
+      "default": "./dist/SvelteButton.svelte"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "svelte-package -i src -o dist",
-    "dev": "svelte-package -i src -o dist --watch",
+    "build": "svelte-package -i src",
+    "dev": "svelte-package -i src --watch",
     "clean": "rm -rf dist"
   },
   "dependencies": {
