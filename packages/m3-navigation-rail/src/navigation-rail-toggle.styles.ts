@@ -28,11 +28,6 @@ export const navigationRailToggleStyles = css`
   .icon {
     width: 24px;
     height: 24px;
-    transition: transform 0.3s ease;
-  }
-
-  .icon.expanded {
-    transform: rotate(180deg);
   }
 
   svg {

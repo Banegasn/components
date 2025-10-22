@@ -101,14 +101,6 @@ export class M3NavigationRail extends LitElement {
           </div>
         ` : ''}
         
-        ${this.showMenu ? html`
-          <button class="menu-button" @click=${this._handleMenuClick}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-            </svg>
-          </button>
-        ` : ''}
-        
         <div class="items">
           <slot @toggle-click=${this._handleToggleClick}></slot>
         </div>

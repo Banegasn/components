@@ -17,10 +17,16 @@ export class M3NavigationRailToggle extends LitElement {
         aria-label="${this.expanded ? 'Collapse navigation' : 'Expand navigation'}"
       >
         <div class="icon ${this.expanded ? 'expanded' : ''}">
-          <svg viewBox="0 0 24 24">
-            <path d="M9.29 15.88L13.17 12 9.29 8.12l1.42-1.41L15.41 12l-4.7 4.71-1.42-1.41z"/>
-          </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
         </div>
+        ${this.expanded ? html`<div class="icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9.29 15.88L13.17 12 9.29 8.12l1.42-1.41L15.41 12l-4.7 4.71-1.42-1.41z"/>
+              </svg>
+          </div>
+        ` : ''}
       </button>
     `;
   }

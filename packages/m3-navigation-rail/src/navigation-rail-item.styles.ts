@@ -51,8 +51,8 @@ export const navigationRailItemStyles = css`
     width: 100%;
     height: auto;
     left: 0;
-    top: -4px;
-    bottom: -4px;
+    top: 0;
+    bottom: 0;
   }
 
   .item.active .indicator {
