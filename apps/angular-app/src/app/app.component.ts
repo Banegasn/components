@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  handleLitClick() {
-    console.log('Lit button clicked!', this.litClickCount);
+  toggleTheme() {
+    const theme = document.documentElement.getAttribute('theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('theme', theme);
   }
 }
