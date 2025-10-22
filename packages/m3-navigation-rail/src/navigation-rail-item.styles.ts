@@ -131,6 +131,9 @@ export const navigationRailItemStyles = css`
     color: var(--md-sys-color-on-error, #ffffff);
     border-radius: 8px;
     min-width: 16px;
+    min-height: 16px;
+    font-size: 11px;
+    line-height: 16px;
     z-index: 1;
   }
 
