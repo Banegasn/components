@@ -17,7 +17,6 @@ export const navigationRailItemStyles = css`
     border: none;
     background: transparent;
     width: 100%;
-    transition: all 0.3s ease;
     border-radius: 16px;
     padding: 0;
     z-index: 2;
@@ -72,7 +71,7 @@ export const navigationRailItemStyles = css`
     align-items: center;
     justify-content: center;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: color 0.2s, padding 0.3s;
+    transition: color 0.2s;
   }
 
   :host([expanded]) .icon {
@@ -92,7 +91,7 @@ export const navigationRailItemStyles = css`
     text-align: center;
     max-width: 64px;
     z-index: 2;
-    transition: color 0.2s, font-size 0.3s, max-width 0.3s;
+    transition: color 0.2s;
   }
 
   :host([expanded]) .label {

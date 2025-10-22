@@ -67,6 +67,16 @@ export class M3NavigationRail extends LitElement {
       width: 100%;
     }
 
+    .bottom-items {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      padding: 16px 0;
+      border-top: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+    }
+
     :host([expanded]) .items {
       align-items: flex-start;
     }
