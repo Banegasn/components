@@ -20,7 +20,12 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@banegasn/m3-navigation-rail": ["../../packages/m3-navigation-rail/dist/index.js"],
+      "@banegasn/lit-components": ["../../packages/lit-components/dist/index.js"],
+      "@banegasn/svelte-components": ["../../packages/svelte-components/dist/index.js"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -11,6 +11,11 @@ export class M3NavigationRail extends LitElement {
       height: 100%;
       background-color: var(--md-sys-color-surface, #fef7ff);
       border-right: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+      transition: width 0.3s ease;
+    }
+
+    :host([expanded]) {
+      width: 256px;
     }
 
     .rail {
@@ -19,6 +24,14 @@ export class M3NavigationRail extends LitElement {
       align-items: center;
       padding: 8px 0;
       gap: 12px;
+      min-width: 80px;
+    }
+
+    :host([expanded]) .rail {
+      min-width: 256px;
+      align-items: flex-start;
+      padding: 8px 12px;
+      box-sizing: border-box;
     }
 
     .fab-slot {
@@ -51,6 +64,10 @@ export class M3NavigationRail extends LitElement {
       align-items: center;
       width: 100%;
     }
+
+    :host([expanded]) .items {
+      align-items: flex-start;
+    }
   `;
 
   @property({ type: Boolean })
@@ -58,6 +75,22 @@ export class M3NavigationRail extends LitElement {
 
   @property({ type: Boolean })
   showFab = false;
+
+  @property({ type: Boolean, reflect: true })
+  expanded = false;
+
+  updated(changedProperties: Map<string, any>) {
+    if (changedProperties.has('expanded')) {
+      this._updateItemsExpandedState();
+    }
+  }
+
+  private _updateItemsExpandedState() {
+    const items = this.querySelectorAll('m3-navigation-rail-item');
+    items.forEach(item => {
+      item.expanded = this.expanded;
+    });
+  }
 
   render() {
     return html`
@@ -77,10 +110,14 @@ export class M3NavigationRail extends LitElement {
         ` : ''}
         
         <div class="items">
-          <slot></slot>
+          <slot @toggle-click=${this._handleToggleClick}></slot>
         </div>
       </nav>
     `;
+  }
+
+  private _handleToggleClick(e: CustomEvent) {
+    this.expanded = e.detail.expanded;
   }
 
   private _handleMenuClick() {

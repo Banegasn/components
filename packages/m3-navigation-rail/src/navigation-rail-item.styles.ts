@@ -12,42 +12,71 @@ export const navigationRailItemStyles = css`
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 4px 0;
+    position: relative;
     cursor: pointer;
     border: none;
     background: transparent;
     width: 100%;
-    position: relative;
-    min-height: 56px;
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    padding: 0;
+    z-index: 2;
+    min-height: 48px;
+  }
+
+  [slot="icon"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :host([expanded]) .item {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 0 12px;
   }
 
   .indicator {
     position: absolute;
+    top: 0;
     width: 80%;
-    height: 80%;
+    height: calc(100% - 20px);
     border-radius: 16px;
-    background-color: transparent;
-    transition: background-color 0.2s;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 0;
+    z-index: -1;
+    transition: transform 0.2s, background-color 0.2s ease-in-out, padding 0.3s;
   }
 
-  .item:hover .indicator {
-    background-color: var(--md-sys-color-surface-variant, #e7e0ec);
+  :host([expanded]) .indicator {
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: -4px;
+    bottom: -4px;
   }
 
   .item.active .indicator {
-    background-color: var(--md-sys-color-secondary-container, #e8def8);
+    background-color: var(--md-sys-color-secondary-container, #6750a4);
+  }
+
+  .item:hover .indicator {  
+    background-color: var(--md-sys-color-surface-variant, #e7e0ec);
+    transform: scale(1.01);
   }
 
   .icon {
+    position: relative;
+    padding: 4px 12px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: color 0.2s;
+    transition: color 0.2s, padding 0.3s;
+  }
+
+  :host([expanded]) .icon {
+    padding: 4px;
   }
 
   .item.active .icon {
@@ -59,11 +88,20 @@ export const navigationRailItemStyles = css`
     font-size: 12px;
     font-weight: 500;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    z-index: 1;
     line-height: 16px;
     text-align: center;
     max-width: 64px;
-    transition: color 0.2s;
+    z-index: 2;
+    transition: color 0.2s, font-size 0.3s, max-width 0.3s;
+  }
+
+  :host([expanded]) .label {
+    font-size: 14px;
+    text-align: left;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .item.active .label {
@@ -72,20 +110,28 @@ export const navigationRailItemStyles = css`
 
   .badge {
     position: absolute;
-    top: 8px;
-    right: 12px;
+    top: 4px;
+    right: 4px;
     background-color: var(--md-sys-color-error, #ba1a1a);
     color: var(--md-sys-color-on-error, #ffffff);
     border-radius: 8px;
     min-width: 16px;
     height: 16px;
-    padding: 0 4px;
+    padding: 0;
     font-size: 11px;
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
+  }
+
+  .badge-expanded {
+    background-color: var(--md-sys-color-error, #ba1a1a);
+    color: var(--md-sys-color-on-error, #ffffff);
+    border-radius: 8px;
+    min-width: 16px;
+    z-index: 1;
   }
 
   .badge:empty {

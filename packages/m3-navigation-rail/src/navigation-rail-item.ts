@@ -15,15 +15,19 @@ export class M3NavigationRailItem extends LitElement {
   @property({ type: String })
   badge = '';
 
+  @property({ type: Boolean, reflect: true })
+  expanded = false;
+
   render() {
     return html`
       <button class="item ${this.active ? 'active' : ''}" @click=${this._handleClick}>
         <div class="indicator"></div>
         <div class="icon">
           <slot name="icon"></slot>
+          ${this.badge && !this.expanded ? html`<span class="badge">${this.badge}</span>` : ''}
         </div>
         ${this.label ? html`<span class="label">${this.label}</span>` : ''}
-        ${this.badge ? html`<span class="badge">${this.badge}</span>` : ''}
+        ${this.badge && this.expanded ? html`<span class="badge-expanded">${this.badge}</span>` : ''}
       </button>
     `;
   }
