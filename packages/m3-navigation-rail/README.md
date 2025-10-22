@@ -4,6 +4,11 @@ Material Design 3 (M3) Navigation Rail web components built with Lit.
 
 A navigation rail is a compact, vertical navigation component that provides quick access to top-level destinations in an app. It can expand to show labels alongside icons for better clarity.
 
+## Screenshots 
+
+<img src="./images/collapsed.png" alt="Navigation rail expanded" height="400" />
+<img src="./images/expanded.png" alt="Navigation rail collapsed" height="400" />
+
 ## Installation
 
 ```bash
