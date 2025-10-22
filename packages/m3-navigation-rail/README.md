@@ -97,14 +97,12 @@ The main container component for the navigation rail.
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `expanded` | `boolean` | `false` | Whether the rail is expanded to show labels |
-| `showMenu` | `boolean` | `false` | Reserved for future menu functionality |
-| `showFab` | `boolean` | `false` | Reserved for future FAB functionality |
 
 #### Events
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `menu-click` | - | Fired when the menu button is clicked (future feature) |
+| `menu-toggle` | - | Fired when the menu button is clicked (future feature) |
 
 #### Slots
 

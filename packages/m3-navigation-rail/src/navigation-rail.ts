@@ -82,12 +82,6 @@ export class M3NavigationRail extends LitElement {
     }
   `;
 
-  @property({ type: Boolean })
-  showMenu = false;
-
-  @property({ type: Boolean })
-  showFab = false;
-
   @property({ type: Boolean, reflect: true })
   expanded = false;
 
@@ -119,12 +113,10 @@ export class M3NavigationRail extends LitElement {
 
   private _handleToggleClick(e: CustomEvent) {
     this.expanded = e.detail.expanded;
-  }
-
-  private _handleMenuClick() {
-    this.dispatchEvent(new CustomEvent('menu-click', {
+    this.dispatchEvent(new CustomEvent('menu-toggle', {
       bubbles: true,
       composed: true,
+      detail: { expanded: this.expanded }
     }));
   }
 }
