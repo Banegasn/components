@@ -6,6 +6,7 @@
     "ng": "ng",
     "dev": "ng serve",
     "build": "ng build",
+    "build:gh-pages": "ng build --configuration=github-pages",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "clean": "rm -rf dist .angular"

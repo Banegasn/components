@@ -5,6 +5,7 @@
   "description": "Banegasn component library monorepo using Turborepo and PNPM",
   "scripts": {
     "build": "turbo run build",
+    "build:gh-pages": "pnpm build --filter='./packages/*' && pnpm --filter @apps/angular-app build:gh-pages",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",

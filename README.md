@@ -11,7 +11,15 @@ A production-ready monorepo demonstrating how to build and manage a multi-framew
 - **[Setup Guide](SETUP_GUIDE.md)** - Complete step-by-step guide for building this monorepo from scratch
 - **[Architecture](ARCHITECTURE.md)** - Detailed architecture documentation and design decisions
 - **[Publishing Guide](PUBLISHING.md)** - How to publish packages to GitHub Packages
+- **[GitHub Pages Setup](GITHUB_PAGES_SETUP.md)** - How to deploy the Angular app to GitHub Pages
 - **[API Documentation](#packages)** - Component library API references
+
+## 🌐 Live Demo
+
+The Angular demo app is automatically deployed to GitHub Pages:
+**[https://banegasn.github.io/components/](https://banegasn.github.io/components/)**
+
+Every push to the `main` branch triggers an automatic deployment.
 
 ## 🏗️ Architecture
 
@@ -261,7 +269,7 @@ pnpm test
 
 ## 🚢 Building for Production
 
-Build all packages and apps:
+### Build all packages and apps:
 ```bash
 pnpm build
 ```
@@ -270,6 +278,15 @@ Turborepo will:
 1. Build packages in dependency order
 2. Cache successful builds
 3. Only rebuild what changed
+
+### Build for GitHub Pages:
+```bash
+pnpm build:gh-pages
+```
+
+This builds all packages and the Angular app optimized for GitHub Pages deployment with the correct base href (`/components/`).
+
+See [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md) for deployment details.
 
 ## 📤 Publishing Packages
 
