@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/svelte-components",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Svelte components library",
   "type": "module",
   "svelte": "./dist/index.js",
