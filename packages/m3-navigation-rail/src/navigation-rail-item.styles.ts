@@ -54,6 +54,10 @@ export const navigationRailItemStyles = css`
     bottom: 0;
   }
 
+  .item:active .icon {
+    transform: scale(0.95);
+  }
+
   .item.active .indicator {
     background-color: var(--md-sys-color-secondary-container, #6750a4);
   }
@@ -71,7 +75,7 @@ export const navigationRailItemStyles = css`
     align-items: center;
     justify-content: center;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.1s;
   }
 
   :host([expanded]) .icon {
