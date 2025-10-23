@@ -35,6 +35,8 @@ jobs:
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           node-version: '18'
           cache: 'pnpm'
