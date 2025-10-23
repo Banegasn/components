@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -41,19 +42,33 @@ p {
   color: var(--md-sys-color-on-surface-variant, #49454f);
 }
 
-.demo-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
 .button-group {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1rem;
+}
+
+.button {
+  padding: 1rem 2.4em;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  transition: background 0.2s;
+
+  &.primary {
+    background: var(--md-sys-color-primary, #6750A4);
+    color: var(--md-sys-color-on-primary, #fff);
+  }
+
+  &.secondary {
+    background: var(--md-sys-color-secondary, #625B71);
+    color: var(--md-sys-color-on-secondary, #fff);
+  }
 }
 
 :root {
@@ -80,8 +95,8 @@ p {
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
 }

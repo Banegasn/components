@@ -6,7 +6,10 @@ import '@banegasn/lit-components';
   selector: 'app-components ',
   template: `
     <h1>Components</h1>
-    <lit-button label="Click me"></lit-button>
+    <p>
+      This page contains a list of all the components available in the library. Click on a component to see more information about it.
+    </p>
+    <lit-button label="Navigation Rail"></lit-button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

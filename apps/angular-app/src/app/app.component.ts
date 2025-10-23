@@ -15,6 +15,7 @@ import '@banegasn/m3-navigation-rail';
 export class AppComponent implements OnInit {
   #document = inject(DOCUMENT);
   title = 'Multi-Framework Components Demo';
+  currentTheme = 'light';
 
   ngOnInit() {
     // Initialize theme
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     if (savedTheme) {
       // Use saved theme
       this.#document.documentElement.setAttribute('theme', savedTheme);
+      this.currentTheme = savedTheme;
     } else {
       // Use system preference
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -39,11 +41,11 @@ export class AppComponent implements OnInit {
   toggleTheme() {
     const currentTheme = this.#document.documentElement.getAttribute('theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
     // Set the theme
     this.#document.documentElement.setAttribute('theme', newTheme);
     
     // Save to localStorage
     localStorage.setItem('theme', newTheme);
+    this.currentTheme = newTheme;
   }
 }
