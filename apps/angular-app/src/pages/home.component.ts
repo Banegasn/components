@@ -16,8 +16,7 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
     </section>
   `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [],
+    imports: []
 })
 export class HomeComponent {
 
