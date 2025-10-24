@@ -11,6 +11,79 @@ export const m3ButtonStyles = css`
     --_spacing: var(--md-button-spacing, 24px);
   }
 
+  /* Size variants - Material Design 3 Expressive */
+  :host([size="extra-small"]) {
+    --_container-height: var(--md-button-container-height, 32px);
+    --_container-shape: var(--md-button-container-shape, 16px);
+    --_label-text-size: var(--md-button-label-text-size, 12px);
+    --_icon-size: var(--md-button-icon-size, 16px);
+  }
+
+  :host([size="small"]),
+  :host(:not([size])) {
+    --_container-height: var(--md-button-container-height, 40px);
+    --_container-shape: var(--md-button-container-shape, 20px);
+    --_label-text-size: var(--md-button-label-text-size, 14px);
+    --_icon-size: var(--md-button-icon-size, 18px);
+  }
+
+  :host([size="medium"]) {
+    --_container-height: var(--md-button-container-height, 48px);
+    --_container-shape: var(--md-button-container-shape, 24px);
+    --_label-text-size: var(--md-button-label-text-size, 16px);
+    --_icon-size: var(--md-button-icon-size, 20px);
+  }
+
+  :host([size="large"]) {
+    --_container-height: var(--md-button-container-height, 56px);
+    --_container-shape: var(--md-button-container-shape, 28px);
+    --_label-text-size: var(--md-button-label-text-size, 18px);
+    --_icon-size: var(--md-button-icon-size, 24px);
+  }
+
+  :host([size="extra-large"]) {
+    --_container-height: var(--md-button-container-height, 64px);
+    --_container-shape: var(--md-button-container-shape, 32px);
+    --_label-text-size: var(--md-button-label-text-size, 20px);
+    --_icon-size: var(--md-button-icon-size, 28px);
+  }
+
+  /* Shape variants */
+  :host([shape="square"]) {
+    --_container-shape: var(--md-button-container-shape, 8px);
+  }
+
+  :host([shape="square"][size="extra-small"]) {
+    --_container-shape: var(--md-button-container-shape, 4px);
+  }
+
+  :host([shape="square"][size="small"]),
+  :host([shape="square"]:not([size])) {
+    --_container-shape: var(--md-button-container-shape, 8px);
+  }
+
+  :host([shape="square"][size="medium"]) {
+    --_container-shape: var(--md-button-container-shape, 10px);
+  }
+
+  :host([shape="square"][size="large"]) {
+    --_container-shape: var(--md-button-container-shape, 12px);
+  }
+
+  :host([shape="square"][size="extra-large"]) {
+    --_container-shape: var(--md-button-container-shape, 14px);
+  }
+
+  /* Padding variants */
+  :host([padding="small"]) {
+    --_spacing: var(--md-button-spacing, 16px);
+  }
+
+  :host([padding="default"]),
+  :host(:not([padding])) {
+    --_spacing: var(--md-button-spacing, 24px);
+  }
+
   :host([disabled]) {
     pointer-events: none;
     opacity: 0.38;
@@ -33,7 +106,7 @@ export const m3ButtonStyles = css`
     letter-spacing: 0.1px;
     cursor: pointer;
     outline: none;
-    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s, border-radius 0.2s;
     user-select: none;
     white-space: nowrap;
     overflow: hidden;
@@ -48,6 +121,17 @@ export const m3ButtonStyles = css`
 
   button:active {
     transform: scale(0.98);
+  }
+
+  /* Shape morphing on press - round shapes become less round */
+  :host([shape="round"]) button:active,
+  :host(:not([shape])) button:active {
+    border-radius: calc(var(--_container-shape) * 0.6);
+  }
+
+  /* Shape morphing on press - square shapes become slightly more round */
+  :host([shape="square"]) button:active {
+    border-radius: calc(var(--_container-shape) * 1.5);
   }
 
   /* Filled Button (default) */

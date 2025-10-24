@@ -13,12 +13,12 @@ import { m3ButtonStyles } from './m3-button.styles.js';
  * @slot - Default slot for button label text
  * @slot icon - Optional icon to display before the label
  * 
- * @cssprop --md-button-container-height - Height of the button (default: 40px)
- * @cssprop --md-button-container-shape - Border radius (default: 20px)
- * @cssprop --md-button-label-text-size - Font size of label (default: 14px)
+ * @cssprop --md-button-container-height - Height of the button (default: varies by size)
+ * @cssprop --md-button-container-shape - Border radius (default: varies by shape)
+ * @cssprop --md-button-label-text-size - Font size of label (default: varies by size)
  * @cssprop --md-button-label-text-weight - Font weight of label (default: 500)
- * @cssprop --md-button-icon-size - Size of the icon (default: 18px)
- * @cssprop --md-button-spacing - Horizontal padding (default: 24px)
+ * @cssprop --md-button-icon-size - Size of the icon (default: varies by size)
+ * @cssprop --md-button-spacing - Horizontal padding (default: varies by padding setting)
  * @cssprop --md-sys-color-primary - Primary color
  * @cssprop --md-sys-color-on-primary - Text color on primary
  * @cssprop --md-sys-color-secondary-container - Secondary container color
@@ -64,6 +64,33 @@ export class M3Button extends LitElement {
    */
   @property({ type: Boolean, reflect: true, attribute: 'icon-only' })
   iconOnly = false;
+
+  /**
+   * Button size - Material Design 3 expressive sizing
+   * - extra-small: Compact size for dense layouts
+   * - small: Default size (existing)
+   * - medium: Larger for increased prominence
+   * - large: Large for high emphasis
+   * - extra-large: Maximum size for hero actions
+   */
+  @property({ type: String, reflect: true })
+  size: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large' = 'small';
+
+  /**
+   * Button shape style
+   * - round: Fully rounded corners (default)
+   * - square: Sharp corners with minimal rounding
+   */
+  @property({ type: String, reflect: true })
+  shape: 'round' | 'square' = 'round';
+
+  /**
+   * Button padding style
+   * - default: Standard 24dp padding (deprecated for small buttons)
+   * - small: Compact 16dp padding (recommended for new designs)
+   */
+  @property({ type: String, reflect: true })
+  padding: 'default' | 'small' = 'default';
 
   /**
    * Button type attribute for form submission
@@ -138,6 +165,9 @@ export class M3Button extends LitElement {
       composed: true,
       detail: {
         variant: this.variant,
+        size: this.size,
+        shape: this.shape,
+        padding: this.padding,
         name: this.name,
         value: this.value
       }

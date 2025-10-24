@@ -1,18 +1,94 @@
-<h1>Components</h1>
-<p>
-    This page contains a list of all the components available in the library. Click on a component to see more information about it.
-</p>
-
-<section>
-    <h2>Buttons</h2>
-    <p>
-        Buttons help people take action, such as sending an email, sharing a document, or liking a comment.
+<header class="page-header">
+    <h1>Component Library</h1>
+    <p class="subtitle">
+        Material Design 3 components built with Web Components. Explore our collection of accessible, customizable UI elements.
     </p>
-    <div class="button-group">
-        <m3-button>Default Button</m3-button>
-        <m3-button variant="elevated">Elevated Button</m3-button>
-        <m3-button variant="tonal">Tonal Button</m3-button>
-        <m3-button variant="outlined">Outlined Button</m3-button>
-        <m3-button variant="text">Text Button</m3-button>
-    </div>
-</section>
+</header>
+
+<div class="components-grid">
+    <article class="component-card">
+        <div class="card-header">
+            <h2>🎨 Buttons</h2>
+            <span class="badge">Interactive</span>
+        </div>
+        <p class="description">
+            Buttons help people take action, such as sending an email, sharing a document, or liking a comment. 
+            Available in 5 distinct variants to match any use case.
+        </p>
+        
+        <div class="preview">
+            <h3>Button Variants</h3>
+            <div class="button-group">
+                <m3-button>Filled</m3-button>
+                <m3-button variant="elevated">Elevated</m3-button>
+                <m3-button variant="tonal">Tonal</m3-button>
+                <m3-button variant="outlined">Outlined</m3-button>
+                <m3-button variant="text">Text</m3-button>
+            </div>
+        </div>
+
+        <div class="preview">
+            <h3>Sizes & States</h3>
+            <div class="button-group">
+                <m3-button size="small">Small</m3-button>
+                <m3-button size="medium">Medium</m3-button>
+                <m3-button size="large">Large</m3-button>
+                <m3-button disabled>Disabled</m3-button>
+            </div>
+        </div>
+        
+        <div class="card-actions">
+            <m3-button variant="elevated" size="medium" (click)="navigateToButtons()">View Full Documentation</m3-button>
+        </div>
+    </article>
+
+    <article class="component-card">
+        <div class="card-header">
+            <h2>🧭 Navigation Rail</h2>
+            <span class="badge">Navigation</span>
+        </div>
+        <p class="description">
+            A vertical navigation component designed for quick access to primary destinations in your app. 
+            Supports icons, labels, and collapsible states.
+        </p>
+        
+        <div class="feature-list">
+            <div class="feature-item">✓ Icon-based navigation</div>
+            <div class="feature-item">✓ Collapsible design</div>
+            <div class="feature-item">✓ Badge support</div>
+            <div class="feature-item">✓ Active state indicators</div>
+        </div>
+
+        <p class="info-note">
+            💡 <strong>Live Example:</strong> You're experiencing this component right now! 
+            Check the left sidebar to see the navigation rail in action.
+        </p>
+        
+        <div class="card-actions">
+            <m3-button variant="elevated" size="medium" (click)="navigateToNavigationRail()">View Full Documentation</m3-button>
+        </div>
+    </article>
+
+    <article class="component-card upcoming">
+        <div class="card-header">
+            <h2>🚀 More Components</h2>
+            <span class="badge upcoming-badge">Coming Soon</span>
+        </div>
+        <p class="description">
+            We're actively developing more Material Design 3 components. Here's what's on the roadmap:
+        </p>
+        
+        <div class="roadmap-list">
+            <div class="roadmap-item">📝 Text Fields & Input</div>
+            <div class="roadmap-item">🗂️ Cards & Containers</div>
+            <div class="roadmap-item">📋 Lists & Data Tables</div>
+            <div class="roadmap-item">🎚️ Sliders & Controls</div>
+            <div class="roadmap-item">💬 Dialogs & Modals</div>
+            <div class="roadmap-item">🍔 Menus & Dropdowns</div>
+        </div>
+        
+        <p class="info-note">
+            Want to contribute or request a component? Visit our GitHub repository!
+        </p>
+    </article>
+</div>

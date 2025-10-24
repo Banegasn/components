@@ -1,4 +1,6 @@
-
+h4 {
+    margin-bottom: 1rem;
+}
 
 .demo-section {
     margin-bottom: 48px;
@@ -80,21 +82,7 @@
     border-radius: 8px;
 }
 
-.code-sample {
-    background: #1e1e1e;
-    color: #d4d4d4;
-    padding: 16px;
-    border-radius: 8px;
-    margin-top: 16px;
-    overflow-x: auto;
-}
-
-.code-sample code {
-    font-family: 'Courier New', monospace;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    white-space: pre-wrap;
-}
+/* Code block styles moved to global styles.css */
 
 .interactive-demo {
     background: var(--md-sys-color-surface-variant, #e7e0ec);

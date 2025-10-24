@@ -87,6 +87,257 @@
     </div>
   </section>
 
+  <!-- Button Sizes (M3 Expressive) -->
+  <section class="demo-section">
+    <h2>Button Sizes (Material 3 Expressive)</h2>
+    <p>Five size options to support different layout requirements and emphasis levels.</p>
+
+    <div class="variant-card">
+      <h3>Size Variants</h3>
+      <div class="demo-buttons">
+        <m3-button variant="filled" size="extra-small">Extra Small</m3-button>
+        <m3-button variant="filled" size="small">Small (Default)</m3-button>
+        <m3-button variant="filled" size="medium">Medium</m3-button>
+        <m3-button variant="filled" size="large">Large</m3-button>
+        <m3-button variant="filled" size="extra-large">Extra Large</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="filled" size="medium"&gt;Medium Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h4>Extra Small (32px)</h4>
+        <p>Compact size for dense layouts and toolbars</p>
+        <m3-button variant="tonal" size="extra-small">
+          <svg slot="icon" viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          Add
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Small (40px) - Default</h4>
+        <p>Standard size for most interfaces</p>
+        <m3-button variant="tonal" size="small">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          Add Item
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Medium (48px)</h4>
+        <p>Larger for increased prominence</p>
+        <m3-button variant="tonal" size="medium">
+          <svg slot="icon" viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          Add Item
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Large (56px)</h4>
+        <p>Large for high emphasis actions</p>
+        <m3-button variant="filled" size="large">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+          </svg>
+          Confirm
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Extra Large (64px)</h4>
+        <p>Maximum size for hero actions</p>
+        <m3-button variant="filled" size="extra-large">
+          <svg slot="icon" viewBox="0 0 24 24" width="28" height="28">
+            <path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+          </svg>
+          Get Started
+        </m3-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Button Shapes (M3 Expressive) -->
+  <section class="demo-section">
+    <h2>Button Shapes (Material 3 Expressive)</h2>
+    <p>Round or square corners with dynamic shape morphing on press.</p>
+
+    <div class="variant-card">
+      <h3>Round Shape (Default)</h3>
+      <p>Fully rounded corners - morphs to less round when pressed</p>
+      <div class="demo-buttons">
+        <m3-button variant="filled" shape="round" size="extra-small">Extra Small</m3-button>
+        <m3-button variant="filled" shape="round" size="small">Small</m3-button>
+        <m3-button variant="filled" shape="round" size="medium">Medium</m3-button>
+        <m3-button variant="filled" shape="round" size="large">Large</m3-button>
+        <m3-button variant="filled" shape="round" size="extra-large">Extra Large</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="filled" shape="round"&gt;Round Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <h3>Square Shape</h3>
+      <p>Minimal rounding - morphs to more round when pressed</p>
+      <div class="demo-buttons">
+        <m3-button variant="filled" shape="square" size="extra-small">Extra Small</m3-button>
+        <m3-button variant="filled" shape="square" size="small">Small</m3-button>
+        <m3-button variant="filled" shape="square" size="medium">Medium</m3-button>
+        <m3-button variant="filled" shape="square" size="large">Large</m3-button>
+        <m3-button variant="filled" shape="square" size="extra-large">Extra Large</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="filled" shape="square"&gt;Square Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h4>Shape with Variants</h4>
+        <div style="display: flex; gap: 8px; flex-direction: column;">
+          <m3-button variant="filled" shape="square">Filled Square</m3-button>
+          <m3-button variant="elevated" shape="square">Elevated Square</m3-button>
+          <m3-button variant="tonal" shape="square">Tonal Square</m3-button>
+          <m3-button variant="outlined" shape="square">Outlined Square</m3-button>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <h4>Interactive Demo</h4>
+        <p class="help-text">Press and hold to see shape morphing animation</p>
+        <div style="display: flex; gap: 12px;">
+          <m3-button variant="filled" shape="round" size="large">Press Me (Round)</m3-button>
+          <m3-button variant="filled" shape="square" size="large">Press Me (Square)</m3-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Button Padding (M3 Expressive) -->
+  <section class="demo-section">
+    <h2>Button Padding (Material 3 Expressive)</h2>
+    <p>Choose between default (24dp) and compact (16dp) padding. Small padding recommended for new designs.</p>
+
+    <div class="variant-card">
+      <h3>Default Padding (24dp)</h3>
+      <p>Traditional spacing - deprecated for small buttons</p>
+      <div class="demo-buttons">
+        <m3-button variant="filled" padding="default">Default Padding</m3-button>
+        <m3-button variant="outlined" padding="default">Default Padding</m3-button>
+        <m3-button variant="tonal" padding="default">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          With Icon
+        </m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="filled" padding="default"&gt;Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <h3>Small Padding (16dp) - Recommended</h3>
+      <p>Compact spacing for modern layouts</p>
+      <div class="demo-buttons">
+        <m3-button variant="filled" padding="small">Small Padding</m3-button>
+        <m3-button variant="outlined" padding="small">Small Padding</m3-button>
+        <m3-button variant="tonal" padding="small">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          With Icon
+        </m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="filled" padding="small"&gt;Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h4>Comparison</h4>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <m3-button variant="filled" padding="default">Default (24dp)</m3-button>
+          <span>vs</span>
+          <m3-button variant="filled" padding="small">Small (16dp)</m3-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Combined Examples -->
+  <section class="demo-section">
+    <h2>Combined Features</h2>
+    <p>Combine size, shape, and padding for expressive button designs.</p>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h4>Hero CTA</h4>
+        <m3-button variant="filled" size="extra-large" shape="round" padding="small">
+          <svg slot="icon" viewBox="0 0 24 24" width="28" height="28">
+            <path fill="currentColor" d="M8 5v14l11-7z" />
+          </svg>
+          Start Now
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Modern Card Action</h4>
+        <m3-button variant="tonal" size="medium" shape="square" padding="small">
+          <svg slot="icon" viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+          </svg>
+          Complete
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Compact Toolbar</h4>
+        <div style="display: flex; gap: 4px;">
+          <m3-button icon-only variant="text" size="extra-small" padding="small" aria-label="Edit">
+            <svg slot="icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z" />
+            </svg>
+          </m3-button>
+          <m3-button icon-only variant="text" size="extra-small" padding="small" aria-label="Delete">
+            <svg slot="icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12z" />
+            </svg>
+          </m3-button>
+          <m3-button icon-only variant="text" size="extra-small" padding="small" aria-label="Share">
+            <svg slot="icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+            </svg>
+          </m3-button>
+        </div>
+      </div>
+
+      <div class="demo-item">
+        <h4>Form Buttons</h4>
+        <div style="display: flex; gap: 8px; flex-direction: column;">
+          <m3-button variant="filled" size="medium" shape="square" padding="small" full-width>
+            <svg slot="icon" viewBox="0 0 24 24" width="20" height="20">
+              <path fill="currentColor" d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4z" />
+            </svg>
+            Save
+          </m3-button>
+          <m3-button variant="outlined" size="medium" shape="square" padding="small" full-width>
+            Cancel
+          </m3-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Buttons with Icons -->
   <section class="demo-section">
     <h2>Buttons with Icons</h2>
@@ -294,6 +545,8 @@
       <li><strong>Touch Targets:</strong> Minimum 48x48px tap targets (includes invisible padding)</li>
       <li><strong>Screen Readers:</strong> Disabled and loading states properly announced</li>
       <li><strong>Color Contrast:</strong> WCAG 2.1 Level AA compliant color combinations</li>
+      <li><strong>Flexible Sizing:</strong> Five size options (extra-small to extra-large) for optimal touch targets</li>
+      <li><strong>Shape Morphing:</strong> Dynamic visual feedback when pressed improves interaction clarity</li>
     </ul>
   </section>
 

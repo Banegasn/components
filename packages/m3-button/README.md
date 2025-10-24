@@ -5,10 +5,13 @@ Material Design 3 button web component built with Lit, featuring expressive styl
 ## Features
 
 - ✅ **5 Button Variants**: Filled, Elevated, Tonal, Outlined, and Text
+- 📐 **5 Size Options**: Extra-small to Extra-large (Material 3 Expressive)
+- 🔷 **2 Shape Styles**: Round and Square with dynamic morphing on press
+- 📏 **Flexible Padding**: Default (24dp) and Small (16dp) options
 - ♿ **Fully Accessible**: WCAG 2.1 compliant with ARIA support and keyboard navigation
 - 🎨 **Material Design 3**: Follows official M3 specifications and design tokens
 - 🔄 **Loading State**: Built-in loading spinner with proper ARIA attributes
-- 📱 **Touch-friendly**: 48x48px minimum touch target
+- 📱 **Touch-friendly**: Minimum 48x48px touch target
 - 🎯 **Icon Support**: Optional leading icons with proper spacing
 - 🌐 **Framework-agnostic**: Works with React, Angular, Vue, or vanilla JavaScript
 - 🎭 **Customizable**: CSS custom properties for theming
@@ -79,6 +82,81 @@ Low emphasis for less important actions.
 
 ```html
 <m3-button variant="text">Text Button</m3-button>
+```
+
+## Material 3 Expressive Features
+
+### Button Sizes
+
+Choose from five size options to match your design needs:
+
+```html
+<!-- Extra Small (32px) - Compact layouts -->
+<m3-button size="extra-small">Extra Small</m3-button>
+
+<!-- Small (40px) - Default size -->
+<m3-button size="small">Small</m3-button>
+<m3-button>Small (default)</m3-button>
+
+<!-- Medium (48px) - Increased prominence -->
+<m3-button size="medium">Medium</m3-button>
+
+<!-- Large (56px) - High emphasis -->
+<m3-button size="large">Large</m3-button>
+
+<!-- Extra Large (64px) - Hero actions -->
+<m3-button size="extra-large">Extra Large</m3-button>
+```
+
+### Button Shapes
+
+Round (default) or square corners with dynamic morphing animation:
+
+```html
+<!-- Round shape with fully rounded corners (default) -->
+<m3-button shape="round">Round Button</m3-button>
+<m3-button>Round (default)</m3-button>
+
+<!-- Square shape with minimal rounding -->
+<m3-button shape="square">Square Button</m3-button>
+```
+
+**Shape Morphing**: Buttons dynamically morph their shape when pressed:
+- Round buttons become less round (60% of original radius)
+- Square buttons become more round (150% of original radius)
+
+### Button Padding
+
+Choose between default and compact padding:
+
+```html
+<!-- Default padding (24dp) - Traditional spacing -->
+<m3-button padding="default">Default Padding</m3-button>
+<m3-button>Default (default)</m3-button>
+
+<!-- Small padding (16dp) - Recommended for new designs -->
+<m3-button padding="small">Small Padding</m3-button>
+```
+
+### Combining Expressive Features
+
+Mix and match size, shape, and padding for maximum expressiveness:
+
+```html
+<!-- Hero CTA -->
+<m3-button variant="filled" size="extra-large" shape="round" padding="small">
+  Get Started
+</m3-button>
+
+<!-- Modern card action -->
+<m3-button variant="tonal" size="medium" shape="square" padding="small">
+  Continue
+</m3-button>
+
+<!-- Compact toolbar button -->
+<m3-button icon-only size="extra-small" shape="square" padding="small" aria-label="Edit">
+  <svg slot="icon" viewBox="0 0 24 24" width="16" height="16">...</svg>
+</m3-button>
 ```
 
 ## Usage Examples
@@ -157,6 +235,9 @@ Show loading spinner while processing:
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `variant` | `'filled' \| 'elevated' \| 'tonal' \| 'outlined' \| 'text'` | `'filled'` | Button style variant |
+| `size` | `'extra-small' \| 'small' \| 'medium' \| 'large' \| 'extra-large'` | `'small'` | Button size (M3 Expressive) |
+| `shape` | `'round' \| 'square'` | `'round'` | Button corner shape with morphing on press |
+| `padding` | `'default' \| 'small'` | `'default'` | Horizontal padding (24dp or 16dp) |
 | `disabled` | `boolean` | `false` | Disables the button |
 | `loading` | `boolean` | `false` | Shows loading spinner and disables interaction |
 | `full-width` | `boolean` | `false` | Makes button full width |
@@ -171,7 +252,7 @@ Show loading spinner while processing:
 
 | Event | Detail | Description |
 |-------|--------|-------------|
-| `button-click` | `{ variant: string, name?: string, value?: string }` | Fired when button is clicked (not fired when disabled or loading) |
+| `button-click` | `{ variant: string, size: string, shape: string, padding: string, name?: string, value?: string }` | Fired when button is clicked (not fired when disabled or loading) |
 
 ### Slots
 
@@ -191,18 +272,29 @@ Show loading spinner while processing:
 
 | Property | Default | Description |
 |----------|---------|-------------|
-| `--md-button-container-height` | `40px` | Height of the button |
-| `--md-button-container-shape` | `20px` | Border radius |
-| `--md-button-label-text-size` | `14px` | Font size of label |
+| `--md-button-container-height` | Varies by size* | Height of the button |
+| `--md-button-container-shape` | Varies by shape/size* | Border radius |
+| `--md-button-label-text-size` | Varies by size* | Font size of label |
 | `--md-button-label-text-weight` | `500` | Font weight of label |
-| `--md-button-icon-size` | `18px` | Size of the icon |
-| `--md-button-spacing` | `24px` | Horizontal padding |
+| `--md-button-icon-size` | Varies by size* | Size of the icon |
+| `--md-button-spacing` | `24dp` or `16dp`* | Horizontal padding |
 | `--md-sys-color-primary` | `#6750a4` | Primary color |
 | `--md-sys-color-on-primary` | `#ffffff` | Text color on primary |
 | `--md-sys-color-secondary-container` | `#e8def8` | Secondary container color |
 | `--md-sys-color-on-secondary-container` | `#1d192b` | Text on secondary container |
 | `--md-sys-color-surface-container-low` | `#f7f2fa` | Surface color for elevated |
 | `--md-sys-color-outline` | `#79747e` | Border color for outlined |
+
+**Size-based defaults:**
+- **Extra Small**: 32px height, 16px icon, 12px text
+- **Small** (default): 40px height, 18px icon, 14px text  
+- **Medium**: 48px height, 20px icon, 16px text
+- **Large**: 56px height, 24px icon, 18px text
+- **Extra Large**: 64px height, 28px icon, 20px text
+
+**Shape-based border radius:**
+- **Round** (default): Fully rounded (50% of height)
+- **Square**: Minimal rounding (4-14px based on size)
 
 ## Accessibility
 

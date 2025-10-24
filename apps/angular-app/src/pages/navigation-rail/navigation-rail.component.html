@@ -1,0 +1,475 @@
+<header class="page-header">
+  <h1>Navigation Rail</h1>
+  <p class="subtitle">
+    A vertical navigation component that provides quick access to top-level destinations in your app.
+    It can expand to show labels alongside icons for better clarity.
+  </p>
+</header>
+
+<section class="doc-section">
+  <h2>Overview</h2>
+  <p>
+    The Navigation Rail is a compact, vertical navigation component designed for primary navigation in apps.
+    It consists of three main components that work together to create a cohesive navigation experience.
+  </p>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h3>m3-navigation-rail</h3>
+      <p>Main container that holds navigation items and manages the expanded state.</p>
+    </div>
+    <div class="component-card">
+      <h3>m3-navigation-rail-item</h3>
+      <p>Individual navigation items with icons, labels, and badge support.</p>
+    </div>
+    <div class="component-card">
+      <h3>m3-navigation-rail-toggle</h3>
+      <p>Toggle button to expand/collapse the rail to show or hide labels.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Live Examples</h2>
+  
+  <div class="example-card">
+    <h3>Basic Navigation Rail</h3>
+    <p>A simple navigation rail with three items. Click on items to see the active state change.</p>
+    
+    <div class="example-container">
+      <m3-navigation-rail id="basic-rail" class="demo-rail">
+        <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
+        
+        <m3-navigation-rail-item label="Home" active (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Search" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Library" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+          </svg>
+        </m3-navigation-rail-item>
+      </m3-navigation-rail>
+      
+      <div class="demo-content">
+        <p>💡 <strong>Try it:</strong> Click the toggle button at the top to expand the rail and see labels appear next to icons.</p>
+        <p>Click on any navigation item to see it become active.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h3>Navigation Rail with Badges</h3>
+    <p>Badges can display notification counts or status indicators on navigation items.</p>
+    
+    <div class="example-container">
+      <m3-navigation-rail id="badge-rail" class="demo-rail">
+        <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
+        
+        <m3-navigation-rail-item label="Inbox" active (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Messages" badge="12" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Notifications" badge="" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Tasks" badge="3" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+        </m3-navigation-rail-item>
+      </m3-navigation-rail>
+      
+      <div class="demo-content">
+        <p>📊 <strong>Badge Types:</strong></p>
+        <ul>
+          <li><strong>Number badges:</strong> Display counts (e.g., "12", "3")</li>
+          <li><strong>Dot badges:</strong> Show presence without counts (empty string)</li>
+          <li><strong>No badge:</strong> Standard item without indicators</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h3>Navigation Rail with Bottom Items</h3>
+    <p>Use the bottom slot for secondary actions like settings or profile access.</p>
+    
+    <div class="example-container">
+      <m3-navigation-rail id="bottom-rail" class="demo-rail">
+        <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
+        
+        <m3-navigation-rail-item label="Home" active (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Explore" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Favorites" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item slot="bottom" label="Settings" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item slot="bottom" label="Profile" (item-click)="onItemClick($event)">
+          <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+          </svg>
+        </m3-navigation-rail-item>
+      </m3-navigation-rail>
+      
+      <div class="demo-content">
+        <p>🔽 <strong>Bottom Slot:</strong> Items in the bottom slot are separated from main navigation and anchored to the bottom of the rail.</p>
+        <p>Perfect for settings, user profile, or help sections that should always be accessible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Installation</h2>
+  <div class="code-block">
+    <pre><code>npm install &#64;banegasn/m3-navigation-rail</code></pre>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Basic Usage</h2>
+  <div class="code-block">
+    <pre><code>&lt;m3-navigation-rail&gt;
+  &lt;m3-navigation-rail-toggle&gt;&lt;/m3-navigation-rail-toggle&gt;
+  
+  &lt;m3-navigation-rail-item label="Home" active&gt;
+    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+      &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
+    &lt;/svg&gt;
+  &lt;/m3-navigation-rail-item&gt;
+  
+  &lt;m3-navigation-rail-item label="Search"&gt;
+    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+      &lt;path fill="currentColor" d="M15.5 14h-.79l-.28-.27..."/&gt;
+    &lt;/svg&gt;
+  &lt;/m3-navigation-rail-item&gt;
+&lt;/m3-navigation-rail&gt;</code></pre>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>API Reference</h2>
+  
+  <div class="api-card">
+    <h3>m3-navigation-rail</h3>
+    <p>Main container component for the navigation rail.</p>
+    
+    <h4>Properties</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>expanded</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Whether the rail is expanded to show labels</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Events</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Detail</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>menu-toggle</code></td>
+          <td><code>&#123; expanded: boolean &#125;</code></td>
+          <td>Fired when the toggle button is clicked</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Slots</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>(default)</td>
+          <td>Navigation rail items and toggle</td>
+        </tr>
+        <tr>
+          <td><code>bottom</code></td>
+          <td>Items anchored to the bottom of the rail</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="api-card">
+    <h3>m3-navigation-rail-item</h3>
+    <p>Individual navigation item with icon and label.</p>
+    
+    <h4>Properties</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>active</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Whether the item is currently active/selected</td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Text label for the navigation item</td>
+        </tr>
+        <tr>
+          <td><code>badge</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Badge text to display (empty string shows a dot)</td>
+        </tr>
+        <tr>
+          <td><code>expanded</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Automatically set by parent rail</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Events</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Detail</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>item-click</code></td>
+          <td><code>&#123; label: string &#125;</code></td>
+          <td>Fired when the item is clicked</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Slots</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>icon</code></td>
+          <td>SVG or icon element (24x24px recommended)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="api-card">
+    <h3>m3-navigation-rail-toggle</h3>
+    <p>Toggle button to expand/collapse the navigation rail.</p>
+    
+    <h4>Properties</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>expanded</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Whether the rail is expanded</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Events</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Detail</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>toggle-click</code></td>
+          <td><code>&#123; expanded: boolean &#125;</code></td>
+          <td>Fired when toggle is clicked</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Framework Integration</h2>
+  
+  <div class="framework-card">
+    <h3>Angular</h3>
+    <div class="code-block">
+      <pre><code>// app.component.ts
+import &#123; Component, CUSTOM_ELEMENTS_SCHEMA &#125; from '&#64;angular/core';
+import '&#64;banegasn/m3-navigation-rail';
+
+&#64;Component(&#123;
+  selector: 'app-root',
+  template: `
+    &lt;m3-navigation-rail&gt;
+      &lt;m3-navigation-rail-toggle&gt;&lt;/m3-navigation-rail-toggle&gt;
+      &lt;m3-navigation-rail-item 
+        label="Home" 
+        [active]="true"
+        (item-click)="onItemClick($event)"
+      &gt;
+        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+          &lt;!-- icon path --&gt;
+        &lt;/svg&gt;
+      &lt;/m3-navigation-rail-item&gt;
+    &lt;/m3-navigation-rail&gt;
+  `,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+&#125;)
+export class AppComponent &#123;
+  onItemClick(event: CustomEvent) &#123;
+    console.log('Clicked:', event.detail.label);
+  &#125;
+&#125;</code></pre>
+    </div>
+  </div>
+  
+  <div class="framework-card">
+    <h3>React</h3>
+    <div class="code-block">
+      <pre><code>import '&#64;banegasn/m3-navigation-rail';
+
+function App() &#123;
+  const handleItemClick = (e) =&gt; &#123;
+    console.log('Clicked:', e.detail.label);
+  &#125;;
+
+  return (
+    &lt;m3-navigation-rail&gt;
+      &lt;m3-navigation-rail-toggle /&gt;
+      &lt;m3-navigation-rail-item 
+        label="Home" 
+        active
+        onitem-click=&#123;handleItemClick&#125;
+      &gt;
+        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+          &#123;/* icon path */&#125;
+        &lt;/svg&gt;
+      &lt;/m3-navigation-rail-item&gt;
+    &lt;/m3-navigation-rail&gt;
+  );
+&#125;</code></pre>
+    </div>
+  </div>
+  
+  <div class="framework-card">
+    <h3>Vue</h3>
+    <div class="code-block">
+      <pre><code>&lt;template&gt;
+  &lt;m3-navigation-rail&gt;
+    &lt;m3-navigation-rail-toggle /&gt;
+    &lt;m3-navigation-rail-item 
+      label="Home" 
+      :active="true"
+      &#64;item-click="handleItemClick"
+    &gt;
+      &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+        &lt;!-- icon path --&gt;
+      &lt;/svg&gt;
+    &lt;/m3-navigation-rail-item&gt;
+  &lt;/m3-navigation-rail&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import '&#64;banegasn/m3-navigation-rail';
+
+const handleItemClick = (event) =&gt; &#123;
+  console.log('Clicked:', event.detail.label);
+&#125;;
+&lt;/script&gt;</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Live Example</h2>
+  <p>
+    💡 <strong>This website uses the Navigation Rail!</strong> The left sidebar you see on this page is built using the 
+    <code>m3-navigation-rail</code> component. Try clicking the toggle button to expand it and explore the different sections.
+  </p>
+</section>
+
