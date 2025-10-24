@@ -57,7 +57,7 @@ This monorepo is designed for building and distributing web components:
 
 ### Prerequisites
 
-- **Node.js** >= 18.0.0
+- **Node.js** >= 22.16.0
 - **PNPM** >= 9.0.0
 
 Install PNPM if you haven't already:
@@ -134,7 +134,7 @@ pnpm clean
 A demonstration Angular application showcasing how to use the web components in a real-world application.
 
 **Features:**
-- Angular 18 with standalone components
+- Angular 20 with standalone components
 - Live examples of all available web components
 - Integration patterns and best practices
 - Deployed to GitHub Pages for live preview

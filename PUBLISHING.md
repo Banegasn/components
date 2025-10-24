@@ -110,53 +110,6 @@ pnpm add @banegasn/example-component
 yarn add @banegasn/example-component
 ```
 
-## GitHub Actions CI/CD (Optional)
-
-You can automate publishing with GitHub Actions. Create `.github/workflows/publish.yml`:
-
-```yaml
-name: Publish Packages
-
-on:
-  release:
-    types: [created]
-  workflow_dispatch:
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 9.12.1
-      
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'pnpm'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@banegasn'
-      
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      
-      - name: Build packages
-        run: pnpm build
-      
-      - name: Publish packages
-        run: pnpm publish -r --filter './packages/*' --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-## Troubleshooting
-
 ### Authentication Issues
 
 If you get `401 Unauthorized` or `403 Forbidden` errors:
