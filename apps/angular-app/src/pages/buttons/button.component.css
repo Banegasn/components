@@ -44,7 +44,7 @@ h4 {
 }
 
 .variant-card {
-    background: var(--md-sys-color-surface-card, #e7e0ec);
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 16px;
