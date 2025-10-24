@@ -16,6 +16,10 @@ export class HomeComponent {
     this.router.navigate(['/components']);
   }
 
+  navigateToNavigationRail() {
+    this.router.navigate(['/navigation-rail']);
+  }
+
   navigateToButtons() {
     this.router.navigate(['/buttons']);
   }
@@ -37,6 +41,6 @@ export class HomeComponent {
   }
 
   openNpmPackage(packageName: string) {
-    window.open(`https://www.npmjs.com/package/@banegasn/${packageName}`, '_blank');
+    window.open(`https://github.com/Banegasn/components/pkgs/npm/${packageName}`, '_blank');
   }
 }

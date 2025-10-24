@@ -1,67 +1,68 @@
 <div class="home-container">
-    <header class="hero">
-        <h1>Material 3 Web Components Library</h1>
-        <p class="subtitle">
-            Framework-agnostic, reusable components built with modern web standards.<br>
-            Works seamlessly with Angular, React, Vue, Svelte, or vanilla JavaScript.
-        </p>
-        <div class="button-group">
-            <m3-button variant="filled" (button-click)="navigateToComponents()">
-                <span slot="icon" class="material-symbols-outlined">browse</span>
-                Browse Components
-            </m3-button>
-            <m3-button variant="tonal" (button-click)="openGitHub()">
-                <span slot="icon" class="material-symbols-outlined">code</span>
-                View on GitHub
-            </m3-button>
-        </div>
-    </header>
+  <header class="hero">
+    <h1>Material 3 Web Components Library</h1>
+    <p class="subtitle">
+      Framework-agnostic, reusable components built with modern web standards.<br>
+      Works seamlessly with Angular, React, Vue, Svelte, or vanilla JavaScript.
+    </p>
+    <div class="button-group">
+      <m3-button variant="filled" (button-click)="navigateToComponents()">
+        <span slot="icon" class="material-symbols-outlined">browse</span>
+        Browse Components
+      </m3-button>
+      <m3-button variant="tonal" (button-click)="openGitHub()">
+        <span slot="icon" class="material-symbols-outlined">code</span>
+        View on GitHub
+      </m3-button>
+    </div>
+  </header>
 
-    <section class="features">
-        <h2>Key Features</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="material-symbols-outlined">apps</span>
-                <h3>Framework Agnostic</h3>
-                <p>Use these web components in any JavaScript framework or vanilla JS. No lock-in, maximum flexibility.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-symbols-outlined">palette</span>
-                <h3>Material Design 3</h3>
-                <p>Built following official Material 3 specifications with expressive design tokens and modern aesthetics.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-symbols-outlined">accessible</span>
-                <h3>Fully Accessible</h3>
-                <p>WCAG 2.1 compliant with ARIA support, keyboard navigation, and screen reader compatibility.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-symbols-outlined">speed</span>
-                <h3>Turborepo + PNPM</h3>
-                <p>Modern monorepo setup with intelligent build caching, parallelization, and efficient dependency management.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-symbols-outlined">tune</span>
-                <h3>Customizable</h3>
-                <p>Themeable via CSS custom properties. Adapt colors, sizes, and spacing to match your brand.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-symbols-outlined">deployed_code</span>
-                <h3>Production Ready</h3>
-                <p>Published to npm, auto-deployed to GitHub Pages, with TypeScript definitions and source maps.</p>
-            </div>
-        </div>
-    </section>
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="material-symbols-outlined">apps</span>
+        <h3>Framework Agnostic</h3>
+        <p>Use these web components in any JavaScript framework or vanilla JS. No lock-in, maximum flexibility.</p>
+      </div>
+      <div class="feature-card">
+        <span class="material-symbols-outlined">palette</span>
+        <h3>Material Design 3</h3>
+        <p>Built following official Material 3 specifications with expressive design tokens and modern aesthetics.</p>
+      </div>
+      <div class="feature-card">
+        <span class="material-symbols-outlined">accessible</span>
+        <h3>Fully Accessible</h3>
+        <p>WCAG 2.1 compliant with ARIA support, keyboard navigation, and screen reader compatibility.</p>
+      </div>
+      <div class="feature-card">
+        <span class="material-symbols-outlined">speed</span>
+        <h3>Turborepo + PNPM</h3>
+        <p>Modern monorepo setup with intelligent build caching, parallelization, and efficient dependency management.</p>
+      </div>
+      <div class="feature-card">
+        <span class="material-symbols-outlined">tune</span>
+        <h3>Customizable</h3>
+        <p>Themeable via CSS custom properties. Adapt colors, sizes, and spacing to match your brand.</p>
+      </div>
+      <div class="feature-card">
+        <span class="material-symbols-outlined">deployed_code</span>
+        <h3>Production Ready</h3>
+        <p>Published to npm, auto-deployed to GitHub Pages, with TypeScript definitions and source maps.</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="components">
-        <h2>Available Components</h2>
-        <div class="component-list">
+  <section class="components">
+    <h2>Available Components</h2>
+    <div class="component-list">
       <div class="component-card">
         <div class="component-header">
           <h3>&#64;banegasn/m3-button</h3>
           <span class="badge">v1.x</span>
         </div>
-        <p>Material Design 3 button component with 5 variants (Filled, Elevated, Tonal, Outlined, Text), loading states, and icon support.</p>
+        <p>Material Design 3 button component with 5 variants (Filled, Elevated, Tonal, Outlined, Text), loading states, and icon support.
+        </p>
         <div class="demo-buttons">
           <m3-button variant="filled">Filled</m3-button>
           <m3-button variant="elevated">Elevated</m3-button>
@@ -84,7 +85,8 @@
           <h3>&#64;banegasn/m3-navigation-rail</h3>
           <span class="badge">v1.x</span>
         </div>
-        <p>Compact vertical navigation component for top-level destinations. Features expandable/collapsible functionality, badges, and flexible slot system.</p>
+        <p>Compact vertical navigation component for top-level destinations. Features expandable/collapsible functionality, badges, and
+          flexible slot system.</p>
         <div class="component-features">
           <span>✓ Collapsible</span>
           <span>✓ Badge Support</span>
@@ -94,6 +96,10 @@
           <m3-button variant="text" (button-click)="openNpmPackage('m3-navigation-rail')">
             <span slot="icon" class="material-symbols-outlined">package</span>
             npm
+          </m3-button>
+          <m3-button variant="text" (button-click)="navigateToNavigationRail()">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
           </m3-button>
         </div>
       </div>
