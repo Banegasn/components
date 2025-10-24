@@ -68,15 +68,7 @@ jobs:
       - name: Create git tags
         if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
         run: |
-          # Get versions and create tags for each package
-          cd packages/lit-components
-          LIT_VERSION=$(node -p "require('./package.json').version")
-          git tag "@banegasn/lit-components@${LIT_VERSION}" || true
-          
-          cd ../svelte-components
-          SVELTE_VERSION=$(node -p "require('./package.json').version")
-          git tag "@banegasn/svelte-components@${SVELTE_VERSION}" || true
-          
-          cd ../..
+          VERSION=$(node -p "require('./package.json').version")
+          git tag "v${VERSION}" || true
           git push --tags || true
 
