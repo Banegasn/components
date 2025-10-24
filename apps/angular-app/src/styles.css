@@ -59,16 +59,17 @@ p {
 }
 
 :root[theme="dark"] {
-  --md-sys-color-primary: #6750a4;
-  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary: #d0bcff;
+  --md-sys-color-on-primary: #381e72;
   --md-sys-color-surface: #1f1f1f;
   --md-sys-color-surface-variant: #292929;
-  --md-sys-color-outline: #b9b9b9;
-  --md-sys-color-outline-variant: #353535;
-  --md-sys-color-on-surface: #f5f5f5;
-  --md-sys-color-on-surface-variant: #dfdfdf;
-  --md-sys-color-secondary-container: #336daf;
-  --md-sys-color-on-secondary-container: #ffffff;
+  --md-sys-color-outline: #938f99;
+  --md-sys-color-outline-variant: #49454f;
+  --md-sys-color-on-surface: #e6e1e5;
+  --md-sys-color-on-surface-variant: #cac4d0;
+  --md-sys-color-secondary-container: #4a4458;
+  --md-sys-color-on-secondary-container: #e8def8;
+  --md-sys-color-surface-container-low: #1a1a1a;
 }
 
 .material-symbols-outlined {
