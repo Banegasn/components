@@ -40,11 +40,6 @@ All packages are configured to publish to GitHub Packages with the following set
 - **Registry**: `https://npm.pkg.github.com`
 - **Access**: `public`
 
-### Published Packages
-
-1. **@banegasn/lit-components** - Lit web components library
-2. **@banegasn/svelte-components** - Svelte components library
-
 ## Publishing Workflow
 
 ### 1. Build the Packages
@@ -89,10 +84,10 @@ To publish a specific package:
 
 ```bash
 # From the root directory
-pnpm --filter @banegasn/lit-components publish
+pnpm --filter @banegasn/example-component publish
 
 # Or navigate to the package directory
-cd packages/lit-components
+cd packages/example-component
 pnpm publish
 ```
 
@@ -108,11 +103,11 @@ Users can install your packages by first configuring their `.npmrc`:
 Then install with:
 
 ```bash
-npm install @banegasn/lit-components
+npm install @banegasn/example-component
 # or
-pnpm add @banegasn/lit-components
+pnpm add @banegasn/example-component
 # or
-yarn add @banegasn/lit-components
+yarn add @banegasn/example-component
 ```
 
 ## GitHub Actions CI/CD (Optional)
@@ -187,7 +182,7 @@ If packages aren't publishing to the correct registry:
 Published packages are set to `public` access. To view them:
 - Go to your GitHub profile
 - Click on "Packages" tab
-- You should see `@banegasn/lit-components` and `@banegasn/svelte-components`
+- You should see `@banegasn/example-component` and `@banegasn/svelte-components`
 
 ## Best Practices
 
@@ -212,6 +207,6 @@ pnpm version:major    # 1.0.0 → 2.0.0
 pnpm publish:packages
 
 # Publish single package
-pnpm --filter @banegasn/lit-components publish
+pnpm --filter @banegasn/example-component publish
 ```
 

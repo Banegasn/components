@@ -17,8 +17,6 @@ This repository contains a collection of web components that can be used in any 
 
 ## 📚 Documentation
 
-- **[Setup Guide](SETUP_GUIDE.md)** - Complete step-by-step guide for building this monorepo from scratch
-- **[Architecture](ARCHITECTURE.md)** - Detailed architecture documentation and design decisions
 - **[Publishing Guide](PUBLISHING.md)** - How to publish web component packages
 - **[Web Components](#-web-components)** - List of available components
 - **[Component Packages](#-demo-applications)** - Individual package documentation
@@ -104,7 +102,7 @@ pnpm --filter angular-app build
 pnpm dev
 
 # Run specific package in dev mode
-cd packages/lit-components
+cd packages/example-component
 pnpm dev
 
 # Run specific app
@@ -212,8 +210,6 @@ mkdir -p apps/my-demo-app
 }
 ```
 
-See the [Setup Guide](SETUP_GUIDE.md) for detailed instructions.
-
 ## 🧪 Testing
 
 Add test scripts to individual packages:
@@ -294,8 +290,6 @@ rm -rf .turbo
 ```bash
 pnpm install --force
 ```
-
-See [SETUP_GUIDE.md](SETUP_GUIDE.md#troubleshooting) for more troubleshooting tips.
 
 ## 📖 Resources
 

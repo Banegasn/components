@@ -67,16 +67,6 @@ importers:
         specifier: ~5.5.4
         version: 5.5.4
 
-  packages/lit-components:
-    dependencies:
-      lit:
-        specifier: ^3.2.0
-        version: 3.3.1
-    devDependencies:
-      typescript:
-        specifier: ^5.6.3
-        version: 5.9.3
-
   packages/m3-button:
     dependencies:
       lit:
