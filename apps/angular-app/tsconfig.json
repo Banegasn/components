@@ -20,11 +20,7 @@
     "lib": [
       "ES2022",
       "dom"
-    ],
-    "paths": {
-      "@banegasn/m3-button": ["../../packages/m3-button/dist/index.js"],
-      "@banegasn/m3-navigation-rail": ["../../packages/m3-navigation-rail/dist/index.js"]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
