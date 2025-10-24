@@ -1,5 +1,7 @@
 # Web Components Repository
 
+![Material 3 Expressive Web Components Library](assets/banner.png)
+
 A growing collection of reusable, framework-agnostic web components built with modern technologies. This monorepo leverages **Turborepo** and **PNPM Workspaces** to efficiently manage multiple web component packages.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
