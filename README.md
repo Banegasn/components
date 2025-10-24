@@ -1,6 +1,6 @@
-# Web Components Repository
-
 ![Material 3 Expressive Web Components Library](assets/banner.png)
+
+# Material Web Components Repository
 
 A growing collection of reusable, framework-agnostic web components built with modern technologies. This monorepo leverages **Turborepo** and **PNPM Workspaces** to efficiently manage multiple web component packages.
 
