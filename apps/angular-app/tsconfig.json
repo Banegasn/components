@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
@@ -11,6 +10,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
