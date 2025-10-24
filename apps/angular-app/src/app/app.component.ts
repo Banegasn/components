@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
+
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, DOCUMENT } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 import '@banegasn/m3-navigation-rail';

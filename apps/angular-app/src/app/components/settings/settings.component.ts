@@ -1,20 +1,16 @@
-import { Component, inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, inject, CUSTOM_ELEMENTS_SCHEMA, DOCUMENT } from '@angular/core';
 import { DialogRef } from '../../services/dialog.service';
-
 import '@banegasn/m3-button';
 
 @Component({
   selector: 'app-settings',
-  standalone: true,
-  imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
   #document = inject(DOCUMENT);
-  
+
   dialogRef?: DialogRef;
   currentTheme = 'light';
   isRTL = false;
@@ -28,10 +24,10 @@ export class SettingsComponent {
   toggleTheme() {
     const currentTheme = this.#document.documentElement.getAttribute('theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
     // Set the theme
     this.#document.documentElement.setAttribute('theme', newTheme);
-    
+
     // Save to localStorage
     localStorage.setItem('theme', newTheme);
     this.currentTheme = newTheme;

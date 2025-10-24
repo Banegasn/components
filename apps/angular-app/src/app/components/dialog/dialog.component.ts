@@ -1,12 +1,9 @@
 import { Component, ComponentRef, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import '@banegasn/m3-button';
 
 @Component({
   selector: 'app-dialog',
-  standalone: true,
-  imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
@@ -19,7 +16,6 @@ export class DialogComponent {
   maxWidth: string = '500px';
   closeOnBackdrop: boolean = true;
   showCloseButton: boolean = true;
-  
   contentComponent: ComponentRef<any> | null = null;
 
   handleBackdropClick(event: MouseEvent): void {
