@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 import '@banegasn/m3-navigation-rail';
+import '@banegasn/m3-button';
 
 @Component({
     selector: 'app-root',

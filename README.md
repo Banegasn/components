@@ -10,6 +10,7 @@ A growing collection of reusable, framework-agnostic web components built with m
 
 This repository contains a collection of web components that can be used in any JavaScript framework or vanilla JavaScript. Currently available:
 
+- **[@banegasn/m3-button](packages/m3-button)** - Material Design 3 Button component with 5 variants, accessibility support, and loading states
 - **[@banegasn/m3-navigation-rail](packages/m3-navigation-rail)** - Material Design 3 Navigation Rail component with collapsible functionality
 
 > 🚀 **More components coming soon!** This repository will grow to include various web components for different use cases, not limited to Material Design 3.
@@ -45,7 +46,8 @@ This monorepo is designed for building and distributing web components:
 ├── apps/                     # Demo applications
 │   └── angular-app/          # Angular demo showcasing web components
 ├── packages/                 # Web component packages
-│   └─ m3-navigation-rail/    # Material Design 3 Navigation Rail
+│   ├── m3-button/            # Material Design 3 Button
+│   └── m3-navigation-rail/   # Material Design 3 Navigation Rail
 ├── pnpm-workspace.yaml       # PNPM workspace configuration
 ├── turbo.json                # Turborepo configuration
 └── tsconfig.json             # Shared TypeScript config
@@ -89,7 +91,7 @@ pnpm dev
 pnpm build
 
 # Build specific package
-pnpm --filter @banegasn/lit-components build
+pnpm --filter @banegasn/m3-button build
 
 # Build specific app
 pnpm --filter angular-app build
@@ -204,7 +206,7 @@ mkdir -p apps/my-demo-app
 ```json
 {
   "dependencies": {
-    "@banegasn/lit-components": "workspace:*",
+    "@banegasn/m3-button": "workspace:*",
     "@banegasn/m3-navigation-rail": "workspace:*"
   }
 }

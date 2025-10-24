@@ -47,6 +47,7 @@ p {
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1rem;
+  align-items: center;
 }
 
 .button {

@@ -22,9 +22,8 @@
       "dom"
     ],
     "paths": {
+      "@banegasn/m3-button": ["../../packages/m3-button/dist/index.js"],
       "@banegasn/m3-navigation-rail": ["../../packages/m3-navigation-rail/dist/index.js"],
-      "@banegasn/lit-components": ["../../packages/lit-components/dist/index.js"],
-      "@banegasn/svelte-components": ["../../packages/svelte-components/dist/index.js"]
     }
   },
   "angularCompilerOptions": {

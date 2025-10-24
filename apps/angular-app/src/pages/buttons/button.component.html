@@ -1,0 +1,324 @@
+<div class="button-page">
+  <header class="page-header">
+    <h1>Material Design 3 Buttons</h1>
+    <p class="subtitle">
+      Buttons help people take action, such as sending an email, sharing a document, or liking a comment.
+    </p>
+  </header>
+
+  <!-- Button Variants -->
+  <section class="demo-section">
+    <h2>Button Variants</h2>
+    <p>Material Design 3 provides five button types to support different emphasis levels:</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Filled Button</h3>
+        <span class="emphasis-badge high">High Emphasis</span>
+      </div>
+      <p>The most prominent button type. Use for the primary, most important action on a screen.</p>
+      <div class="demo-buttons">
+        <m3-button variant="filled">Filled Button</m3-button>
+        <m3-button variant="filled" disabled>Disabled</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="filled"&gt;Filled Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Elevated Button</h3>
+        <span class="emphasis-badge medium-high">Medium-High Emphasis</span>
+      </div>
+      <p>Adds dimension to mostly flat layouts. Use for secondary actions that need separation.</p>
+      <div class="demo-buttons">
+        <m3-button variant="elevated">Elevated Button</m3-button>
+        <m3-button variant="elevated" disabled>Disabled</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="elevated"&gt;Elevated Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Tonal Button</h3>
+        <span class="emphasis-badge medium">Medium Emphasis</span>
+      </div>
+      <p>An alternative middle ground between filled and outlined buttons. Good for secondary actions.</p>
+      <div class="demo-buttons">
+        <m3-button variant="tonal">Tonal Button</m3-button>
+        <m3-button variant="tonal" disabled>Disabled</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="tonal"&gt;Tonal Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Outlined Button</h3>
+        <span class="emphasis-badge medium">Medium Emphasis</span>
+      </div>
+      <p>For actions that need attention but aren't the primary focus. Often paired with filled buttons.</p>
+      <div class="demo-buttons">
+        <m3-button variant="outlined">Outlined Button</m3-button>
+        <m3-button variant="outlined" disabled>Disabled</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="outlined"&gt;Outlined Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Text Button</h3>
+        <span class="emphasis-badge low">Low Emphasis</span>
+      </div>
+      <p>For the least important actions. Often used in cards, dialogs, and toolbars.</p>
+      <div class="demo-buttons">
+        <m3-button variant="text">Text Button</m3-button>
+        <m3-button variant="text" disabled>Disabled</m3-button>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-button variant="text"&gt;Text Button&lt;/m3-button&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buttons with Icons -->
+  <section class="demo-section">
+    <h2>Buttons with Icons</h2>
+    <p>Add icons to buttons to improve scannability and recognition.</p>
+
+    <div class="demo-grid">
+      <div class="demo-item">
+        <h4>Filled with Icon</h4>
+        <m3-button variant="filled">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          Add Item
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Elevated with Icon</h4>
+        <m3-button variant="elevated">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+          </svg>
+          Confirm
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Tonal with Icon</h4>
+        <m3-button variant="tonal">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor"
+              d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
+          </svg>
+          Save
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Outlined with Icon</h4>
+        <m3-button variant="outlined">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M7 10l5 5 5-5z" />
+          </svg>
+          Download
+        </m3-button>
+      </div>
+
+      <div class="demo-item">
+        <h4>Text with Icon</h4>
+        <m3-button variant="text">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor"
+              d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+          </svg>
+          View
+        </m3-button>
+      </div>
+    </div>
+
+    <div class="code-sample">
+      <code>&lt;m3-button variant="filled"&gt;
+        &lt;svg slot="icon" viewBox="0 0 24 24" width="18" height="18"&gt;...&lt;/svg&gt;
+        Add Item
+        &lt;/m3-button&gt;</code>
+    </div>
+  </section>
+
+  <!-- Icon-Only Buttons -->
+  <section class="demo-section">
+    <h2>Icon-Only Buttons</h2>
+    <p>For compact interfaces. Always include <code>aria-label</code> for accessibility.</p>
+
+    <div class="demo-buttons icon-only-demo">
+      <m3-button icon-only aria-label="Add" variant="filled">
+        <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+      </m3-button>
+
+      <m3-button icon-only aria-label="Edit" variant="tonal">
+        <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor"
+            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+        </svg>
+      </m3-button>
+
+      <m3-button icon-only aria-label="Delete" variant="outlined">
+        <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+        </svg>
+      </m3-button>
+
+      <m3-button icon-only aria-label="Share" variant="text">
+        <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor"
+            d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+        </svg>
+      </m3-button>
+    </div>
+
+    <div class="code-sample">
+      <code>&lt;m3-button icon-only aria-label="Add" variant="filled"&gt;
+        &lt;svg slot="icon" viewBox="0 0 24 24" width="18" height="18"&gt;...&lt;/svg&gt;
+        &lt;/m3-button&gt;</code>
+    </div>
+  </section>
+
+  <!-- Loading State -->
+  <section class="demo-section">
+    <h2>Loading State</h2>
+    <p>Show feedback during asynchronous operations.</p>
+
+    <div class="demo-buttons">
+      <m3-button variant="filled" loading>Processing...</m3-button>
+      <m3-button variant="elevated" loading>Loading</m3-button>
+      <m3-button variant="tonal" loading>Please wait</m3-button>
+    </div>
+
+    <div class="interactive-demo">
+      <h4>Try it:</h4>
+      <m3-button #button (button-click)="onButtonClick(button)" variant="filled">
+        <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+        </svg>
+        Submit Form
+      </m3-button>
+      <p class="help-text">Click the button to see the loading state (2 second demo)</p>
+    </div>
+
+    <div class="code-sample">
+      <code>&lt;m3-button variant="filled" loading&gt;Processing...&lt;/m3-button&gt;</code>
+    </div>
+  </section>
+
+  <!-- Full Width -->
+  <section class="demo-section">
+    <h2>Full Width Buttons</h2>
+    <p>For forms and mobile layouts where buttons should span the container.</p>
+
+    <div class="full-width-demo">
+      <m3-button variant="filled" full-width>
+        <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor"
+            d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
+        </svg>
+        Save Changes
+      </m3-button>
+      <m3-button variant="outlined" full-width>Cancel</m3-button>
+    </div>
+
+    <div class="code-sample">
+      <code>&lt;m3-button variant="filled" full-width&gt;Save Changes&lt;/m3-button&gt;</code>
+    </div>
+  </section>
+
+  <!-- Common Patterns -->
+  <section class="demo-section">
+    <h2>Common Patterns</h2>
+
+    <div class="pattern-card">
+      <h4>Dialog Actions</h4>
+      <p>Use text buttons for low-emphasis actions and filled for primary actions.</p>
+      <div class="dialog-example">
+        <div class="dialog-actions">
+          <m3-button variant="text">Cancel</m3-button>
+          <m3-button variant="filled">Confirm</m3-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern-card">
+      <h4>Form Actions</h4>
+      <p>Primary action on the right, secondary on the left.</p>
+      <div class="form-actions">
+        <m3-button variant="outlined">Reset</m3-button>
+        <m3-button variant="filled">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+          </svg>
+          Submit
+        </m3-button>
+      </div>
+    </div>
+
+    <div class="pattern-card">
+      <h4>Card Actions</h4>
+      <p>Text or tonal buttons work well in cards.</p>
+      <div class="card-example">
+        <p>Card content goes here with some information...</p>
+        <div class="card-actions">
+          <m3-button variant="text">Learn More</m3-button>
+          <m3-button variant="tonal">Get Started</m3-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="demo-section accessibility">
+    <h2>♿ Accessibility Features</h2>
+    <ul class="feature-list">
+      <li><strong>Keyboard Navigation:</strong> Full support for Enter/Space activation and Tab focus</li>
+      <li><strong>Focus Indicators:</strong> Visible focus rings for keyboard users</li>
+      <li><strong>ARIA Support:</strong> Proper <code>aria-label</code>, <code>aria-busy</code> for loading states</li>
+      <li><strong>Touch Targets:</strong> Minimum 48x48px tap targets (includes invisible padding)</li>
+      <li><strong>Screen Readers:</strong> Disabled and loading states properly announced</li>
+      <li><strong>Color Contrast:</strong> WCAG 2.1 Level AA compliant color combinations</li>
+    </ul>
+  </section>
+
+  <!-- Resources -->
+  <section class="demo-section resources">
+    <h2>📚 Resources</h2>
+    <div class="resource-links">
+      <a href="https://m3.material.io/components/buttons/overview" target="_blank" rel="noopener">
+        <m3-button variant="outlined">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor"
+              d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+          </svg>
+          M3 Guidelines
+        </m3-button>
+      </a>
+      <a href="https://github.com/banegasn/components/tree/main/packages/m3-button" target="_blank" rel="noopener">
+        <m3-button variant="outlined">
+          <svg slot="icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor"
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          View on GitHub
+        </m3-button>
+      </a>
+    </div>
+  </section>
+</div>

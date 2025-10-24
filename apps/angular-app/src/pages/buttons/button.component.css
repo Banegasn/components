@@ -1,0 +1,239 @@
+.page-header {
+    margin-bottom: 48px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    max-width: 800px;
+}
+
+.demo-section {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+}
+
+.demo-section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 16px;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+    font-weight: 500;
+}
+
+.variant-card {
+    background: var(--md-sys-color-surface-card, #e7e0ec);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.variant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.emphasis-badge {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.emphasis-badge.high {
+    background: #d32f2f;
+    color: white;
+}
+
+.emphasis-badge.medium-high {
+    background: #f57c00;
+    color: white;
+}
+
+.emphasis-badge.medium {
+    background: #fbc02d;
+    color: #1d1b20;
+}
+
+.emphasis-badge.low {
+    background: #7cb342;
+    color: white;
+}
+
+.demo-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+    align-items: center;
+}
+
+.icon-only-demo {
+    gap: 12px;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.demo-item {
+    padding: 16px;
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    border-radius: 8px;
+}
+
+.code-sample {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    overflow-x: auto;
+}
+
+.code-sample code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.interactive-demo {
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    padding: 24px;
+    border-radius: 12px;
+    margin: 24px 0;
+}
+
+.help-text {
+    margin-top: 12px;
+    font-size: 0.875rem;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+}
+
+.full-width-demo {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    border-radius: 12px;
+}
+
+.pattern-card {
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.dialog-example {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--md-sys-color-surface, #fef7ff);
+    border-radius: 8px;
+}
+
+.dialog-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.card-example {
+    background: var(--md-sys-color-surface, #fef7ff);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-top: 16px;
+}
+
+.accessibility .feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.accessibility .feature-list li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.accessibility .feature-list strong {
+    color: var(--md-sys-color-primary, #6750a4);
+}
+
+.resources .resource-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.resources a {
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .button-page {
+        padding: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .demo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}
