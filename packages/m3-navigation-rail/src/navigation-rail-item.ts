@@ -13,7 +13,7 @@ export class M3NavigationRailItem extends LitElement {
   label = '';
 
   @property({ type: String })
-  badge = '';
+  badge: string | undefined = undefined;
 
   @property({ type: Boolean, reflect: true })
   expanded = false;
@@ -24,10 +24,10 @@ export class M3NavigationRailItem extends LitElement {
         <div class="indicator"></div>
         <div class="icon">
           <slot name="icon"></slot>
-          ${this.badge && !this.expanded ? html`<span class="badge">${this.badge}</span>` : ''}
+          ${this.badge !== undefined && !this.expanded ? html`<span class="badge">${this.badge}</span>` : ''}
         </div>
         ${this.label ? html`<span class="label">${this.label}</span>` : ''}
-        ${this.badge && this.expanded ? html`<span class="badge-expanded">${this.badge}</span>` : ''}
+        ${this.badge !== undefined && this.expanded ? html`<span class="badge-expanded">${this.badge}</span>` : ''}
       </button>
     `;
   }

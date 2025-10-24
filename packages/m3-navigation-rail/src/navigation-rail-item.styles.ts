@@ -141,12 +141,12 @@ export const navigationRailItemStyles = css`
   }
 
   .badge:empty {
+    top: 8px;
+    right: 8px;
     min-width: 6px;
     height: 6px;
     padding: 0;
     border-radius: 3px;
-    top: 12px;
-    right: 16px;
   }
 `;
 

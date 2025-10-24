@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 
 @customElement('m3-navigation-rail')
 export class M3NavigationRail extends LitElement {
@@ -85,6 +85,9 @@ export class M3NavigationRail extends LitElement {
   @property({ type: Boolean, reflect: true })
   expanded = false;
 
+  @state()
+  private _hasBottomItems = false;
+
   updated(changedProperties: Map<string, any>) {
     if (changedProperties.has('expanded')) {
       this._updateItemsExpandedState();
@@ -104,11 +107,21 @@ export class M3NavigationRail extends LitElement {
         <div class="items">
           <slot @toggle-click=${this._handleToggleClick}></slot>
         </div>
-        <div class="bottom-items">
-          <slot name="bottom"></slot>
-        </div>
+        ${this._hasBottomItems ? html`
+          <div class="bottom-items">
+            <slot name="bottom" @slotchange=${this._handleBottomSlotChange}></slot>
+          </div>
+        ` : html`
+          <slot name="bottom" @slotchange=${this._handleBottomSlotChange}></slot>
+        `}
       </nav>
     `;
+  }
+
+  private _handleBottomSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement;
+    const assignedNodes = slot.assignedElements();
+    this._hasBottomItems = assignedNodes.length > 0;
   }
 
   private _handleToggleClick(e: CustomEvent) {

@@ -6,11 +6,11 @@
       Works seamlessly with Angular, React, Vue, Svelte, or vanilla JavaScript.
     </p>
     <div class="button-group">
-      <m3-button variant="filled" (button-click)="navigateToComponents()">
+      <m3-button variant="filled" size="large"(button-click)="navigateToComponents()">
         <span slot="icon" class="material-symbols-outlined">browse</span>
         Browse Components
       </m3-button>
-      <m3-button variant="tonal" (button-click)="openGitHub()">
+      <m3-button variant="tonal" size="large" (button-click)="openGitHub()">
         <span slot="icon" class="material-symbols-outlined">code</span>
         View on GitHub
       </m3-button>
@@ -149,17 +149,21 @@
     <div class="quick-start-content">
       <div class="install-section">
         <h3>Install via npm</h3>
-        <pre><code>npm install &#64;banegasn/m3-button</code></pre>
+        <div class="code-block">
+          <pre><code>npm install &#64;banegasn/m3-button</code></pre>
+        </div>
       </div>
       <div class="usage-section">
         <h3>Use in any framework</h3>
-        <pre><code>&lt;script type="module"&gt;
+        <div class="code-block">
+          <pre><code>&lt;script type="module"&gt;
   import '&#64;banegasn/m3-button';
 &lt;/script&gt;
 
 &lt;m3-button variant="filled"&gt;
   Click me
 &lt;/m3-button&gt;</code></pre>
+        </div>
       </div>
     </div>
     <div class="framework-badges">
@@ -174,19 +178,19 @@
   <section class="resources">
     <h2>Resources & Links</h2>
     <div class="resource-grid">
-      <m3-button variant="outlined" (button-click)="openGitHub()">
+      <m3-button size="medium" variant="outlined" (button-click)="openGitHub()">
         <span slot="icon" class="material-symbols-outlined">code</span>
         GitHub Repository
       </m3-button>
-      <m3-button variant="outlined" (button-click)="openMaterialDesign()">
+      <m3-button size="medium" variant="outlined" (button-click)="openMaterialDesign()">
         <span slot="icon" class="material-symbols-outlined">design_services</span>
         Material Design 3
       </m3-button>
-      <m3-button variant="outlined" (button-click)="openTurborepo()">
+      <m3-button size="medium" variant="outlined" (button-click)="openTurborepo()">
         <span slot="icon" class="material-symbols-outlined">speed</span>
         Turborepo Docs
       </m3-button>
-      <m3-button variant="outlined" (button-click)="openLitDocs()">
+      <m3-button size="medium" variant="outlined" (button-click)="openLitDocs()">
         <span slot="icon" class="material-symbols-outlined">bolt</span>
         Lit Documentation
       </m3-button>

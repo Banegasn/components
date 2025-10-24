@@ -181,32 +181,15 @@ h2 {
   padding: 8px 0;
 }
 
-.arch-column code {
-  background: var(--md-sys-color-surface-variant);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-}
+/* Inline code styling now handled by global styles.css */
 
 .quick-start-content {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin-bottom: 24px;
 }
 
-pre {
-  background: var(--md-sys-color-surface-variant);
-  padding: 16px;
-  border-radius: 8px;
-  overflow-x: auto;
-  margin: 0;
-}
-
-code {
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  color: var(--md-sys-color-on-surface);
-}
+/* Code block styles moved to global styles.css */
+/* Inline code styling preserved in .arch-column code */
 
 .framework-badges {
   gap: 12px;
