@@ -18,11 +18,6 @@ body {
   padding: 0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;

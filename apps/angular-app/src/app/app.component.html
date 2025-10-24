@@ -3,22 +3,22 @@
 
   <m3-navigation-rail-item label="Home" badge="1"
     [routerLink]="['/home']" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
-   <span slot="icon" class="material-symbols-outlined">home</span>
+    <span slot="icon" class="material-symbols-outlined">home</span>
   </m3-navigation-rail-item>
 
   <m3-navigation-rail-item label="Components"
     [routerLink]="['/components']" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
-   <span slot="icon" class="material-symbols-outlined">browse</span>
+    <span slot="icon" class="material-symbols-outlined">browse</span>
   </m3-navigation-rail-item>
 
   <m3-navigation-rail-item label="Buttons"
     [routerLink]="['/buttons']" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive">
-   <span slot="icon" class="material-symbols-outlined">radio_button_checked</span>
+    <span slot="icon" class="material-symbols-outlined">radio_button_checked</span>
   </m3-navigation-rail-item>
 
   <m3-navigation-rail-item label="Contact"
     [routerLink]="['/contact']" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive">
-   <span slot="icon" class="material-symbols-outlined">person</span>
+    <span slot="icon" class="material-symbols-outlined">person</span>
   </m3-navigation-rail-item>
 
   <m3-navigation-rail-item label="Theme" slot="bottom" (item-click)="toggleTheme()">
@@ -39,6 +39,8 @@
 
 </m3-navigation-rail>
 
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="app-container">
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

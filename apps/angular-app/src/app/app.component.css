@@ -4,8 +4,14 @@
   width: 100%;
 }
 
-.container {
+.app-container {
   flex: 1;
   padding: 1rem;
+  overflow: auto;
 }
 
+.app-content {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
