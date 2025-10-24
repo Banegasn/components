@@ -11,7 +11,7 @@ export class M3NavigationRail extends LitElement {
       width: 80px;
       height: 100%;
       background-color: var(--md-sys-color-surface, #fef7ff);
-      border-right: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+      border-inline-end: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
       transition: width 0.3s ease;
     }
 
