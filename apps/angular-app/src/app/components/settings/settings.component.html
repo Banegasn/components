@@ -1,0 +1,36 @@
+<div class="settings-content">
+  <div class="setting-item">
+    <div class="setting-info">
+      <h3>Theme</h3>
+      <p>Switch between light and dark mode</p>
+    </div>
+    <div class="setting-control">
+      <m3-button variant="filled-tonal" (click)="toggleTheme()">
+        @if(currentTheme === 'dark') {
+          <span slot="icon" class="material-symbols-outlined">light_mode</span>
+          Light Mode
+        } @else {
+          <span slot="icon" class="material-symbols-outlined">dark_mode</span>
+          Dark Mode
+        }
+      </m3-button>
+    </div>
+  </div>
+
+  <div class="setting-divider"></div>
+
+  <div class="setting-item">
+    <div class="setting-info">
+      <h3>RTL Layout</h3>
+      <p>Test components in Right-to-Left mode</p>
+    </div>
+    <div class="setting-control">
+      <label class="switch">
+        <input type="checkbox" [checked]="isRTL" (change)="toggleRTL()">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">{{ isRTL ? 'On' : 'Off' }}</span>
+    </div>
+  </div>
+</div>
+

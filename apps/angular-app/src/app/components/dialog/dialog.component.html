@@ -1,0 +1,19 @@
+<div class="dialog-backdrop" (click)="handleBackdropClick($event)">
+  <div class="dialog-container">
+    @if (title || showCloseButton) {
+      <div class="dialog-header">
+        @if (title) {
+          <h2>{{ title }}</h2>
+        }
+        @if (showCloseButton) {
+          <m3-button variant="text" class="close-button" (click)="close()" aria-label="Close dialog">
+            <span slot="icon" class="material-symbols-outlined">close</span>
+          </m3-button>
+        }
+      </div>
+    }
+    
+    <div class="dialog-content-wrapper"></div>
+  </div>
+</div>
+

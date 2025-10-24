@@ -5,6 +5,9 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import '@banegasn/m3-navigation-rail';
 import '@banegasn/m3-button';
 
+import { DialogService } from './services/dialog.service';
+import { SettingsComponent } from './components/settings/settings.component';
+
 @Component({
     selector: 'app-root',
     imports: [RouterOutlet, RouterLink, RouterLinkActive],
@@ -14,12 +17,21 @@ import '@banegasn/m3-button';
 })
 export class AppComponent implements OnInit {
   #document = inject(DOCUMENT);
+  #dialogService = inject(DialogService);
+  
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
 
   ngOnInit() {
     // Initialize theme
     this.initializeTheme();
+    // Initialize RTL
+    this.initializeRTL();
+    
+    // Listen for theme changes from settings dialog
+    window.addEventListener('theme-changed', ((event: CustomEvent) => {
+      this.currentTheme = event.detail;
+    }) as EventListener);
   }
 
   initializeTheme() {
@@ -35,6 +47,14 @@ export class AppComponent implements OnInit {
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = systemPrefersDark ? 'dark' : 'light';
       this.#document.documentElement.setAttribute('theme', theme);
+      this.currentTheme = theme;
+    }
+  }
+
+  initializeRTL() {
+    const savedRTL = localStorage.getItem('rtl');
+    if (savedRTL === 'true') {
+      this.#document.documentElement.setAttribute('dir', 'rtl');
     }
   }
 
@@ -47,5 +67,18 @@ export class AppComponent implements OnInit {
     // Save to localStorage
     localStorage.setItem('theme', newTheme);
     this.currentTheme = newTheme;
+  }
+
+  openSettings() {
+    this.#dialogService.open(SettingsComponent, {
+      title: 'Settings',
+      maxWidth: '500px',
+      closeOnBackdrop: true,
+      showCloseButton: true
+    });
+  }
+
+  openGitHub() {
+    window.open('https://github.com/banegasn/components', '_blank');
   }
 }
