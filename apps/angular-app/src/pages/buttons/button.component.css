@@ -176,9 +176,6 @@ h4 {
 }
 
 @media (max-width: 768px) {
-    .button-page {
-        padding: 16px;
-    }
 
     .demo-grid {
         grid-template-columns: 1fr;

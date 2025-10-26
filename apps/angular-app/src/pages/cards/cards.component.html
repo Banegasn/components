@@ -1,0 +1,304 @@
+<div class="page-container">
+  <header class="page-header">
+    <h1>Cards</h1>
+    <p class="subtitle">Cards contain content and actions about a single subject</p>
+  </header>
+
+  <!-- Card Variants Section -->
+  <section class="section">
+    <h2>Card Variants</h2>
+    <p class="section-description">
+      Material 3 provides three card variants: elevated (default), filled, and outlined.
+      Each variant serves different visual hierarchy needs.
+    </p>
+    
+    <div class="cards-grid">
+      <!-- Elevated Card -->
+      <m3-card variant="elevated">
+        <h3 slot="header">Elevated Card</h3>
+        <p>
+          This is an elevated card with subtle shadow elevation. 
+          It's the default variant and works well for most use cases.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Learn More')">Learn More</m3-button>
+          <m3-button variant="filled" (click)="handleAction('Get Started')">Get Started</m3-button>
+        </div>
+      </m3-card>
+
+      <!-- Filled Card -->
+      <m3-card variant="filled">
+        <h3 slot="header">Filled Card</h3>
+        <p>
+          This is a filled card with a solid background color.
+          Great for dense layouts and secondary content.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Learn More')">Learn More</m3-button>
+          <m3-button variant="tonal" (click)="handleAction('Get Started')">Get Started</m3-button>
+        </div>
+      </m3-card>
+
+      <!-- Outlined Card -->
+      <m3-card variant="outlined">
+        <h3 slot="header">Outlined Card</h3>
+        <p>
+          This is an outlined card with a border.
+          Perfect for lists and minimal designs.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Learn More')">Learn More</m3-button>
+          <m3-button variant="outlined" (click)="handleAction('Get Started')">Get Started</m3-button>
+        </div>
+      </m3-card>
+    </div>
+  </section>
+
+  <!-- Cards with Media -->
+  <section class="section">
+    <h2>Cards with Media</h2>
+    <p class="section-description">
+      Cards can include images, videos, or other media content at the top.
+    </p>
+    
+    <div class="cards-grid">
+      <m3-card variant="elevated">
+        <div slot="media" style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+          🎨
+        </div>
+        <div slot="header">
+          <h3 style="margin: 0;">Design</h3>
+          <p style="margin: 4px 0 0; color: #666; font-size: 14px;">Creative Solutions</p>
+        </div>
+        <p>
+          Beautiful and modern design systems that bring your ideas to life.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Share')">Share</m3-button>
+          <m3-button variant="filled" (click)="handleAction('View')">View</m3-button>
+        </div>
+      </m3-card>
+
+      <m3-card variant="filled">
+        <div slot="media" style="height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+          ⚡
+        </div>
+        <div slot="header">
+          <h3 style="margin: 0;">Performance</h3>
+          <p style="margin: 4px 0 0; color: #666; font-size: 14px;">Lightning Fast</p>
+        </div>
+        <p>
+          Optimized for speed and efficiency in every interaction.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Share')">Share</m3-button>
+          <m3-button variant="tonal" (click)="handleAction('View')">View</m3-button>
+        </div>
+      </m3-card>
+
+      <m3-card variant="outlined">
+        <div slot="media" style="height: 200px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+          🚀
+        </div>
+        <div slot="header">
+          <h3 style="margin: 0;">Innovation</h3>
+          <p style="margin: 4px 0 0; color: #666; font-size: 14px;">Cutting Edge</p>
+        </div>
+        <p>
+          Pushing boundaries with the latest technologies and approaches.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Share')">Share</m3-button>
+          <m3-button variant="outlined" (click)="handleAction('View')">View</m3-button>
+        </div>
+      </m3-card>
+    </div>
+  </section>
+
+  <!-- Clickable Cards -->
+  <section class="section">
+    <h2>Clickable Cards</h2>
+    <p class="section-description">
+      Cards can be made interactive by adding the clickable attribute.
+      They support keyboard navigation and proper accessibility.
+    </p>
+    
+    <div class="cards-grid">
+      <m3-card 
+        variant="elevated" 
+        clickable 
+        aria-label="Navigate to Products"
+        (card-click)="onCardClick($event)"
+      >
+        <div style="font-size: 48px; text-align: center; padding: 20px;">
+          📦
+        </div>
+        <h3 slot="header" style="text-align: center;">Products</h3>
+        <p style="text-align: center;">
+          Browse our catalog of amazing products
+        </p>
+      </m3-card>
+
+      <m3-card 
+        variant="filled" 
+        clickable 
+        aria-label="Navigate to Services"
+        (card-click)="onCardClick($event)"
+      >
+        <div style="font-size: 48px; text-align: center; padding: 20px;">
+          🛠️
+        </div>
+        <h3 slot="header" style="text-align: center;">Services</h3>
+        <p style="text-align: center;">
+          Explore our professional services
+        </p>
+      </m3-card>
+
+      <m3-card 
+        variant="outlined" 
+        clickable 
+        aria-label="Navigate to Support"
+        (card-click)="onCardClick($event)"
+      >
+        <div style="font-size: 48px; text-align: center; padding: 20px;">
+          💬
+        </div>
+        <h3 slot="header" style="text-align: center;">Support</h3>
+        <p style="text-align: center;">
+          Get help from our support team
+        </p>
+      </m3-card>
+    </div>
+  </section>
+
+  <!-- Width Variants -->
+  <section class="section">
+    <h2>Width Options</h2>
+    <p class="section-description">
+      Cards support different width options: auto (default), full, and fixed.
+    </p>
+    
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <m3-card variant="elevated" width="full">
+        <h3 slot="header">Full Width Card</h3>
+        <p>
+          This card takes up the full width of its container.
+          Perfect for mobile layouts or single-column designs.
+        </p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text">Action</m3-button>
+          <m3-button variant="filled">Primary</m3-button>
+        </div>
+      </m3-card>
+
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <m3-card variant="filled" width="fixed">
+          <h3 slot="header">Fixed Width</h3>
+          <p>This card has a fixed width of 320px (customizable via CSS).</p>
+        </m3-card>
+
+        <m3-card variant="outlined" width="auto">
+          <h3 slot="header">Auto Width</h3>
+          <p>This card naturally sizes based on its content.</p>
+        </m3-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- States Demo -->
+  <section class="section">
+    <h2>Card States</h2>
+    <p class="section-description">
+      Cards support various interaction states including hover, focus, pressed, and disabled.
+    </p>
+    
+    <div class="cards-grid">
+      <m3-card variant="elevated" clickable aria-label="Normal card">
+        <h3 slot="header">Normal State</h3>
+        <p>Hover over this card or focus it with keyboard navigation to see state changes.</p>
+      </m3-card>
+
+      <m3-card variant="filled" disabled>
+        <h3 slot="header">Disabled State</h3>
+        <p>This card is disabled and cannot be interacted with.</p>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" disabled>Action</m3-button>
+        </div>
+      </m3-card>
+
+      <m3-card variant="outlined" dragged>
+        <h3 slot="header">Dragged State</h3>
+        <p>This card shows the dragged state with elevated shadow.</p>
+      </m3-card>
+    </div>
+  </section>
+
+  <!-- Complex Card Example -->
+  <section class="section">
+    <h2>Complex Card Example</h2>
+    <p class="section-description">
+      A real-world example of a product card with all features combined.
+    </p>
+    
+    <div style="max-width: 400px; margin: 0 auto;">
+      <m3-card variant="elevated">
+        <div slot="media" style="height: 240px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
+          <div style="font-size: 72px; margin-bottom: 8px;">🎧</div>
+          <div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">NEW</div>
+        </div>
+        <div slot="header">
+          <h3 style="margin: 0; font-size: 24px; color: #1d1b20;">Premium Headphones</h3>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+            <span style="font-size: 28px; font-weight: 600; color: #6750a4;">$299</span>
+            <span style="font-size: 16px; color: #999; text-decoration: line-through;">$399</span>
+            <span style="background: #e8def8; color: #6750a4; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;">25% OFF</span>
+          </div>
+        </div>
+        <p style="line-height: 1.6;">
+          Experience premium sound quality with active noise cancellation,
+          40-hour battery life, and comfortable over-ear design.
+        </p>
+        <div style="display: flex; gap: 8px; margin-top: 12px;">
+          <span style="background: #f5f5f5; padding: 6px 12px; border-radius: 8px; font-size: 13px;">🎵 Hi-Fi Audio</span>
+          <span style="background: #f5f5f5; padding: 6px 12px; border-radius: 8px; font-size: 13px;">🔋 40h Battery</span>
+        </div>
+        <div slot="actions" class="actions">
+          <m3-button variant="text" (click)="handleAction('Add to Wishlist')">
+            ❤️ Wishlist
+          </m3-button>
+          <m3-button variant="filled" (click)="handleAction('Add to Cart')">
+            Add to Cart
+          </m3-button>
+        </div>
+      </m3-card>
+    </div>
+  </section>
+
+  <!-- Code Examples -->
+  <section class="section">
+    <h2>Usage Examples</h2>
+    
+    <h3>Basic Card</h3>
+    <div class="code-block">
+      <pre><code>&lt;m3-card variant="elevated"&gt;
+  &lt;h3 slot="header"&gt;Card Title&lt;/h3&gt;
+  &lt;p&gt;Card content goes here&lt;/p&gt;
+  &lt;div slot="actions"&gt;
+    &lt;m3-button variant="text"&gt;Cancel&lt;/m3-button&gt;
+    &lt;m3-button variant="filled"&gt;Confirm&lt;/m3-button&gt;
+  &lt;/div&gt;
+&lt;/m3-card&gt;</code></pre>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Clickable Card</h3>
+    <div class="code-block">
+      <pre><code>&lt;m3-card 
+  clickable 
+  aria-label="Navigate to products"
+  (card-click)="handleClick($event)"&gt;
+  &lt;p&gt;Click anywhere on this card&lt;/p&gt;
+&lt;/m3-card&gt;</code></pre>
+    </div>
+  </section>
+</div>
+

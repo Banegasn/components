@@ -15,3 +15,12 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .app-content {
+    padding: 0;
+  }
+  .app-content {
+    max-width: 100%;
+  }
+}
