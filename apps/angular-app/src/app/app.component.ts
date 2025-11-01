@@ -44,6 +44,8 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.currentRoute = event.url;
+        // Scroll main container to top on route change
+        this.scrollToTop();
       });
   }
 
@@ -105,5 +107,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isActiveRoute(path: string): boolean {
     return this.currentRoute === path || this.currentRoute.startsWith(path + '/');
+  }
+
+  scrollToTop() {
+    // Find the main container element and scroll it to top
+    const container = this.#document.querySelector('.app-container') as HTMLElement;
+    if (container) {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }
