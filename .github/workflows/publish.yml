@@ -36,13 +36,9 @@ jobs:
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           node-version: '22.16'
           cache: 'pnpm'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@banegasn'
       
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -60,8 +56,13 @@ jobs:
           git commit -m "chore: bump version (${{ github.event.inputs.version_type }})"
           git push
       
-      - name: Publish packages
-        run: pnpm publish -r --filter './packages/*' --no-git-checks
+      - name: Publish to NPM Registry
+        run: pnpm run publish:npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Publish to GitHub Packages
+        run: pnpm run publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
