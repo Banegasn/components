@@ -11,6 +11,54 @@
   margin-bottom: 64px;
 }
 
+/* Scrollbar styling - thin for both themes */
+.app-container {
+  scrollbar-width: thin;
+}
+
+.app-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.app-container::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+}
+
+/* Light theme scrollbar */
+:host-context([theme="light"]) .app-container {
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05);
+}
+
+:host-context([theme="light"]) .app-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:host-context([theme="light"]) .app-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+:host-context([theme="light"]) .app-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Dark theme scrollbar */
+:host-context([theme="dark"]) .app-container {
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
+}
+
+:host-context([theme="dark"]) .app-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+:host-context([theme="dark"]) .app-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:host-context([theme="dark"]) .app-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .app-content {
   padding: 1rem;
   max-width: 1200px;
