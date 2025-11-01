@@ -25,4 +25,8 @@ export class ComponentsComponent {
   navigateToNavigationRail() {
     this.router.navigate(['/navigation-rail']);
   }
+
+  navigateToNavigationBar() {
+    this.router.navigate(['/navigation-bar']);
+  }
 }

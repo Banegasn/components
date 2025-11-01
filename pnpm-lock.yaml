@@ -41,6 +41,12 @@ importers:
       '@banegasn/m3-button':
         specifier: workspace:*
         version: link:../../packages/m3-button
+      '@banegasn/m3-card':
+        specifier: workspace:*
+        version: link:../../packages/m3-card
+      '@banegasn/m3-navigation-bar':
+        specifier: workspace:*
+        version: link:../../packages/m3-navigation-bar
       '@banegasn/m3-navigation-rail':
         specifier: workspace:*
         version: link:../../packages/m3-navigation-rail
@@ -78,6 +84,16 @@ importers:
         version: 5.9.3
 
   packages/m3-card:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-navigation-bar:
     dependencies:
       lit:
         specifier: ^3.2.0

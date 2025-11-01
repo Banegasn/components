@@ -1,0 +1,205 @@
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.doc-section {
+    margin-bottom: 3rem;
+}
+
+.doc-section h2 {
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--md-sys-color-outline-variant);
+}
+
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.component-card {
+    padding: 1.5rem;
+    background-color: var(--md-sys-color-secondary-container);
+    border-radius: 0.75rem;
+}
+
+.component-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+}
+
+.component-card p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.example-card {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: var(--md-sys-color-surface-variant);
+    border-radius: 1rem;
+}
+
+.example-card h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.example-card > p {
+    margin: 0 0 1.5rem 0;
+    opacity: 0.8;
+}
+
+.example-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.demo-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.demo-frame {
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    background-color: var(--md-sys-color-surface);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid var(--md-sys-color-outline-variant);
+    overflow: hidden;
+}
+
+.horizontal-demo {
+    min-height: 150px;
+}
+
+.demo-bar {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.demo-content {
+    flex: 1;
+    padding: 1rem;
+    background-color: var(--md-sys-color-surface);
+    border-radius: 0.5rem;
+}
+
+.demo-content p {
+    margin: 0.75rem 0;
+}
+
+.demo-content ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.demo-content li {
+    margin: 0.5rem 0;
+}
+
+.api-card {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: var(--md-sys-color-secondary-container);
+    border-radius: 1rem;
+}
+
+.api-card h3 {
+    margin: 0 0 0.75rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.api-card > p {
+    margin: 0 0 1.5rem 0;
+    opacity: 0.9;
+}
+
+.api-card h4 {
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.1rem;
+}
+
+.api-card ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.api-card li {
+    margin: 0.5rem 0;
+}
+
+.api-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--md-sys-color-surface);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.api-table th,
+.api-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.api-table th {
+    background-color: var(--md-sys-color-primary-container);
+    font-weight: 600;
+}
+
+.api-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.api-table code {
+    padding: 0.2rem 0.4rem;
+    background-color: var(--md-sys-color-surface-variant);
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.framework-card {
+    margin-bottom: 1.5rem;
+}
+
+.framework-card h3 {
+    margin: 0 0 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .example-container {
+        flex-direction: column;
+    }
+    
+    .demo-frame {
+        min-height: 150px;
+    }
+    
+    .component-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

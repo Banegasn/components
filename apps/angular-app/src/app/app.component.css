@@ -8,6 +8,7 @@
   flex: 1;
   padding: 1rem;
   overflow: auto;
+  margin-bottom: 64px;
 }
 
 .app-content {
@@ -16,11 +17,46 @@
   margin: 0 auto;
 }
 
+/* Navigation Rail - Desktop/Tablet */
+.desktop-nav {
+  display: flex;
+}
+
+/* Navigation Bar - Mobile (hidden by default) */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
 @media (max-width: 768px) {
+  /* Hide navigation rail on mobile */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Show navigation bar on mobile */
+  .mobile-nav {
+    display: block;
+  }
+
+  /* Adjust app container for mobile */
+  .app-container {
+    padding: 1rem;
+    padding-bottom: calc(1rem + 64px);
+  }
+
   .app-content {
     padding: 0;
-  }
-  .app-content {
     max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .app-container {
+    margin-bottom: 0;
   }
 }

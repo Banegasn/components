@@ -59,8 +59,11 @@ p {
   --md-sys-color-on-surface-variant: #292929;
   --md-sys-color-secondary-container: #d8e3f0;
   --md-sys-color-on-secondary-container: #1d192b;
+  --md-sys-color-secondary: #6750a4;
+  --md-sys-color-surface-container: #f7f2fa;
   --md-sys-color-tertiary: #4e5158;
   --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 :root[theme="dark"] {
@@ -75,10 +78,13 @@ p {
   --md-sys-color-on-surface-variant: #cac4d0;
   --md-sys-color-secondary-container: #4a4458;
   --md-sys-color-on-secondary-container: #e8def8;
+  --md-sys-color-secondary: #d0bcff;
+  --md-sys-color-surface-container: #211f26;
   --md-sys-color-surface-container-low: #1a1a1a;
   --md-sys-color-surface-container-highest: #2b2930;
   --md-sys-color-tertiary: #c0c2c9;
   --md-sys-color-on-tertiary: #292929;
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .material-symbols-outlined {

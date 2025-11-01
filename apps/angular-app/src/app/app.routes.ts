@@ -5,6 +5,7 @@ import { ComponentsComponent } from '../pages/components/components.component';
 import { ContactComponent } from '../pages/contact/contact.component';
 import { HomeComponent } from '../pages/home/home.component';
 import { NavigationRailComponent } from '../pages/navigation-rail/navigation-rail.component';
+import { NavigationBarComponent } from '../pages/navigation-bar/navigation-bar.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'buttons', component: ButtonComponent },
     { path: 'cards', component: CardsComponent },
     { path: 'navigation-rail', component: NavigationRailComponent },
+    { path: 'navigation-bar', component: NavigationBarComponent },
     { path: 'contact', component: ContactComponent },
 ];

@@ -17,7 +17,7 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
         </m3-button>
         <m3-button variant="tonal" (button-click)="openGitHubRepos()">
           <span slot="icon" class="material-symbols-outlined">code</span>
-          View Repositories
+          View Repository
         </m3-button>
       </div>
     </section>

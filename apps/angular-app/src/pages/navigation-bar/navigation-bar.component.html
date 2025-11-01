@@ -1,0 +1,502 @@
+<header class="page-header">
+  <h1>Navigation Bar</h1>
+  <p class="subtitle">
+    A horizontal navigation component placed at the bottom of the screen, designed for smaller devices.
+    The flexible navigation bar is shorter than the original and supports both vertical (compact windows) 
+    and horizontal (medium windows) navigation item layouts.
+  </p>
+</header>
+
+<section class="doc-section">
+  <h2>Overview</h2>
+  <p>
+    The Navigation Bar is a horizontal navigation component that provides quick access to top-level destinations 
+    in your app. It adapts its layout based on window size, showing vertical items in compact windows and 
+    horizontal items in medium windows.
+  </p>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h3>m3-navigation-bar</h3>
+      <p>Main container that holds navigation items and manages layout (vertical/horizontal).</p>
+    </div>
+    <div class="component-card">
+      <h3>m3-navigation-bar-item</h3>
+      <p>Individual navigation items with icons, labels, and badge support.</p>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Installation</h2>
+  <p>Install the package using npm:</p>
+  <div class="code-block">
+    <pre><code>npm install @banegasn/m3-navigation-bar</code></pre>
+  </div>
+  
+  <p style="margin-top: 1rem;">Then import it in your component:</p>
+  <div class="code-block">
+    <pre><code>import '@banegasn/m3-navigation-bar';</code></pre>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Live Examples</h2>
+  
+  <div class="example-card">
+    <h3>Basic Navigation Bar</h3>
+    <p>A simple navigation bar with three items. Click on items to see the active state change.</p>
+    
+    <div class="example-container">
+      <div class="demo-wrapper">
+        <div class="demo-frame">
+          <m3-navigation-bar id="basic-bar" class="demo-bar">
+            <m3-navigation-bar-item label="Home" [active]="selectedItem === 'Home'" (item-click)="onItemClick($event)">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Music" [active]="selectedItem === 'Music'" (item-click)="onItemClick($event)">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Podcasts" [active]="selectedItem === 'Podcasts'" (item-click)="onItemClick($event)">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+              </svg>
+            </m3-navigation-bar-item>
+          </m3-navigation-bar>
+        </div>
+        
+        <div class="demo-content">
+          <p>💡 <strong>Try it:</strong> Click on any navigation item to see it become active. The active indicator and colors will change.</p>
+          <p>In compact windows (&lt;600px), items are arranged vertically and dynamically resize. In medium windows (≥600px), items have fixed widths.</p>
+          <p><strong>Current selection:</strong> <code>{{ selectedItem }}</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h3>Navigation Bar with Badges</h3>
+    <p>Badges can display notification counts or status indicators on navigation items.</p>
+    
+    <div class="example-container">
+      <div class="demo-wrapper">
+        <div class="demo-frame">
+          <m3-navigation-bar id="badge-bar" class="demo-bar">
+            <m3-navigation-bar-item label="Inbox" active badge="5">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Messages" badge="12">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Notifications" badge="">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Tasks" badge="3">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+              </svg>
+            </m3-navigation-bar-item>
+          </m3-navigation-bar>
+        </div>
+        
+        <div class="demo-content">
+          <p>📊 <strong>Badge Types:</strong></p>
+          <ul>
+            <li><strong>Number badges:</strong> Display counts (e.g., "5", "12", "3")</li>
+            <li><strong>Dot badges:</strong> Show presence without counts (empty string)</li>
+            <li><strong>No badge:</strong> Standard item without indicators</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h3>Horizontal Layout (Medium Windows)</h3>
+    <p>In medium windows (≥600px), the navigation bar automatically switches to horizontal item layout with fixed widths.</p>
+    
+    <div class="example-container">
+      <div class="demo-wrapper">
+        <div class="demo-frame horizontal-demo">
+          <m3-navigation-bar layout="horizontal" class="demo-bar">
+            <m3-navigation-bar-item label="Home" active>
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Search">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Library">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Profile">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+              </svg>
+            </m3-navigation-bar-item>
+          </m3-navigation-bar>
+        </div>
+        
+        <div class="demo-content">
+          <p>🔄 <strong>Horizontal Layout:</strong> Items have fixed widths (min 80px, max 168px) and extra space is added to the ends of the navigation bar.</p>
+          <p>This layout is perfect for medium-sized windows where you want consistent item sizes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-card">
+    <h3>Auto Layout (Responsive)</h3>
+    <p>Enable automatic layout switching based on window size using the <code>auto-layout</code> attribute.</p>
+    
+    <div class="example-container">
+      <div class="demo-wrapper">
+        <div class="demo-frame">
+          <m3-navigation-bar auto-layout class="demo-bar">
+            <m3-navigation-bar-item label="Home" active>
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Explore">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 10.9c-.61 0-1.1.49-1.1 1.1s.49 1.1 1.1 1.1c.61 0 1.1-.49 1.1-1.1s-.49-1.1-1.1-1.1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm2.19 12.19L6 18l3.81-8.19L18 6l-3.81 8.19z"/>
+              </svg>
+            </m3-navigation-bar-item>
+            
+            <m3-navigation-bar-item label="Favorites">
+              <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </m3-navigation-bar-item>
+          </m3-navigation-bar>
+        </div>
+        
+        <div class="demo-content">
+          <p>📱 <strong>Responsive:</strong> The navigation bar automatically switches between vertical and horizontal layouts based on window width.</p>
+          <ul>
+            <li><strong>Compact windows (&lt;600px):</strong> Vertical layout with dynamic item widths</li>
+            <li><strong>Medium windows (≥600px):</strong> Horizontal layout with fixed item widths</li>
+          </ul>
+          <p><strong>Try it:</strong> Resize your browser window to see the layout change!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Basic Usage</h2>
+  <div class="code-block">
+    <pre><code>&lt;m3-navigation-bar&gt;
+  &lt;m3-navigation-bar-item label="Home" active&gt;
+    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+      &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
+    &lt;/svg&gt;
+  &lt;/m3-navigation-bar-item&gt;
+  
+  &lt;m3-navigation-bar-item label="Music"&gt;
+    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+      &lt;path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/&gt;
+    &lt;/svg&gt;
+  &lt;/m3-navigation-bar-item&gt;
+  
+  &lt;m3-navigation-bar-item label="Podcasts"&gt;
+    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+      &lt;path fill="currentColor" d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/&gt;
+    &lt;/svg&gt;
+  &lt;/m3-navigation-bar-item&gt;
+&lt;/m3-navigation-bar&gt;</code></pre>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>API Reference</h2>
+  
+  <div class="api-card">
+    <h3>m3-navigation-bar</h3>
+    <p>Main container component for the navigation bar.</p>
+    
+    <h4>Properties</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>layout</code></td>
+          <td><code>'vertical' | 'horizontal'</code></td>
+          <td>'vertical'</td>
+          <td>Layout mode for navigation items</td>
+        </tr>
+        <tr>
+          <td><code>auto-layout</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Automatically switch between vertical/horizontal based on window width (≥600px = horizontal)</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Events</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Detail</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>item-click</code></td>
+          <td><code>&#123; label: string &#125;</code></td>
+          <td>Fired when a navigation item is clicked (bubbles from items)</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Slots</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>(default)</td>
+          <td>Navigation bar items</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="api-card">
+    <h3>m3-navigation-bar-item</h3>
+    <p>Individual navigation item with icon and label.</p>
+    
+    <h4>Properties</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>active</code></td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>Whether the item is currently active/selected</td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Text label for the navigation item</td>
+        </tr>
+        <tr>
+          <td><code>badge</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Badge text to display (empty string shows a dot badge)</td>
+        </tr>
+        <tr>
+          <td><code>largeBadge</code></td>
+          <td>string</td>
+          <td>''</td>
+          <td>Large badge text (displays larger badge)</td>
+        </tr>
+        <tr>
+          <td><code>layout</code></td>
+          <td><code>'vertical' | 'horizontal'</code></td>
+          <td>'vertical'</td>
+          <td>Layout mode (automatically set by parent bar)</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Events</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Detail</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>item-click</code></td>
+          <td><code>&#123; label: string &#125;</code></td>
+          <td>Fired when the item is clicked</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h4>Slots</h4>
+    <table class="api-table">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>icon</code></td>
+          <td>SVG or icon element (24x24px recommended)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Framework Integration</h2>
+  
+  <div class="framework-card">
+    <h3>Angular</h3>
+    <div class="code-block">
+      <pre><code>// navigation-bar.component.ts
+import &#123; Component, CUSTOM_ELEMENTS_SCHEMA &#125; from '&#64;angular/core';
+import '@banegasn/m3-navigation-bar';
+
+&#64;Component(&#123;
+  selector: 'app-navigation',
+  template: `
+    &lt;m3-navigation-bar [auto-layout]="true"&gt;
+      &lt;m3-navigation-bar-item 
+        label="Home" 
+        [active]="true"
+        (item-click)="onItemClick($event)"
+      &gt;
+        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+          &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
+        &lt;/svg&gt;
+      &lt;/m3-navigation-bar-item&gt;
+    &lt;/m3-navigation-bar&gt;
+  `,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+&#125;)
+export class NavigationComponent &#123;
+  onItemClick(event: CustomEvent) &#123;
+    console.log('Clicked:', event.detail.label);
+  &#125;
+&#125;</code></pre>
+    </div>
+  </div>
+  
+  <div class="framework-card">
+    <h3>React</h3>
+    <div class="code-block">
+      <pre><code>import '&#64;banegasn/m3-navigation-bar';
+
+function App() &#123;
+  const handleItemClick = (e) =&gt; &#123;
+    console.log('Clicked:', e.detail.label);
+  &#125;;
+
+  return (
+    &lt;m3-navigation-bar auto-layout&gt;
+      &lt;m3-navigation-bar-item 
+        label="Home" 
+        active
+        onitem-click=&#123;handleItemClick&#125;
+      &gt;
+        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+          &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
+        &lt;/svg&gt;
+      &lt;/m3-navigation-bar-item&gt;
+    &lt;/m3-navigation-bar&gt;
+  );
+&#125;</code></pre>
+    </div>
+  </div>
+  
+  <div class="framework-card">
+    <h3>Vue</h3>
+    <div class="code-block">
+      <pre><code>&lt;template&gt;
+  &lt;m3-navigation-bar :auto-layout="true"&gt;
+    &lt;m3-navigation-bar-item 
+      label="Home" 
+      :active="true"
+      &#64;item-click="handleItemClick"
+    &gt;
+      &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
+        &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
+      &lt;/svg&gt;
+    &lt;/m3-navigation-bar-item&gt;
+  &lt;/m3-navigation-bar&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import '@banegasn/m3-navigation-bar';
+
+const handleItemClick = (event) =&gt; &#123;
+  console.log('Clicked:', event.detail.label);
+&#125;;
+&lt;/script&gt;</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="doc-section">
+  <h2>Design Tokens</h2>
+  <p>
+    The navigation bar follows Material Design 3 specifications and uses the following design tokens:
+  </p>
+  <div class="api-card">
+    <h4>Color Tokens</h4>
+    <ul>
+      <li><strong>Container:</strong> <code>md.sys.color.surface-container</code></li>
+      <li><strong>Elevation:</strong> <code>md.sys.elevation.level2</code></li>
+      <li><strong>Active Indicator:</strong> <code>md.sys.color.secondary-container</code></li>
+      <li><strong>Active Label:</strong> <code>md.sys.color.secondary</code></li>
+      <li><strong>Active Icon:</strong> <code>md.sys.color.on-secondary-container</code></li>
+      <li><strong>Inactive Label/Icon:</strong> <code>md.sys.color.on-surface-variant</code></li>
+    </ul>
+    <h4>State Layers</h4>
+    <ul>
+      <li><strong>Hover:</strong> 8% state layer opacity</li>
+      <li><strong>Focus:</strong> 10% state layer opacity</li>
+      <li><strong>Pressed:</strong> 10% state layer opacity</li>
+    </ul>
+  </div>
+</section>
+
