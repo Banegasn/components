@@ -1,0 +1,292 @@
+<div class="radio-button-page">
+  <header class="page-header">
+    <h1>Radio Buttons</h1>
+    <p class="subtitle">
+      Radio buttons allow users to select a single option from a group of options. They are best used when users need to see all available options.
+    </p>
+  </header>
+
+  <!-- Basic Usage -->
+  <section class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Radio buttons allow users to select one option from a group. They follow Material Design 3 specifications with smooth animations and accessibility support.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Default Radio Buttons</h3>
+      </div>
+      <p>Radio buttons start in the unchecked state by default.</p>
+      <div class="demo-radios">
+        <div class="radio-item">
+          <m3-radio-button name="demo1" value="option1"></m3-radio-button>
+          <label>Unchecked</label>
+        </div>
+        <div class="radio-item">
+          <m3-radio-button name="demo1" value="option2" checked></m3-radio-button>
+          <label>Checked</label>
+        </div>
+        <div class="radio-item">
+          <m3-radio-button name="demo1" value="option3" disabled></m3-radio-button>
+          <label>Disabled</label>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-radio-button name="group" value="1"&gt;&lt;/m3-radio-button&gt;</code><br>
+        <code>&lt;m3-radio-button name="group" value="2" checked&gt;&lt;/m3-radio-button&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Radio Groups -->
+  <section class="demo-section">
+    <h2>Radio Groups</h2>
+    <p>Radio buttons with the same <code>name</code> attribute form a group where only one can be selected at a time.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Theme Selection</h3>
+      </div>
+      <p>Example of a radio group for theme selection:</p>
+      <div class="radio-group">
+        <div class="radio-item">
+          <m3-radio-button 
+            name="theme"
+            value="light"
+            [checked]="selectedTheme === 'light'"
+            (radio-change)="onRadioChange($event, 'theme')"
+            aria-label="Light theme">
+          </m3-radio-button>
+          <label>Light</label>
+        </div>
+        <div class="radio-item">
+          <m3-radio-button 
+            name="theme"
+            value="dark"
+            [checked]="selectedTheme === 'dark'"
+            (radio-change)="onRadioChange($event, 'theme')"
+            aria-label="Dark theme">
+          </m3-radio-button>
+          <label>Dark</label>
+        </div>
+        <div class="radio-item">
+          <m3-radio-button 
+            name="theme"
+            value="auto"
+            [checked]="selectedTheme === 'auto'"
+            (radio-change)="onRadioChange($event, 'theme')"
+            aria-label="Auto theme">
+          </m3-radio-button>
+          <label>Auto</label>
+        </div>
+      </div>
+      <p class="selection-info">Selected: <strong>{{ selectedTheme }}</strong></p>
+      <div class="code-sample">
+        <code>
+          &lt;m3-radio-button<br>
+          &nbsp;&nbsp;name="theme"<br>
+          &nbsp;&nbsp;value="light"<br>
+          &nbsp;&nbsp;[checked]="selectedTheme === 'light'"<br>
+          &nbsp;&nbsp;(radio-change)="onRadioChange($event, 'theme')"&gt;<br>
+          &lt;/m3-radio-button&gt;
+        </code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Examples -->
+  <section class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Radio buttons emit events when their state changes, allowing you to react to user selections.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Size Selection</h3>
+      </div>
+      <p>Example of radio buttons used in a settings interface:</p>
+      <div class="settings-panel">
+        <div class="setting-item" (click)="radioSmall.click()" (keydown.enter)="radioSmall.click()">
+          <div class="setting-info">
+            <h4>Small</h4>
+            <p>Compact size for dense layouts</p>
+          </div>
+          <m3-radio-button 
+            #radioSmall
+            name="size"
+            value="small"
+            size="small"
+            [checked]="selectedSize === 'small'"
+            (radio-change)="onRadioChange($event, 'size')"
+            aria-label="Small size">
+          </m3-radio-button>
+        </div>
+        <div class="setting-item" (click)="radioMedium.click()" (keydown.enter)="radioMedium.click()">
+          <div class="setting-info">
+            <h4>Medium</h4>
+            <p>Default size for most use cases</p>
+          </div>
+          <m3-radio-button 
+            #radioMedium
+            name="size"
+            value="medium"
+            size="medium"
+            [checked]="selectedSize === 'medium'"
+            (radio-change)="onRadioChange($event, 'size')"
+            aria-label="Medium size">
+          </m3-radio-button>
+        </div>
+        <div class="setting-item" (click)="radioLarge.click()" (keydown.enter)="radioLarge.click()">
+          <div class="setting-info">
+            <h4>Large</h4>
+            <p>Larger size for increased prominence</p>
+          </div>
+          <m3-radio-button 
+            #radioLarge
+            name="size"
+            value="large"
+            size="large"
+            [checked]="selectedSize === 'large'"
+            (radio-change)="onRadioChange($event, 'size')"
+            aria-label="Large size">
+          </m3-radio-button>
+        </div>
+      </div>
+      <p class="selection-info">Selected size: <strong>{{ selectedSize }}</strong></p>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="demo-section">
+    <h2>States</h2>
+    <p>Radio buttons can be in different states: enabled, disabled, checked, and unchecked.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Disabled State</h3>
+      </div>
+      <p>Disabled radio buttons cannot be interacted with and have reduced opacity.</p>
+      <div class="demo-radios">
+        <div class="radio-item">
+          <m3-radio-button name="disabled1" value="1" disabled></m3-radio-button>
+          <label>Disabled Unchecked</label>
+        </div>
+        <div class="radio-item">
+          <m3-radio-button name="disabled1" value="2" checked disabled></m3-radio-button>
+          <label>Disabled Checked</label>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-radio-button disabled&gt;&lt;/m3-radio-button&gt;</code><br>
+        <code>&lt;m3-radio-button checked disabled&gt;&lt;/m3-radio-button&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="demo-section">
+    <h2>Accessibility</h2>
+    <p>The radio button component follows Material Design 3 accessibility guidelines:</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>ARIA Support</h3>
+      </div>
+      <ul class="feature-list">
+        <li>✓ Uses proper ARIA attributes (role="radio", aria-checked, aria-disabled)</li>
+        <li>✓ Supports keyboard navigation (Space and Enter keys)</li>
+        <li>✓ Provides focus indicators</li>
+        <li>✓ Supports screen readers with aria-label and aria-labelledby</li>
+        <li>✓ Properly manages radio groups</li>
+      </ul>
+      <div class="demo-radios">
+        <div class="radio-item">
+          <label id="option-label">Option A</label>
+          <m3-radio-button name="aria" value="a" aria-labelledby="option-label"></m3-radio-button>
+        </div>
+        <div class="radio-item">
+          <m3-radio-button name="aria" value="b" aria-label="Option B"></m3-radio-button>
+          <label>Option B</label>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-radio-button aria-label="Option A"&gt;&lt;/m3-radio-button&gt;</code><br>
+        <code>&lt;m3-radio-button aria-labelledby="label-id"&gt;&lt;/m3-radio-button&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Properties & Events -->
+  <section class="demo-section">
+    <h2>Properties & Events</h2>
+    
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Properties</h3>
+      </div>
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>checked</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Whether the radio button is checked</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Disables the radio button</td>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td><code>string</code></td>
+            <td><code>null</code></td>
+            <td>Name attribute for radio group (required for grouping)</td>
+          </tr>
+          <tr>
+            <td><code>value</code></td>
+            <td><code>string</code></td>
+            <td><code>null</code></td>
+            <td>Value attribute for form submission</td>
+          </tr>
+          <tr>
+            <td><code>aria-label</code></td>
+            <td><code>string</code></td>
+            <td><code>null</code></td>
+            <td>ARIA label for accessibility</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Events</h3>
+      </div>
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Detail</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>radio-change</code></td>
+            <td><code>&#123; checked: boolean, name: string | null, value: string | null &#125;</code></td>
+            <td>Fired when the radio button state changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+

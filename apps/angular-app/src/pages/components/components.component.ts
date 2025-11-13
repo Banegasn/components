@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import '@banegasn/m3-button';
 import '@banegasn/m3-card';
 import '@banegasn/m3-switch';
+import '@banegasn/m3-radio-button';
 
 @Component({
   selector: 'app-components ',
@@ -33,5 +34,9 @@ export class ComponentsComponent {
 
   navigateToSwitches() {
     this.router.navigate(['/switches']);
+  }
+
+  navigateToRadioButtons() {
+    this.router.navigate(['/radio-buttons']);
   }
 }

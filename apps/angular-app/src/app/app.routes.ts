@@ -7,6 +7,7 @@ import { HomeComponent } from '../pages/home/home.component';
 import { NavigationRailComponent } from '../pages/navigation-rail/navigation-rail.component';
 import { NavigationBarComponent } from '../pages/navigation-bar/navigation-bar.component';
 import { SwitchComponent } from '../pages/switches/switch.component';
+import { RadioButtonComponent } from '../pages/radio-buttons/radio-button.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,5 +18,6 @@ export const routes: Routes = [
     { path: 'navigation-rail', component: NavigationRailComponent },
     { path: 'navigation-bar', component: NavigationBarComponent },
     { path: 'switches', component: SwitchComponent },
+    { path: 'radio-buttons', component: RadioButtonComponent },
     { path: 'contact', component: ContactComponent },
 ];

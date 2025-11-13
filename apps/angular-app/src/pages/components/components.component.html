@@ -153,6 +153,40 @@
         </div>
     </m3-card>
 
+    <m3-card variant="elevated">
+        <div slot="header">
+            <div class="header-content">
+                <h2>🔘 Radio Buttons</h2>
+                <span class="badge">Interactive</span>
+            </div>
+        </div>
+        <p class="description">
+            Radio buttons allow users to select a single option from a group of options. They are best used when users need to see all available options.
+        </p>
+        
+        <div class="preview">
+            <h3>Radio Button States</h3>
+            <div class="switch-group" style="display: flex; gap: 24px; align-items: center; margin-top: 1rem;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <m3-radio-button name="preview1" value="1"></m3-radio-button>
+                    <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Unchecked</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <m3-radio-button name="preview1" value="2" checked></m3-radio-button>
+                    <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Checked</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <m3-radio-button name="preview1" value="3" disabled></m3-radio-button>
+                    <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Disabled</span>
+                </div>
+            </div>
+        </div>
+        
+        <div slot="actions" class="actions">
+            <m3-button variant="elevated" size="medium" (click)="navigateToRadioButtons()">View Full Documentation</m3-button>
+        </div>
+    </m3-card>
+
     <m3-card variant="outlined">
         <div slot="header">
             <div class="header-content">
