@@ -46,6 +46,7 @@
 }
 
 .preview {
+    margin-top: 1rem;
     padding: 1rem;
     background-color: var(--md-sys-color-surface-variant);
     border-radius: 0.5rem;

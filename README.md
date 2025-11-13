@@ -16,6 +16,7 @@ This repository contains a collection of web components that can be used in any 
 - **[@banegasn/m3-card](packages/m3-card)** - Material Design 3 Card component with 3 variants (Elevated, Filled, Outlined), media support, and action slots
 - **[@banegasn/m3-navigation-bar](packages/m3-navigation-bar)** - Material Design 3 Navigation Bar component with responsive layouts, badge support, and auto-layout switching
 - **[@banegasn/m3-navigation-rail](packages/m3-navigation-rail)** - Material Design 3 Navigation Rail component with collapsible functionality, badges, and flexible slot system
+- **[@banegasn/m3-switch](packages/m3-switch)** - Material Design 3 Switch component for toggling between on and off states with accessibility support
 
 > 🚀 **More components coming soon!** This repository will grow to include various web components for different use cases, not limited to Material Design 3.
 
@@ -52,6 +53,7 @@ This monorepo is designed for building and distributing web components:
 │   ├── m3-card/              # Material Design 3 Card
 │   ├── m3-navigation-bar/    # Material Design 3 Navigation Bar
 │   ├── m3-navigation-rail/   # Material Design 3 Navigation Rail
+│   ├── m3-switch/            # Material Design 3 Switch
 ├── pnpm-workspace.yaml       # PNPM workspace configuration
 ├── turbo.json                # Turborepo configuration
 └── tsconfig.json             # Shared TypeScript config
@@ -213,7 +215,8 @@ mkdir -p apps/my-demo-app
     "@banegasn/m3-button": "workspace:*",
     "@banegasn/m3-card": "workspace:*",
     "@banegasn/m3-navigation-bar": "workspace:*",
-    "@banegasn/m3-navigation-rail": "workspace:*"
+    "@banegasn/m3-navigation-rail": "workspace:*",
+    "@banegasn/m3-switch": "workspace:*"
   }
 }
 ```

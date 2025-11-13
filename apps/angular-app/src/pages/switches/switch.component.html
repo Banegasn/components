@@ -1,0 +1,235 @@
+<div class="switch-page">
+  <header class="page-header">
+    <h1>Switches</h1>
+    <p class="subtitle">
+      Switches toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
+    </p>
+  </header>
+
+  <!-- Basic Usage -->
+  <section class="demo-section">
+    <h2>Basic Usage</h2>
+    <p>Switches allow users to toggle between on and off states. They follow Material Design 3 specifications with smooth animations and accessibility support.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Default Switch</h3>
+      </div>
+      <p>The switch starts in the off state by default.</p>
+      <div class="demo-switches">
+        <div class="switch-item">
+          <label>Off</label>
+          <m3-switch></m3-switch>
+        </div>
+        <div class="switch-item">
+          <label>On</label>
+          <m3-switch checked></m3-switch>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-switch&gt;&lt;/m3-switch&gt;</code><br>
+        <code>&lt;m3-switch checked&gt;&lt;/m3-switch&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="demo-section">
+    <h2>States</h2>
+    <p>Switches can be in different states: enabled, disabled, checked, and unchecked.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Disabled State</h3>
+      </div>
+      <p>Disabled switches cannot be interacted with and have reduced opacity.</p>
+      <div class="demo-switches">
+        <div class="switch-item">
+          <label>Disabled Off</label>
+          <m3-switch disabled></m3-switch>
+        </div>
+        <div class="switch-item">
+          <label>Disabled On</label>
+          <m3-switch checked disabled></m3-switch>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-switch disabled&gt;&lt;/m3-switch&gt;</code><br>
+        <code>&lt;m3-switch checked disabled&gt;&lt;/m3-switch&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Examples -->
+  <section class="demo-section">
+    <h2>Interactive Examples</h2>
+    <p>Switches emit events when their state changes, allowing you to react to user interactions.</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Settings Panel</h3>
+      </div>
+      <p>Example of switches used in a settings interface:</p>
+      <div class="settings-panel">
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Enable Notifications</h4>
+            <p>Receive push notifications for important updates</p>
+          </div>
+          <m3-switch 
+            [checked]="notificationsEnabled"
+            (switch-change)="onSwitchChange($event, 'notifications')"
+            aria-label="Enable notifications">
+          </m3-switch>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Dark Mode</h4>
+            <p>Switch to dark theme for better viewing in low light</p>
+          </div>
+          <m3-switch 
+            [checked]="darkModeEnabled"
+            (switch-change)="onSwitchChange($event, 'darkMode')"
+            aria-label="Enable dark mode">
+          </m3-switch>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Auto-save</h4>
+            <p>Automatically save your work as you type</p>
+          </div>
+          <m3-switch 
+            [checked]="autoSaveEnabled"
+            (switch-change)="onSwitchChange($event, 'autoSave')"
+            aria-label="Enable auto-save">
+          </m3-switch>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Location Services</h4>
+            <p>Allow apps to access your location</p>
+          </div>
+          <m3-switch 
+            [checked]="locationEnabled"
+            (switch-change)="onSwitchChange($event, 'location')"
+            aria-label="Enable location services">
+          </m3-switch>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>
+          &lt;m3-switch<br>
+          &nbsp;&nbsp;[checked]="notificationsEnabled"<br>
+          &nbsp;&nbsp;(switch-change)="onSwitchChange($event, 'notifications')"&gt;<br>
+          &lt;/m3-switch&gt;
+        </code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessibility -->
+  <section class="demo-section">
+    <h2>Accessibility</h2>
+    <p>The switch component follows Material Design 3 accessibility guidelines:</p>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>ARIA Support</h3>
+      </div>
+      <ul class="feature-list">
+        <li>✓ Uses proper ARIA attributes (role="switch", aria-checked, aria-disabled)</li>
+        <li>✓ Supports keyboard navigation (Space and Enter keys)</li>
+        <li>✓ Provides focus indicators</li>
+        <li>✓ Supports screen readers with aria-label and aria-labelledby</li>
+      </ul>
+      <div class="demo-switches">
+        <div class="switch-item">
+          <label id="wifi-label">Wi-Fi</label>
+          <m3-switch aria-labelledby="wifi-label"></m3-switch>
+        </div>
+        <div class="switch-item">
+          <m3-switch aria-label="Enable Bluetooth"></m3-switch>
+        </div>
+      </div>
+      <div class="code-sample">
+        <code>&lt;m3-switch aria-label="Enable Wi-Fi"&gt;&lt;/m3-switch&gt;</code><br>
+        <code>&lt;m3-switch aria-labelledby="wifi-label"&gt;&lt;/m3-switch&gt;</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- Properties & Events -->
+  <section class="demo-section">
+    <h2>Properties & Events</h2>
+    
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Properties</h3>
+      </div>
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>checked</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Whether the switch is checked (on)</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Disables the switch</td>
+          </tr>
+          <tr>
+            <td><code>name</code></td>
+            <td><code>string</code></td>
+            <td><code>null</code></td>
+            <td>Name attribute for form submission</td>
+          </tr>
+          <tr>
+            <td><code>value</code></td>
+            <td><code>string</code></td>
+            <td><code>null</code></td>
+            <td>Value attribute for form submission</td>
+          </tr>
+          <tr>
+            <td><code>aria-label</code></td>
+            <td><code>string</code></td>
+            <td><code>null</code></td>
+            <td>ARIA label for accessibility</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-header">
+        <h3>Events</h3>
+      </div>
+      <table class="props-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Detail</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>switch-change</code></td>
+            <td><code>&#123; checked: boolean, name: string | null, value: string | null &#125;</code></td>
+            <td>Fired when the switch state changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,219 @@
+.switch-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.page-header {
+    margin-bottom: 48px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 0 0 8px 0;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.demo-section {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+}
+
+.demo-section:last-child {
+    border-bottom: none;
+}
+
+.demo-section h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.demo-section p {
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+.variant-card {
+    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.variant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.variant-header h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.demo-switches {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.switch-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: var(--md-sys-color-surface, #fffbfe);
+    border-radius: 8px;
+}
+
+.switch-item label {
+    font-size: 1rem;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+    font-weight: 400;
+}
+
+.settings-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: var(--md-sys-color-surface, #fffbfe);
+    border-radius: 12px;
+    gap: 16px;
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-info h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.setting-info p {
+    font-size: 0.875rem;
+    margin: 0;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    line-height: 1.4;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.feature-list li {
+    padding: 8px 0;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.code-sample {
+    background: var(--md-sys-color-surface-container-highest, #e6e0e9);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    overflow-x: auto;
+}
+
+.code-sample code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+    line-height: 1.6;
+    white-space: pre;
+}
+
+.props-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.props-table thead {
+    background: var(--md-sys-color-surface-container-highest, #e6e0e9);
+}
+
+.props-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+}
+
+.props-table td {
+    padding: 12px 16px;
+    font-size: 0.875rem;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+}
+
+.props-table code {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--md-sys-color-surface-container-highest, #e6e0e9);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    color: var(--md-sys-color-primary, #6750a4);
+}
+
+.props-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .switch-page {
+        padding: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .props-table {
+        font-size: 0.75rem;
+    }
+
+    .props-table th,
+    .props-table td {
+        padding: 8px 12px;
+    }
+}
+

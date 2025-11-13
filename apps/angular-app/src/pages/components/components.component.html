@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="preview" style="margin-top: 1rem;">
+        <div class="preview">
             <h3>Sizes & States</h3>
             <div class="button-group">
                 <m3-button size="small">Small</m3-button>
@@ -123,6 +123,40 @@
         
         <div slot="actions" class="actions">
             <m3-button variant="elevated" size="medium" (click)="navigateToNavigationBar()">View Full Documentation</m3-button>
+        </div>
+    </m3-card>
+
+    <m3-card variant="elevated">
+        <div slot="header">
+            <div class="header-content">
+                <h2>🔘 Switches</h2>
+                <span class="badge">Interactive</span>
+            </div>
+        </div>
+        <p class="description">
+            Switches toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
+        </p>
+        
+        <div class="preview">
+            <h3>Switch States</h3>
+            <div class="switch-group" style="display: flex; gap: 24px; align-items: center; margin-top: 1rem;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <m3-switch></m3-switch>
+                    <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Off</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <m3-switch checked></m3-switch>
+                    <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">On</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <m3-switch disabled></m3-switch>
+                    <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Disabled</span>
+                </div>
+            </div>
+        </div>
+        
+        <div slot="actions" class="actions">
+            <m3-button variant="elevated" size="medium" (click)="navigateToSwitches()">View Full Documentation</m3-button>
         </div>
     </m3-card>
 
