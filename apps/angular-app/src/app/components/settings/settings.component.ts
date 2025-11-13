@@ -1,6 +1,7 @@
-import { Component, inject, CUSTOM_ELEMENTS_SCHEMA, DOCUMENT } from '@angular/core';
+import { Component, inject, CUSTOM_ELEMENTS_SCHEMA, DOCUMENT, OnInit } from '@angular/core';
 import { DialogRef } from '../../services/dialog.service';
-import '@banegasn/m3-button';
+
+import '@banegasn/m3-switch';
 
 @Component({
   selector: 'app-settings',
@@ -8,16 +9,18 @@ import '@banegasn/m3-button';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   #document = inject(DOCUMENT);
 
   dialogRef?: DialogRef;
   currentTheme = 'light';
   isRTL = false;
+  darkModeEnabled = false;
 
   ngOnInit() {
     // Initialize current values
     this.currentTheme = this.#document.documentElement.getAttribute('theme') || 'light';
+    this.darkModeEnabled = this.currentTheme === 'dark';
     this.isRTL = this.#document.documentElement.getAttribute('dir') === 'rtl';
   }
 
@@ -31,13 +34,32 @@ export class SettingsComponent {
     // Save to localStorage
     localStorage.setItem('theme', newTheme);
     this.currentTheme = newTheme;
+    this.darkModeEnabled = newTheme === 'dark';
 
     // Emit event for app component to update
     window.dispatchEvent(new CustomEvent('theme-changed', { detail: newTheme }));
   }
 
-  toggleRTL() {
-    this.isRTL = !this.isRTL;
+  onDarkModeChange(event: Event) {
+    const checked = (event as CustomEvent).detail.checked;
+    this.darkModeEnabled = checked;
+    const newTheme = checked ? 'dark' : 'light';
+
+    // Set the theme
+    this.#document.documentElement.setAttribute('theme', newTheme);
+
+    // Save to localStorage
+    localStorage.setItem('theme', newTheme);
+    this.currentTheme = newTheme;
+
+    // Emit event for app component to update
+    window.dispatchEvent(new CustomEvent('theme-changed', { detail: newTheme }));
+  }
+
+  onRTLChange(event: Event) {
+    const checked = (event as CustomEvent).detail.checked;
+    this.isRTL = checked;
+    
     if (this.isRTL) {
       this.#document.documentElement.setAttribute('dir', 'rtl');
     } else {

@@ -1,6 +1,7 @@
 import { Component, ComponentRef, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA, OnInit, OnDestroy } from '@angular/core';
 
 import '@banegasn/m3-button';
+import '@banegasn/m3-switch';
 
 @Component({
   selector: 'app-dialog',
