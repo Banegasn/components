@@ -181,6 +181,45 @@
       </div>
     </m3-card>
 
+    <m3-card variant="elevated">
+      <div slot="header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-switch</h3>
+          <span class="badge">v1.x</span>
+        </div>
+      </div>
+      <p>Material Design 3 switch component for toggling settings on or off. Features checked/unchecked states, disabled state, and accessibility support.</p>
+      <div style="display: flex; gap: 24px; align-items: center; margin: 1rem 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <m3-switch></m3-switch>
+          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Off</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <m3-switch checked></m3-switch>
+          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">On</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <m3-switch disabled></m3-switch>
+          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Disabled</span>
+        </div>
+      </div>
+      <div class="component-features">
+        <span>✓ Toggle States</span>
+        <span>✓ Disabled Support</span>
+        <span>✓ Accessible</span>
+      </div>
+      <div slot="actions" class="actions">
+        <m3-button variant="text" (button-click)="openNpmPackage('m3-switch')">
+          <span slot="icon" class="material-symbols-outlined">package</span>
+          npm
+        </m3-button>
+        <m3-button variant="text" (button-click)="navigateToSwitches()">
+          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+          View Details
+        </m3-button>
+      </div>
+    </m3-card>
+
     <m3-card variant="outlined">
       <div slot="header">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
@@ -203,6 +242,7 @@
         <li><code>m3-card</code> - Material 3 Card (Lit)</li>
         <li><code>m3-navigation-bar</code> - Navigation Bar (Lit)</li>
         <li><code>m3-navigation-rail</code> - Navigation Rail (Lit)</li>
+        <li><code>m3-switch</code> - Material 3 Switch (Lit)</li>
       </ul>
     </div>
     <div class="arch-column">

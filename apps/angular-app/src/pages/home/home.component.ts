@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
 import { Router } from "@angular/router";
 import '@banegasn/m3-button';
 import '@banegasn/m3-card';
+import '@banegasn/m3-switch';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,10 @@ export class HomeComponent {
 
   navigateToNavigationBar() {
     this.router.navigate(['/navigation-bar']);
+  }
+
+  navigateToSwitches() {
+    this.router.navigate(['/switches']);
   }
 
   openGitHub() {

@@ -69,7 +69,8 @@ h2 {
 
 .component-features {
   display: flex;
-  gap: 12px;
+  column-gap: 16px;
+  row-gap: 4px;
   flex-wrap: wrap;
   font-size: 14px;
   color: var(--md-sys-color-on-surface-variant);
