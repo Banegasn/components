@@ -1,7 +1,8 @@
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, OnDestroy, DOCUMENT } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, OnDestroy, DOCUMENT, signal, DestroyRef } from '@angular/core';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import '@banegasn/m3-navigation-rail';
 import '@banegasn/m3-navigation-bar';
@@ -12,20 +13,19 @@ import { SettingsComponent } from './components/settings/settings.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, RouterLink, RouterLinkActive],
+    imports: [RouterOutlet],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   #document = inject(DOCUMENT);
   #dialogService = inject(DialogService);
   #router = inject(Router);
-  #routerSubscription?: Subscription;
-  
+  #destroyRef = inject(DestroyRef);
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
-  currentRoute = '/';
+  currentRoute = signal('/');
 
   ngOnInit() {
     // Initialize theme
@@ -39,18 +39,16 @@ export class AppComponent implements OnInit, OnDestroy {
     }) as EventListener);
 
     // Track route changes for navigation bar active state
-    this.currentRoute = this.#router.url;
-    this.#routerSubscription = this.#router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+    this.currentRoute.set(this.#router.url);
+    this.#router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.#destroyRef)
+      )
       .subscribe((event: any) => {
-        this.currentRoute = event.url;
-        // Scroll main container to top on route change
+        this.currentRoute.set(event.url);
         this.scrollToTop();
       });
-  }
-
-  ngOnDestroy() {
-    this.#routerSubscription?.unsubscribe();
   }
 
   initializeTheme() {
@@ -80,10 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
   toggleTheme() {
     const currentTheme = this.#document.documentElement.getAttribute('theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    // Set the theme
     this.#document.documentElement.setAttribute('theme', newTheme);
-    
-    // Save to localStorage
     localStorage.setItem('theme', newTheme);
     this.currentTheme = newTheme;
   }
@@ -105,12 +100,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.#router.navigate([path]);
   }
 
-  isActiveRoute(path: string): boolean {
-    return this.currentRoute === path || this.currentRoute.startsWith(path + '/');
-  }
-
   scrollToTop() {
-    // Find the main container element and scroll it to top
     const container = this.#document.querySelector('.app-container') as HTMLElement;
     if (container) {
       container.scrollTo({ top: 0, behavior: 'smooth' });

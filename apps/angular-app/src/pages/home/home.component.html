@@ -108,6 +108,31 @@
     <m3-card variant="elevated">
       <div slot="header">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-card</h3>
+          <span class="badge">v1.x</span>
+        </div>
+      </div>
+      <p>Material Design 3 card component with 3 variants (Elevated, Filled, Outlined), support for media, actions, and flexible content slots.</p>
+      <div class="component-features">
+        <span>✓ 3 Variants</span>
+        <span>✓ Media Support</span>
+        <span>✓ Action Slots</span>
+      </div>
+      <div slot="actions" class="actions">
+        <m3-button variant="text" (button-click)="openNpmPackage('m3-card')">
+          <span slot="icon" class="material-symbols-outlined">package</span>
+          npm
+        </m3-button>
+        <m3-button variant="text" (button-click)="navigateToCards()">
+          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+          View Details
+        </m3-button>
+      </div>
+    </m3-card>
+
+    <m3-card variant="elevated">
+      <div slot="header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
           <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-navigation-rail</h3>
           <span class="badge">v1.x</span>
         </div>
@@ -125,6 +150,31 @@
           npm
         </m3-button>
         <m3-button variant="text" (button-click)="navigateToNavigationRail()">
+          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+          View Details
+        </m3-button>
+      </div>
+    </m3-card>
+
+    <m3-card variant="elevated">
+      <div slot="header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-navigation-bar</h3>
+          <span class="badge">v1.x</span>
+        </div>
+      </div>
+      <p>Horizontal navigation component for bottom navigation. Features responsive layouts (vertical/horizontal), badge support, and auto-layout switching.</p>
+      <div class="component-features">
+        <span>✓ Responsive</span>
+        <span>✓ Badge Support</span>
+        <span>✓ Auto-layout</span>
+      </div>
+      <div slot="actions" class="actions">
+        <m3-button variant="text" (button-click)="openNpmPackage('m3-navigation-bar')">
+          <span slot="icon" class="material-symbols-outlined">package</span>
+          npm
+        </m3-button>
+        <m3-button variant="text" (button-click)="navigateToNavigationBar()">
           <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
           View Details
         </m3-button>
@@ -150,8 +200,9 @@
       <h3>📦 Packages</h3>
       <ul>
         <li><code>m3-button</code> - Material 3 Button (Lit)</li>
+        <li><code>m3-card</code> - Material 3 Card (Lit)</li>
+        <li><code>m3-navigation-bar</code> - Navigation Bar (Lit)</li>
         <li><code>m3-navigation-rail</code> - Navigation Rail (Lit)</li>
-        <li><code>svelte-components</code> - Svelte Components</li>
       </ul>
     </div>
     <div class="arch-column">

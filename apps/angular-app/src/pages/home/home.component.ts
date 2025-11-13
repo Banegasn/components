@@ -26,6 +26,14 @@ export class HomeComponent {
     this.router.navigate(['/buttons']);
   }
 
+  navigateToCards() {
+    this.router.navigate(['/cards']);
+  }
+
+  navigateToNavigationBar() {
+    this.router.navigate(['/navigation-bar']);
+  }
+
   openGitHub() {
     window.open('https://github.com/banegasn/components', '_blank');
   }

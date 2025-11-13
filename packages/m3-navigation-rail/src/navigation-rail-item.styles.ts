@@ -21,6 +21,13 @@ export const navigationRailItemStyles = css`
     padding: 0;
     z-index: 2;
     min-height: 48px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .item:focus,
+  .item:focus-visible {
+    outline: none;
   }
 
   [slot="icon"] {
@@ -43,7 +50,14 @@ export const navigationRailItemStyles = css`
     height: calc(100% - 20px);
     border-radius: 16px;
     z-index: -1;
-    transition: transform 0.2s, background-color 0.2s ease-in-out, padding 0.3s;
+    transition: transform 0.2s, background-color 0.2s ease-in-out, padding 0.3s, box-shadow 0.2s ease;
+    pointer-events: none;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  /* Focus indicator - only show on the indicator element when focus-visible */
+  .item:focus-visible .indicator {
+    box-shadow: 0 0 0 2px var(--md-sys-color-primary, #6750a4);
   }
 
   :host([expanded]) .indicator {

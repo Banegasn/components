@@ -1,4 +1,4 @@
-import { Component, ComponentRef, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, ComponentRef, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA, OnInit, OnDestroy } from '@angular/core';
 
 import '@banegasn/m3-button';
 
@@ -8,7 +8,7 @@ import '@banegasn/m3-button';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogComponent {
+export class DialogComponent implements OnInit, OnDestroy {
   @Output() closeEvent = new EventEmitter<void>();
 
   title: string = '';
@@ -17,6 +17,22 @@ export class DialogComponent {
   closeOnBackdrop: boolean = true;
   showCloseButton: boolean = true;
   contentComponent: ComponentRef<any> | null = null;
+
+  private escapeKeyHandler = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      this.close();
+    }
+  };
+
+  ngOnInit(): void {
+    // Listen for Escape key to close dialog
+    document.addEventListener('keydown', this.escapeKeyHandler);
+  }
+
+  ngOnDestroy(): void {
+    // Remove Escape key listener
+    document.removeEventListener('keydown', this.escapeKeyHandler);
+  }
 
   handleBackdropClick(event: MouseEvent): void {
     if (this.closeOnBackdrop && (event.target as HTMLElement).classList.contains('dialog-backdrop')) {

@@ -3,17 +3,20 @@
   <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
 
   <m3-navigation-rail-item label="Home" 
-    [routerLink]="['/home']" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
+    [active]="currentRoute() === '/home'"
+    (item-click)="navigate('/home')">
     <span slot="icon" class="material-symbols-outlined">home</span>
   </m3-navigation-rail-item>
 
-  <m3-navigation-rail-item label="Components" badge="3"
-    [routerLink]="['/components']" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
+  <m3-navigation-rail-item label="Components" badge="4"
+    [active]="currentRoute() === '/components'"
+    (item-click)="navigate('/components')">
     <span slot="icon" class="material-symbols-outlined">browse</span>
   </m3-navigation-rail-item>
 
   <m3-navigation-rail-item label="Contact"
-    [routerLink]="['/contact']" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive">
+    [active]="currentRoute() === '/contact'"
+    (item-click)="navigate('/contact')">
     <span slot="icon" class="material-symbols-outlined">person</span>
   </m3-navigation-rail-item>
 
@@ -45,22 +48,22 @@
 <m3-navigation-bar class="mobile-nav" auto-layout>
   <m3-navigation-bar-item 
     label="Home" 
-    [active]="isActiveRoute('/home')"
+    [active]="currentRoute() === '/home'"
     (item-click)="navigate('/home')">
     <span slot="icon" class="material-symbols-outlined">home</span>
   </m3-navigation-bar-item>
 
   <m3-navigation-bar-item 
     label="Components" 
-    badge="3"
-    [active]="isActiveRoute('/components')"
+    badge="4"
+    [active]="currentRoute() === '/components'"
     (item-click)="navigate('/components')">
     <span slot="icon" class="material-symbols-outlined">browse</span>
   </m3-navigation-bar-item>
 
   <m3-navigation-bar-item 
     label="Contact"
-    [active]="isActiveRoute('/contact')"
+    [active]="currentRoute() === '/contact'"
     (item-click)="navigate('/contact')">
     <span slot="icon" class="material-symbols-outlined">person</span>
   </m3-navigation-bar-item>

@@ -23,6 +23,8 @@ export const navigationBarItemStyles = css`
     border-radius: 0;
     z-index: 1;
     box-sizing: border-box;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Vertical layout - item content is centered, width fills container */
@@ -58,9 +60,10 @@ export const navigationBarItemStyles = css`
     height: 32px;
     border-radius: 16px;
     z-index: 0;
-    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, border-radius 0.2s ease;
+    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, border-radius 0.2s ease, box-shadow 0.2s ease;
     opacity: 0;
     pointer-events: none;
+    box-shadow: 0 0 0 0 transparent;
   }
 
   :host .item:hover .bubble {
@@ -94,6 +97,12 @@ export const navigationBarItemStyles = css`
   .item.active .indicator {
     background-color: var(--md-sys-color-secondary-container, #e8def8);
     opacity: 1;
+  }
+
+  /* Focus indicator - only show on the indicator element when focus-visible */
+  .item:focus-visible .indicator {
+    opacity: 1;
+    box-shadow: 0 0 0 2px var(--md-sys-color-primary, #6750a4);
   }
 
   /* Icon container */
@@ -166,18 +175,9 @@ export const navigationBarItemStyles = css`
     opacity: 0.08;
   }
 
+  .item:focus,
   .item:focus-visible {
     outline: none;
-  }
-
-  .item:focus-visible .state-layer {
-    background-color: var(--md-sys-color-on-surface, #1d1b20);
-    opacity: 0.10;
-  }
-
-  .item.active:focus-visible .state-layer {
-    background-color: var(--md-sys-color-on-surface, #1d1b20);
-    opacity: 0.10;
   }
 
   .item:active .state-layer {

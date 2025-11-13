@@ -11,11 +11,24 @@ export const navigationRailToggleStyles = css`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s, margin 0.3s;
+    transition: background-color 0.2s, margin 0.3s, box-shadow 0.2s ease;
     color: var(--md-sys-color-on-surface-variant, #49454f);
     place-self: flex-start;
     margin: 0;
     position: relative;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  .toggle-button:focus,
+  .toggle-button:focus-visible {
+    outline: none;
+  }
+
+  /* Focus indicator - show box-shadow when focus-visible */
+  .toggle-button:focus-visible {
+    box-shadow: 0 0 0 2px var(--md-sys-color-primary, #6750a4);
   }
 
   .toggle-button:hover {
