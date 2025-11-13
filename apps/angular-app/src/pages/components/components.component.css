@@ -13,9 +13,31 @@
 }
 
 .components-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    column-count: 3;
+    column-gap: 1rem;
+}
+
+.components-grid > m3-card {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1000px) {
+    .components-grid {
+        column-count: 2;
+        column-gap: 2rem;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .components-grid {
+        column-count: 1;
+        column-gap: 2rem;
+    }
 }
 
 .actions {
