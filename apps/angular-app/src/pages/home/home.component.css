@@ -69,6 +69,7 @@ h2 {
 
 .component-features {
   display: flex;
+  margin-top: 24px;
   column-gap: 16px;
   row-gap: 4px;
   flex-wrap: wrap;
