@@ -187,6 +187,29 @@
         </div>
     </m3-card>
 
+    <m3-card variant="elevated">
+        <div slot="header">
+            <div class="header-content">
+                <h2>🔍 Search Bar</h2>
+                <span class="badge">Input</span>
+            </div>
+        </div>
+        <p class="description">
+            A search bar component with support for leading and trailing content projection slots. Perfect for search interfaces with icons, buttons, or avatars.
+        </p>
+        
+        <div class="feature-list" style="margin-top: 1rem;">
+            <div class="feature-item">✓ Leading & trailing slots</div>
+            <div class="feature-item">✓ Keyboard navigation</div>
+            <div class="feature-item">✓ Accessible & ARIA support</div>
+            <div class="feature-item">✓ M3 design system</div>
+        </div>
+        
+        <div slot="actions" class="actions">
+            <m3-button variant="elevated" size="medium" (click)="navigateToSearchBar()">View Full Documentation</m3-button>
+        </div>
+    </m3-card>
+
     <m3-card variant="outlined">
         <div slot="header">
             <div class="header-content">

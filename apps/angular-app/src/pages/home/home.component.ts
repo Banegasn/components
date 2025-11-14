@@ -44,6 +44,10 @@ export class HomeComponent {
     this.router.navigate(['/radio-buttons']);
   }
 
+  navigateToSearchBar() {
+    this.router.navigate(['/search-bar']);
+  }
+
   openGitHub() {
     window.open('https://github.com/banegasn/components', '_blank');
   }

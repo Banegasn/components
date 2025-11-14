@@ -27,7 +27,8 @@
       "@banegasn/m3-card": ["../../packages/m3-card/dist/index.js"],
       "@banegasn/m3-navigation-bar": ["../../packages/m3-navigation-bar/dist/index.js"],
       "@banegasn/m3-switch": ["../../packages/m3-switch/dist/index.js"],
-      "@banegasn/m3-radio-button": ["../../packages/m3-radio-button/dist/index.js"]
+      "@banegasn/m3-radio-button": ["../../packages/m3-radio-button/dist/index.js"],
+      "@banegasn/m3-search-bar": ["../../packages/m3-search-bar/dist/index.js"]
     }
   },
   "angularCompilerOptions": {

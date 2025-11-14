@@ -1,0 +1,126 @@
+.page-header {
+  margin-bottom: 32px;
+}
+
+h3 {
+    margin: 1.5rem 0 1rem 0;
+}
+
+.page-header h1 {
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 8px 0;
+  color: var(--md-sys-color-on-surface);
+}
+
+.page-header p {
+  font-size: 16px;
+  color: var(--md-sys-color-on-surface-variant);
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 32px 0 16px 0;
+  color: var(--md-sys-color-on-surface);
+}
+
+.demo-container {
+  margin: 16px 0 32px 0;
+}
+
+.content-section {
+  margin-bottom: 32px;
+}
+
+.content-section h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: var(--md-sys-color-on-surface);
+}
+
+.results-container {
+  padding: 16px;
+}
+
+.result-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: 8px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.result-item:last-child {
+  margin-bottom: 0;
+}
+
+.demo-section {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.demo-section:last-child {
+  border-bottom: none;
+}
+
+.demo-section h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: var(--md-sys-color-on-surface);
+}
+
+.properties-list {
+  padding: 16px;
+}
+
+.property-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface);
+}
+
+.property-item:last-child {
+  border-bottom: none;
+}
+
+.property-item strong {
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
+}
+
+.property-item code {
+  background-color: var(--md-sys-color-surface-container-high);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.menu-button {
+  --md-sys-color-primary: var(--md-sys-color-on-surface);
+}
+
+@media (max-width: 600px) {
+  .search-bar-page {
+    padding: 16px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+  }
+
+  h2,
+  .content-section h2,
+  .demo-section h2 {
+    font-size: 20px;
+  }
+
+  .demo-container {
+    padding: 16px;
+  }
+}

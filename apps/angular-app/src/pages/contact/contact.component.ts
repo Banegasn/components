@@ -15,6 +15,10 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
           <span slot="icon" class="material-symbols-outlined">link</span>
           Visit GitHub Profile
         </m3-button>
+        <m3-button variant="filled" (button-click)="openPayPalDonation()" class="paypal-button">
+          <span slot="icon" class="material-symbols-outlined">favorite</span>
+          Contribute with PayPal
+        </m3-button>
         <m3-button variant="tonal" (button-click)="openGitHubRepos()">
           <span slot="icon" class="material-symbols-outlined">code</span>
           View Repository
@@ -59,6 +63,12 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
       .contributors-box p {
         color: var(--md-sys-color-on-secondary-container, #1d192b);
       }
+
+      .paypal-button {
+        --md-sys-color-primary: #0070ba;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-hover: #0070ba;
+      }
     `],
     changeDetection: ChangeDetectionStrategy.OnPush,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -71,6 +81,10 @@ export class ContactComponent {
 
   openGitHubRepos() {
     window.open('https://github.com/banegasn/components', '_blank');
+  }
+
+  openPayPalDonation() {
+    window.open('https://paypal.me/banegasn', '_blank');
   }
 }
 

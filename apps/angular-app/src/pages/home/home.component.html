@@ -259,6 +259,31 @@
       </div>
     </m3-card>
 
+    <m3-card variant="elevated">
+      <div slot="header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-search-bar</h3>
+          <span class="badge">v1.x</span>
+        </div>
+      </div>
+      <p>Material Design 3 search bar component with support for leading and trailing content projection slots. Perfect for search interfaces with icons, buttons, or avatars.</p>
+      <div class="component-features">
+        <span>✓ Leading & Trailing Slots</span>
+        <span>✓ Keyboard Navigation</span>
+        <span>✓ Accessible</span>
+      </div>
+      <div slot="actions" class="actions">
+        <m3-button variant="text" (button-click)="openNpmPackage('m3-search-bar')">
+          <span slot="icon" class="material-symbols-outlined">package</span>
+          npm
+        </m3-button>
+        <m3-button variant="text" (button-click)="navigateToSearchBar()">
+          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+          View Details
+        </m3-button>
+      </div>
+    </m3-card>
+
     <m3-card variant="outlined">
       <div slot="header">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
@@ -283,6 +308,7 @@
         <li><code>m3-navigation-rail</code> - Navigation Rail (Lit)</li>
         <li><code>m3-switch</code> - Material 3 Switch (Lit)</li>
         <li><code>m3-radio-button</code> - Material 3 Radio Button (Lit)</li>
+        <li><code>m3-search-bar</code> - Material 3 Search Bar (Lit)</li>
       </ul>
     </div>
     <div class="arch-column">

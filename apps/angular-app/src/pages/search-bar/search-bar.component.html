@@ -1,0 +1,133 @@
+<div class="page-header">
+    <h1>Search Bar</h1>
+    <p>Material Design 3 search bar component with leading and trailing content projection slots.</p>
+</div>
+
+<h3>Basic Search Bar</h3>
+<m3-search-bar
+    placeholder="Search in your files"
+    [value]="searchValue"
+    (search-input)="onSearchInput($event)"
+    (search-submit)="onSearchSubmit($event)"
+    (search-clear)="onSearchClear()"
+    aria-label="Search">
+</m3-search-bar>
+
+<h3>With Leading Icon</h3>
+<m3-search-bar
+    placeholder="Search products..."
+    [value]="searchValue"
+    (search-input)="onSearchInput($event)"
+    (search-submit)="onSearchSubmit($event)"
+    (search-clear)="onSearchClear()"
+    aria-label="Search products">
+    <span slot="leading" class="material-symbols-outlined">search</span>
+</m3-search-bar>
+
+<h3>With Leading and Trailing Content</h3>
+
+<m3-search-bar
+    #searchBarWithClear
+    placeholder="Search with clear button..."
+    [value]="searchValue"
+    (search-input)="onSearchInput($event)"
+    (search-submit)="onSearchSubmit($event)"
+    (search-clear)="onSearchClear()"
+    aria-label="Search with clear">
+    <span slot="leading" class="material-symbols-outlined">search</span>
+    @if (searchValue) {
+        <m3-button icon-only slot="trailing" variant="text" (button-click)="clearSearch(searchBarWithClear)">
+            <span slot="icon" class="material-symbols-outlined">close</span>
+        </m3-button>
+    }
+    <m3-button icon-only slot="trailing" variant="text">
+        <span slot="icon" class="material-symbols-outlined">more_vert</span>
+    </m3-button>
+</m3-search-bar>
+
+<h3>With Menu Button (Leading)</h3>
+<m3-search-bar
+    placeholder="Search with menu..."
+    [value]="searchValue"
+    (search-input)="onSearchInput($event)"
+    (search-submit)="onSearchSubmit($event)"
+    (search-clear)="onSearchClear()"
+    aria-label="Search with menu">
+    <m3-button icon-only slot="leading" variant="text" class="menu-button" size="small">
+        <span slot="icon" class="material-symbols-outlined">menu</span>
+    </m3-button>
+</m3-search-bar>
+
+<h3>Disabled State</h3>
+<m3-search-bar
+    placeholder="Disabled search..."
+    [disabled]="true"
+    aria-label="Disabled search">
+    <span slot="leading" class="material-symbols-outlined">search</span>
+</m3-search-bar>
+
+@if (searchResults.length > 0) {
+    <div class="content-section">
+        <h3>Search Results</h3>
+        <m3-card>
+            <div class="results-container">
+                @for (result of searchResults; track result) {
+                    <div class="result-item">
+                        {{ result }}
+                    </div>
+                }
+            </div>
+        </m3-card>
+    </div>
+}
+
+<section class="demo-section">
+    <h3>Properties</h3>
+    <div class="properties-list">
+        <div class="property-item">
+            <strong>placeholder</strong>: <code>string</code> - Placeholder text for the input
+        </div>
+        <div class="property-item">
+            <strong>value</strong>: <code>string</code> - Current value of the input
+        </div>
+        <div class="property-item">
+            <strong>disabled</strong>: <code>boolean</code> - Disables the search bar
+        </div>
+        <div class="property-item">
+            <strong>name</strong>: <code>string | null</code> - Name attribute for form submission
+        </div>
+        <div class="property-item">
+            <strong>form</strong>: <code>string | null</code> - Form attribute to associate with a form
+        </div>
+        <div class="property-item">
+            <strong>aria-label</strong>: <code>string | null</code> - ARIA label for accessibility
+        </div>
+    </div>
+</section>
+
+<section class="demo-section">
+    <h3>Slots</h3>
+    <div class="properties-list">
+        <div class="property-item">
+            <strong>leading</strong>: Content to display before the input (e.g., search icon, menu button)
+        </div>
+        <div class="property-item">
+            <strong>trailing</strong>: Content to display after the input (e.g., clear button, avatar)
+        </div>
+    </div>
+</section>
+
+<section class="demo-section">
+    <h3>Events</h3>
+    <div class="properties-list">
+        <div class="property-item">
+            <strong>search-input</strong>: Fired when the input value changes
+        </div>
+        <div class="property-item">
+            <strong>search-submit</strong>: Fired when Enter is pressed
+        </div>
+        <div class="property-item">
+            <strong>search-clear</strong>: Fired when the search is cleared (Escape key)
+        </div>
+    </div>
+</section>

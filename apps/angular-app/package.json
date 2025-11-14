@@ -26,6 +26,7 @@
     "@banegasn/m3-card": "workspace:*",
     "@banegasn/m3-switch": "workspace:*",
     "@banegasn/m3-radio-button": "workspace:*",
+    "@banegasn/m3-search-bar": "workspace:*",
     "rxjs": "^7.8.1",
     "tslib": "^2.8.0"
   },
