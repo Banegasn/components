@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-button",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Material Design 3 button web component with expressive styling",
   "type": "module",
   "main": "./dist/index.js",

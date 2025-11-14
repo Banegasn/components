@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-navigation-rail",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "M3 navigation rail web component",
   "type": "module",
   "main": "./dist/index.js",

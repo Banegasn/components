@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-navigation-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "M3 flexible navigation bar web component",
   "type": "module",
   "main": "./dist/index.js",

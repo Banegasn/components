@@ -13,9 +13,9 @@
     "publish:npm": "pnpm build && pnpm publish -r --filter=\"./packages/*\" --no-git-checks --registry https://registry.npmjs.org/",
     "publish:github": "pnpm build && pnpm publish -r --filter=\"./packages/*\" --no-git-checks --registry https://npm.pkg.github.com",
     "publish:both": "pnpm publish:npm && pnpm publish:github",
-    "version:patch": "pnpm --filter './packages/*' exec -- npm version patch",
-    "version:minor": "pnpm --filter './packages/*' exec -- npm version minor",
-    "version:major": "pnpm --filter './packages/*' exec -- npm version major"
+    "version:patch": "pnpm --filter \"./packages/*\" exec -- npm version patch",
+    "version:minor": "pnpm --filter \"./packages/*\" exec -- npm version minor",
+    "version:major": "pnpm --filter \"./packages/*\" exec -- npm version major"
   },
   "repository": {
     "type": "git",

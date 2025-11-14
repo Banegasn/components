@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-search-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 search bar web component",
   "type": "module",
   "main": "./dist/index.js",
@@ -47,4 +47,3 @@
     "typescript": "^5.6.3"
   }
 }
-

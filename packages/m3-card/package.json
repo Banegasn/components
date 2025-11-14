@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-card",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Material Design 3 card web component with elevated, filled, and outlined variants",
   "type": "module",
   "main": "./dist/index.js",
