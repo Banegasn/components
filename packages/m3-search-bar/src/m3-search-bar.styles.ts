@@ -50,6 +50,7 @@ export const m3SearchBarStyles = css`
     justify-content: center;
     flex-shrink: 0;
     color: var(--md-sys-color-on-surface-variant);
+    min-width: 24px;
   }
 
   .leading-slot ::slotted(*) {
