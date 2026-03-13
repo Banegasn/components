@@ -120,31 +120,31 @@ importers:
   packages/m3-fab-menu:
     dependencies:
       lit:
-        specifier: ^3.1.2
+        specifier: ^3.2.0
         version: 3.3.1
     devDependencies:
       typescript:
-        specifier: ^5.4.2
+        specifier: ^5.6.3
         version: 5.9.3
 
   packages/m3-loading-indicator:
     dependencies:
       lit:
-        specifier: ^3.1.2
+        specifier: ^3.2.0
         version: 3.3.1
     devDependencies:
       typescript:
-        specifier: ^5.4.2
+        specifier: ^5.6.3
         version: 5.9.3
 
   packages/m3-menu:
     dependencies:
       lit:
-        specifier: ^3.1.2
+        specifier: ^3.2.0
         version: 3.3.1
     devDependencies:
       typescript:
-        specifier: ^5.4.2
+        specifier: ^5.6.3
         version: 5.9.3
 
   packages/m3-navigation-bar:
@@ -190,11 +190,11 @@ importers:
   packages/m3-split-button:
     dependencies:
       lit:
-        specifier: ^3.1.2
+        specifier: ^3.2.0
         version: 3.3.1
     devDependencies:
       typescript:
-        specifier: ^5.4.2
+        specifier: ^5.6.3
         version: 5.9.3
 
   packages/m3-switch:
