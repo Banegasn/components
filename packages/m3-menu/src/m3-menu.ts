@@ -3,6 +3,20 @@ import { customElement, property, queryAssignedElements } from 'lit/decorators.j
 import { m3MenuStyles } from './m3-menu.styles.js';
 import './m3-menu-item.js';
 
+export type M3MenuPlacement =
+    | 'bottom-start'
+    | 'bottom-center'
+    | 'bottom-end'
+    | 'top-start'
+    | 'top-center'
+    | 'top-end'
+    | 'right-start'
+    | 'right-center'
+    | 'right-end'
+    | 'left-start'
+    | 'left-center'
+    | 'left-end';
+
 @customElement('m3-menu')
 export class M3Menu extends LitElement {
     static styles = m3MenuStyles;
@@ -11,22 +25,41 @@ export class M3Menu extends LitElement {
     open = false;
 
     @property({ type: String, reflect: true })
-    placement: 'bottom-start' | 'bottom-end' = 'bottom-end';
+    placement: M3MenuPlacement = 'bottom-end';
+
+    @property({ type: Number, reflect: true })
+    offset = 8;
 
     @queryAssignedElements({ flatten: true })
     private _assignedElements!: HTMLElement[];
 
     connectedCallback() {
         super.connectedCallback();
+        this._syncOffset();
+        this.addEventListener('menu-item-select', this._handleMenuItemSelectBubble);
         document.addEventListener('pointerdown', this._handleDocumentPointerDown, true);
     }
 
     disconnectedCallback() {
+        this.removeEventListener('menu-item-select', this._handleMenuItemSelectBubble);
         document.removeEventListener('pointerdown', this._handleDocumentPointerDown, true);
         super.disconnectedCallback();
     }
 
+    private _handleMenuItemSelectBubble = (event: Event) => {
+        if (event.target === this) return;
+        const ce = event as CustomEvent<{ value?: string; text?: string }>;
+        const detail = ce.detail ?? {};
+        event.stopPropagation();
+        this.dispatchEvent(new CustomEvent('menu-item-select', { bubbles: true, composed: true, detail }));
+        setTimeout(() => this._requestDismiss('selection'), 0);
+    };
+
     updated(changedProperties: Map<string, unknown>) {
+        if (changedProperties.has('offset')) {
+            this._syncOffset();
+        }
+
         if (changedProperties.has('open') && this.open) {
             queueMicrotask(() => this.focusFirstItem());
         }
@@ -60,7 +93,18 @@ export class M3Menu extends LitElement {
             return;
         }
 
-        if (event.composedPath().includes(this)) {
+        // Ignore events if the menu is hidden (e.g., its parent is display: none due to responsive CSS)
+        if (this.getClientRects().length === 0) {
+            return;
+        }
+
+        const path = event.composedPath();
+        const pathIncludesMenu = path.includes(this);
+        const pathIncludesAnchor = this.parentElement != null && path.includes(this.parentElement);
+        const pathIncludesSlottedContent = path.some(
+            (node) => node instanceof Node && this.contains(node)
+        );
+        if (pathIncludesMenu || pathIncludesAnchor || pathIncludesSlottedContent) {
             return;
         }
 
@@ -133,6 +177,10 @@ export class M3Menu extends LitElement {
             composed: true,
             detail: { reason }
         }));
+    }
+
+    private _syncOffset() {
+        this.style.setProperty('--md-menu-offset', `${this.offset}px`);
     }
 }
 

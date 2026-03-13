@@ -8,7 +8,6 @@
   flex: 1;
   padding: 1rem;
   overflow: auto;
-  margin-bottom: 64px;
 }
 
 /* Scrollbar styling - thin for both themes */
@@ -66,28 +65,51 @@
 }
 
 /* Navigation Rail - Desktop/Tablet */
+.desktop-nav-shell {
+  display: flex;
+  position: relative;
+}
+
 .desktop-nav {
   display: flex;
 }
 
+.desktop-components-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
 /* Navigation Bar - Mobile (hidden by default) */
-.mobile-nav {
+.mobile-nav-shell {
   display: none;
   position: fixed;
+  inset-inline: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
+}
+
+.mobile-nav {
+  display: block;
+}
+
+.mobile-components-anchor {
+  position: absolute;
+  inset-inline-start: 37.5%;
+  bottom: 64px;
+  width: 0;
+  height: 0;
+  z-index: 1001;
 }
 
 @media (max-width: 768px) {
   /* Hide navigation rail on mobile */
-  .desktop-nav {
+  .desktop-nav-shell {
     display: none;
   }
 
   /* Show navigation bar on mobile */
-  .mobile-nav {
+  .mobile-nav-shell {
     display: block;
   }
 
@@ -100,11 +122,5 @@
   .app-content {
     padding: 0;
     max-width: 100%;
-  }
-}
-
-@media (min-width: 769px) {
-  .app-container {
-    margin-bottom: 0;
   }
 }

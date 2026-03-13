@@ -131,22 +131,24 @@ export class M3MenuItem extends LitElement {
             .join('')
             .trim() ?? '';
 
+        const detail = { value: this.value || text, text };
         this.dispatchEvent(new CustomEvent('menu-item-select', {
             bubbles: true,
             composed: true,
-            detail: {
-                value: this.value || text,
-                text
-            }
+            detail
         }));
     }
 
     private _handleLeadingSlotChange = () => {
-        this._hasLeadingIcon = this._slotHasContent('leading-icon');
+        queueMicrotask(() => {
+            this._hasLeadingIcon = this._slotHasContent('leading-icon');
+        });
     };
 
     private _handleTrailingSlotChange = () => {
-        this._hasTrailingIcon = this._slotHasContent('trailing-icon');
+        queueMicrotask(() => {
+            this._hasTrailingIcon = this._slotHasContent('trailing-icon');
+        });
     };
 
     private _syncSlotState() {

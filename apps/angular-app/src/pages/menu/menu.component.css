@@ -3,6 +3,13 @@
     gap: 16px;
 }
 
+.demo-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+}
+
 .menu-anchor {
     position: relative;
     display: inline-flex;
@@ -12,4 +19,30 @@
 
 .selection-note {
     margin: 0;
+}
+
+.placement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.placement-group {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 16px;
+    background: var(--md-sys-color-surface-variant);
+}
+
+.placement-group h4 {
+    margin: 0;
+}
+
+.placement-group code {
+    display: inline-block;
+}
+
+.placement-anchor {
+    flex-shrink: 0;
 }

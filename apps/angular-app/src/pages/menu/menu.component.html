@@ -17,34 +17,84 @@
             </div>
 
             <div class="menu-demo">
-                <div class="menu-anchor">
-                    <m3-button variant="filled" (button-click)="toggleMenu()">Open menu</m3-button>
-                    <m3-menu [attr.open]="menuOpen ? '' : null" placement="bottom-start"
-                        (menu-dismiss)="closeMenu()" (menu-item-select)="handleMenuSelect($event)">
-                        <m3-menu-item value="profile">
-                            <span slot="leading-icon" class="material-symbols-outlined">person</span>
-                            Profile
-                        </m3-menu-item>
-                        <m3-menu-item value="share">
-                            <span slot="leading-icon" class="material-symbols-outlined">share</span>
-                            Share
-                        </m3-menu-item>
-                        <m3-menu-item value="archive">
-                            <span slot="leading-icon" class="material-symbols-outlined">archive</span>
-                            Archive
-                        </m3-menu-item>
-                    </m3-menu>
+                <div class="demo-toolbar">
+                    <div class="menu-anchor">
+                        <m3-button variant="filled" (button-click)="toggleMenu()">Open menu</m3-button>
+                        <m3-menu [attr.open]="menuOpen ? '' : null" [placement]="examplePlacement"
+                            (menu-dismiss)="closeMenu()" (menu-item-select)="handleMenuSelect($event)">
+                            <m3-menu-item value="profile">
+                                <span slot="leading-icon" class="material-symbols-outlined">person</span>
+                                Profile
+                            </m3-menu-item>
+                            <m3-menu-item value="share">
+                                <span slot="leading-icon" class="material-symbols-outlined">share</span>
+                                Share
+                            </m3-menu-item>
+                            <m3-menu-item value="archive">
+                                <span slot="leading-icon" class="material-symbols-outlined">archive</span>
+                                Archive
+                            </m3-menu-item>
+                        </m3-menu>
+                    </div>
+                    <div class="menu-anchor placement-anchor">
+                        <m3-button variant="tonal" (button-click)="togglePlacementMenu()">
+                            Position: {{ examplePlacement }}
+                        </m3-button>
+                        <m3-menu placement="bottom-start" [attr.open]="placementMenuOpen ? '' : null"
+                            (menu-dismiss)="closePlacementMenu()" (menu-item-select)="handlePlacementSelect($event)">
+                            @for (p of placementOptions; track p) {
+                                <m3-menu-item [value]="p">{{ p }}</m3-menu-item>
+                            }
+                        </m3-menu>
+                    </div>
                 </div>
 
                 <p class="selection-note">Last selection: <strong>{{ lastSelection }}</strong></p>
             </div>
-        </div>
 
-        <div class="code-sample">
-            <code>&lt;m3-menu placement="bottom-start"&gt;
-    &lt;m3-menu-item value="profile"&gt;Profile&lt;/m3-menu-item&gt;
-    &lt;m3-menu-item value="share"&gt;Share&lt;/m3-menu-item&gt;
-&lt;/m3-menu&gt;</code>
+            <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>Positioning API</h2>
+        <p>Use <code>placement</code> to choose where the menu opens relative to its anchor, and <code>offset</code> to control the gap in pixels.</p>
+
+        <div class="variant-card">
+            <div class="variant-header">
+                <h3>Placement Options</h3>
+                <span class="emphasis-badge medium">Built into <code>m3-menu</code></span>
+            </div>
+
+            <div class="placement-grid">
+                <div class="placement-group">
+                    <h4>Bottom</h4>
+                    <code>bottom-start</code>
+                    <code>bottom-center</code>
+                    <code>bottom-end</code>
+                </div>
+                <div class="placement-group">
+                    <h4>Top</h4>
+                    <code>top-start</code>
+                    <code>top-center</code>
+                    <code>top-end</code>
+                </div>
+                <div class="placement-group">
+                    <h4>Right</h4>
+                    <code>right-start</code>
+                    <code>right-center</code>
+                    <code>right-end</code>
+                </div>
+                <div class="placement-group">
+                    <h4>Left</h4>
+                    <code>left-start</code>
+                    <code>left-center</code>
+                    <code>left-end</code>
+                </div>
+            </div>
+
+            <p class="selection-note">Example: <code>placement="right-center" offset="12"</code></p>
+            <app-code-block language="html" variant="sample" [code]="positioningExample"></app-code-block>
         </div>
     </section>
 
