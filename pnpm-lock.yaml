@@ -44,6 +44,12 @@ importers:
       '@banegasn/m3-card':
         specifier: workspace:*
         version: link:../../packages/m3-card
+      '@banegasn/m3-fab-menu':
+        specifier: workspace:^
+        version: link:../../packages/m3-fab-menu
+      '@banegasn/m3-loading-indicator':
+        specifier: workspace:^
+        version: link:../../packages/m3-loading-indicator
       '@banegasn/m3-navigation-bar':
         specifier: workspace:*
         version: link:../../packages/m3-navigation-bar
@@ -56,6 +62,9 @@ importers:
       '@banegasn/m3-search-bar':
         specifier: workspace:*
         version: link:../../packages/m3-search-bar
+      '@banegasn/m3-split-button':
+        specifier: workspace:^
+        version: link:../../packages/m3-split-button
       '@banegasn/m3-switch':
         specifier: workspace:*
         version: link:../../packages/m3-switch
@@ -102,6 +111,26 @@ importers:
         specifier: ^5.6.3
         version: 5.9.3
 
+  packages/m3-fab-menu:
+    dependencies:
+      lit:
+        specifier: ^3.1.2
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.4.2
+        version: 5.9.3
+
+  packages/m3-loading-indicator:
+    dependencies:
+      lit:
+        specifier: ^3.1.2
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.4.2
+        version: 5.9.3
+
   packages/m3-navigation-bar:
     dependencies:
       lit:
@@ -140,6 +169,16 @@ importers:
     devDependencies:
       typescript:
         specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-split-button:
+    dependencies:
+      lit:
+        specifier: ^3.1.2
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.4.2
         version: 5.9.3
 
   packages/m3-switch:

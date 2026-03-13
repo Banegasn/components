@@ -2,32 +2,6 @@ h4 {
     margin-bottom: 1rem;
 }
 
-.demo-section {
-    margin-bottom: 48px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
-}
-
-.demo-section:last-child {
-    border-bottom: none;
-}
-
-.variant-card {
-    background: var(--md-sys-color-surface-variant, #e7e0ec);
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 16px;
-}
-
-.variant-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
 .emphasis-badge {
     padding: 4px 12px;
     border-radius: 16px;
@@ -146,23 +120,6 @@ h4 {
     gap: 8px;
     justify-content: flex-start;
     margin-top: 16px;
-}
-
-.accessibility .feature-list {
-    list-style: none;
-    padding: 0;
-}
-
-.accessibility .feature-list li {
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    background: var(--md-sys-color-surface-variant, #e7e0ec);
-    border-radius: 8px;
-    line-height: 1.6;
-}
-
-.accessibility .feature-list strong {
-    color: var(--md-sys-color-primary, #6750a4);
 }
 
 .resources .resource-links {

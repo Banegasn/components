@@ -28,7 +28,10 @@
       "@banegasn/m3-navigation-bar": ["../../packages/m3-navigation-bar/dist/index.js"],
       "@banegasn/m3-switch": ["../../packages/m3-switch/dist/index.js"],
       "@banegasn/m3-radio-button": ["../../packages/m3-radio-button/dist/index.js"],
-      "@banegasn/m3-search-bar": ["../../packages/m3-search-bar/dist/index.js"]
+      "@banegasn/m3-search-bar": ["../../packages/m3-search-bar/dist/index.js"],
+      "@banegasn/m3-fab-menu": ["../../packages/m3-fab-menu/dist/index.js"],
+      "@banegasn/m3-loading-indicator": ["../../packages/m3-loading-indicator/dist/index.js"],
+      "@banegasn/m3-split-button": ["../../packages/m3-split-button/dist/index.js"]
     }
   },
   "angularCompilerOptions": {

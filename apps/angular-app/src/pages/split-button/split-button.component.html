@@ -1,0 +1,68 @@
+<div class="page-container docs-page">
+    <header class="page-header">
+        <h1>Split Button</h1>
+        <p class="subtitle">
+            A split button groups a primary action with a related menu of options.
+            Material 3 Expressive adds shape morphing and rotation animations.
+        </p>
+    </header>
+
+    <section class="demo-section">
+        <h2>Variants</h2>
+        <p>Split buttons come in the same variants as standard buttons: filled, tonal, elevated, and outlined.</p>
+
+        <div class="variant-card">
+            <div class="variant-header">
+                <h3>Interactive Demo</h3>
+                <span class="emphasis-badge high">Try clicking both sides</span>
+            </div>
+            <div class="demo-row" style="gap: 24px; flex-wrap: wrap;">
+                <m3-split-button (split-button-click)="handleSplitClick($event)">
+                    Send
+                </m3-split-button>
+
+                <m3-split-button variant="outlined" (split-button-click)="handleSplitClick($event)">
+                    Save
+                </m3-split-button>
+
+                <m3-split-button variant="tonal" (split-button-click)="handleSplitClick($event)">
+                    Edit
+                </m3-split-button>
+
+                <m3-split-button variant="elevated" (split-button-click)="handleSplitClick($event)">
+                    Create
+                </m3-split-button>
+            </div>
+            <div class="code-sample">
+                <code>&lt;m3-split-button variant="filled"&gt;Send&lt;/m3-split-button&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>Usage</h2>
+        <p>Use split buttons when you have a primary action and related secondary actions. The left side triggers the
+            primary action, while the right side (arrow) opens a menu.</p>
+
+        <div class="pattern-card">
+            <h4>Common Use Cases</h4>
+            <ul class="feature-list">
+                <li><strong>Send / Schedule Send:</strong> Primary action sends immediately, menu offers scheduling.
+                </li>
+                <li><strong>Save / Save As:</strong> Primary action saves, menu offers formats.</li>
+                <li><strong>Merge / Squash & Merge:</strong> GitHub-style pull request actions.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="demo-section accessibility">
+        <h2>♿ Accessibility</h2>
+        <ul class="feature-list">
+            <li><strong>Keyboard Navigation:</strong> Tab to focus, Enter/Space to activate.</li>
+            <li><strong>Screen Readers:</strong> The two parts are semantically separate buttons.</li>
+            <li><strong>ARIA:</strong> The menu trigger has <code>aria-haspopup="menu"</code> and
+                <code>aria-expanded</code> states.
+            </li>
+        </ul>
+    </section>
+</div>

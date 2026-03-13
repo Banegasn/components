@@ -1,0 +1,69 @@
+<div class="page-container docs-page">
+    <header class="page-header">
+        <h1>Loading Indicator</h1>
+        <p class="subtitle">
+            Expressive loading indicators that morph shapes to indicate activity.
+        </p>
+    </header>
+
+    <section class="demo-section">
+        <h2>Variants</h2>
+        <p>Loading indicators can be circular or square, and can morph between shapes.</p>
+
+        <div class="variant-card">
+            <div class="variant-header">
+                <h3>Standard Indicators</h3>
+            </div>
+            <div class="demo-row" style="gap: 48px; align-items: center; justify-content: center; padding: 24px;">
+                <div style="text-align: center;">
+                    <m3-loading-indicator></m3-loading-indicator>
+                    <p style="margin-top: 8px; font-size: 0.875rem;">Round (Default)</p>
+                </div>
+                <div style="text-align: center;">
+                    <m3-loading-indicator shape="square"></m3-loading-indicator>
+                    <p style="margin-top: 8px; font-size: 0.875rem;">Square</p>
+                </div>
+            </div>
+            <div class="code-sample">
+                <code>&lt;m3-loading-indicator shape="square"&gt;&lt;/m3-loading-indicator&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <h2>Contained Usage</h2>
+        <p>Use the <code>contained</code> variant when placing the indicator inside a button or chip.</p>
+
+        <div class="variant-card">
+            <div class="variant-header">
+                <h3>Inside Buttons</h3>
+            </div>
+            <div class="demo-row" style="gap: 24px;">
+                <m3-button>
+                    <m3-loading-indicator variant="contained" slot="icon"></m3-loading-indicator>
+                    Saving...
+                </m3-button>
+
+                <m3-button variant="tonal">
+                    <m3-loading-indicator variant="contained" slot="icon"></m3-loading-indicator>
+                    Processing
+                </m3-button>
+            </div>
+            <div class="code-sample">
+                <code>&lt;m3-button&gt;
+    &lt;m3-loading-indicator variant="contained" slot="icon"&gt;&lt;/m3-loading-indicator&gt;
+    Loading...
+&lt;/m3-button&gt;</code>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section accessibility">
+        <h2>♿ Accessibility</h2>
+        <ul class="feature-list">
+            <li><strong>ARIA:</strong> Automatically includes <code>role="progressbar"</code>.</li>
+            <li><strong>Reduced Motion:</strong> Respects user's reduced motion preferences by simplifying animations.
+            </li>
+        </ul>
+    </section>
+</div>

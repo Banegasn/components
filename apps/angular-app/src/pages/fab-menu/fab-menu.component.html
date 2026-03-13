@@ -1,0 +1,53 @@
+<div class="page-container docs-page">
+    <header class="page-header">
+        <h1>FAB Menu</h1>
+        <p class="subtitle">
+            A Floating Action Button that expands into a menu of related actions.
+            Replaces the traditional speed dial with more expressive motion.
+        </p>
+    </header>
+
+    <section class="demo-section">
+        <h2>Interactive Demo</h2>
+        <p>Click the FAB to toggle the menu. Notice the shape morphing and rotation animation.</p>
+
+        <div class="variant-card"
+            style="height: 400px; position: relative; background-color: var(--md-sys-color-surface-container-low, #f7f2fa); overflow: hidden; border-radius: 16px;">
+            <div style="position: absolute; bottom: 24px; right: 24px;">
+                <m3-fab-menu>
+                    <m3-button variant="elevated" icon-only aria-label="Edit">
+                        <span slot="icon" class="material-symbols-outlined">edit</span>
+                    </m3-button>
+                    <m3-button variant="elevated" icon-only aria-label="Delete">
+                        <span slot="icon" class="material-symbols-outlined">delete</span>
+                    </m3-button>
+                    <m3-button variant="elevated" icon-only aria-label="Link">
+                        <span slot="icon" class="material-symbols-outlined">link</span>
+                    </m3-button>
+                </m3-fab-menu>
+            </div>
+            <p
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--md-sys-color-outline);">
+                Content Area
+            </p>
+        </div>
+
+        <div class="code-sample">
+            <code>&lt;m3-fab-menu&gt;
+    &lt;m3-button variant="elevated" icon-only&gt;...&lt;/m3-button&gt;
+    &lt;m3-button variant="elevated" icon-only&gt;...&lt;/m3-button&gt;
+&lt;/m3-fab-menu&gt;</code>
+        </div>
+    </section>
+
+    <section class="demo-section accessibility">
+        <h2>♿ Accessibility</h2>
+        <ul class="feature-list">
+            <li><strong>Keyboard Support:</strong> The FAB is a button that can be activated with Enter/Space.</li>
+            <li><strong>Focus Management:</strong> When opened, focus should be managed to the menu items
+                (implementation
+                dependent).</li>
+            <li><strong>ARIA:</strong> The FAB has <code>aria-label="Menu"</code> by default.</li>
+        </ul>
+    </section>
+</div>

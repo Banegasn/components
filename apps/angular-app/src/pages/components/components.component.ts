@@ -4,6 +4,9 @@ import '@banegasn/m3-button';
 import '@banegasn/m3-card';
 import '@banegasn/m3-switch';
 import '@banegasn/m3-radio-button';
+import '@banegasn/m3-split-button';
+import '@banegasn/m3-loading-indicator';
+import '@banegasn/m3-fab-menu';
 
 @Component({
   selector: 'app-components ',
@@ -42,5 +45,17 @@ export class ComponentsComponent {
 
   navigateToSearchBar() {
     this.router.navigate(['/search-bar']);
+  }
+
+  navigateToSplitButton() {
+    this.router.navigate(['/split-button']);
+  }
+
+  navigateToLoadingIndicator() {
+    this.router.navigate(['/loading-indicator']);
+  }
+
+  navigateToFabMenu() {
+    this.router.navigate(['/fab-menu']);
   }
 }
