@@ -159,30 +159,12 @@
 
 <section class="doc-section">
   <h2>Installation</h2>
-  <div class="code-block">
-    <pre><code>npm install &#64;banegasn/m3-navigation-rail</code></pre>
-  </div>
+  <app-code-block variant="block" [code]="installExample"></app-code-block>
 </section>
 
 <section class="doc-section">
   <h2>Basic Usage</h2>
-  <div class="code-block">
-    <pre><code>&lt;m3-navigation-rail&gt;
-  &lt;m3-navigation-rail-toggle&gt;&lt;/m3-navigation-rail-toggle&gt;
-  
-  &lt;m3-navigation-rail-item label="Home" active&gt;
-    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-      &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
-    &lt;/svg&gt;
-  &lt;/m3-navigation-rail-item&gt;
-  
-  &lt;m3-navigation-rail-item label="Search"&gt;
-    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-      &lt;path fill="currentColor" d="M15.5 14h-.79l-.28-.27..."/&gt;
-    &lt;/svg&gt;
-  &lt;/m3-navigation-rail-item&gt;
-&lt;/m3-navigation-rail&gt;</code></pre>
-  </div>
+  <app-code-block variant="block" language="html" [code]="basicUsageExample"></app-code-block>
 </section>
 
 <section class="doc-section">
@@ -377,91 +359,17 @@
   
   <div class="framework-card">
     <h3>Angular</h3>
-    <div class="code-block">
-      <pre><code>// app.component.ts
-import &#123; Component, CUSTOM_ELEMENTS_SCHEMA &#125; from '&#64;angular/core';
-import '&#64;banegasn/m3-navigation-rail';
-
-&#64;Component(&#123;
-  selector: 'app-root',
-  template: `
-    &lt;m3-navigation-rail&gt;
-      &lt;m3-navigation-rail-toggle&gt;&lt;/m3-navigation-rail-toggle&gt;
-      &lt;m3-navigation-rail-item 
-        label="Home" 
-        [active]="true"
-        (item-click)="onItemClick($event)"
-      &gt;
-        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-          &lt;!-- icon path --&gt;
-        &lt;/svg&gt;
-      &lt;/m3-navigation-rail-item&gt;
-    &lt;/m3-navigation-rail&gt;
-  `,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-&#125;)
-export class AppComponent &#123;
-  onItemClick(event: CustomEvent) &#123;
-    console.log('Clicked:', event.detail.label);
-  &#125;
-&#125;</code></pre>
-    </div>
+    <app-code-block variant="block" language="typescript" [code]="angularExample"></app-code-block>
   </div>
   
   <div class="framework-card">
     <h3>React</h3>
-    <div class="code-block">
-      <pre><code>import '&#64;banegasn/m3-navigation-rail';
-
-function App() &#123;
-  const handleItemClick = (e) =&gt; &#123;
-    console.log('Clicked:', e.detail.label);
-  &#125;;
-
-  return (
-    &lt;m3-navigation-rail&gt;
-      &lt;m3-navigation-rail-toggle /&gt;
-      &lt;m3-navigation-rail-item 
-        label="Home" 
-        active
-        onitem-click=&#123;handleItemClick&#125;
-      &gt;
-        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-          &#123;/* icon path */&#125;
-        &lt;/svg&gt;
-      &lt;/m3-navigation-rail-item&gt;
-    &lt;/m3-navigation-rail&gt;
-  );
-&#125;</code></pre>
-    </div>
+    <app-code-block variant="block" language="javascript" [code]="reactExample"></app-code-block>
   </div>
   
   <div class="framework-card">
     <h3>Vue</h3>
-    <div class="code-block">
-      <pre><code>&lt;template&gt;
-  &lt;m3-navigation-rail&gt;
-    &lt;m3-navigation-rail-toggle /&gt;
-    &lt;m3-navigation-rail-item 
-      label="Home" 
-      :active="true"
-      &#64;item-click="handleItemClick"
-    &gt;
-      &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-        &lt;!-- icon path --&gt;
-      &lt;/svg&gt;
-    &lt;/m3-navigation-rail-item&gt;
-  &lt;/m3-navigation-rail&gt;
-&lt;/template&gt;
-
-&lt;script setup&gt;
-import '&#64;banegasn/m3-navigation-rail';
-
-const handleItemClick = (event) =&gt; &#123;
-  console.log('Clicked:', event.detail.label);
-&#125;;
-&lt;/script&gt;</code></pre>
-    </div>
+    <app-code-block variant="block" language="html" [code]="vueExample"></app-code-block>
   </div>
 </section>
 

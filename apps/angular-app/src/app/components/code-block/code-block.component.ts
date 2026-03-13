@@ -41,6 +41,7 @@ hljs.registerLanguage('css', cssLanguage);
 export class CodeBlockComponent implements AfterViewInit {
   readonly variant = input<'sample' | 'block' | ''>('');
   readonly language = input('');
+  readonly code = input('');
 
   @ViewChild('source', { static: true })
   private sourceRef!: ElementRef<HTMLElement>;
@@ -97,6 +98,12 @@ export class CodeBlockComponent implements AfterViewInit {
   }
 
   private readSource() {
+    const explicitCode = this.code().replace(/\r\n?/g, '\n').trim();
+
+    if (explicitCode) {
+      return explicitCode;
+    }
+
     const source = this.projectedSource();
 
     if (source) {

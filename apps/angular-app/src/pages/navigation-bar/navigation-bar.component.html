@@ -30,14 +30,10 @@
 <section class="doc-section">
   <h2>Installation</h2>
   <p>Install the package using npm:</p>
-  <div class="code-block">
-    <pre><code>npm install @banegasn/m3-navigation-bar</code></pre>
-  </div>
+  <app-code-block variant="block" [code]="installExample"></app-code-block>
   
   <p style="margin-top: 1rem;">Then import it in your component:</p>
-  <div class="code-block">
-    <pre><code>import '@banegasn/m3-navigation-bar';</code></pre>
-  </div>
+  <app-code-block variant="block" language="typescript" [code]="importExample"></app-code-block>
 </section>
 
 <section class="doc-section">
@@ -211,27 +207,7 @@
 
 <section class="doc-section">
   <h2>Basic Usage</h2>
-  <div class="code-block">
-    <pre><code>&lt;m3-navigation-bar&gt;
-  &lt;m3-navigation-bar-item label="Home" active&gt;
-    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-      &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
-    &lt;/svg&gt;
-  &lt;/m3-navigation-bar-item&gt;
-  
-  &lt;m3-navigation-bar-item label="Music"&gt;
-    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-      &lt;path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/&gt;
-    &lt;/svg&gt;
-  &lt;/m3-navigation-bar-item&gt;
-  
-  &lt;m3-navigation-bar-item label="Podcasts"&gt;
-    &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-      &lt;path fill="currentColor" d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/&gt;
-    &lt;/svg&gt;
-  &lt;/m3-navigation-bar-item&gt;
-&lt;/m3-navigation-bar&gt;</code></pre>
-  </div>
+  <app-code-block variant="block" language="html" [code]="basicUsageExample"></app-code-block>
 </section>
 
 <section class="doc-section">
@@ -391,88 +367,17 @@
   
   <div class="framework-card">
     <h3>Angular</h3>
-    <div class="code-block">
-      <pre><code>// navigation-bar.component.ts
-import &#123; Component, CUSTOM_ELEMENTS_SCHEMA &#125; from '&#64;angular/core';
-import '@banegasn/m3-navigation-bar';
-
-&#64;Component(&#123;
-  selector: 'app-navigation',
-  template: `
-    &lt;m3-navigation-bar [auto-layout]="true"&gt;
-      &lt;m3-navigation-bar-item 
-        label="Home" 
-        [active]="true"
-        (item-click)="onItemClick($event)"
-      &gt;
-        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-          &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
-        &lt;/svg&gt;
-      &lt;/m3-navigation-bar-item&gt;
-    &lt;/m3-navigation-bar&gt;
-  `,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-&#125;)
-export class NavigationComponent &#123;
-  onItemClick(event: CustomEvent) &#123;
-    console.log('Clicked:', event.detail.label);
-  &#125;
-&#125;</code></pre>
-    </div>
+    <app-code-block variant="block" language="typescript" [code]="angularExample"></app-code-block>
   </div>
   
   <div class="framework-card">
     <h3>React</h3>
-    <div class="code-block">
-      <pre><code>import '&#64;banegasn/m3-navigation-bar';
-
-function App() &#123;
-  const handleItemClick = (e) =&gt; &#123;
-    console.log('Clicked:', e.detail.label);
-  &#125;;
-
-  return (
-    &lt;m3-navigation-bar auto-layout&gt;
-      &lt;m3-navigation-bar-item 
-        label="Home" 
-        active
-        onitem-click=&#123;handleItemClick&#125;
-      &gt;
-        &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-          &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
-        &lt;/svg&gt;
-      &lt;/m3-navigation-bar-item&gt;
-    &lt;/m3-navigation-bar&gt;
-  );
-&#125;</code></pre>
-    </div>
+    <app-code-block variant="block" language="javascript" [code]="reactExample"></app-code-block>
   </div>
   
   <div class="framework-card">
     <h3>Vue</h3>
-    <div class="code-block">
-      <pre><code>&lt;template&gt;
-  &lt;m3-navigation-bar :auto-layout="true"&gt;
-    &lt;m3-navigation-bar-item 
-      label="Home" 
-      :active="true"
-      &#64;item-click="handleItemClick"
-    &gt;
-      &lt;svg slot="icon" viewBox="0 0 24 24" width="24" height="24"&gt;
-        &lt;path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/&gt;
-      &lt;/svg&gt;
-    &lt;/m3-navigation-bar-item&gt;
-  &lt;/m3-navigation-bar&gt;
-&lt;/template&gt;
-
-&lt;script setup&gt;
-import '@banegasn/m3-navigation-bar';
-
-const handleItemClick = (event) =&gt; &#123;
-  console.log('Clicked:', event.detail.label);
-&#125;;
-&lt;/script&gt;</code></pre>
-    </div>
+    <app-code-block variant="block" language="html" [code]="vueExample"></app-code-block>
   </div>
 </section>
 
