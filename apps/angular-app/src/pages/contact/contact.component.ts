@@ -31,22 +31,23 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
 
       <section class="doc-section" style="margin-top: 2rem;">
         <h2>Contributors</h2>
-      <div class="contributors-box">
-        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
-          <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 2rem; margin-right: 0.5rem;">volunteer_activism</span>
-          We're looking for contributors!
-        </p>
-        <p>
-          Want to be part of this project? Contributions are welcome and greatly appreciated. 
-          Whether it's fixing bugs, adding new components, improving documentation, or suggesting features—every contribution counts!
-        </p>
-        <div class="button-group" style="margin-top: 1.5rem;">
-          <m3-button variant="filled" (button-click)="openGitHubProfile()">
-            <span slot="icon" class="material-symbols-outlined">group_add</span>
-            Become a Contributor
-          </m3-button>
+        <div class="contributors-box">
+          <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+            <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 2rem; margin-right: 0.5rem;">volunteer_activism</span>
+            We're looking for contributors!
+          </p>
+          <p>
+            Want to be part of this project? Contributions are welcome and greatly appreciated. 
+            Whether it's fixing bugs, adding new components, improving documentation, or suggesting features—every contribution counts!
+          </p>
+          <div class="button-group" style="margin-top: 1.5rem;">
+            <m3-button variant="filled" (button-click)="openGitHubProfile()">
+              <span slot="icon" class="material-symbols-outlined">group_add</span>
+              Become a Contributor
+            </m3-button>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   `,
     styles: [`
@@ -59,7 +60,11 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
       }
 
       section {
-        margin-bottom: 0;
+        margin-bottom: 2rem;
+      }
+
+      .doc-section {
+        margin-top: 2rem;
       }
 
       .contributors-box {
