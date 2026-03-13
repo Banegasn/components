@@ -1,0 +1,10 @@
+.split-button-demo {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.split-button-row {
+  align-items: flex-start;
+  padding-bottom: 0;
+}

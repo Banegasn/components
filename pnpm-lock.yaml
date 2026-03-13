@@ -50,6 +50,9 @@ importers:
       '@banegasn/m3-loading-indicator':
         specifier: workspace:^
         version: link:../../packages/m3-loading-indicator
+      '@banegasn/m3-menu':
+        specifier: workspace:^
+        version: link:../../packages/m3-menu
       '@banegasn/m3-navigation-bar':
         specifier: workspace:*
         version: link:../../packages/m3-navigation-bar
@@ -68,6 +71,9 @@ importers:
       '@banegasn/m3-switch':
         specifier: workspace:*
         version: link:../../packages/m3-switch
+      highlight.js:
+        specifier: ^11.11.1
+        version: 11.11.1
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
@@ -122,6 +128,16 @@ importers:
         version: 5.9.3
 
   packages/m3-loading-indicator:
+    dependencies:
+      lit:
+        specifier: ^3.1.2
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.4.2
+        version: 5.9.3
+
+  packages/m3-menu:
     dependencies:
       lit:
         specifier: ^3.1.2
@@ -2040,6 +2056,10 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
+
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
+    engines: {node: '>=12.0.0'}
 
   hosted-git-info@8.1.0:
     resolution: {integrity: sha512-Rw/B2DNQaPBICNXEm8balFz9a6WpZrkCGpcWFpy7nCj+NyhSdqXipmfvtmWt9xGfp0wZnBxB+iVpLmQMYt47Tw==}
@@ -4792,6 +4812,8 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
+
+  highlight.js@11.11.1: {}
 
   hosted-git-info@8.1.0:
     dependencies:

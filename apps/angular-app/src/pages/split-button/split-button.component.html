@@ -16,26 +16,74 @@
                 <h3>Interactive Demo</h3>
                 <span class="emphasis-badge high">Try clicking both sides</span>
             </div>
-            <div class="demo-row" style="gap: 24px; flex-wrap: wrap;">
-                <m3-split-button (split-button-click)="handleSplitClick($event)">
-                    Send
-                </m3-split-button>
+            <div class="demo-row split-button-row" style="gap: 24px; flex-wrap: wrap;">
+                <div class="split-button-demo">
+                    <m3-split-button menu-id="split-button-send-menu" [attr.menu-open]="menuState['send'] ? '' : null"
+                        (split-button-click)="handleMenuToggle('send', $event)">
+                        Send
+                    </m3-split-button>
+                    <m3-menu id="split-button-send-menu" placement="bottom-end" [attr.open]="menuState['send'] ? '' : null"
+                        (menu-dismiss)="handleMenuDismiss('send')"
+                        (menu-item-select)="handleMenuItemSelect('send', $event)">
+                        <m3-menu-item value="schedule-send">Schedule send</m3-menu-item>
+                        <m3-menu-item value="save-draft">Save draft</m3-menu-item>
+                        <m3-menu-item value="send-test">Send test</m3-menu-item>
+                    </m3-menu>
+                </div>
 
-                <m3-split-button variant="outlined" (split-button-click)="handleSplitClick($event)">
-                    Save
-                </m3-split-button>
+                <div class="split-button-demo">
+                    <m3-split-button variant="outlined" menu-id="split-button-save-menu"
+                        [attr.menu-open]="menuState['save'] ? '' : null"
+                        (split-button-click)="handleMenuToggle('save', $event)">
+                        Save
+                    </m3-split-button>
+                    <m3-menu id="split-button-save-menu" placement="bottom-end" [attr.open]="menuState['save'] ? '' : null"
+                        (menu-dismiss)="handleMenuDismiss('save')"
+                        (menu-item-select)="handleMenuItemSelect('save', $event)">
+                        <m3-menu-item value="save-as">Save as</m3-menu-item>
+                        <m3-menu-item value="export-pdf">Export PDF</m3-menu-item>
+                    </m3-menu>
+                </div>
 
-                <m3-split-button variant="tonal" (split-button-click)="handleSplitClick($event)">
-                    Edit
-                </m3-split-button>
+                <div class="split-button-demo">
+                    <m3-split-button variant="tonal" menu-id="split-button-edit-menu"
+                        [attr.menu-open]="menuState['edit'] ? '' : null"
+                        (split-button-click)="handleMenuToggle('edit', $event)">
+                        Edit
+                    </m3-split-button>
+                    <m3-menu id="split-button-edit-menu" placement="bottom-end" [attr.open]="menuState['edit'] ? '' : null"
+                        (menu-dismiss)="handleMenuDismiss('edit')"
+                        (menu-item-select)="handleMenuItemSelect('edit', $event)">
+                        <m3-menu-item value="rename">Rename</m3-menu-item>
+                        <m3-menu-item value="duplicate">Duplicate</m3-menu-item>
+                    </m3-menu>
+                </div>
 
-                <m3-split-button variant="elevated" (split-button-click)="handleSplitClick($event)">
-                    Create
-                </m3-split-button>
+                <div class="split-button-demo">
+                    <m3-split-button variant="elevated" menu-id="split-button-create-menu"
+                        [attr.menu-open]="menuState['create'] ? '' : null"
+                        (split-button-click)="handleMenuToggle('create', $event)">
+                        Create
+                    </m3-split-button>
+                    <m3-menu id="split-button-create-menu" placement="bottom-end"
+                        [attr.open]="menuState['create'] ? '' : null"
+                        (menu-dismiss)="handleMenuDismiss('create')"
+                        (menu-item-select)="handleMenuItemSelect('create', $event)">
+                        <m3-menu-item value="new-doc">New document</m3-menu-item>
+                        <m3-menu-item value="new-folder">New folder</m3-menu-item>
+                    </m3-menu>
+                </div>
             </div>
-            <div class="code-sample">
-                <code>&lt;m3-split-button variant="filled"&gt;Send&lt;/m3-split-button&gt;</code>
-            </div>
+            <p style="margin: 12px 0 0;">Last interaction: <code>{{ lastInteraction }}</code></p>
+            <app-code-block language="html" variant="sample">
+&lt;div class="split-button-demo"&gt;
+  &lt;m3-split-button menu-id="send-menu" menu-open&gt;Send&lt;/m3-split-button&gt;
+  &lt;m3-menu id="send-menu" open placement="bottom-end"&gt;
+    &lt;m3-menu-item value="schedule-send"&gt;Schedule send&lt;/m3-menu-item&gt;
+    &lt;m3-menu-item value="save-draft"&gt;Save draft&lt;/m3-menu-item&gt;
+  &lt;/m3-menu&gt;
+&lt;/div&gt;
+            </app-code-block>
         </div>
     </section>
 

@@ -1,0 +1,61 @@
+<div class="page-container docs-page">
+    <header class="page-header">
+        <h1>Menu</h1>
+        <p class="subtitle">
+            Menus display a list of choices on a temporary elevated surface anchored to a trigger.
+        </p>
+    </header>
+
+    <section class="demo-section">
+        <h2>Standalone Menu</h2>
+        <p>Use menus for contextual actions, overflow options, and lightweight selections.</p>
+
+        <div class="variant-card">
+            <div class="variant-header">
+                <h3>Anchored Example</h3>
+                <span class="emphasis-badge medium">M3 menu surface</span>
+            </div>
+
+            <div class="menu-demo">
+                <div class="menu-anchor">
+                    <m3-button variant="filled" (button-click)="toggleMenu()">Open menu</m3-button>
+                    <m3-menu [attr.open]="menuOpen ? '' : null" placement="bottom-start"
+                        (menu-dismiss)="closeMenu()" (menu-item-select)="handleMenuSelect($event)">
+                        <m3-menu-item value="profile">
+                            <span slot="leading-icon" class="material-symbols-outlined">person</span>
+                            Profile
+                        </m3-menu-item>
+                        <m3-menu-item value="share">
+                            <span slot="leading-icon" class="material-symbols-outlined">share</span>
+                            Share
+                        </m3-menu-item>
+                        <m3-menu-item value="archive">
+                            <span slot="leading-icon" class="material-symbols-outlined">archive</span>
+                            Archive
+                        </m3-menu-item>
+                    </m3-menu>
+                </div>
+
+                <p class="selection-note">Last selection: <strong>{{ lastSelection }}</strong></p>
+            </div>
+        </div>
+
+        <div class="code-sample">
+            <code>&lt;m3-menu placement="bottom-start"&gt;
+    &lt;m3-menu-item value="profile"&gt;Profile&lt;/m3-menu-item&gt;
+    &lt;m3-menu-item value="share"&gt;Share&lt;/m3-menu-item&gt;
+&lt;/m3-menu&gt;</code>
+        </div>
+    </section>
+
+    <section class="demo-section accessibility">
+        <h2>♿ Accessibility</h2>
+        <ul class="feature-list">
+            <li><strong>Role Mapping:</strong> The surface uses <code>role="menu"</code> and items use
+                <code>role="menuitem"</code>.
+            </li>
+            <li><strong>Keyboard Navigation:</strong> Arrow keys, Home, End, Escape, and Tab dismissal are supported.</li>
+            <li><strong>Dismissal:</strong> Menus close on outside click, Escape, Tab, or item selection.</li>
+        </ul>
+    </section>
+</div>

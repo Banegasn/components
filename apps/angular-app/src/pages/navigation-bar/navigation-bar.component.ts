@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
 import '@banegasn/m3-navigation-bar';
 import '@banegasn/m3-card';
@@ -10,6 +11,7 @@ import '@banegasn/m3-card';
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.css'],
   standalone: true,
+  imports: [CodeBlockComponent],
 })
 export class NavigationBarComponent {
   selectedItem = 'Home';

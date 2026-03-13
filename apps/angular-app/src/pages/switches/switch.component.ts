@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
 import '@banegasn/m3-switch';
 import '@banegasn/m3-card';
@@ -9,6 +10,7 @@ import '@banegasn/m3-card';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.css'],
+  imports: [CodeBlockComponent],
 })
 export class SwitchComponent {
   notificationsEnabled = false;

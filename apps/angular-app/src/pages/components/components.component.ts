@@ -7,6 +7,7 @@ import '@banegasn/m3-radio-button';
 import '@banegasn/m3-split-button';
 import '@banegasn/m3-loading-indicator';
 import '@banegasn/m3-fab-menu';
+import '@banegasn/m3-menu';
 
 @Component({
   selector: 'app-components ',
@@ -53,6 +54,10 @@ export class ComponentsComponent {
 
   navigateToLoadingIndicator() {
     this.router.navigate(['/loading-indicator']);
+  }
+
+  navigateToMenu() {
+    this.router.navigate(['/menu']);
   }
 
   navigateToFabMenu() {

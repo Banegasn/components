@@ -1,0 +1,15 @@
+.menu-demo {
+    display: grid;
+    gap: 16px;
+}
+
+.menu-anchor {
+    position: relative;
+    display: inline-flex;
+    min-height: 220px;
+    align-items: flex-start;
+}
+
+.selection-note {
+    margin: 0;
+}

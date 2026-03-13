@@ -1,7 +1,7 @@
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, OnDestroy, DOCUMENT, signal, DestroyRef } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, DOCUMENT, signal, DestroyRef } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import '@banegasn/m3-navigation-rail';
@@ -106,4 +106,5 @@ export class AppComponent implements OnInit {
       container.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
+
 }

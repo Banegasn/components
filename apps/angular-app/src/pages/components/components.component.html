@@ -252,6 +252,29 @@
     <m3-card variant="elevated">
         <div slot="header">
             <div class="header-content">
+                <h2>☰ Menu</h2>
+                <span class="badge">Surface</span>
+            </div>
+        </div>
+        <p class="description">
+            A standalone Material 3 menu surface for contextual actions and overflow choices.
+        </p>
+
+        <div class="feature-list" style="margin-top: 1rem;">
+            <div class="feature-item">✓ Anchored popup surface</div>
+            <div class="feature-item">✓ Keyboard navigation</div>
+            <div class="feature-item">✓ Reusable menu items</div>
+        </div>
+
+        <div slot="actions" class="actions">
+            <m3-button variant="elevated" size="medium" (button-click)="navigateToMenu()">View Full
+                Documentation</m3-button>
+        </div>
+    </m3-card>
+
+    <m3-card variant="elevated">
+        <div slot="header">
+            <div class="header-content">
                 <h2>⏳ Loading Indicator</h2>
                 <span class="badge">Status</span>
             </div>
@@ -312,7 +335,6 @@
             <div class="roadmap-item">📋 Lists & Data Tables</div>
             <div class="roadmap-item">🎚️ Sliders & Controls</div>
             <div class="roadmap-item">💬 Dialogs & Modals</div>
-            <div class="roadmap-item">🍔 Menus & Dropdowns</div>
             <div class="roadmap-item">🎨 Chips & Badges</div>
         </div>
 

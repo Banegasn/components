@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { Router } from "@angular/router";
+import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 import '@banegasn/m3-button';
 import '@banegasn/m3-card';
 import '@banegasn/m3-switch';
@@ -11,7 +12,7 @@ import '@banegasn/m3-radio-button';
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: []
+  imports: [CodeBlockComponent]
 })
 export class HomeComponent {
   constructor(private router: Router) { }

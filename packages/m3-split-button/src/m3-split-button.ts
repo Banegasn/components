@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { m3SplitButtonStyles } from './m3-split-button.styles.js';
 
 /**
@@ -18,10 +18,13 @@ export class M3SplitButton extends LitElement {
     @property({ type: String, reflect: true })
     variant: 'filled' | 'outlined' | 'tonal' | 'elevated' = 'filled';
 
-    @state()
-    private _menuOpen = false;
+    @property({ type: Boolean, reflect: true, attribute: 'menu-open' })
+    menuOpen = false;
 
-    private _handleMainClick(e: MouseEvent) {
+    @property({ type: String, attribute: 'menu-id' })
+    menuId: string | null = null;
+
+    private _handleMainClick() {
         this.dispatchEvent(new CustomEvent('split-button-click', {
             bubbles: true,
             composed: true,
@@ -29,21 +32,29 @@ export class M3SplitButton extends LitElement {
         }));
     }
 
-    private _handleMenuClick(e: MouseEvent) {
-        this._menuOpen = !this._menuOpen;
+    private _handleMenuClick() {
+        this.menuOpen = !this.menuOpen;
         this.dispatchEvent(new CustomEvent('split-button-click', {
             bubbles: true,
             composed: true,
-            detail: { action: 'menu', open: this._menuOpen }
+            detail: { action: 'menu', open: this.menuOpen }
         }));
     }
 
     render() {
         return html`
-      <button class="button" @click=${this._handleMainClick}>
+      <button class="button" type="button" @click=${this._handleMainClick}>
         <slot></slot>
       </button>
-      <button class="menu-button ${this._menuOpen ? 'active' : ''}" @click=${this._handleMenuClick} aria-label="More options">
+      <button
+        class="menu-button ${this.menuOpen ? 'active' : ''}"
+        type="button"
+        @click=${this._handleMenuClick}
+        aria-label="More options"
+        aria-haspopup="menu"
+        aria-expanded=${String(this.menuOpen)}
+        aria-controls=${this.menuId ?? ''}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
           <path d="M480-360 280-560h400L480-360Z"/>
         </svg>
