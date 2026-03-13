@@ -18,6 +18,11 @@ This repository contains a collection of web components that can be used in any 
 - **[@banegasn/m3-navigation-rail](packages/m3-navigation-rail)** - Material Design 3 Navigation Rail component with collapsible functionality, badges, and flexible slot system
 - **[@banegasn/m3-switch](packages/m3-switch)** - Material Design 3 Switch component for toggling between on and off states with accessibility support
 - **[@banegasn/m3-radio-button](packages/m3-radio-button)** - Material Design 3 Radio Button component for selecting a single option from a group with accessibility support
+- **[@banegasn/m3-search-bar](packages/m3-search-bar)** - Material Design 3 Search Bar component with support for leading and trailing content projection
+- **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu component for expressive menu interactions
+- **[@banegasn/m3-loading-indicator](packages/m3-loading-indicator)** - Material Design 3 Loading Indicator component with shape morphing
+- **[@banegasn/m3-menu](packages/m3-menu)** - Material Design 3 Menu component for displaying a list of choices
+- **[@banegasn/m3-split-button](packages/m3-split-button)** - Material Design 3 Split Button component with main action and dropdown
 
 > 🚀 **More components coming soon!** This repository will grow to include various web components for different use cases, not limited to Material Design 3.
 
@@ -52,10 +57,15 @@ This monorepo is designed for building and distributing web components:
 ├── packages/                 # Web component packages
 │   ├── m3-button/            # Material Design 3 Button
 │   ├── m3-card/              # Material Design 3 Card
+│   ├── m3-fab-menu/          # Material Design 3 FAB Menu
+│   ├── m3-loading-indicator/ # Material Design 3 Loading Indicator
+│   ├── m3-menu/              # Material Design 3 Menu
 │   ├── m3-navigation-bar/    # Material Design 3 Navigation Bar
 │   ├── m3-navigation-rail/   # Material Design 3 Navigation Rail
-│   ├── m3-switch/            # Material Design 3 Switch
 │   ├── m3-radio-button/      # Material Design 3 Radio Button
+│   ├── m3-search-bar/        # Material Design 3 Search Bar
+│   ├── m3-split-button/      # Material Design 3 Split Button
+│   ├── m3-switch/            # Material Design 3 Switch
 ├── pnpm-workspace.yaml       # PNPM workspace configuration
 ├── turbo.json                # Turborepo configuration
 └── tsconfig.json             # Shared TypeScript config
@@ -239,7 +249,12 @@ mkdir -p apps/my-demo-app
     "@banegasn/m3-navigation-bar": "workspace:*",
     "@banegasn/m3-navigation-rail": "workspace:*",
     "@banegasn/m3-switch": "workspace:*",
-    "@banegasn/m3-radio-button": "workspace:*"
+    "@banegasn/m3-radio-button": "workspace:*",
+    "@banegasn/m3-search-bar": "workspace:*",
+    "@banegasn/m3-fab-menu": "workspace:*",
+    "@banegasn/m3-loading-indicator": "workspace:*",
+    "@banegasn/m3-menu": "workspace:*",
+    "@banegasn/m3-split-button": "workspace:*"
   }
 }
 ```

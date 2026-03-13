@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-fab-menu",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Material Design 3 fab menu web component",
   "type": "module",
   "main": "./dist/index.js",

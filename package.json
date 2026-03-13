@@ -10,7 +10,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "publish:npm": "pnpm build && pnpm publish -r --filter=\"./packages/*\" --no-git-checks --registry https://registry.npmjs.org/",
+    "publish:npm": "node scripts/publish-npm.js",
     "publish:github": "pnpm build && pnpm publish -r --filter=\"./packages/*\" --no-git-checks --registry https://npm.pkg.github.com",
     "publish:both": "pnpm publish:npm && pnpm publish:github",
     "version:patch": "pnpm --filter \"./packages/*\" exec -- npm version patch",
