@@ -133,6 +133,11 @@ export class CodeBlockComponent implements AfterViewInit {
   }
 
   private formatCode(source: string, language: 'xml' | 'typescript' | 'javascript' | 'css' | 'plaintext') {
+    // If explicitly provided via [code], we assume it's already formatted correctly.
+    if (this.code().trim()) {
+      return source;
+    }
+
     if (language === 'xml') {
       return this.formatMarkup(source);
     }
