@@ -5,7 +5,11 @@
     Works seamlessly with Angular, React, Vue, Svelte, or vanilla JavaScript.
   </p>
   <div class="button-group">
-    <m3-button variant="filled" size="large" (button-click)="navigateToComponents()">
+    <m3-button variant="filled" size="large" (button-click)="navigateToQuickStart()">
+      <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
+      Quick Start
+    </m3-button>
+    <m3-button variant="outlined" size="large" (button-click)="navigateToComponents()">
       <span slot="icon" class="material-symbols-outlined">browse</span>
       Browse Components
     </m3-button>
@@ -332,15 +336,14 @@
 
 <section class="quick-start">
   <h2>Quick Start</h2>
-  <div class="quick-start-content">
-    <div class="install-section">
-      <h3>Install via npm</h3>
-      <app-code-block language="bash" variant="block" [code]="installCode"></app-code-block>
-    </div>
-    <div class="usage-section">
-      <h3>Use in any framework</h3>
-      <app-code-block language="html" variant="block" [code]="usageCode"></app-code-block>
-    </div>
+  <div style="text-align: center; max-width: 600px; margin: 0 auto 32px;">
+    <p>Get up and running with Material 3 Web Components in minutes. Use them directly via CDN or install them via npm for your framework of choice.</p>
+  </div>
+  <div style="display: flex; justify-content: center; margin-bottom: 32px;">
+    <m3-button variant="filled" size="large" (button-click)="navigateToQuickStart()">
+      <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
+      View Quick Start Guide
+    </m3-button>
   </div>
   <div class="framework-badges">
     <span class="framework-badge">Angular</span>

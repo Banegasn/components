@@ -5,8 +5,9 @@
 }
 
 .hero h1 {
-  font-size: 48px;
-  font-weight: 400;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   margin: 0 0 16px;
   color: var(--md-sys-color-on-surface);
 }
@@ -35,8 +36,8 @@ section:last-of-type {
 }
 
 h2 {
-  font-size: 32px;
-  font-weight: 400;
+  font-size: clamp(1.75rem, 3vw, 2rem);
+  line-height: 1.2;
   margin: 0 0 32px;
   text-align: center;
   color: var(--md-sys-color-on-surface);
@@ -167,14 +168,8 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 36px;
-  }
   .subtitle {
     font-size: 16px;
-  }
-  h2 {
-    font-size: 28px;
   }
   .feature-grid,.component-list,.architecture-content,.quick-start-content,.resource-grid {
     grid-template-columns: 1fr;

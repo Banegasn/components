@@ -13,10 +13,12 @@ import { SplitButtonComponent } from '../pages/split-button/split-button.compone
 import { LoadingIndicatorComponent } from '../pages/loading-indicator/loading-indicator.component';
 import { FabMenuComponent } from '../pages/fab-menu/fab-menu.component';
 import { MenuComponent } from '../pages/menu/menu.component';
+import { QuickStartComponent } from '../pages/quick-start/quick-start.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'quick-start', component: QuickStartComponent },
     { path: 'components', component: ComponentsComponent },
     { path: 'buttons', component: ButtonComponent },
     { path: 'cards', component: CardsComponent },

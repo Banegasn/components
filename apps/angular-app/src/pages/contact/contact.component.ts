@@ -3,9 +3,12 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
 @Component({
     selector: 'app-contact',
     template: `
-    <h1>Contact</h1>
-    <section>
-      <h2>Get in Touch</h2>
+    <div class="page-container docs-page">
+      <header class="page-header">
+        <h1>Contact</h1>
+      </header>
+      <section class="doc-section">
+        <h2>Get in Touch</h2>
       <p>
         This project is maintained by <strong>&#64;banegasn</strong>. 
         Feel free to reach out for questions, suggestions, or collaborations!
@@ -26,8 +29,8 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
       </div>
     </section>
 
-    <section style="margin-top: 3rem;">
-      <h2>Contributors</h2>
+      <section class="doc-section" style="margin-top: 2rem;">
+        <h2>Contributors</h2>
       <div class="contributors-box">
         <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
           <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 2rem; margin-right: 0.5rem;">volunteer_activism</span>
@@ -44,11 +47,19 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
           </m3-button>
         </div>
       </div>
-    </section>
+    </div>
   `,
     styles: [`
-      section {
+      .page-header {
         margin-bottom: 2rem;
+      }
+
+      .page-header h1 {
+        margin: 0;
+      }
+
+      section {
+        margin-bottom: 0;
       }
 
       .contributors-box {
@@ -58,6 +69,7 @@ import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@ang
         border-radius: 1rem;
         border: 2px dashed var(--md-sys-color-outline, #b9b9b9);
         text-align: center;
+        margin-top: 1.5rem;
       }
 
       .contributors-box p {

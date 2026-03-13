@@ -18,8 +18,18 @@ Material Design 3 button web component built with Lit, featuring expressive styl
 
 ## Installation
 
+### Via npm
+
 ```bash
 npm install @banegasn/m3-button
+```
+
+### Via CDN (No build step)
+
+You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
 ```
 
 ## Quick Start

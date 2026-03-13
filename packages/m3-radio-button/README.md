@@ -4,12 +4,22 @@ Material Design 3 Radio Button web component. Radio buttons allow users to selec
 
 ## Installation
 
+### Via npm
+
 ```bash
 npm install @banegasn/m3-radio-button
 # or
 pnpm add @banegasn/m3-radio-button
 # or
 yarn add @banegasn/m3-radio-button
+```
+
+### Via CDN (No build step)
+
+You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-radio-button/+esm"></script>
 ```
 
 ## Usage

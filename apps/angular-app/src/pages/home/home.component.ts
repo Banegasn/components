@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { Router } from "@angular/router";
-import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 import '@banegasn/m3-button';
 import '@banegasn/m3-card';
 import '@banegasn/m3-switch';
@@ -11,20 +10,14 @@ import '@banegasn/m3-radio-button';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [CodeBlockComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent {
-  readonly installCode = `npm install @banegasn/m3-button`;
-  readonly usageCode = `<script type="module">
-  import '@banegasn/m3-button';
-</script>
-
-<m3-button variant="filled">
-  Click me
-</m3-button>`;
-
   constructor(private router: Router) { }
+
+  navigateToQuickStart() {
+    this.router.navigate(['/quick-start']);
+  }
 
   navigateToComponents() {
     this.router.navigate(['/components']);

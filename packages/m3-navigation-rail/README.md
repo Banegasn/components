@@ -11,8 +11,18 @@ A navigation rail is a compact, vertical navigation component that provides quic
 
 ## Installation
 
+### Via npm
+
 ```bash
 npm install @banegasn/m3-navigation-rail
+```
+
+### Via CDN (No build step)
+
+You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-rail/+esm"></script>
 ```
 
 ## Components

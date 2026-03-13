@@ -1,0 +1,66 @@
+/* Use styles similar to components.component.css */
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.6;
+}
+
+.quick-start-section {
+  margin-bottom: 3rem;
+  max-width: 800px;
+}
+
+.header-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.description {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 1rem;
+}
+
+.preview h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .header-content h2 {
+    font-size: 1.25rem;
+  }
+}

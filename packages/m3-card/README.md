@@ -18,6 +18,8 @@ Material Design 3 Card web component with elevated, filled, and outlined variant
 
 ## 📦 Installation
 
+### Via npm
+
 ```bash
 npm install @banegasn/m3-card
 ```
@@ -28,6 +30,14 @@ pnpm add @banegasn/m3-card
 
 ```bash
 yarn add @banegasn/m3-card
+```
+
+### Via CDN (No build step)
+
+You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm"></script>
 ```
 
 ## 🚀 Usage

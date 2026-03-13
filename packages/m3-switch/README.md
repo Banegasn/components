@@ -4,12 +4,22 @@ Material Design 3 Switch web component. A switch allows users to toggle between 
 
 ## Installation
 
+### Via npm
+
 ```bash
 npm install @banegasn/m3-switch
 # or
 pnpm add @banegasn/m3-switch
 # or
 yarn add @banegasn/m3-switch
+```
+
+### Via CDN (No build step)
+
+You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-switch/+esm"></script>
 ```
 
 ## Usage

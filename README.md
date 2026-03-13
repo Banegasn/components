@@ -63,7 +63,27 @@ This monorepo is designed for building and distributing web components:
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Use via CDN (No build step)
+
+You can use the components directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+
+```html
+<!-- Import directly as a module -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
+
+<!-- Or import multiple components -->
+<script type="module">
+  import "https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm";
+  import "https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm";
+</script>
+
+<!-- Use the components -->
+<m3-button variant="filled">Click me</m3-button>
+```
+
+### Build from source / Install locally
+
+#### Prerequisites
 
 - **Node.js** >= 22.16.0
 - **PNPM** >= 9.0.0
