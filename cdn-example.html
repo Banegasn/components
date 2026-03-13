@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskify - Business Dashboard Simulation</title>
+  
+  <!-- Import Lit components via jsDelivr CDN using +esm to resolve dependencies -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-switch/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-rail/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-bar/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-radio-button/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-menu/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-fab-menu/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-search-bar/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-loading-indicator/+esm"></script>
+
+  <!-- Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    :root {
+      --md-sys-color-surface-container: #f3edf7;
+      --md-sys-color-on-surface: #1d1b20;
+      --md-sys-color-surface: #fffbff;
+      --md-sys-color-primary: #6750a4;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .desktop-nav {
+      display: block;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-nav {
+        display: block;
+      }
+      .main-content {
+        padding-bottom: 80px; /* Space for bottom nav */
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    .task-card {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: var(--md-sys-color-surface);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 0.5rem;
+    }
+
+    .task-text {
+      flex: 1;
+      margin-left: 1rem;
+      font-size: 1rem;
+    }
+
+    .task-meta {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 0.2rem;
+    }
+
+    .completed .task-text {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .menu-container {
+      position: relative;
+    }
+
+    .fab-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    @media (max-width: 600px) {
+      .fab-container {
+        bottom: 6rem; /* Above the mobile nav */
+        right: 1.5rem;
+      }
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav">
+      <m3-navigation-rail id="desktop-rail" expanded="false">
+        <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
+        
+        <m3-navigation-rail-item label="Inbox" active>
+          <span slot="icon" class="material-symbols-outlined">inbox</span>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Today" badge="4">
+          <span slot="icon" class="material-symbols-outlined">today</span>
+        </m3-navigation-rail-item>
+
+        <m3-navigation-rail-item label="Upcoming">
+          <span slot="icon" class="material-symbols-outlined">calendar_month</span>
+        </m3-navigation-rail-item>
+        
+        <m3-navigation-rail-item label="Settings" slot="bottom">
+          <span slot="icon" class="material-symbols-outlined">settings</span>
+        </m3-navigation-rail-item>
+      </m3-navigation-rail>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="container">
+        
+        <header style="flex-direction: column; align-items: stretch; gap: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Inbox</h1>
+            <div class="header-controls">
+              <m3-button variant="filled" id="sync-btn" aria-label="Sync tasks">
+                <span slot="icon" class="material-symbols-outlined">sync</span>
+                Sync
+              </m3-button>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+              <m3-search-bar id="task-search" placeholder="Search tasks...">
+                <span slot="leading" class="material-symbols-outlined">search</span>
+              </m3-search-bar>
+            </div>
+            
+            <div class="header-controls">
+              <label style="display:flex; align-items:center; gap: 0.5rem; font-size: 0.9rem;">
+                <span>Show completed</span>
+                <m3-switch id="toggle-completed"></m3-switch>
+              </label>
+              <div class="menu-container">
+                <m3-button variant="tonal" class="menu-trigger" id="sort-btn">
+                  <span slot="icon" class="material-symbols-outlined">sort</span>
+                  Sort
+                </m3-button>
+                <m3-menu class="dropdown-menu" placement="bottom-end">
+                  <m3-menu-item value="date-desc">
+                    <span slot="leading-icon" class="material-symbols-outlined">calendar_today</span>
+                    Date (Newest)
+                  </m3-menu-item>
+                  <m3-menu-item value="date-asc">
+                    <span slot="leading-icon" class="material-symbols-outlined">event</span>
+                    Date (Oldest)
+                  </m3-menu-item>
+                  <m3-menu-item value="priority">
+                    <span slot="leading-icon" class="material-symbols-outlined">priority_high</span>
+                    Priority
+                  </m3-menu-item>
+                </m3-menu>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Tasks List -->
+        <div id="tasks-container">
+          
+          <!-- Task 1 -->
+          <div class="task-card">
+            <m3-radio-button name="task-1" value="1"></m3-radio-button>
+            <div class="task-text">
+              <div>Review Q3 Financial Reports</div>
+              <div class="task-meta">Due Today • High Priority</div>
+            </div>
+            <div class="menu-container">
+              <m3-button class="menu-trigger" variant="text" icon-only aria-label="More options">
+                <span slot="icon" class="material-symbols-outlined">more_vert</span>
+              </m3-button>
+              <m3-menu class="dropdown-menu" placement="bottom-end">
+                <m3-menu-item value="edit">
+                  <span slot="leading-icon" class="material-symbols-outlined">edit</span>
+                  Edit Task
+                </m3-menu-item>
+                <m3-menu-item value="duplicate">
+                  <span slot="leading-icon" class="material-symbols-outlined">content_copy</span>
+                  Duplicate
+                </m3-menu-item>
+                <m3-menu-item value="delete">
+                  <span slot="leading-icon" class="material-symbols-outlined">delete</span>
+                  Delete
+                </m3-menu-item>
+              </m3-menu>
+            </div>
+          </div>
+
+          <!-- Task 2 -->
+          <div class="task-card">
+            <m3-radio-button name="task-2" value="2"></m3-radio-button>
+            <div class="task-text">
+              <div>Prepare slides for All-Hands Meeting</div>
+              <div class="task-meta">Due Tomorrow</div>
+            </div>
+            <div class="menu-container">
+              <m3-button class="menu-trigger" variant="text" icon-only aria-label="More options">
+                <span slot="icon" class="material-symbols-outlined">more_vert</span>
+              </m3-button>
+              <m3-menu class="dropdown-menu" placement="bottom-end">
+                <m3-menu-item value="edit">
+                  <span slot="leading-icon" class="material-symbols-outlined">edit</span>
+                  Edit Task
+                </m3-menu-item>
+                <m3-menu-item value="delete">
+                  <span slot="leading-icon" class="material-symbols-outlined">delete</span>
+                  Delete
+                </m3-menu-item>
+              </m3-menu>
+            </div>
+          </div>
+
+          <!-- Task 3 -->
+          <div class="task-card">
+            <m3-radio-button name="task-3" value="3"></m3-radio-button>
+            <div class="task-text">
+              <div>Update Client Onboarding documentation</div>
+              <div class="task-meta">Due Next Week • Assigned to @Sarah</div>
+            </div>
+            <div class="menu-container">
+              <m3-button class="menu-trigger" variant="text" icon-only aria-label="More options">
+                <span slot="icon" class="material-symbols-outlined">more_vert</span>
+              </m3-button>
+              <m3-menu class="dropdown-menu" placement="bottom-end">
+                <m3-menu-item value="edit">
+                  <span slot="leading-icon" class="material-symbols-outlined">edit</span>
+                  Edit Task
+                </m3-menu-item>
+                <m3-menu-item value="delete">
+                  <span slot="leading-icon" class="material-symbols-outlined">delete</span>
+                  Delete
+                </m3-menu-item>
+              </m3-menu>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FAB Menu for Add Actions -->
+      <div class="fab-container">
+        <m3-fab-menu>
+          <m3-button variant="elevated" aria-label="New Task" icon-only title="New Task">
+            <span slot="icon" class="material-symbols-outlined">check_circle</span>
+          </m3-button>
+          <m3-button variant="elevated" aria-label="New Event" icon-only title="New Event">
+            <span slot="icon" class="material-symbols-outlined">event</span>
+          </m3-button>
+          <m3-button variant="elevated" aria-label="New Note" icon-only title="New Note">
+            <span slot="icon" class="material-symbols-outlined">notes</span>
+          </m3-button>
+        </m3-fab-menu>
+      </div>
+
+    </main>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <m3-navigation-bar id="mobile-bar" auto-layout>
+        <m3-navigation-bar-item label="Inbox" active>
+          <span slot="icon" class="material-symbols-outlined">inbox</span>
+        </m3-navigation-bar-item>
+        
+        <m3-navigation-bar-item label="Today" badge="4">
+          <span slot="icon" class="material-symbols-outlined">today</span>
+        </m3-navigation-bar-item>
+        
+        <m3-navigation-bar-item label="Upcoming">
+          <span slot="icon" class="material-symbols-outlined">calendar_month</span>
+        </m3-navigation-bar-item>
+      </m3-navigation-bar>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Sync Navigation
+      const syncNavigation = (clickedLabel) => {
+        const allNavItems = document.querySelectorAll('m3-navigation-rail-item, m3-navigation-bar-item');
+        allNavItems.forEach(item => {
+          if (item.getAttribute('label') === clickedLabel) {
+            item.setAttribute('active', '');
+          } else {
+            item.removeAttribute('active');
+          }
+        });
+        document.querySelector('h1').textContent = clickedLabel;
+      };
+
+      document.addEventListener('item-click', (e) => {
+        syncNavigation(e.detail.label);
+      });
+
+      // Handle Menus (Sort and Tasks)
+      const menuTriggers = document.querySelectorAll('.menu-trigger');
+      const allMenus = document.querySelectorAll('.dropdown-menu');
+
+      menuTriggers.forEach((trigger, index) => {
+        trigger.addEventListener('button-click', (e) => {
+          // Close other menus first
+          allMenus.forEach((menu, i) => {
+            if (i !== index) menu.removeAttribute('open');
+          });
+
+          // Toggle this menu
+          const menu = trigger.nextElementSibling;
+          if (menu.hasAttribute('open')) {
+            menu.removeAttribute('open');
+          } else {
+            menu.setAttribute('open', '');
+          }
+        });
+      });
+
+      // Handle Menu selections
+      allMenus.forEach((menu) => {
+        menu.addEventListener('menu-item-select', (e) => {
+          console.log('Selected option:', e.detail.value);
+          menu.removeAttribute('open'); // close menu on select
+        });
+      });
+
+      // Handle Task Completion via Radio Buttons
+      const radios = document.querySelectorAll('m3-radio-button');
+      radios.forEach(radio => {
+        radio.addEventListener('radio-change', (e) => {
+          if (e.detail.checked) {
+            const taskCard = radio.closest('.task-card');
+            taskCard.classList.add('completed');
+            // Uncheck after short delay to simulate completion and removal
+            setTimeout(() => {
+              radio.checked = false;
+              radio.removeAttribute('checked'); // ensure attribute is removed as well
+              taskCard.classList.remove('completed');
+              taskCard.style.opacity = '0.5';
+            }, 500);
+          }
+        });
+      });
+
+      // Handle Fab Actions
+      const fabButtons = document.querySelectorAll('m3-fab-menu m3-button');
+      fabButtons.forEach(btn => {
+        btn.addEventListener('button-click', (e) => {
+          alert(`Triggered action: ${btn.getAttribute('aria-label')}`);
+        });
+      });
+
+      // Handle Sync Button (Loading Indicator)
+      const syncBtn = document.getElementById('sync-btn');
+      syncBtn.addEventListener('button-click', () => {
+        if (syncBtn.hasAttribute('loading')) return;
+        
+        // Disable button and show loading state
+        syncBtn.setAttribute('loading', '');
+        syncBtn.innerHTML = `
+          <m3-loading-indicator variant="contained" slot="icon"></m3-loading-indicator>
+          Syncing...
+        `;
+
+        // Simulate network request
+        setTimeout(() => {
+          syncBtn.removeAttribute('loading');
+          syncBtn.innerHTML = `
+            <span slot="icon" class="material-symbols-outlined">sync</span>
+            Sync
+          `;
+          
+          // Optionally show a quick success state
+          const originalText = syncBtn.innerHTML;
+          syncBtn.innerHTML = `
+            <span slot="icon" class="material-symbols-outlined">check</span>
+            Synced
+          `;
+          setTimeout(() => {
+            syncBtn.innerHTML = originalText;
+          }, 2000);
+          
+        }, 1500);
+      });
+
+      // Handle Search Bar
+      const searchBar = document.getElementById('task-search');
+      const allTaskCards = document.querySelectorAll('.task-card');
+
+      searchBar.addEventListener('search-input', (e) => {
+        const query = e.detail.value.toLowerCase();
+        
+        allTaskCards.forEach(card => {
+          const text = card.querySelector('.task-text').textContent.toLowerCase();
+          if (text.includes(query)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+
+      searchBar.addEventListener('search-clear', () => {
+        allTaskCards.forEach(card => {
+          card.style.display = 'flex';
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>
