@@ -1,21 +1,50 @@
 {
-    "name": "@banegasn/m3-loading-indicator",
-    "version": "0.1.1",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "scripts": {
-        "build": "tsc",
-        "dev": "tsc --watch",
-        "lint": "eslint src --ext .ts"
-    },
-    "dependencies": {
-        "lit": "^3.1.2"
-    },
-    "devDependencies": {
-        "typescript": "^5.4.2"
-    },
-    "publishConfig": {
-        "access": "public"
+  "name": "@banegasn/m3-loading-indicator",
+  "version": "0.1.2",
+  "description": "Material Design 3 loading indicator web component",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banegasn/components.git",
+    "directory": "packages/m3-loading-indicator"
+  },
+  "keywords": [
+    "m3",
+    "material-design",
+    "loading-indicator",
+    "loading",
+    "spinner",
+    "web-components",
+    "components"
+  ],
+  "author": "banegasn",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "dependencies": {
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
 }
