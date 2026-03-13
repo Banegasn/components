@@ -1,4 +1,4 @@
-<div class="switch-page docs-page">
+<div class="page-container docs-page">
   <header class="page-header">
     <h1>Switches</h1>
     <p class="subtitle">
@@ -27,8 +27,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-switch&gt;&lt;/m3-switch&gt;</code><br>
-        <code>&lt;m3-switch checked&gt;&lt;/m3-switch&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
       </div>
     </div>
   </section>
@@ -54,8 +53,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-switch disabled&gt;&lt;/m3-switch&gt;</code><br>
-        <code>&lt;m3-switch checked disabled&gt;&lt;/m3-switch&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="disabledExample"></app-code-block>
       </div>
     </div>
   </section>
@@ -117,12 +115,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>
-          &lt;m3-switch<br>
-          &nbsp;&nbsp;[checked]="notificationsEnabled"<br>
-          &nbsp;&nbsp;(switch-change)="onSwitchChange($event, 'notifications')"&gt;<br>
-          &lt;/m3-switch&gt;
-        </code>
+        <app-code-block language="html" variant="sample" [code]="interactiveExample"></app-code-block>
       </div>
     </div>
   </section>
@@ -152,8 +145,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-switch aria-label="Enable Wi-Fi"&gt;&lt;/m3-switch&gt;</code><br>
-        <code>&lt;m3-switch aria-labelledby="wifi-label"&gt;&lt;/m3-switch&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="ariaExample"></app-code-block>
       </div>
     </div>
   </section>

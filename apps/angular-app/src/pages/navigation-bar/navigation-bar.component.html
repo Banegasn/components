@@ -1,3 +1,4 @@
+<div class="page-container docs-page">
 <header class="page-header">
   <h1>Navigation Bar</h1>
   <p class="subtitle">
@@ -7,7 +8,7 @@
   </p>
 </header>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Overview</h2>
   <p>
     The Navigation Bar is a horizontal navigation component that provides quick access to top-level destinations 
@@ -27,7 +28,7 @@
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Installation</h2>
   <p>Install the package using npm:</p>
   <app-code-block variant="block" [code]="installExample"></app-code-block>
@@ -36,11 +37,13 @@
   <app-code-block variant="block" language="typescript" [code]="importExample"></app-code-block>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Live Examples</h2>
   
-  <div class="example-card">
-    <h3>Basic Navigation Bar</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Basic Navigation Bar</h3>
+    </div>
     <p>A simple navigation bar with three items. Click on items to see the active state change.</p>
     
     <div class="example-container">
@@ -74,10 +77,15 @@
         </div>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="basicBarExample"></app-code-block>
+    </div>
   </div>
 
-  <div class="example-card">
-    <h3>Navigation Bar with Badges</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Navigation Bar with Badges</h3>
+    </div>
     <p>Badges can display notification counts or status indicators on navigation items.</p>
     
     <div class="example-container">
@@ -120,10 +128,15 @@
         </div>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="badgeExample"></app-code-block>
+    </div>
   </div>
 
-  <div class="example-card">
-    <h3>Horizontal Layout (Medium Windows)</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Horizontal Layout (Medium Windows)</h3>
+    </div>
     <p>In medium windows (≥600px), the navigation bar automatically switches to horizontal item layout with fixed widths.</p>
     
     <div class="example-container">
@@ -162,10 +175,15 @@
         </div>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="horizontalExample"></app-code-block>
+    </div>
   </div>
 
-  <div class="example-card">
-    <h3>Auto Layout (Responsive)</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Auto Layout (Responsive)</h3>
+    </div>
     <p>Enable automatic layout switching based on window size using the <code>auto-layout</code> attribute.</p>
     
     <div class="example-container">
@@ -202,15 +220,18 @@
         </div>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="autoLayoutExample"></app-code-block>
+    </div>
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Basic Usage</h2>
   <app-code-block variant="block" language="html" [code]="basicUsageExample"></app-code-block>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>API Reference</h2>
   
   <div class="api-card">
@@ -362,7 +383,7 @@
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Framework Integration</h2>
   
   <div class="framework-card">
@@ -381,7 +402,7 @@
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Design Tokens</h2>
   <p>
     The navigation bar follows Material Design 3 specifications and uses the following design tokens:
@@ -404,4 +425,5 @@
     </ul>
   </div>
 </section>
+</div>
 

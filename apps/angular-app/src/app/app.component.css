@@ -6,7 +6,6 @@
 
 .app-container {
   flex: 1;
-  padding: 1rem;
   overflow: auto;
 }
 
@@ -59,7 +58,7 @@
 }
 
 .app-content {
-  padding: 1rem;
+  padding: clamp(16px, 3vw, 32px);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -115,12 +114,11 @@
 
   /* Adjust app container for mobile */
   .app-container {
-    padding: 1rem;
     padding-bottom: calc(1rem + 64px);
   }
 
   .app-content {
-    padding: 0;
+    padding: 16px;
     max-width: 100%;
   }
 }

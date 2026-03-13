@@ -18,6 +18,20 @@ export class SwitchComponent {
   autoSaveEnabled = true;
   locationEnabled = false;
 
+  readonly basicExample = `<m3-switch></m3-switch>
+<m3-switch checked></m3-switch>`;
+
+  readonly disabledExample = `<m3-switch disabled></m3-switch>
+<m3-switch checked disabled></m3-switch>`;
+
+  readonly interactiveExample = `<m3-switch
+  [checked]="notificationsEnabled"
+  (switch-change)="onSwitchChange($event, 'notifications')">
+</m3-switch>`;
+
+  readonly ariaExample = `<m3-switch aria-label="Enable Wi-Fi"></m3-switch>
+<m3-switch aria-labelledby="wifi-label"></m3-switch>`;
+
   onSwitchChange(event: Event, switchName: string) {
     const checked = (event as CustomEvent).detail.checked;
     console.log(`${switchName} is now:`, checked);

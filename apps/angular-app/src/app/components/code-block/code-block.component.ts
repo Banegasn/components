@@ -11,7 +11,7 @@ hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', cssLanguage);
 
 @Component({
-  selector: 'app-code-block, .code-sample, .code-block',
+  selector: 'app-code-block',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

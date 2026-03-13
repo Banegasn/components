@@ -50,9 +50,7 @@ li {
 }
 
 .docs-page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: clamp(16px, 2vw, 24px);
+  /* Layout handled by app-content */
 }
 
 .docs-page .page-header {

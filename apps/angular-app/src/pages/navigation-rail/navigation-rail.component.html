@@ -1,3 +1,4 @@
+<div class="page-container docs-page">
 <header class="page-header">
   <h1>Navigation Rail</h1>
   <p class="subtitle">
@@ -6,7 +7,7 @@
   </p>
 </header>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Overview</h2>
   <p>
     The Navigation Rail is a compact, vertical navigation component designed for primary navigation in apps.
@@ -29,11 +30,13 @@
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Live Examples</h2>
   
-  <div class="example-card">
-    <h3>Basic Navigation Rail</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Basic Navigation Rail</h3>
+    </div>
     <p>A simple navigation rail with three items. Click on items to see the active state change.</p>
     
     <div class="example-container">
@@ -64,10 +67,15 @@
         <p>Click on any navigation item to see it become active.</p>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="basicRailExample"></app-code-block>
+    </div>
   </div>
 
-  <div class="example-card">
-    <h3>Navigation Rail with Badges</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Navigation Rail with Badges</h3>
+    </div>
     <p>Badges can display notification counts or status indicators on navigation items.</p>
     
     <div class="example-container">
@@ -108,10 +116,15 @@
         </ul>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="badgeExample"></app-code-block>
+    </div>
   </div>
 
-  <div class="example-card">
-    <h3>Navigation Rail with Bottom Items</h3>
+  <div class="variant-card">
+    <div class="variant-header">
+      <h3>Navigation Rail with Bottom Items</h3>
+    </div>
     <p>Use the bottom slot for secondary actions like settings or profile access.</p>
     
     <div class="example-container">
@@ -154,20 +167,23 @@
         <p>Perfect for settings, user profile, or help sections that should always be accessible.</p>
       </div>
     </div>
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="bottomItemExample"></app-code-block>
+    </div>
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Installation</h2>
   <app-code-block variant="block" [code]="installExample"></app-code-block>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Basic Usage</h2>
   <app-code-block variant="block" language="html" [code]="basicUsageExample"></app-code-block>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>API Reference</h2>
   
   <div class="api-card">
@@ -354,7 +370,7 @@
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Framework Integration</h2>
   
   <div class="framework-card">
@@ -373,11 +389,12 @@
   </div>
 </section>
 
-<section class="doc-section">
+<section class="demo-section">
   <h2>Live Example</h2>
   <p>
     💡 <strong>This website uses the Navigation Rail!</strong> The left sidebar you see on this page is built using the 
     <code>m3-navigation-rail</code> component. Try clicking the toggle button to expand it and explore the different sections.
   </p>
 </section>
+</div>
 

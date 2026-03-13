@@ -11,4 +11,10 @@ import '@banegasn/m3-button';
     imports: [CodeBlockComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class LoadingIndicatorComponent { }
+export class LoadingIndicatorComponent {
+    readonly defaultExample = `<m3-loading-indicator shape="square"></m3-loading-indicator>`;
+    readonly containedExample = `<m3-button>
+    <m3-loading-indicator variant="contained" slot="icon"></m3-loading-indicator>
+    Loading...
+</m3-button>`;
+}

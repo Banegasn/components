@@ -1,4 +1,4 @@
-<div class="button-page docs-page">
+<div class="page-container docs-page">
   <header class="page-header">
     <h1>Buttons</h1>
     <p class="subtitle">
@@ -21,9 +21,6 @@
         <m3-button variant="filled">Filled Button</m3-button>
         <m3-button variant="filled" disabled>Disabled</m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="filled"&gt;Filled Button&lt;/m3-button&gt;</code>
-      </div>
     </div>
 
     <div class="variant-card">
@@ -35,9 +32,6 @@
       <div class="demo-buttons">
         <m3-button variant="elevated">Elevated Button</m3-button>
         <m3-button variant="elevated" disabled>Disabled</m3-button>
-      </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="elevated"&gt;Elevated Button&lt;/m3-button&gt;</code>
       </div>
     </div>
 
@@ -51,9 +45,6 @@
         <m3-button variant="tonal">Tonal Button</m3-button>
         <m3-button variant="tonal" disabled>Disabled</m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="tonal"&gt;Tonal Button&lt;/m3-button&gt;</code>
-      </div>
     </div>
 
     <div class="variant-card">
@@ -65,9 +56,6 @@
       <div class="demo-buttons">
         <m3-button variant="outlined">Outlined Button</m3-button>
         <m3-button variant="outlined" disabled>Disabled</m3-button>
-      </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="outlined"&gt;Outlined Button&lt;/m3-button&gt;</code>
       </div>
     </div>
 
@@ -81,9 +69,10 @@
         <m3-button variant="text">Text Button</m3-button>
         <m3-button variant="text" disabled>Disabled</m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="text"&gt;Text Button&lt;/m3-button&gt;</code>
-      </div>
+    </div>
+    
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
     </div>
   </section>
 
@@ -102,7 +91,7 @@
         <m3-button variant="filled" size="extra-large">Extra Large</m3-button>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-button variant="filled" size="medium"&gt;Medium Button&lt;/m3-button&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="sizeExample"></app-code-block>
       </div>
     </div>
 
@@ -179,9 +168,6 @@
         <m3-button variant="filled" shape="round" size="large">Large</m3-button>
         <m3-button variant="filled" shape="round" size="extra-large">Extra Large</m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="filled" shape="round"&gt;Round Button&lt;/m3-button&gt;</code>
-      </div>
     </div>
 
     <div class="variant-card">
@@ -194,9 +180,10 @@
         <m3-button variant="filled" shape="square" size="large">Large</m3-button>
         <m3-button variant="filled" shape="square" size="extra-large">Extra Large</m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="filled" shape="square"&gt;Square Button&lt;/m3-button&gt;</code>
-      </div>
+    </div>
+    
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="shapeExample"></app-code-block>
     </div>
 
     <div class="demo-grid">
@@ -239,9 +226,6 @@
           With Icon
         </m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="filled" padding="default"&gt;Button&lt;/m3-button&gt;</code>
-      </div>
     </div>
 
     <div class="variant-card">
@@ -257,9 +241,10 @@
           With Icon
         </m3-button>
       </div>
-      <div class="code-sample">
-        <code>&lt;m3-button variant="filled" padding="small"&gt;Button&lt;/m3-button&gt;</code>
-      </div>
+    </div>
+    
+    <div class="code-sample">
+      <app-code-block language="html" variant="sample" [code]="paddingExample"></app-code-block>
     </div>
 
     <div class="demo-grid">
@@ -398,10 +383,7 @@
     </div>
 
     <div class="code-sample">
-      <code>&lt;m3-button variant="filled"&gt;
-        &lt;svg slot="icon" viewBox="0 0 24 24" width="18" height="18"&gt;...&lt;/svg&gt;
-        Add Item
-        &lt;/m3-button&gt;</code>
+      <app-code-block language="html" variant="sample" [code]="iconExample"></app-code-block>
     </div>
   </section>
 
@@ -439,9 +421,7 @@
     </div>
 
     <div class="code-sample">
-      <code>&lt;m3-button icon-only aria-label="Add" variant="filled"&gt;
-        &lt;svg slot="icon" viewBox="0 0 24 24" width="18" height="18"&gt;...&lt;/svg&gt;
-        &lt;/m3-button&gt;</code>
+      <app-code-block language="html" variant="sample" [code]="iconOnlyExample"></app-code-block>
     </div>
   </section>
 
@@ -468,7 +448,7 @@
     </div>
 
     <div class="code-sample">
-      <code>&lt;m3-button variant="filled" loading&gt;Processing...&lt;/m3-button&gt;</code>
+      <app-code-block language="html" variant="sample" [code]="loadingExample"></app-code-block>
     </div>
   </section>
 
@@ -489,7 +469,7 @@
     </div>
 
     <div class="code-sample">
-      <code>&lt;m3-button variant="filled" full-width&gt;Save Changes&lt;/m3-button&gt;</code>
+      <app-code-block language="html" variant="sample" [code]="fullWidthExample"></app-code-block>
     </div>
   </section>
 

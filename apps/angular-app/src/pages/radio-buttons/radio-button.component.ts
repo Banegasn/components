@@ -18,6 +18,22 @@ export class RadioButtonComponent {
   selectedColor = 'blue';
   selectedOption = 'option1';
 
+  readonly basicExample = `<m3-radio-button name="group" value="1"></m3-radio-button>
+<m3-radio-button name="group" value="2" checked></m3-radio-button>`;
+
+  readonly disabledExample = `<m3-radio-button disabled></m3-radio-button>
+<m3-radio-button checked disabled></m3-radio-button>`;
+
+  readonly groupExample = `<m3-radio-button
+  name="theme"
+  value="light"
+  [checked]="selectedTheme === 'light'"
+  (radio-change)="onRadioChange($event, 'theme')">
+</m3-radio-button>`;
+
+  readonly ariaExample = `<m3-radio-button aria-label="Option A"></m3-radio-button>
+<m3-radio-button aria-labelledby="label-id"></m3-radio-button>`;
+
   onRadioChange(event: Event, groupName: string) {
     const checked = (event as CustomEvent).detail.checked;
     const value = (event as CustomEvent).detail.value;

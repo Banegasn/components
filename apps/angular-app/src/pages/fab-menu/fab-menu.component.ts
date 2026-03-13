@@ -11,4 +11,9 @@ import '@banegasn/m3-button';
     imports: [CodeBlockComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FabMenuComponent { }
+export class FabMenuComponent {
+    readonly basicExample = `<m3-fab-menu>
+    <m3-button variant="elevated" icon-only>...</m3-button>
+    <m3-button variant="elevated" icon-only>...</m3-button>
+</m3-fab-menu>`;
+}

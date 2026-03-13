@@ -1,46 +1,3 @@
-.page-header {
-  margin-bottom: 32px;
-}
-
-h3 {
-    margin: 1.5rem 0 1rem 0;
-}
-
-.page-header h1 {
-  font-size: 32px;
-  font-weight: 400;
-  margin: 0 0 8px 0;
-  color: var(--md-sys-color-on-surface);
-}
-
-.page-header p {
-  font-size: 16px;
-  color: var(--md-sys-color-on-surface-variant);
-  margin: 0;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: 400;
-  margin: 32px 0 16px 0;
-  color: var(--md-sys-color-on-surface);
-}
-
-.demo-container {
-  margin: 16px 0 32px 0;
-}
-
-.content-section {
-  margin-bottom: 32px;
-}
-
-.content-section h2 {
-  font-size: 24px;
-  font-weight: 400;
-  margin: 0 0 16px 0;
-  color: var(--md-sys-color-on-surface);
-}
-
 .results-container {
   padding: 16px;
 }
@@ -55,23 +12,6 @@ h2 {
 
 .result-item:last-child {
   margin-bottom: 0;
-}
-
-.demo-section {
-  margin-bottom: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
-}
-
-.demo-section:last-child {
-  border-bottom: none;
-}
-
-.demo-section h2 {
-  font-size: 24px;
-  font-weight: 400;
-  margin: 0 0 16px 0;
-  color: var(--md-sys-color-on-surface);
 }
 
 .properties-list {

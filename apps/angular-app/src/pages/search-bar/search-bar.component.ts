@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
 import '@banegasn/m3-search-bar';
 import '@banegasn/m3-card';
@@ -10,11 +11,36 @@ import '@banegasn/m3-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css'],
+  imports: [CodeBlockComponent]
 })
 export class SearchBarComponent {
   searchValue = '';
   searchResults: string[] = [];
   placeholder = 'Search...';
+
+  readonly basicExample = `<m3-search-bar placeholder="Search in your files"></m3-search-bar>`;
+  
+  readonly leadingIconExample = `
+<m3-search-bar placeholder="Search products...">
+    <span slot="leading" class="material-symbols-outlined">search</span>
+</m3-search-bar>`;
+
+  readonly leadingTrailingExample = `<m3-search-bar placeholder="Search with clear button...">
+    <span slot="leading" class="material-symbols-outlined">search</span>
+    <m3-button icon-only slot="trailing" variant="text">
+        <span slot="icon" class="material-symbols-outlined">close</span>
+    </m3-button>
+</m3-search-bar>`;
+
+  readonly menuButtonExample = `<m3-search-bar placeholder="Search with menu...">
+    <m3-button icon-only slot="leading" variant="text">
+        <span slot="icon" class="material-symbols-outlined">menu</span>
+    </m3-button>
+</m3-search-bar>`;
+
+  readonly disabledExample = `<m3-search-bar placeholder="Disabled search..." disabled>
+    <span slot="leading" class="material-symbols-outlined">search</span>
+</m3-search-bar>`;
 
   onSearchInput(event: Event) {
     const value = (event as CustomEvent).detail.value;
@@ -51,4 +77,5 @@ export class SearchBarComponent {
     }
   }
 }
+
 

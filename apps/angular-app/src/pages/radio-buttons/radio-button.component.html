@@ -1,4 +1,4 @@
-<div class="radio-button-page docs-page">
+<div class="page-container docs-page">
   <header class="page-header">
     <h1>Radio Buttons</h1>
     <p class="subtitle">
@@ -31,8 +31,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-radio-button name="group" value="1"&gt;&lt;/m3-radio-button&gt;</code><br>
-        <code>&lt;m3-radio-button name="group" value="2" checked&gt;&lt;/m3-radio-button&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
       </div>
     </div>
   </section>
@@ -81,14 +80,7 @@
       </div>
       <p class="selection-info">Selected: <strong>{{ selectedTheme }}</strong></p>
       <div class="code-sample">
-        <code>
-          &lt;m3-radio-button<br>
-          &nbsp;&nbsp;name="theme"<br>
-          &nbsp;&nbsp;value="light"<br>
-          &nbsp;&nbsp;[checked]="selectedTheme === 'light'"<br>
-          &nbsp;&nbsp;(radio-change)="onRadioChange($event, 'theme')"&gt;<br>
-          &lt;/m3-radio-button&gt;
-        </code>
+        <app-code-block language="html" variant="sample" [code]="groupExample"></app-code-block>
       </div>
     </div>
   </section>
@@ -175,8 +167,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-radio-button disabled&gt;&lt;/m3-radio-button&gt;</code><br>
-        <code>&lt;m3-radio-button checked disabled&gt;&lt;/m3-radio-button&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="disabledExample"></app-code-block>
       </div>
     </div>
   </section>
@@ -208,8 +199,7 @@
         </div>
       </div>
       <div class="code-sample">
-        <code>&lt;m3-radio-button aria-label="Option A"&gt;&lt;/m3-radio-button&gt;</code><br>
-        <code>&lt;m3-radio-button aria-labelledby="label-id"&gt;&lt;/m3-radio-button&gt;</code>
+        <app-code-block language="html" variant="sample" [code]="ariaExample"></app-code-block>
       </div>
     </div>
   </section>

@@ -75,15 +75,7 @@
                 </div>
             </div>
             <p style="margin: 12px 0 0;">Last interaction: <code>{{ lastInteraction }}</code></p>
-            <app-code-block language="html" variant="sample">
-&lt;div class="split-button-demo"&gt;
-  &lt;m3-split-button menu-id="send-menu" menu-open&gt;Send&lt;/m3-split-button&gt;
-  &lt;m3-menu id="send-menu" open placement="bottom-end"&gt;
-    &lt;m3-menu-item value="schedule-send"&gt;Schedule send&lt;/m3-menu-item&gt;
-    &lt;m3-menu-item value="save-draft"&gt;Save draft&lt;/m3-menu-item&gt;
-  &lt;/m3-menu&gt;
-&lt;/div&gt;
-            </app-code-block>
+            <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
         </div>
     </section>
 

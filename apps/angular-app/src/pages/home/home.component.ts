@@ -15,6 +15,15 @@ import '@banegasn/m3-radio-button';
   imports: [CodeBlockComponent]
 })
 export class HomeComponent {
+  readonly installCode = `npm install @banegasn/m3-button`;
+  readonly usageCode = `<script type="module">
+  import '@banegasn/m3-button';
+</script>
+
+<m3-button variant="filled">
+  Click me
+</m3-button>`;
+
   constructor(private router: Router) { }
 
   navigateToComponents() {
