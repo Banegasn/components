@@ -339,10 +339,14 @@
   <div style="text-align: center; max-width: 600px; margin: 0 auto 32px;">
     <p>Get up and running with Material 3 Web Components in minutes. Use them directly via CDN or install them via npm for your framework of choice.</p>
   </div>
-  <div style="display: flex; justify-content: center; margin-bottom: 32px;">
+  <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;">
     <m3-button variant="filled" size="large" (button-click)="navigateToQuickStart()">
       <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
       View Quick Start Guide
+    </m3-button>
+    <m3-button variant="outlined" size="large" (button-click)="openSimulation()">
+      <span slot="icon" class="material-symbols-outlined">dashboard</span>
+      View App Simulation
     </m3-button>
   </div>
   <div class="framework-badges">

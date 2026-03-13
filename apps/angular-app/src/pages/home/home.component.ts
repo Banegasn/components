@@ -70,4 +70,8 @@ export class HomeComponent {
   openNpmPackage(packageName: string) {
     window.open(`https://github.com/Banegasn/components/pkgs/npm/${packageName}`, '_blank');
   }
+
+  openSimulation() {
+    window.open('cdn-example.html', '_blank');
+  }
 }
