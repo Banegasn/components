@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { Router } from "@angular/router";
+import { SeoLinkDirective } from '../../app/directives/seo-link.directive';
 import '@banegasn/m3-button';
 import '@banegasn/m3-card';
 import '@banegasn/m3-switch';
@@ -7,10 +8,12 @@ import '@banegasn/m3-radio-button';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [SeoLinkDirective]
 })
 export class HomeComponent {
   constructor(private router: Router) { }

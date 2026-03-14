@@ -5,15 +5,13 @@
 
     <m3-navigation-rail-item label="Home"
       [active]="currentRoute() === '/home'"
-      href="/home"
-      (click)="$event.preventDefault(); navigate('/home')">
+      seoLink="home">
       <span slot="icon" class="material-symbols-outlined">home</span>
     </m3-navigation-rail-item>
 
     <m3-navigation-rail-item label="Quick Start"
       [active]="currentRoute() === '/quick-start'"
-      href="/quick-start"
-      (click)="$event.preventDefault(); navigate('/quick-start')">
+      seoLink="quick-start">
       <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
     </m3-navigation-rail-item>
 
@@ -23,8 +21,7 @@
       (menu-item-select)="onComponentsMenuItemSelect($event)">
       <m3-navigation-rail-item label="Components"
         [active]="isComponentsRoute()"
-        href="/components"
-        (click)="$event.preventDefault(); navigate('/components')">
+        seoLink="components">
         <span slot="icon" class="material-symbols-outlined">browse</span>
       </m3-navigation-rail-item>
 
@@ -38,7 +35,7 @@
         style="--md-menu-max-height: calc(100vh - 200px);"
       >
         @for (item of componentMenuItems; track item.path) {
-          <m3-menu-item [value]="item.path" [attr.href]="item.path">
+          <m3-menu-item [value]="item.path" [seoLink]="item.path.substring(1)">
             <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
             {{ item.label }}
           </m3-menu-item>
@@ -48,8 +45,7 @@
 
     <m3-navigation-rail-item label="Contact"
       [active]="currentRoute() === '/contact'"
-      href="/contact"
-      (click)="$event.preventDefault(); navigate('/contact')">
+      seoLink="contact">
       <span slot="icon" class="material-symbols-outlined">person</span>
     </m3-navigation-rail-item>
 
@@ -90,7 +86,7 @@
       style="--md-menu-max-height: calc(100dvh - 120px);"
     >
       @for (item of componentMenuItems; track item.path) {
-        <m3-menu-item [value]="item.path" [attr.href]="item.path">
+        <m3-menu-item [value]="item.path" [seoLink]="item.path.substring(1)">
           <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
           {{ item.label }}
         </m3-menu-item>
@@ -102,16 +98,14 @@
     <m3-navigation-bar-item
       label="Home"
       [active]="currentRoute() === '/home'"
-      href="/home"
-      (click)="$event.preventDefault(); navigate('/home')">
+      seoLink="home">
       <span slot="icon" class="material-symbols-outlined">home</span>
     </m3-navigation-bar-item>
 
     <m3-navigation-bar-item
       label="Quick Start"
       [active]="currentRoute() === '/quick-start'"
-      href="/quick-start"
-      (click)="$event.preventDefault(); navigate('/quick-start')">
+      seoLink="quick-start">
       <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
     </m3-navigation-bar-item>
 
@@ -119,8 +113,7 @@
       id="mobile-components-trigger"
       label="Components"
       [active]="isComponentsRoute()"
-      href="/components"
-      (click)="$event.preventDefault(); onMobileComponentsItemClick($event)"
+      seoLink="components"
       (pointerdown)="onMobileComponentsPointerDown($event)"
       (pointerup)="onMobileComponentsPointerUp($event)"
       (pointercancel)="onMobileComponentsPointerCancel($event)"
@@ -131,8 +124,7 @@
     <m3-navigation-bar-item
       label="Contact"
       [active]="currentRoute() === '/contact'"
-      href="/contact"
-      (click)="$event.preventDefault(); navigate('/contact')">
+      seoLink="contact">
       <span slot="icon" class="material-symbols-outlined">person</span>
     </m3-navigation-bar-item>
 

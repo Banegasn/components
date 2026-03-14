@@ -12,9 +12,11 @@ import '@banegasn/m3-menu';
 import { DialogService } from './services/dialog.service';
 import { SettingsComponent } from './components/settings/settings.component';
 
+import { SeoLinkDirective } from './directives/seo-link.directive';
+
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet],
+  selector: 'app-root',
+  imports: [RouterOutlet, SeoLinkDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
