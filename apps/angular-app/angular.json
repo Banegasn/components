@@ -34,7 +34,10 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "preserveSymlinks": true
+            "preserveSymlinks": true,
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "externalDependencies": ["@lit-labs/ssr-dom-shim", "xhr2"]
           },
           "configurations": {
             "production": {

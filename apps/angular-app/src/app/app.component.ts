@@ -63,9 +63,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.initializeRTL();
     
     // Listen for theme changes from settings dialog
-    window.addEventListener('theme-changed', ((event: CustomEvent) => {
-      this.currentTheme = event.detail;
-    }) as EventListener);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('theme-changed', ((event: CustomEvent) => {
+        this.currentTheme = event.detail;
+      }) as EventListener);
+    }
 
     // Capture menu-item-select at document so we handle it before the menu (menu stays open until we close it)
     this.#document.addEventListener('menu-item-select', this.boundMenuItemSelect, true);
@@ -92,8 +94,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initializeTheme() {
-    // Check localStorage first, then fall back to system preference
-    const savedTheme = localStorage.getItem('theme');
+    let savedTheme = null;
+    if (typeof localStorage !== 'undefined') {
+      savedTheme = localStorage.getItem('theme');
+    }
     
     if (savedTheme) {
       // Use saved theme
@@ -101,7 +105,10 @@ export class AppComponent implements OnInit, OnDestroy {
       this.currentTheme = savedTheme;
     } else {
       // Use system preference
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let systemPrefersDark = false;
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
       const theme = systemPrefersDark ? 'dark' : 'light';
       this.#document.documentElement.setAttribute('theme', theme);
       this.currentTheme = theme;
@@ -109,7 +116,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initializeRTL() {
-    const savedRTL = localStorage.getItem('rtl');
+    let savedRTL = null;
+    if (typeof localStorage !== 'undefined') {
+      savedRTL = localStorage.getItem('rtl');
+    }
     if (savedRTL === 'true') {
       this.#document.documentElement.setAttribute('dir', 'rtl');
     }
@@ -120,7 +130,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const currentTheme = this.#document.documentElement.getAttribute('theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     this.#document.documentElement.setAttribute('theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', newTheme);
+    }
     this.currentTheme = newTheme;
   }
 
@@ -279,7 +291,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   scrollToTop() {
     const container = this.#document.querySelector('.app-container') as HTMLElement;
-    if (container) {
+    if (container && typeof container.scrollTo === 'function') {
       container.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }

@@ -47,8 +47,10 @@ jobs:
       - name: Build Angular app for GitHub Pages
         run: pnpm --filter @apps/angular-app build:gh-pages
       
-      - name: Copy 404.html for SPA routing
-        run: cp apps/angular-app/dist/angular-app/browser/index.html apps/angular-app/dist/angular-app/browser/404.html
+      - name: Copy index.csr.html to index.html and 404.html
+        run: |
+          cp apps/angular-app/dist/angular-app/browser/index.csr.html apps/angular-app/dist/angular-app/browser/404.html
+          cp apps/angular-app/dist/angular-app/browser/index.csr.html apps/angular-app/dist/angular-app/browser/index.html
       
       - name: Add .nojekyll file
         run: touch apps/angular-app/dist/angular-app/browser/.nojekyll

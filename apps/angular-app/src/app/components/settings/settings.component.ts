@@ -32,12 +32,16 @@ export class SettingsComponent implements OnInit {
     this.#document.documentElement.setAttribute('theme', newTheme);
 
     // Save to localStorage
-    localStorage.setItem('theme', newTheme);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', newTheme);
+    }
     this.currentTheme = newTheme;
     this.darkModeEnabled = newTheme === 'dark';
 
     // Emit event for app component to update
-    window.dispatchEvent(new CustomEvent('theme-changed', { detail: newTheme }));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('theme-changed', { detail: newTheme }));
+    }
   }
 
   onDarkModeChange(event: Event) {
@@ -49,11 +53,15 @@ export class SettingsComponent implements OnInit {
     this.#document.documentElement.setAttribute('theme', newTheme);
 
     // Save to localStorage
-    localStorage.setItem('theme', newTheme);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', newTheme);
+    }
     this.currentTheme = newTheme;
 
     // Emit event for app component to update
-    window.dispatchEvent(new CustomEvent('theme-changed', { detail: newTheme }));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('theme-changed', { detail: newTheme }));
+    }
   }
 
   onRTLChange(event: Event) {
@@ -66,7 +74,9 @@ export class SettingsComponent implements OnInit {
       this.#document.documentElement.removeAttribute('dir');
     }
     // Save to localStorage
-    localStorage.setItem('rtl', this.isRTL.toString());
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('rtl', this.isRTL.toString());
+    }
   }
 }
 
