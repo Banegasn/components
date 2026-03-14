@@ -1,4 +1,4 @@
-![Material 3 Expressive Web Components Library](assets/banner.png)
+![Material 3 Expressive Web Components Library](apps\angular-app\public\og-image.png)
 
 # Material Web Components Repository
 
