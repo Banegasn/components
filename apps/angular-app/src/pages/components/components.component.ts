@@ -9,7 +9,7 @@ import '@banegasn/m3-loading-indicator';
 import '@banegasn/m3-fab-menu';
 import '@banegasn/m3-menu';
 
-import { SeoLinkDirective } from '../../app/directives/seo-link.directive';
+import { SeoLinkComponent } from '../../app/components/seo-link/seo-link.component';
 
 @Component({
   selector: 'app-components ',
@@ -18,7 +18,7 @@ import { SeoLinkDirective } from '../../app/directives/seo-link.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [SeoLinkDirective],
+  imports: [SeoLinkComponent],
 })
 export class ComponentsComponent {
   readonly router = inject(Router);

@@ -5,14 +5,18 @@
     Works seamlessly with Angular, React, Vue, Svelte, or vanilla JavaScript.
   </p>
   <div class="button-group">
-    <m3-button variant="filled" size="large" seoLink="quick-start">
-      <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
-      Quick Start
-    </m3-button>
-    <m3-button variant="outlined" size="large" seoLink="components">
-      <span slot="icon" class="material-symbols-outlined">browse</span>
-      Browse Components
-    </m3-button>
+    <app-seo-link href="quick-start">
+      <m3-button variant="filled" size="large">
+        <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
+        Quick Start
+      </m3-button>
+    </app-seo-link>
+    <app-seo-link href="components">
+      <m3-button variant="outlined" size="large">
+        <span slot="icon" class="material-symbols-outlined">browse</span>
+        Browse Components
+      </m3-button>
+    </app-seo-link>
     <m3-button variant="tonal" size="large" (button-click)="openGitHub()">
       <span slot="icon" class="material-symbols-outlined">code</span>
       View on GitHub
@@ -102,10 +106,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="buttons">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="buttons">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -116,7 +122,8 @@
           <span class="badge">v1.x</span>
         </div>
       </div>
-      <p>Material Design 3 card component with 3 variants (Elevated, Filled, Outlined), support for media, actions, and flexible content slots.</p>
+      <p>Material Design 3 card component with 3 variants (Elevated, Filled, Outlined), support for media, actions, and flexible content
+        slots.</p>
       <div class="component-features">
         <span>✓ 3 Variants</span>
         <span>✓ Media Support</span>
@@ -127,10 +134,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="cards">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="cards">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -153,10 +162,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="navigation-rail">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="navigation-rail">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -167,7 +178,8 @@
           <span class="badge">v1.x</span>
         </div>
       </div>
-      <p>Horizontal navigation component for bottom navigation. Features responsive layouts (vertical/horizontal), badge support, and auto-layout switching.</p>
+      <p>Horizontal navigation component for bottom navigation. Features responsive layouts (vertical/horizontal), badge support, and
+        auto-layout switching.</p>
       <div class="component-features">
         <span>✓ Responsive</span>
         <span>✓ Badge Support</span>
@@ -178,10 +190,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="navigation-bar">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="navigation-bar">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -192,7 +206,8 @@
           <span class="badge">v1.x</span>
         </div>
       </div>
-      <p>Material Design 3 switch component for toggling settings on or off. Features checked/unchecked states, disabled state, and accessibility support.</p>
+      <p>Material Design 3 switch component for toggling settings on or off. Features checked/unchecked states, disabled state, and
+        accessibility support.</p>
       <div style="display: flex; gap: 24px; align-items: center; margin: 1rem 0;">
         <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
           <m3-switch></m3-switch>
@@ -217,10 +232,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="switches">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="switches">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -231,7 +248,8 @@
           <span class="badge">v1.x</span>
         </div>
       </div>
-      <p>Material Design 3 radio button component for selecting a single option from a group. Features radio group management, checked/unchecked states, and accessibility support.</p>
+      <p>Material Design 3 radio button component for selecting a single option from a group. Features radio group management,
+        checked/unchecked states, and accessibility support.</p>
       <div style="display: flex; gap: 24px; align-items: center; margin: 1rem 0;">
         <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
           <m3-radio-button name="home-preview" value="1"></m3-radio-button>
@@ -256,10 +274,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="radio-buttons">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="radio-buttons">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -270,7 +290,8 @@
           <span class="badge">v1.x</span>
         </div>
       </div>
-      <p>Material Design 3 search bar component with support for leading and trailing content projection slots. Perfect for search interfaces with icons, buttons, or avatars.</p>
+      <p>Material Design 3 search bar component with support for leading and trailing content projection slots. Perfect for search
+        interfaces with icons, buttons, or avatars.</p>
       <div class="component-features">
         <span>✓ Leading & Trailing Slots</span>
         <span>✓ Keyboard Navigation</span>
@@ -281,10 +302,12 @@
           <span slot="icon" class="material-symbols-outlined">package</span>
           npm
         </m3-button>
-        <m3-button variant="text" seoLink="search-bar">
-          <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-          View Details
-        </m3-button>
+        <app-seo-link href="search-bar">
+          <m3-button variant="text">
+            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
+            View Details
+          </m3-button>
+        </app-seo-link>
       </div>
     </m3-card>
 
@@ -421,13 +444,16 @@
 <section class="quick-start">
   <h2>Quick Start</h2>
   <div style="text-align: center; max-width: 600px; margin: 0 auto 32px;">
-    <p>Get up and running with Material 3 Web Components in minutes. Use them directly via CDN or install them via npm for your framework of choice.</p>
+    <p>Get up and running with Material 3 Web Components in minutes. Use them directly via CDN or install them via npm for your framework of
+      choice.</p>
   </div>
   <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;">
-    <m3-button variant="filled" size="large" seoLink="quick-start">
-      <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
-      View Quick Start Guide
-    </m3-button>
+    <app-seo-link href="quick-start">
+      <m3-button variant="filled" size="large">
+        <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
+        View Quick Start Guide
+      </m3-button>
+    </app-seo-link>
     <m3-button variant="outlined" size="large" (button-click)="openSimulation()">
       <span slot="icon" class="material-symbols-outlined">dashboard</span>
       View App Simulation
