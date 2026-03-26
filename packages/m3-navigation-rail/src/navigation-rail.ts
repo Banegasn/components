@@ -99,6 +99,11 @@ export class M3NavigationRail extends LitElement {
     items.forEach(item => {
       item.expanded = this.expanded;
     });
+
+    const toggle = this.querySelector('m3-navigation-rail-toggle');
+    if (toggle) {
+      toggle.expanded = this.expanded;
+    }
   }
 
   render() {
@@ -124,8 +129,8 @@ export class M3NavigationRail extends LitElement {
     this._hasBottomItems = assignedNodes.length > 0;
   }
 
-  private _handleToggleClick(e: CustomEvent) {
-    this.expanded = e.detail.expanded;
+  private _handleToggleClick() {
+    this.expanded = !this.expanded;
     this.dispatchEvent(new CustomEvent('menu-toggle', {
       bubbles: true,
       composed: true,

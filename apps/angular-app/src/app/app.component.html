@@ -1,6 +1,6 @@
 <!-- Navigation Rail for Desktop/Tablet (hidden on mobile) -->
 <div class="desktop-nav-shell">
-  <m3-navigation-rail class="desktop-nav" (menu-toggle)="onRailToggle($event)">
+  <m3-navigation-rail class="desktop-nav" [attr.expanded]="railExpanded() ? '' : null" (menu-toggle)="onRailToggle($event)">
     <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
 
     <app-seo-link href="home">

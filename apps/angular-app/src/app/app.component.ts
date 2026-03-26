@@ -1,5 +1,6 @@
 
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, OnDestroy, DOCUMENT, NgZone, signal, DestroyRef } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, OnDestroy, DOCUMENT, NgZone, signal, DestroyRef, effect, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -27,11 +28,25 @@ export class AppComponent implements OnInit, OnDestroy {
   #router = inject(Router);
   #ngZone = inject(NgZone);
   #destroyRef = inject(DestroyRef);
+  #platformId = inject(PLATFORM_ID);
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
   currentRoute = signal('/');
   componentsMenuOpen = signal(false);
-  railExpanded = signal(false);
+  railExpanded = signal(true);
+
+  constructor() {
+    if (isPlatformBrowser(this.#platformId)) {
+      const railExpanded = localStorage.getItem('railExpanded');
+      if (railExpanded !== null) {
+        this.railExpanded.set(JSON.parse(railExpanded));
+      }
+
+      effect(() => {
+        localStorage.setItem('railExpanded', JSON.stringify(this.railExpanded()));
+      });
+    }
+  }
   private mobileComponentsLongPressTimer: ReturnType<typeof setTimeout> | null = null;
   private mobileComponentsLongPressFired = false;
   private desktopComponentsCloseTimer: ReturnType<typeof setTimeout> | null = null;

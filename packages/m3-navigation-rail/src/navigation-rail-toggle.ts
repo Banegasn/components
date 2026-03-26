@@ -26,11 +26,9 @@ export class M3NavigationRailToggle extends LitElement {
   }
 
   private _handleClick() {
-    this.expanded = !this.expanded;
     this.dispatchEvent(new CustomEvent('toggle-click', {
       bubbles: true,
-      composed: true,
-      detail: { expanded: this.expanded }
+      composed: true
     }));
   }
 }
