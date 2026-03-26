@@ -1,109 +1,91 @@
-/* ─── Hero ───────────────────────────────────────────────── */
 .hero {
   padding: 72px 0 64px;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
-
 .hero-eyebrow {
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--md-sys-color-primary);
   margin-bottom: 16px;
 }
-
 .hero h1 {
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -.03em;
   color: var(--md-sys-color-on-surface);
   margin: 0 0 20px;
 }
-
 .subtitle {
-  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+  font-size: clamp(.9375rem, 1.5vw, 1.0625rem);
   color: var(--md-sys-color-on-surface-variant);
   margin: 0 0 36px;
   line-height: 1.7;
   max-width: 52ch;
 }
-
 .button-group {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
 }
-
-/* ─── Features ───────────────────────────────────────────── */
 .features {
   padding: 56px 0;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
-
 .features-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 32px 40px;
 }
-
 .feature-item {
   display: flex;
   gap: 14px;
   align-items: flex-start;
 }
-
 .feature-icon {
   font-size: 20px;
   color: var(--md-sys-color-primary);
   margin-top: 2px;
   flex-shrink: 0;
 }
-
 .feature-item h3 {
-  font-size: 0.9375rem;
+  font-size: .9375rem;
   font-weight: 600;
   margin: 0 0 4px;
   color: var(--md-sys-color-on-surface);
 }
-
 .feature-item p {
-  font-size: 0.875rem;
+  font-size: .875rem;
   margin: 0;
   line-height: 1.6;
   color: var(--md-sys-color-on-surface-variant);
 }
-
-/* ─── Components table ───────────────────────────────────── */
 .components {
   padding: 56px 0;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
-
 .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
 .section-header h2 {
-  font-size: 0.75rem;
+  font-size: .75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: .07em;
   color: var(--md-sys-color-on-surface-variant);
   margin: 0;
 }
-
 .component-table {
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: 12px;
   overflow: hidden;
 }
-
 .component-row {
   display: grid;
   grid-template-columns: minmax(0, 10rem) 1fr auto auto;
@@ -111,32 +93,26 @@
   gap: 12px 16px;
   padding: 13px 20px;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
-  transition: background 0.15s;
+  transition: background .15s;
   cursor: pointer;
 }
-
-/* last real row — the seo-link wraps each row so target last child of table */
 .component-table > :last-child .component-row {
   border-bottom: none;
 }
-
 .component-row:not(.muted):hover {
   background: var(--md-sys-color-surface-container-low);
 }
-
 .component-row:not(.muted):hover .component-arrow {
   color: var(--md-sys-color-primary);
   transform: translateX(2px);
 }
-
 .component-row.muted {
-  opacity: 0.5;
+  opacity: .5;
   cursor: default;
   border-bottom: none;
 }
-
 .component-name {
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   font-weight: 600;
   font-family: var(--font-mono);
   color: var(--md-sys-color-on-surface);
@@ -144,15 +120,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .component-desc {
-  font-size: 0.875rem;
+  font-size: .875rem;
   color: var(--md-sys-color-on-surface-variant);
   min-width: 0;
 }
-
 .component-badge {
-  font-size: 0.6875rem;
+  font-size: .6875rem;
   font-weight: 500;
   padding: 2px 8px;
   border-radius: 5px;
@@ -160,34 +134,28 @@
   color: var(--md-sys-color-on-primary-container);
   white-space: nowrap;
 }
-
 .component-badge.soon {
   background: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface-variant);
 }
-
 .component-arrow {
   font-size: 16px;
   color: var(--md-sys-color-outline);
-  transition: color 0.15s, transform 0.15s;
+  transition: color .15s, transform .15s;
   flex-shrink: 0;
 }
-
-/* ─── Install ────────────────────────────────────────────── */
 .install {
   padding: 56px 0;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
-
 .install h2 {
-  font-size: 0.75rem;
+  font-size: .75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: .07em;
   color: var(--md-sys-color-on-surface-variant);
   margin: 0 0 20px;
 }
-
 .install-options {
   display: flex;
   flex-direction: column;
@@ -195,7 +163,6 @@
   margin-bottom: 24px;
   max-width: 480px;
 }
-
 .install-option {
   display: flex;
   align-items: center;
@@ -205,26 +172,22 @@
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: 8px;
 }
-
 .install-label {
-  font-size: 0.75rem;
+  font-size: .75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: .05em;
   color: var(--md-sys-color-on-surface-variant);
   width: 36px;
   flex-shrink: 0;
 }
-
 .install-option code {
-  font-size: 0.8125rem;
-  background: none;
-  border: none;
+  font-size: .8125rem;
+  background: 0;
+  border: 0;
   padding: 0;
   color: var(--md-sys-color-on-surface);
 }
-
-/* ─── Frameworks ─────────────────────────────────────────── */
 .frameworks {
   padding: 40px 0;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
@@ -233,148 +196,119 @@
   gap: 20px;
   flex-wrap: wrap;
 }
-
 .frameworks-label {
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   font-weight: 500;
   color: var(--md-sys-color-on-surface-variant);
   margin: 0;
   white-space: nowrap;
 }
-
 .framework-badges {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
-
 .framework-badge {
   padding: 4px 12px;
   border-radius: 6px;
   background: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface-variant);
-  font-size: 0.8125rem;
+  font-size: .8125rem;
   font-weight: 500;
   border: 1px solid var(--md-sys-color-outline-variant);
 }
-
-/* ─── Footer ─────────────────────────────────────────────── */
 .home-footer {
   padding: 40px 0 24px;
   color: var(--md-sys-color-on-surface-variant);
 }
-
 .home-footer p {
   margin: 4px 0;
-  font-size: 0.875rem;
+  font-size: .875rem;
 }
-
 .license {
-  font-size: 0.8125rem;
-  opacity: 0.6;
+  font-size: .8125rem;
+  opacity: .6;
 }
-
-/* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 600px) {
   .hero {
     padding: 28px 0 32px;
   }
-
   .hero-eyebrow {
     margin-bottom: 10px;
   }
-
   .hero h1 {
     font-size: 1.75rem;
     margin-bottom: 12px;
   }
-
   .subtitle {
-    font-size: 0.9375rem;
+    font-size: .9375rem;
     margin-bottom: 24px;
   }
-
   .button-group {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .features {
     padding: 28px 0;
   }
-
   .features-list {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-
   .components {
     padding: 28px 0;
   }
-
   .section-header {
     margin-bottom: 12px;
   }
-
   .component-row {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
     gap: 2px 8px;
     padding: 10px 14px;
   }
-
   .component-name {
     grid-column: 1;
     grid-row: 1;
   }
-
   .component-arrow {
     grid-column: 2;
     grid-row: 1 / 3;
     align-self: center;
   }
-
   .component-desc {
     grid-column: 1;
     grid-row: 2;
-    font-size: 0.8125rem;
+    font-size: .8125rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   .component-badge {
     display: none;
   }
-
   .install {
     padding: 28px 0;
   }
-
   .install h2 {
     margin-bottom: 14px;
   }
-
   .install-options {
     margin-bottom: 16px;
   }
-
   .install-option {
     padding: 10px 12px;
   }
-
   .install-option code {
-    font-size: 0.75rem;
+    font-size: .75rem;
     word-break: break-all;
   }
-
   .frameworks {
     padding: 24px 0;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-
   .home-footer {
     padding: 24px 0 16px;
   }
