@@ -1,7 +1,7 @@
 {
   "name": "@banegasn/m3-text-field",
-  "version": "1.0.0",
-  "description": "Material Design 3 text field web component with expressive styling",
+  "version": "1.0.2",
+  "description": "Material Design 3 text field web component",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,6 +19,24 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "clean": "rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banegasn/components.git",
+    "directory": "packages/m3-text-field"
+  },
+  "keywords": [
+    "m3",
+    "material-design",
+    "text-field",
+    "web-components",
+    "components"
+  ],
+  "author": "banegasn",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "dependencies": {
     "lit": "^3.2.0"

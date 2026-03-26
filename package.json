@@ -10,9 +10,10 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "publish:npm": "node scripts/publish-npm.js",
-    "publish:github": "pnpm build && pnpm publish -r --filter=\"./packages/*\" --no-git-checks --registry https://npm.pkg.github.com",
-    "publish:both": "pnpm publish:npm && pnpm publish:github",
+    "publish:npm": "bash scripts/publish-unpublished.sh npm",
+    "publish:github": "bash scripts/publish-unpublished.sh github",
+    "publish:npm:force": "bash scripts/publish-unpublished.sh npm --force",
+    "publish:github:force": "bash scripts/publish-unpublished.sh github --force",
     "version:patch": "pnpm --filter \"./packages/*\" exec -- npm version patch",
     "version:minor": "pnpm --filter \"./packages/*\" exec -- npm version minor",
     "version:major": "pnpm --filter \"./packages/*\" exec -- npm version major"
