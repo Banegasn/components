@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-text-field",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Material Design 3 text field web component",
   "type": "module",
   "main": "./dist/index.js",

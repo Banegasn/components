@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-chip",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Material Design 3 chip web component with expressive styling",
   "type": "module",
   "main": "./dist/index.js",

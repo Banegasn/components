@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-checkbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 checkbox web component with expressive styling",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-tabs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Material Design 3 tabs web component",
   "type": "module",
   "main": "./dist/index.js",
