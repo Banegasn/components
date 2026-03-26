@@ -2,7 +2,6 @@
   display: flex;
   height: 100%;
   width: 100%;
-  contain: layout;
 }
 
 .app-container {
@@ -10,8 +9,6 @@
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--md-sys-color-outline) transparent;
-  contain: layout style;
-  min-height: 100vh;
 }
 
 .app-container::-webkit-scrollbar {
@@ -42,14 +39,12 @@
 .desktop-nav-shell {
   display: flex;
   position: relative;
-  min-height: 100vh;
 }
 
-.desktop-nav {
-  display: flex;
-  min-width: 80px;
-  width: auto;
-  contain: layout style paint;
+.desktop-components-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
 }
 
 m3-navigation-rail {
@@ -61,11 +56,23 @@ m3-navigation-rail:not(:defined) {
   opacity: 0;
 }
 
-.desktop-components-trigger {
-  position: relative;
-  display: block;
-  width: 100%;
-  content-visibility: auto;
+
+m3-navigation-bar {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+}
+
+m3-navigation-bar:not(:defined) {
+  opacity: 0;
+}
+
+m3-menu {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+}
+
+m3-menu:not(:defined) {
+  opacity: 0;
 }
 
 /* Navigation Bar - Mobile */
@@ -79,17 +86,6 @@ m3-navigation-rail:not(:defined) {
 
 .mobile-nav {
   display: block;
-  opacity: 0;
-  transition: opacity 0.15s ease-in;
-}
-
-m3-navigation-bar {
-  opacity: 0;
-  transition: opacity 0.15s ease-in;
-}
-
-m3-navigation-bar:defined {
-  opacity: 1;
 }
 
 .mobile-components-anchor {
