@@ -48,17 +48,17 @@
 .desktop-nav {
   display: flex;
   min-width: 80px;
-  width: 80px;
+  width: auto;
   contain: layout style paint;
 }
 
 m3-navigation-rail {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.15s ease-in;
 }
 
-m3-navigation-rail:defined {
-  opacity: 1;
+m3-navigation-rail:not(:defined) {
+  opacity: 0;
 }
 
 .desktop-components-trigger {
