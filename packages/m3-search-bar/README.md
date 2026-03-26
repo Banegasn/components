@@ -1,21 +1,65 @@
 # @banegasn/m3-search-bar
 
-Material Design 3 Search Bar web component with support for leading and trailing content projection.
+![Preview](images/preview.png)
+
+
+> Material Design 3 Search Bar web component — framework-agnostic, built with Lit.
+
+[![npm version](https://img.shields.io/npm/v/@banegasn/m3-search-bar.svg)](https://www.npmjs.com/package/@banegasn/m3-search-bar)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+
+An accessible **M3 Search Bar** web component following the [Material Design 3 search specifications](https://m3.material.io/components/search/overview). Supports leading and trailing content projection for icons, buttons, and avatars. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
+
+## Features
+
+- Leading and trailing slot support
+- Keyboard events (input, submit, clear)
+- Form integration
+- Accessible with ARIA attributes
+- Framework-agnostic custom element
 
 ## Installation
 
-### Via npm
-
 ```bash
 npm install @banegasn/m3-search-bar
+# or
+pnpm add @banegasn/m3-search-bar
+# or
+yarn add @banegasn/m3-search-bar
 ```
 
-### Via CDN (No build step)
-
-You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+## CDN Usage (no build step)
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-search-bar/+esm"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 Search Bar Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-search-bar/+esm"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <style>
+    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; max-width: 480px; }
+    #results { margin-top: 16px; font-size: 14px; color: #49454f; }
+  </style>
+</head>
+<body>
+  <m3-search-bar id="search" placeholder="Search...">
+    <span slot="leading" class="material-symbols-outlined">search</span>
+  </m3-search-bar>
+  <p id="results">Start typing to search...</p>
+
+  <script>
+    const search = document.getElementById('search');
+    search.addEventListener('search-input', (e) => {
+      document.getElementById('results').textContent = 'Searching for: ' + e.detail.value;
+    });
+    search.addEventListener('search-clear', () => {
+      document.getElementById('results').textContent = 'Start typing to search...';
+    });
+  </script>
+</body>
+</html>
 ```
 
 ## Material Icons Setup
@@ -178,7 +222,11 @@ The component follows Material Design 3 accessibility guidelines:
 - Focus management
 - Screen reader compatibility
 
+## Resources
+
+- [Material Design 3 Search](https://m3.material.io/components/search/overview)
+- [GitHub Repository](https://github.com/banegasn/components)
+
 ## License
 
 MIT
-

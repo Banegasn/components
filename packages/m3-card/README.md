@@ -1,43 +1,80 @@
 # @banegasn/m3-card
 
-Material Design 3 Card web component with elevated, filled, and outlined variants.
+![Preview](images/preview.png)
+
+
+> Material Design 3 Card web component — framework-agnostic, built with Lit.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![npm version](https://img.shields.io/npm/v/@banegasn/m3-card.svg)](https://www.npmjs.com/package/@banegasn/m3-card)
 
+An accessible **M3 Card** web component following the [Material Design 3 card specifications](https://m3.material.io/components/cards/guidelines). Supports elevated, filled, and outlined variants with media, header, content, and action slots. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
+
 ## 🎯 Features
 
-- ✅ **3 Card Variants**: Elevated, Filled, and Outlined
-- ✅ **Fully Interactive**: Clickable cards with hover, focus, pressed, and dragged states
-- ✅ **Accessible**: WCAG compliant with keyboard navigation support
-- ✅ **Framework Agnostic**: Works with Angular, React, Vue, Svelte, or vanilla JavaScript
-- ✅ **Flexible Layout**: Supports media, header, content, and action slots
-- ✅ **Customizable**: CSS custom properties for theming
-- ✅ **TypeScript Support**: Full type definitions included
-- ✅ **Material Design 3 Compliant**: Follows official [Material 3 card specifications](https://m3.material.io/components/cards/guidelines)
+- 3 Card Variants: Elevated, Filled, and Outlined
+- Fully Interactive: Clickable cards with hover, focus, pressed, and dragged states
+- Accessible: keyboard navigation support
+- Framework Agnostic: Works with Angular, React, Vue, Svelte, or vanilla JavaScript
+- Flexible Layout: Supports media, header, content, and action slots
+- Customizable: CSS custom properties for theming
+- TypeScript Support: Full type definitions included
+- Material Design 3 Compliant: Follows official [Material 3 card specifications](https://m3.material.io/components/cards/guidelines)
 
 ## 📦 Installation
 
-### Via npm
-
 ```bash
 npm install @banegasn/m3-card
-```
-
-```bash
+# or
 pnpm add @banegasn/m3-card
-```
-
-```bash
+# or
 yarn add @banegasn/m3-card
 ```
 
-### Via CDN (No build step)
-
-You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+## CDN Usage (no build step)
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 Card Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
+    .cards { display: flex; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="cards">
+    <m3-card variant="elevated" style="max-width:280px;">
+      <h3 slot="header" style="margin:0">Elevated Card</h3>
+      <p>Default card with subtle shadow elevation.</p>
+      <div slot="actions">
+        <m3-button variant="text">Cancel</m3-button>
+        <m3-button variant="filled">Confirm</m3-button>
+      </div>
+    </m3-card>
+
+    <m3-card variant="filled" style="max-width:280px;">
+      <h3 slot="header" style="margin:0">Filled Card</h3>
+      <p>Solid background for denser layouts.</p>
+    </m3-card>
+
+    <m3-card variant="outlined" clickable aria-label="View outlined card details" style="max-width:280px;">
+      <h3 slot="header" style="margin:0">Outlined Card</h3>
+      <p>Lightweight card with a clear border. Click me!</p>
+    </m3-card>
+  </div>
+
+  <script>
+    document.querySelectorAll('m3-card').forEach(card => {
+      card.addEventListener('card-click', (e) => console.log('Card clicked:', e.detail));
+    });
+  </script>
+</body>
+</html>
 ```
 
 ## 🚀 Usage
@@ -346,8 +383,7 @@ const handleClick = (event) => {
 
 - [Material Design 3 Cards Guidelines](https://m3.material.io/components/cards/guidelines)
 - [Material Design 3 Cards Specs](https://m3.material.io/components/cards/specs)
-- [Web Components Documentation](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-- [Lit Documentation](https://lit.dev/)
+- [GitHub Repository](https://github.com/banegasn/components)
 
 ## 🤝 Contributing
 
@@ -356,4 +392,3 @@ Contributions are welcome! Please see the [main repository](https://github.com/b
 ## 📄 License
 
 MIT © [banegasn](https://github.com/banegasn)
-

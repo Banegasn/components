@@ -1,8 +1,22 @@
 # @banegasn/m3-navigation-rail
 
-Material Design 3 (M3) Navigation Rail web components built with Lit.
+![Preview](images/preview.png)
 
-A navigation rail is a compact, vertical navigation component that provides quick access to top-level destinations in an app. It can expand to show labels alongside icons for better clarity.
+
+> Material Design 3 Navigation Rail web component — framework-agnostic, built with Lit.
+
+[![npm version](https://img.shields.io/npm/v/@banegasn/m3-navigation-rail.svg)](https://www.npmjs.com/package/@banegasn/m3-navigation-rail)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+
+A compact, vertical **M3 Navigation Rail** web component following the [Material Design 3 navigation rail specifications](https://m3.material.io/components/navigation-rail/overview). Provides quick access to top-level destinations and can expand to show labels alongside icons. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
+
+## Features
+
+- Collapsible/expandable with toggle button
+- Badge support (dot and count badges)
+- Bottom slot for settings/profile items
+- Accessible with ARIA navigation role
+- Framework-agnostic custom elements
 
 ## Screenshots 
 
@@ -11,18 +25,57 @@ A navigation rail is a compact, vertical navigation component that provides quic
 
 ## Installation
 
-### Via npm
-
 ```bash
 npm install @banegasn/m3-navigation-rail
+# or
+pnpm add @banegasn/m3-navigation-rail
+# or
+yarn add @banegasn/m3-navigation-rail
 ```
 
-### Via CDN (No build step)
-
-You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+## CDN Usage (no build step)
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-rail/+esm"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 Navigation Rail Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-rail/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; margin: 0; display: flex;  }
+    main { flex: 1; padding: 0; }
+  </style>
+</head>
+<body>
+  <m3-navigation-rail id="nav" expanded>
+    <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
+    <m3-navigation-rail-item label="Home" active>
+      <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </m3-navigation-rail-item>
+    <m3-navigation-rail-item label="Messages" badge="5">
+      <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+      </svg>
+    </m3-navigation-rail-item>
+    <m3-navigation-rail-item label="Favorites">
+      <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+    </m3-navigation-rail-item>
+  </m3-navigation-rail>
+  <main></main>
+
+  <script>
+    document.getElementById('nav').addEventListener('item-click', (e) => {
+      document.querySelectorAll('m3-navigation-rail-item').forEach(i => i.active = false);
+      e.target.active = true;
+    });
+  </script>
+</body>
+</html>
 ```
 
 ## Components
@@ -383,6 +436,11 @@ const handleItemClick = (event) => {
 };
 </script>
 ```
+
+## Resources
+
+- [Material Design 3 Navigation Rail](https://m3.material.io/components/navigation-rail/overview)
+- [GitHub Repository](https://github.com/banegasn/components)
 
 ## License
 

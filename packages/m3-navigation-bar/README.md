@@ -1,23 +1,78 @@
 # @banegasn/m3-navigation-bar
 
-Material Design 3 (M3) Flexible Navigation Bar web components built with Lit.
+![Preview](images/preview.png)
 
-A navigation bar is a horizontal navigation component placed at the bottom of the screen, designed for smaller devices. The flexible navigation bar is shorter than the original and supports both vertical navigation items (in compact windows) and horizontal navigation items (in medium windows).
+
+> Material Design 3 Navigation Bar web component — framework-agnostic, built with Lit.
+
+[![npm version](https://img.shields.io/npm/v/@banegasn/m3-navigation-bar.svg)](https://www.npmjs.com/package/@banegasn/m3-navigation-bar)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+
+A flexible **M3 Navigation Bar** web component following the [Material Design 3 navigation bar specifications](https://m3.material.io/components/navigation-bar/overview). Placed at the bottom of the screen for smaller devices, it supports both vertical (compact) and horizontal (medium) layouts with badge support. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
+
+## Features
+
+- Vertical and horizontal layout modes
+- Badge support (dot and count badges)
+- Auto-layout switching for responsive designs
+- Accessible with ARIA navigation role
+- Framework-agnostic custom elements
 
 ## Installation
 
-### Via npm
-
 ```bash
 npm install @banegasn/m3-navigation-bar
+# or
+pnpm add @banegasn/m3-navigation-bar
+# or
+yarn add @banegasn/m3-navigation-bar
 ```
 
-### Via CDN (No build step)
-
-You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+## CDN Usage (no build step)
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-bar/+esm"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 Navigation Bar Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-navigation-bar/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; background: #fef7ff; min-height: 200px; min-width: 600px; margin: 0; display: flex; flex-direction: column; }
+    main { flex: 1; padding: 24px; }
+    m3-navigation-bar { position: fixed; bottom: 0; left: 0; right: 0; }
+  </style>
+</head>
+<body>
+  <main><h1>My App</h1></main>
+
+  <m3-navigation-bar>
+    <m3-navigation-bar-item label="Home" active>
+      <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </m3-navigation-bar-item>
+    <m3-navigation-bar-item label="Search">
+      <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+    </m3-navigation-bar-item>
+    <m3-navigation-bar-item label="Library" badge="3">
+      <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+      </svg>
+    </m3-navigation-bar-item>
+  </m3-navigation-bar>
+
+  <script>
+    document.querySelector('m3-navigation-bar').addEventListener('item-click', (e) => {
+      const items = document.querySelectorAll('m3-navigation-bar-item');
+      items.forEach(item => item.active = false);
+      e.target.active = true;
+    });
+  </script>
+</body>
+</html>
 ```
 
 ## Components
@@ -171,6 +226,11 @@ This component uses modern web standards and requires browsers that support:
 - Custom Elements v1
 - Shadow DOM v1
 - ES6+ features
+
+## Resources
+
+- [Material Design 3 Navigation Bar](https://m3.material.io/components/navigation-bar/overview)
+- [GitHub Repository](https://github.com/banegasn/components)
 
 ## License
 

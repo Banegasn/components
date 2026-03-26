@@ -1,6 +1,14 @@
 # @banegasn/m3-button
 
-Material Design 3 button web component built with Lit, featuring expressive styling and full accessibility support.
+![Preview](images/preview.png)
+
+
+> Material Design 3 Button web component — framework-agnostic, built with Lit.
+
+[![npm version](https://img.shields.io/npm/v/@banegasn/m3-button.svg)](https://www.npmjs.com/package/@banegasn/m3-button)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+
+An accessible **M3 Button** web component following the [Material Design 3 button specifications](https://m3.material.io/components/buttons/overview). Features expressive styling, 5 variants, 5 sizes, shape morphing, loading states, and full accessibility support. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
 
 ## Features
 
@@ -18,32 +26,50 @@ Material Design 3 button web component built with Lit, featuring expressive styl
 
 ## Installation
 
-### Via npm
-
 ```bash
 npm install @banegasn/m3-button
+# or
+pnpm add @banegasn/m3-button
+# or
+yarn add @banegasn/m3-button
 ```
 
-### Via CDN (No build step)
-
-You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
-
-```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
-```
-
-## Quick Start
+## CDN Usage (no build step)
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <script type="module">
-    import '@banegasn/m3-button';
-  </script>
+  <meta charset="UTF-8" />
+  <title>M3 Button Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
+  </style>
 </head>
 <body>
-  <m3-button>Click me</m3-button>
+  <div class="row">
+    <m3-button variant="filled">Filled</m3-button>
+    <m3-button variant="elevated">Elevated</m3-button>
+    <m3-button variant="tonal">Tonal</m3-button>
+    <m3-button variant="outlined">Outlined</m3-button>
+    <m3-button variant="text">Text</m3-button>
+  </div>
+  <div class="row">
+    <m3-button variant="filled" size="extra-large" shape="round">Get Started</m3-button>
+    <m3-button variant="outlined" size="small" disabled>Disabled</m3-button>
+    <m3-button variant="tonal" id="loading-btn">Click to load</m3-button>
+  </div>
+
+  <script>
+    const btn = document.getElementById('loading-btn');
+    btn.addEventListener('button-click', async () => {
+      btn.loading = true;
+      await new Promise(r => setTimeout(r, 2000));
+      btn.loading = false;
+    });
+  </script>
 </body>
 </html>
 ```
@@ -614,13 +640,15 @@ Works in all modern browsers that support:
 
 ## Related Components
 
+- [@banegasn/m3-card](https://www.npmjs.com/package/@banegasn/m3-card) - Material Design 3 Card
 - [@banegasn/m3-navigation-rail](https://www.npmjs.com/package/@banegasn/m3-navigation-rail) - Material Design 3 Navigation Rail
+- [@banegasn/m3-split-button](https://www.npmjs.com/package/@banegasn/m3-split-button) - Material Design 3 Split Button
+
+## Resources
+
+- [Material Design 3 Buttons](https://m3.material.io/components/buttons/overview)
+- [GitHub Repository](https://github.com/banegasn/components)
 
 ## License
 
 MIT
-
-## Repository
-
-[https://github.com/banegasn/components](https://github.com/banegasn/components)
-

@@ -1,10 +1,25 @@
 # @banegasn/m3-switch
 
-Material Design 3 Switch web component. A switch allows users to toggle between on and off states, following Material Design 3 specifications.
+![Preview](images/preview.png)
+
+
+> Material Design 3 Switch web component — framework-agnostic, built with Lit.
+
+[![npm version](https://img.shields.io/npm/v/@banegasn/m3-switch.svg)](https://www.npmjs.com/package/@banegasn/m3-switch)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+
+An accessible **M3 Switch** web component following the [Material Design 3 switch specifications](https://m3.material.io/components/switch/overview). A switch allows users to toggle between on and off states. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
+
+## Features
+
+- On/off toggle with expressive M3 animation
+- Disabled state support
+- Form integration (name, value, form attributes)
+- Accessible with ARIA `switch` role
+- Keyboard navigation (Space and Enter keys)
+- Framework-agnostic custom element
 
 ## Installation
-
-### Via npm
 
 ```bash
 npm install @banegasn/m3-switch
@@ -14,17 +29,49 @@ pnpm add @banegasn/m3-switch
 yarn add @banegasn/m3-switch
 ```
 
-### Via CDN (No build step)
-
-You can use the component directly in any HTML file without installing anything by using the jsDelivr CDN and its ES module features:
+## CDN Usage (no build step)
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-switch/+esm"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 Switch Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-switch/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
+    .row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    label { font-size: 16px; color: #1d1b20; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <m3-switch id="notifications"></m3-switch>
+    <label>Enable notifications</label>
+  </div>
+  <div class="row">
+    <m3-switch checked></m3-switch>
+    <label>Dark mode (on)</label>
+  </div>
+  <div class="row">
+    <m3-switch disabled></m3-switch>
+    <label>Disabled</label>
+  </div>
+
+  <script>
+    document.getElementById('notifications').addEventListener('switch-change', (e) => {
+      console.log('Notifications:', e.detail.checked ? 'enabled' : 'disabled');
+    });
+  </script>
+</body>
+</html>
 ```
 
-## Usage
+## npm Usage
 
-### Basic Example
+```js
+import '@banegasn/m3-switch';
+```
 
 ```html
 <m3-switch></m3-switch>
@@ -32,7 +79,7 @@ You can use the component directly in any HTML file without installing anything 
 <m3-switch disabled></m3-switch>
 ```
 
-### With JavaScript
+## With JavaScript
 
 ```javascript
 import '@banegasn/m3-switch';
@@ -163,7 +210,11 @@ The switch component follows Material Design 3 accessibility guidelines:
 - Safari (latest)
 - All modern browsers that support Web Components
 
+## Resources
+
+- [Material Design 3 Switch](https://m3.material.io/components/switch/overview)
+- [GitHub Repository](https://github.com/banegasn/components)
+
 ## License
 
 MIT
-
