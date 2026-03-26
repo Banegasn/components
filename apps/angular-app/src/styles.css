@@ -89,6 +89,183 @@ html, body {
   --md-sys-elevation-level2: 0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
 }
 
+/* ─── Theme: Emerald (light) ────────────────────────────── */
+:root[theme="emerald"] {
+  --md-sys-color-primary: #059669;
+  --md-sys-color-primary-hover: #047857;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d1fae5;
+  --md-sys-color-on-primary-container: #064e3b;
+  --md-sys-color-secondary: #059669;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #d1fae5;
+  --md-sys-color-on-secondary-container: #064e3b;
+  --md-sys-color-tertiary: #6b7280;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #f3f4f6;
+  --md-sys-color-on-tertiary-container: #374151;
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-surface-variant: #f0fdf4;
+  --md-sys-color-surface-container: #f0fdf4;
+  --md-sys-color-surface-container-low: #f7fef9;
+  --md-sys-color-surface-container-highest: #d1fae5;
+  --md-sys-color-on-surface: #111827;
+  --md-sys-color-on-surface-variant: #6b7280;
+  --md-sys-color-outline: #d1d5db;
+  --md-sys-color-outline-variant: #e5e7eb;
+}
+
+/* ─── Theme: Emerald (dark) ─────────────────────────────── */
+:root[theme="emerald-dark"] {
+  --md-sys-color-primary: #34d399;
+  --md-sys-color-primary-hover: #6ee7b7;
+  --md-sys-color-on-primary: #064e3b;
+  --md-sys-color-primary-container: #065f46;
+  --md-sys-color-on-primary-container: #a7f3d0;
+  --md-sys-color-secondary: #34d399;
+  --md-sys-color-on-secondary: #064e3b;
+  --md-sys-color-secondary-container: #065f46;
+  --md-sys-color-on-secondary-container: #a7f3d0;
+  --md-sys-color-tertiary: #9ca3af;
+  --md-sys-color-on-tertiary: #111827;
+  --md-sys-color-tertiary-container: #1f2937;
+  --md-sys-color-on-tertiary-container: #d1d5db;
+  --md-sys-color-surface: #0f0f0f;
+  --md-sys-color-surface-variant: #161616;
+  --md-sys-color-surface-container: #1a1a1a;
+  --md-sys-color-surface-container-low: #141414;
+  --md-sys-color-surface-container-highest: #262626;
+  --md-sys-color-on-surface: #f9fafb;
+  --md-sys-color-on-surface-variant: #9ca3af;
+  --md-sys-color-outline: #374151;
+  --md-sys-color-outline-variant: #1f2937;
+}
+
+/* ─── Theme: Rose (light) ───────────────────────────────── */
+:root[theme="rose"] {
+  --md-sys-color-primary: #e11d48;
+  --md-sys-color-primary-hover: #be123c;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #ffe4e6;
+  --md-sys-color-on-primary-container: #881337;
+  --md-sys-color-secondary: #e11d48;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #ffe4e6;
+  --md-sys-color-on-secondary-container: #881337;
+  --md-sys-color-tertiary: #6b7280;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #f3f4f6;
+  --md-sys-color-on-tertiary-container: #374151;
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-surface-variant: #fff1f2;
+  --md-sys-color-surface-container: #fff1f2;
+  --md-sys-color-surface-container-low: #fff5f6;
+  --md-sys-color-surface-container-highest: #fecdd3;
+  --md-sys-color-on-surface: #111827;
+  --md-sys-color-on-surface-variant: #6b7280;
+  --md-sys-color-outline: #d1d5db;
+  --md-sys-color-outline-variant: #e5e7eb;
+}
+
+/* ─── Theme: Rose (dark) ────────────────────────────────── */
+:root[theme="rose-dark"] {
+  --md-sys-color-primary: #fb7185;
+  --md-sys-color-primary-hover: #fda4af;
+  --md-sys-color-on-primary: #881337;
+  --md-sys-color-primary-container: #9f1239;
+  --md-sys-color-on-primary-container: #fecdd3;
+  --md-sys-color-secondary: #fb7185;
+  --md-sys-color-on-secondary: #881337;
+  --md-sys-color-secondary-container: #9f1239;
+  --md-sys-color-on-secondary-container: #fecdd3;
+  --md-sys-color-tertiary: #9ca3af;
+  --md-sys-color-on-tertiary: #111827;
+  --md-sys-color-tertiary-container: #1f2937;
+  --md-sys-color-on-tertiary-container: #d1d5db;
+  --md-sys-color-surface: #0f0f0f;
+  --md-sys-color-surface-variant: #161616;
+  --md-sys-color-surface-container: #1a1a1a;
+  --md-sys-color-surface-container-low: #141414;
+  --md-sys-color-surface-container-highest: #262626;
+  --md-sys-color-on-surface: #f9fafb;
+  --md-sys-color-on-surface-variant: #9ca3af;
+  --md-sys-color-outline: #374151;
+  --md-sys-color-outline-variant: #1f2937;
+}
+
+/* ─── Theme: Amber (light) ──────────────────────────────── */
+:root[theme="amber"] {
+  --md-sys-color-primary: #d97706;
+  --md-sys-color-primary-hover: #b45309;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #fef3c7;
+  --md-sys-color-on-primary-container: #78350f;
+  --md-sys-color-secondary: #d97706;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #fef3c7;
+  --md-sys-color-on-secondary-container: #78350f;
+  --md-sys-color-tertiary: #6b7280;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #f3f4f6;
+  --md-sys-color-on-tertiary-container: #374151;
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-surface-variant: #fffbeb;
+  --md-sys-color-surface-container: #fffbeb;
+  --md-sys-color-surface-container-low: #fffdf5;
+  --md-sys-color-surface-container-highest: #fde68a;
+  --md-sys-color-on-surface: #111827;
+  --md-sys-color-on-surface-variant: #6b7280;
+  --md-sys-color-outline: #d1d5db;
+  --md-sys-color-outline-variant: #e5e7eb;
+}
+
+/* ─── Theme: Amber (dark) ───────────────────────────────── */
+:root[theme="amber-dark"] {
+  --md-sys-color-primary: #fbbf24;
+  --md-sys-color-primary-hover: #fcd34d;
+  --md-sys-color-on-primary: #78350f;
+  --md-sys-color-primary-container: #92400e;
+  --md-sys-color-on-primary-container: #fde68a;
+  --md-sys-color-secondary: #fbbf24;
+  --md-sys-color-on-secondary: #78350f;
+  --md-sys-color-secondary-container: #92400e;
+  --md-sys-color-on-secondary-container: #fde68a;
+  --md-sys-color-tertiary: #9ca3af;
+  --md-sys-color-on-tertiary: #111827;
+  --md-sys-color-tertiary-container: #1f2937;
+  --md-sys-color-on-tertiary-container: #d1d5db;
+  --md-sys-color-surface: #0f0f0f;
+  --md-sys-color-surface-variant: #161616;
+  --md-sys-color-surface-container: #1a1a1a;
+  --md-sys-color-surface-container-low: #141414;
+  --md-sys-color-surface-container-highest: #262626;
+  --md-sys-color-on-surface: #f9fafb;
+  --md-sys-color-on-surface-variant: #9ca3af;
+  --md-sys-color-outline: #374151;
+  --md-sys-color-outline-variant: #1f2937;
+}
+
+/* ─── Theme transition ───────────────────────────────────── */
+*, *::before, *::after {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Exclude elements where transition would look wrong */
+*:where(
+  [class*="material-symbols"],
+  m3-button,
+  m3-switch,
+  m3-slider,
+  m3-progress,
+  m3-loading-indicator
+) {
+  transition: none;
+}
+
 /* ─── Base ───────────────────────────────────────────────── */
 body {
   font-family: var(--font-sans);

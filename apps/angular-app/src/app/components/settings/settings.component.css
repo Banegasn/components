@@ -1,5 +1,5 @@
 .settings-content {
-  padding: 24px;
+  padding: 20px 24px;
 }
 
 .setting-item {
@@ -7,40 +7,94 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 24px;
 }
 
-.setting-item:last-child {
-  margin-bottom: 0;
+.setting-section {
+  padding: 4px 0;
 }
 
-.setting-info {
+.setting-info,
+.setting-section {
   flex: 1;
 }
 
-.setting-info h3 {
-  margin: 0 0 4px 0;
-  font-size: 1rem;
+.setting-info h3,
+.setting-section h3 {
+  margin: 0 0 3px;
+  font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--md-sys-color-on-surface, #141414);
+  color: var(--md-sys-color-on-surface);
 }
 
-.setting-info p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--md-sys-color-on-surface-variant, #49454f);
+.setting-info p,
+.setting-section > p {
+  margin: 0 0 14px;
+  font-size: 0.8125rem;
+  color: var(--md-sys-color-on-surface-variant);
   line-height: 1.4;
+}
+
+.setting-section > p {
+  margin-bottom: 12px;
 }
 
 .setting-control {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .setting-divider {
   height: 1px;
-  background-color: var(--md-sys-color-outline-variant, #e9e9e9);
-  margin: 16px 0 24px 0;
+  background-color: var(--md-sys-color-outline-variant);
+  margin: 16px 0;
 }
 
+/* ─── Palette picker ─────────────────────────────────────── */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.palette-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-low);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.palette-swatch:hover {
+  background: var(--md-sys-color-surface-container);
+  border-color: var(--md-sys-color-outline);
+}
+
+.palette-swatch--active {
+  border-color: var(--swatch-color);
+  background: var(--md-sys-color-surface-container);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--swatch-color) 25%, transparent);
+}
+
+.swatch-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  flex-shrink: 0;
+}
+
+.swatch-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+  white-space: nowrap;
+}
+
+.palette-swatch--active .swatch-label {
+  color: var(--md-sys-color-on-surface);
+}

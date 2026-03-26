@@ -44,7 +44,7 @@
     </app-seo-link>
 
     <m3-navigation-rail-item label="Theme" slot="bottom" (item-click)="toggleTheme()">
-      @if(currentTheme !== 'dark') {
+      @if(!isDarkTheme()) {
       <span slot="icon" class="material-symbols-outlined">dark_mode</span>
       } @else {
       <span slot="icon" class="material-symbols-outlined">light_mode</span>

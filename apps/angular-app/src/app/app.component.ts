@@ -138,12 +138,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleTheme() {
     this.closeComponentsMenu();
-    const currentTheme = this.#document.documentElement.getAttribute('theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const currentTheme = this.#document.documentElement.getAttribute('theme') || 'light';
+    const isDark = currentTheme.endsWith('dark') || currentTheme === 'dark';
+    const palette = currentTheme.replace(/-?dark$/, '').replace(/^light$/, '') || '';
+    const newTheme = isDark
+      ? (palette || 'light')
+      : (palette ? `${palette}-dark` : 'dark');
     this.#document.documentElement.setAttribute('theme', newTheme);
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('theme', newTheme);
-    }
+    if (typeof localStorage !== 'undefined') localStorage.setItem('theme', newTheme);
     this.currentTheme = newTheme;
   }
 
@@ -169,6 +171,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isComponentsRoute() {
     return this.componentMenuItems.some((item) => item.path === this.currentRoute());
+  }
+
+  isDarkTheme() {
+    return this.currentTheme === 'dark' || this.currentTheme.endsWith('-dark');
   }
 
   openComponentsMenu() {

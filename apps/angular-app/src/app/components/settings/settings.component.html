@@ -1,15 +1,37 @@
 <div class="settings-content">
+
   <div class="setting-item">
     <div class="setting-info">
       <h3>Dark Mode</h3>
-      <p>Switch between light and dark theme</p>
+      <p>Switch between light and dark</p>
     </div>
     <div class="setting-control">
-      <m3-switch 
+      <m3-switch
         [checked]="darkModeEnabled"
         (switch-change)="onDarkModeChange($event)"
         aria-label="Enable dark mode">
       </m3-switch>
+    </div>
+  </div>
+
+  <div class="setting-divider"></div>
+
+  <div class="setting-section">
+    <h3>Color palette</h3>
+    <p>Choose an accent color for the interface</p>
+    <div class="palette-grid">
+      @for (palette of palettes; track palette.id) {
+        <button
+          class="palette-swatch"
+          [class.palette-swatch--active]="activePalette === palette.id"
+          [style.--swatch-color]="palette.color"
+          (click)="setPalette(palette.id)"
+          [attr.aria-label]="palette.label"
+          [attr.aria-pressed]="activePalette === palette.id">
+          <span class="swatch-dot"></span>
+          <span class="swatch-label">{{ palette.label }}</span>
+        </button>
+      }
     </div>
   </div>
 
@@ -21,12 +43,12 @@
       <p>Test components in Right-to-Left mode</p>
     </div>
     <div class="setting-control">
-      <m3-switch 
+      <m3-switch
         [checked]="isRTL"
         (switch-change)="onRTLChange($event)"
         aria-label="Enable RTL layout">
       </m3-switch>
     </div>
   </div>
-</div>
 
+</div>
