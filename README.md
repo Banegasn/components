@@ -12,19 +12,26 @@ A growing collection of reusable, framework-agnostic web components built with m
 
 This repository contains a collection of web components that can be used in any JavaScript framework or vanilla JavaScript. Currently available:
 
-- **[@banegasn/m3-button](packages/m3-button)** - Material Design 3 Button component with 5 variants, accessibility support, and loading states
-- **[@banegasn/m3-card](packages/m3-card)** - Material Design 3 Card component with 3 variants (Elevated, Filled, Outlined), media support, and action slots
-- **[@banegasn/m3-navigation-bar](packages/m3-navigation-bar)** - Material Design 3 Navigation Bar component with responsive layouts, badge support, and auto-layout switching
-- **[@banegasn/m3-navigation-rail](packages/m3-navigation-rail)** - Material Design 3 Navigation Rail component with collapsible functionality, badges, and flexible slot system
-- **[@banegasn/m3-switch](packages/m3-switch)** - Material Design 3 Switch component for toggling between on and off states with accessibility support
-- **[@banegasn/m3-radio-button](packages/m3-radio-button)** - Material Design 3 Radio Button component for selecting a single option from a group with accessibility support
-- **[@banegasn/m3-search-bar](packages/m3-search-bar)** - Material Design 3 Search Bar component with support for leading and trailing content projection
-- **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu component for expressive menu interactions
-- **[@banegasn/m3-loading-indicator](packages/m3-loading-indicator)** - Material Design 3 Loading Indicator component with shape morphing
-- **[@banegasn/m3-menu](packages/m3-menu)** - Material Design 3 Menu component for displaying a list of choices
-- **[@banegasn/m3-split-button](packages/m3-split-button)** - Material Design 3 Split Button component with main action and dropdown
-
-> 🚀 **More components coming soon!** This repository will grow to include various web components for different use cases, not limited to Material Design 3.
+- **[@banegasn/m3-badge](packages/m3-badge)** - Material Design 3 Badge component for counts and status indicators
+- **[@banegasn/m3-button](packages/m3-button)** - Material Design 3 Button with 5 variants, 5 sizes, shape morphing, and loading states
+- **[@banegasn/m3-card](packages/m3-card)** - Material Design 3 Card with 3 variants (Elevated, Filled, Outlined), media and action slots
+- **[@banegasn/m3-checkbox](packages/m3-checkbox)** - Material Design 3 Checkbox with checked, unchecked, and indeterminate states
+- **[@banegasn/m3-chip](packages/m3-chip)** - Material Design 3 Chip for filters, selections, and input tags
+- **[@banegasn/m3-dialog](packages/m3-dialog)** - Material Design 3 Dialog with expressive open/close animations
+- **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu for expressive floating action interactions
+- **[@banegasn/m3-loading-indicator](packages/m3-loading-indicator)** - Material Design 3 Loading Indicator with shape morphing animation
+- **[@banegasn/m3-menu](packages/m3-menu)** - Material Design 3 Menu with smart positioning and keyboard navigation
+- **[@banegasn/m3-navigation-bar](packages/m3-navigation-bar)** - Material Design 3 Navigation Bar with responsive layouts and badge support
+- **[@banegasn/m3-navigation-rail](packages/m3-navigation-rail)** - Material Design 3 Navigation Rail with collapsible functionality and badges
+- **[@banegasn/m3-progress](packages/m3-progress)** - Material Design 3 Linear Progress Indicator with determinate and indeterminate modes
+- **[@banegasn/m3-radio-button](packages/m3-radio-button)** - Material Design 3 Radio Button for single-option selection from a group
+- **[@banegasn/m3-search-bar](packages/m3-search-bar)** - Material Design 3 Search Bar with leading and trailing content slots
+- **[@banegasn/m3-slider](packages/m3-slider)** - Material Design 3 Slider with continuous and discrete (stepped) modes
+- **[@banegasn/m3-split-button](packages/m3-split-button)** - Material Design 3 Split Button with primary action and dropdown
+- **[@banegasn/m3-switch](packages/m3-switch)** - Material Design 3 Switch for toggling between on and off states
+- **[@banegasn/m3-tabs](packages/m3-tabs)** - Material Design 3 Tabs with animated indicator and icon support
+- **[@banegasn/m3-text-field](packages/m3-text-field)** - Material Design 3 Text Field with filled and outlined variants
+- **[@banegasn/m3-tooltip](packages/m3-tooltip)** - Material Design 3 Tooltip with plain and rich variants
 
 ## 📚 Documentation
 
@@ -52,23 +59,34 @@ This monorepo is designed for building and distributing web components:
 
 ```
 .
-├── apps/                     # Demo applications
-│   └── angular-app/          # Angular demo showcasing web components
-├── packages/                 # Web component packages
-│   ├── m3-button/            # Material Design 3 Button
-│   ├── m3-card/              # Material Design 3 Card
-│   ├── m3-fab-menu/          # Material Design 3 FAB Menu
-│   ├── m3-loading-indicator/ # Material Design 3 Loading Indicator
-│   ├── m3-menu/              # Material Design 3 Menu
-│   ├── m3-navigation-bar/    # Material Design 3 Navigation Bar
-│   ├── m3-navigation-rail/   # Material Design 3 Navigation Rail
-│   ├── m3-radio-button/      # Material Design 3 Radio Button
-│   ├── m3-search-bar/        # Material Design 3 Search Bar
-│   ├── m3-split-button/      # Material Design 3 Split Button
-│   ├── m3-switch/            # Material Design 3 Switch
-├── pnpm-workspace.yaml       # PNPM workspace configuration
-├── turbo.json                # Turborepo configuration
-└── tsconfig.json             # Shared TypeScript config
+├── apps/
+│   └── angular-app/          # Angular demo showcasing all web components
+├── packages/
+│   ├── m3-badge/
+│   ├── m3-button/
+│   ├── m3-card/
+│   ├── m3-checkbox/
+│   ├── m3-chip/
+│   ├── m3-dialog/
+│   ├── m3-fab-menu/
+│   ├── m3-loading-indicator/
+│   ├── m3-menu/
+│   ├── m3-navigation-bar/
+│   ├── m3-navigation-rail/
+│   ├── m3-progress/
+│   ├── m3-radio-button/
+│   ├── m3-search-bar/
+│   ├── m3-slider/
+│   ├── m3-split-button/
+│   ├── m3-switch/
+│   ├── m3-tabs/
+│   ├── m3-text-field/
+│   ├── m3-tooltip/
+│   └── svelte-components/
+├── scripts/                  # Build, publish, and screenshot utilities
+├── pnpm-workspace.yaml
+├── turbo.json
+└── tsconfig.json
 ```
 
 ## 🚀 Quick Start
@@ -303,8 +321,11 @@ To publish web component packages to GitHub Packages (or npm):
 # Bump version
 pnpm version:patch  # or version:minor, version:major
 
-# Publish all packages
-pnpm publish:packages
+# Publish to npm
+pnpm publish:npm
+
+# Publish to GitHub Packages
+pnpm publish:github
 ```
 
 All web components are published as individual npm packages that can be installed and used in any project.
