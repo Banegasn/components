@@ -121,10 +121,6 @@
 }
 
 @media (max-width: 768px) {
-    .radio-button-page {
-        padding: 16px;
-    }
-
     .setting-item {
         flex-direction: column;
         align-items: flex-start;

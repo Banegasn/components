@@ -95,10 +95,6 @@
 }
 
 @media (max-width: 768px) {
-    .switch-page {
-        padding: 16px;
-    }
-
     .setting-item {
         flex-direction: column;
         align-items: flex-start;

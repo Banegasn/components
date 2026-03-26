@@ -45,12 +45,3 @@
   --md-sys-color-primary: var(--md-sys-color-on-surface);
 }
 
-@media (max-width: 600px) {
-  .search-bar-page {
-    padding: 16px;
-  }
-
-  .demo-container {
-    padding: 16px;
-  }
-}
