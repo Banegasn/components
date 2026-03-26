@@ -12,11 +12,17 @@ import { Router } from '@angular/router';
   styles: [`
     :host {
       display: contents;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
     }
     a {
       display: contents;
       text-decoration: none;
       color: inherit;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
     }
   `]
 })

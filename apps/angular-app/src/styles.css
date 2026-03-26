@@ -323,6 +323,26 @@ code {
   /* Hide icon text until font is loaded to prevent FOUT */
   opacity: 0;
   transition: opacity 0.15s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Disable tap highlight and text selection on interactive elements */
+button,
+a,
+[role="button"],
+m3-button,
+m3-navigation-rail-item,
+m3-navigation-rail-toggle,
+m3-menu-item,
+m3-fab,
+m3-switch,
+m3-checkbox,
+m3-radio-button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Once the font is available the browser applies it and we fade in */
