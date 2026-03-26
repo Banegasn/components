@@ -69,7 +69,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/components/"
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,
