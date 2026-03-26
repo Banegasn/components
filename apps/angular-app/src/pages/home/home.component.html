@@ -1,464 +1,254 @@
 <header class="hero">
-  <h1>Material 3 Web Components Library</h1>
+  <div class="hero-eyebrow">Material 3 Web Components</div>
+  <h1>Build beautiful UIs,<br>any framework.</h1>
   <p class="subtitle">
-    Framework-agnostic, reusable components built with modern web standards.<br>
-    Works seamlessly with Angular, React, Vue, Svelte, or vanilla JavaScript.
+    Framework-agnostic web components following the Material 3 spec.
+    Drop them into Angular, React, Vue, Svelte, or plain HTML.
   </p>
   <div class="button-group">
     <app-seo-link href="quick-start">
-      <m3-button variant="filled" size="large">
-        <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
-        Quick Start
-      </m3-button>
+      <m3-button variant="filled" size="large">Get started</m3-button>
     </app-seo-link>
     <app-seo-link href="components">
-      <m3-button variant="outlined" size="large">
-        <span slot="icon" class="material-symbols-outlined">browse</span>
-        Browse Components
-      </m3-button>
+      <m3-button variant="outlined" size="large">Browse components</m3-button>
     </app-seo-link>
-    <m3-button variant="tonal" size="large" (button-click)="openGitHub()">
+    <m3-button variant="text" size="large" (button-click)="openGitHub()">
       <span slot="icon" class="material-symbols-outlined">code</span>
-      View on GitHub
+      GitHub
     </m3-button>
   </div>
 </header>
 
 <section class="features">
-  <h2>Key Features</h2>
-  <div class="feature-grid">
-    <m3-card variant="elevated">
-      <div style="text-align: center;">
-        <span class="material-symbols-outlined"
-          style="font-size: 48px; color: var(--md-sys-color-primary); margin-bottom: 16px;">apps</span>
-        <h3 slot="header" style="text-align: center; margin: 0 0 8px 0;">Framework Agnostic</h3>
-        <p style="text-align: center; margin: 0;">Use these web components in any JavaScript framework or vanilla JS. No lock-in, maximum
-          flexibility.</p>
+  <div class="features-list">
+    <div class="feature-item">
+      <span class="feature-icon material-symbols-outlined">apps</span>
+      <div>
+        <h3>Framework agnostic</h3>
+        <p>Standard web components — no lock-in, works everywhere.</p>
       </div>
-    </m3-card>
-    <m3-card variant="elevated">
-      <div style="text-align: center;">
-        <span class="material-symbols-outlined"
-          style="font-size: 48px; color: var(--md-sys-color-primary); margin-bottom: 16px;">palette</span>
-        <h3 slot="header" style="text-align: center; margin: 0 0 8px 0;">Material Design 3</h3>
-        <p style="text-align: center; margin: 0;">Built following official Material 3 specifications with expressive design tokens and
-          modern aesthetics.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon material-symbols-outlined">palette</span>
+      <div>
+        <h3>Material Design 3</h3>
+        <p>Faithful to the spec, themeable via CSS custom properties.</p>
       </div>
-    </m3-card>
-    <m3-card variant="elevated">
-      <div style="text-align: center;">
-        <span class="material-symbols-outlined"
-          style="font-size: 48px; color: var(--md-sys-color-primary); margin-bottom: 16px;">accessible</span>
-        <h3 slot="header" style="text-align: center; margin: 0 0 8px 0;">Fully Accessible</h3>
-        <p style="text-align: center; margin: 0;">WCAG 2.1 compliant with ARIA support, keyboard navigation, and screen reader
-          compatibility.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon material-symbols-outlined">accessible</span>
+      <div>
+        <h3>Accessible</h3>
+        <p>ARIA support, keyboard navigation, screen reader friendly.</p>
       </div>
-    </m3-card>
-    <m3-card variant="elevated">
-      <div style="text-align: center;">
-        <span class="material-symbols-outlined"
-          style="font-size: 48px; color: var(--md-sys-color-primary); margin-bottom: 16px;">speed</span>
-        <h3 slot="header" style="text-align: center; margin: 0 0 8px 0;">Turborepo + PNPM</h3>
-        <p style="text-align: center; margin: 0;">Modern monorepo setup with intelligent build caching, parallelization, and efficient
-          dependency management.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon material-symbols-outlined">deployed_code</span>
+      <div>
+        <h3>Production ready</h3>
+        <p>Published to npm with TypeScript definitions and source maps.</p>
       </div>
-    </m3-card>
-    <m3-card variant="elevated">
-      <div style="text-align: center;">
-        <span class="material-symbols-outlined"
-          style="font-size: 48px; color: var(--md-sys-color-primary); margin-bottom: 16px;">tune</span>
-        <h3 slot="header" style="text-align: center; margin: 0 0 8px 0;">Customizable</h3>
-        <p style="text-align: center; margin: 0;">Themeable via CSS custom properties. Adapt colors, sizes, and spacing to match your brand.
-        </p>
-      </div>
-    </m3-card>
-    <m3-card variant="elevated">
-      <div style="text-align: center;">
-        <span class="material-symbols-outlined"
-          style="font-size: 48px; color: var(--md-sys-color-primary); margin-bottom: 16px;">deployed_code</span>
-        <h3 slot="header" style="text-align: center; margin: 0 0 8px 0;">Production Ready</h3>
-        <p style="text-align: center; margin: 0;">Published to npm, auto-deployed to GitHub Pages, with TypeScript definitions and source
-          maps.</p>
-      </div>
-    </m3-card>
+    </div>
   </div>
 </section>
 
 <section class="components">
-  <h2>Available Components</h2>
-  <div class="component-list">
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-button</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Material Design 3 button component with 5 variants (Filled, Elevated, Tonal, Outlined, Text), loading states, and icon support.
-      </p>
-      <div class="demo-buttons">
-        <m3-button variant="filled">Filled</m3-button>
-        <m3-button variant="elevated">Elevated</m3-button>
-        <m3-button variant="tonal">Tonal</m3-button>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-button')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="buttons">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-card</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Material Design 3 card component with 3 variants (Elevated, Filled, Outlined), support for media, actions, and flexible content
-        slots.</p>
-      <div class="component-features">
-        <span>✓ 3 Variants</span>
-        <span>✓ Media Support</span>
-        <span>✓ Action Slots</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-card')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="cards">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-navigation-rail</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Compact vertical navigation component for top-level destinations. Features expandable/collapsible functionality, badges, and
-        flexible slot system.</p>
-      <div class="component-features">
-        <span>✓ Collapsible</span>
-        <span>✓ Badge Support</span>
-        <span>✓ Bottom Slot</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-navigation-rail')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="navigation-rail">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-navigation-bar</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Horizontal navigation component for bottom navigation. Features responsive layouts (vertical/horizontal), badge support, and
-        auto-layout switching.</p>
-      <div class="component-features">
-        <span>✓ Responsive</span>
-        <span>✓ Badge Support</span>
-        <span>✓ Auto-layout</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-navigation-bar')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="navigation-bar">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-switch</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Material Design 3 switch component for toggling settings on or off. Features checked/unchecked states, disabled state, and
-        accessibility support.</p>
-      <div style="display: flex; gap: 24px; align-items: center; margin: 1rem 0;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <m3-switch></m3-switch>
-          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Off</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <m3-switch checked></m3-switch>
-          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">On</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <m3-switch disabled></m3-switch>
-          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Disabled</span>
-        </div>
-      </div>
-      <div class="component-features">
-        <span>✓ Toggle States</span>
-        <span>✓ Disabled Support</span>
-        <span>✓ Accessible</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-switch')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="switches">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-radio-button</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Material Design 3 radio button component for selecting a single option from a group. Features radio group management,
-        checked/unchecked states, and accessibility support.</p>
-      <div style="display: flex; gap: 24px; align-items: center; margin: 1rem 0;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <m3-radio-button name="home-preview" value="1"></m3-radio-button>
-          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Unchecked</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <m3-radio-button name="home-preview" value="2" checked></m3-radio-button>
-          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Checked</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <m3-radio-button name="home-preview" value="3" disabled></m3-radio-button>
-          <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Disabled</span>
-        </div>
-      </div>
-      <div class="component-features">
-        <span>✓ Radio Groups</span>
-        <span>✓ Disabled Support</span>
-        <span>✓ Accessible</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-radio-button')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="radio-buttons">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-search-bar</h3>
-          <span class="badge">v1.x</span>
-        </div>
-      </div>
-      <p>Material Design 3 search bar component with support for leading and trailing content projection slots. Perfect for search
-        interfaces with icons, buttons, or avatars.</p>
-      <div class="component-features">
-        <span>✓ Leading & Trailing Slots</span>
-        <span>✓ Keyboard Navigation</span>
-        <span>✓ Accessible</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-search-bar')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-        <app-seo-link href="search-bar">
-          <m3-button variant="text">
-            <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
-            View Details
-          </m3-button>
-        </app-seo-link>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-fab-menu</h3>
-          <span class="badge">v0.1</span>
-        </div>
-      </div>
-      <p>Material Design 3 FAB Menu component for expressive menu interactions.</p>
-      <div class="component-features">
-        <span>✓ Expressive</span>
-        <span>✓ Animated</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-fab-menu')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-loading-indicator</h3>
-          <span class="badge">v0.1</span>
-        </div>
-      </div>
-      <p>Material Design 3 Loading Indicator component with shape morphing capabilities.</p>
-      <div class="component-features">
-        <span>✓ Animated</span>
-        <span>✓ Variants</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-loading-indicator')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-menu</h3>
-          <span class="badge">v0.1</span>
-        </div>
-      </div>
-      <p>Material Design 3 Menu component for displaying a list of choices on a temporary surface.</p>
-      <div class="component-features">
-        <span>✓ Keyboard Navigation</span>
-        <span>✓ Accessible</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-menu')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-      </div>
-    </m3-card>
-
-    <m3-card variant="elevated">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">&#64;banegasn/m3-split-button</h3>
-          <span class="badge">v0.1</span>
-        </div>
-      </div>
-      <p>Material Design 3 Split Button component with main action and dropdown menu.</p>
-      <div class="component-features">
-        <span>✓ Animated</span>
-        <span>✓ Accessible</span>
-      </div>
-      <div slot="actions" class="actions">
-        <m3-button variant="text" (button-click)="openNpmPackage('m3-split-button')">
-          <span slot="icon" class="material-symbols-outlined">package</span>
-          npm
-        </m3-button>
-      </div>
-    </m3-card>
-
-    <m3-card variant="outlined">
-      <div slot="header">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-          <h3 style="margin: 0; flex: 1;">More Components Coming Soon!</h3>
-          <span class="badge coming">Soon</span>
-        </div>
-      </div>
-      <p>We're actively developing additional Material 3 components and exploring other design systems. Stay tuned for updates!</p>
-    </m3-card>
-  </div>
-</section>
-
-<section class="architecture">
-  <h2>Monorepo Architecture</h2>
-  <div class="architecture-content">
-    <div class="arch-column">
-      <h3>📦 Packages</h3>
-      <ul>
-        <li><code>m3-button</code> - Material 3 Button (Lit)</li>
-        <li><code>m3-card</code> - Material 3 Card (Lit)</li>
-        <li><code>m3-fab-menu</code> - Material 3 FAB Menu (Lit)</li>
-        <li><code>m3-loading-indicator</code> - Material 3 Loading Indicator (Lit)</li>
-        <li><code>m3-menu</code> - Material 3 Menu (Lit)</li>
-        <li><code>m3-navigation-bar</code> - Navigation Bar (Lit)</li>
-        <li><code>m3-navigation-rail</code> - Navigation Rail (Lit)</li>
-        <li><code>m3-radio-button</code> - Material 3 Radio Button (Lit)</li>
-        <li><code>m3-search-bar</code> - Material 3 Search Bar (Lit)</li>
-        <li><code>m3-split-button</code> - Material 3 Split Button (Lit)</li>
-        <li><code>m3-switch</code> - Material 3 Switch (Lit)</li>
-      </ul>
-    </div>
-    <div class="arch-column">
-      <h3>🎨 Demo Apps</h3>
-      <ul>
-        <li><code>angular-app</code> - Angular 18+ showcase</li>
-        <li>More demos planned (React, Vue)</li>
-      </ul>
-    </div>
-    <div class="arch-column">
-      <h3>🛠️ Tools</h3>
-      <ul>
-        <li>Turborepo for build orchestration</li>
-        <li>PNPM workspaces for dependencies</li>
-        <li>TypeScript for type safety</li>
-        <li>GitHub Actions for CI/CD</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="quick-start">
-  <h2>Quick Start</h2>
-  <div style="text-align: center; max-width: 600px; margin: 0 auto 32px;">
-    <p>Get up and running with Material 3 Web Components in minutes. Use them directly via CDN or install them via npm for your framework of
-      choice.</p>
-  </div>
-  <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;">
-    <app-seo-link href="quick-start">
-      <m3-button variant="filled" size="large">
-        <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
-        View Quick Start Guide
+  <div class="section-header">
+    <h2>Components</h2>
+    <app-seo-link href="components">
+      <m3-button variant="text">
+        View all
+        <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
       </m3-button>
     </app-seo-link>
-    <m3-button variant="outlined" size="large" (button-click)="openSimulation()">
-      <span slot="icon" class="material-symbols-outlined">dashboard</span>
-      View App Simulation
-    </m3-button>
   </div>
+
+  <div class="component-table">
+    <app-seo-link href="buttons">
+      <div class="component-row">
+        <span class="component-name">m3-button</span>
+        <span class="component-desc">5 variants · sizes · icon support · loading state</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="cards">
+      <div class="component-row">
+        <span class="component-name">m3-card</span>
+        <span class="component-desc">Elevated, filled, outlined · media &amp; action slots</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="navigation-rail">
+      <div class="component-row">
+        <span class="component-name">m3-navigation-rail</span>
+        <span class="component-desc">Collapsible vertical nav · badge support</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="navigation-bar">
+      <div class="component-row">
+        <span class="component-name">m3-navigation-bar</span>
+        <span class="component-desc">Responsive bottom nav · auto-layout switching</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="switches">
+      <div class="component-row">
+        <span class="component-name">m3-switch</span>
+        <span class="component-desc">Toggle · checked, unchecked &amp; disabled states</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="radio-buttons">
+      <div class="component-row">
+        <span class="component-name">m3-radio-button</span>
+        <span class="component-desc">Radio group management · accessibility support</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="checkboxes">
+      <div class="component-row">
+        <span class="component-name">m3-checkbox</span>
+        <span class="component-desc">Checked, unchecked &amp; indeterminate states</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="chips">
+      <div class="component-row">
+        <span class="component-name">m3-chip</span>
+        <span class="component-desc">Filter, input, suggestion &amp; assist variants</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="text-fields">
+      <div class="component-row">
+        <span class="component-name">m3-text-field</span>
+        <span class="component-desc">Filled &amp; outlined · validation · icon slots</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="sliders">
+      <div class="component-row">
+        <span class="component-name">m3-slider</span>
+        <span class="component-desc">Continuous &amp; discrete · range support</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="tabs">
+      <div class="component-row">
+        <span class="component-name">m3-tabs</span>
+        <span class="component-desc">Primary &amp; secondary tabs · icon support</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="dialog">
+      <div class="component-row">
+        <span class="component-name">m3-dialog</span>
+        <span class="component-desc">Modal dialogs · backdrop · action slots</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="search-bar">
+      <div class="component-row">
+        <span class="component-name">m3-search-bar</span>
+        <span class="component-desc">Leading &amp; trailing slots · keyboard navigation</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="badge">
+      <div class="component-row">
+        <span class="component-name">m3-badge</span>
+        <span class="component-desc">Notification badges · dot &amp; count variants</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="tooltip">
+      <div class="component-row">
+        <span class="component-name">m3-tooltip</span>
+        <span class="component-desc">Plain &amp; rich tooltips · placement control</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="progress">
+      <div class="component-row">
+        <span class="component-name">m3-progress</span>
+        <span class="component-desc">Linear &amp; circular · determinate &amp; indeterminate</span>
+        <span class="component-badge">v1.x</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="menu">
+      <div class="component-row">
+        <span class="component-name">m3-menu</span>
+        <span class="component-desc">Contextual menus · keyboard navigation · accessible</span>
+        <span class="component-badge">v0.1</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="split-button">
+      <div class="component-row">
+        <span class="component-name">m3-split-button</span>
+        <span class="component-desc">Main action + dropdown menu in one control</span>
+        <span class="component-badge">v0.1</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="fab-menu">
+      <div class="component-row">
+        <span class="component-name">m3-fab-menu</span>
+        <span class="component-desc">Floating action button with animated menu</span>
+        <span class="component-badge">v0.1</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+    <app-seo-link href="loading-indicator">
+      <div class="component-row">
+        <span class="component-name">m3-loading-indicator</span>
+        <span class="component-desc">Shape-morphing loading animation</span>
+        <span class="component-badge">v0.1</span>
+        <span class="component-arrow material-symbols-outlined">arrow_forward</span>
+      </div>
+    </app-seo-link>
+  </div>
+</section>
+
+<section class="install">
+  <h2>Install</h2>
+  <div class="install-options">
+    <div class="install-option">
+      <span class="install-label">npm</span>
+      <code>npm install &#64;banegasn/m3-button</code>
+    </div>
+    <div class="install-option">
+      <span class="install-label">CDN</span>
+      <code>unpkg.com/&#64;banegasn/m3-button</code>
+    </div>
+  </div>
+  <app-seo-link href="quick-start">
+    <m3-button variant="outlined">
+      <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
+      Full setup guide
+    </m3-button>
+  </app-seo-link>
+</section>
+
+<section class="frameworks">
+  <p class="frameworks-label">Works with</p>
   <div class="framework-badges">
     <span class="framework-badge">Angular</span>
     <span class="framework-badge">React</span>
@@ -468,29 +258,7 @@
   </div>
 </section>
 
-<section class="resources">
-  <h2>Resources & Links</h2>
-  <div class="resource-grid">
-    <m3-button size="medium" variant="outlined" (button-click)="openGitHub()">
-      <span slot="icon" class="material-symbols-outlined">code</span>
-      GitHub Repository
-    </m3-button>
-    <m3-button size="medium" variant="outlined" (button-click)="openMaterialDesign()">
-      <span slot="icon" class="material-symbols-outlined">design_services</span>
-      Material Design 3
-    </m3-button>
-    <m3-button size="medium" variant="outlined" (button-click)="openTurborepo()">
-      <span slot="icon" class="material-symbols-outlined">speed</span>
-      Turborepo Docs
-    </m3-button>
-    <m3-button size="medium" variant="outlined" (button-click)="openLitDocs()">
-      <span slot="icon" class="material-symbols-outlined">bolt</span>
-      Lit Documentation
-    </m3-button>
-  </div>
-</section>
-
 <footer class="home-footer">
-  <p>Built with ❤️ using Lit, Turborepo, and PNPM</p>
-  <p class="license">MIT Licensed • Open Source</p>
+  <p>Built with Lit · Turborepo · PNPM</p>
+  <p class="license">MIT License</p>
 </footer>

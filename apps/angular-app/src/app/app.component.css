@@ -7,59 +7,31 @@
 .app-container {
   flex: 1;
   overflow: auto;
-}
-
-/* Scrollbar styling - thin for both themes */
-.app-container {
   scrollbar-width: thin;
+  scrollbar-color: var(--md-sys-color-outline) transparent;
 }
 
 .app-container::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
+}
+
+.app-container::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .app-container::-webkit-scrollbar-thumb {
-  border-radius: 6px;
+  border-radius: 99px;
+  background: var(--md-sys-color-outline);
 }
 
-/* Light theme scrollbar */
-:host-context([theme="light"]) .app-container {
-  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05);
-}
-
-:host-context([theme="light"]) .app-container::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-:host-context([theme="light"]) .app-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-:host-context([theme="light"]) .app-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-/* Dark theme scrollbar */
-:host-context([theme="dark"]) .app-container {
-  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
-}
-
-:host-context([theme="dark"]) .app-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-:host-context([theme="dark"]) .app-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-:host-context([theme="dark"]) .app-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
+.app-container::-webkit-scrollbar-thumb:hover {
+  background: var(--md-sys-color-on-surface-variant);
 }
 
 .app-content {
   padding: clamp(16px, 3vw, 32px);
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -79,7 +51,7 @@
   width: 100%;
 }
 
-/* Navigation Bar - Mobile (hidden by default) */
+/* Navigation Bar - Mobile */
 .mobile-nav-shell {
   display: none;
   position: fixed;
@@ -102,17 +74,14 @@
 }
 
 @media (max-width: 768px) {
-  /* Hide navigation rail on mobile */
   .desktop-nav-shell {
     display: none;
   }
 
-  /* Show navigation bar on mobile */
   .mobile-nav-shell {
     display: block;
   }
 
-  /* Adjust app container for mobile */
   .app-container {
     padding-bottom: calc(1rem + 64px);
   }

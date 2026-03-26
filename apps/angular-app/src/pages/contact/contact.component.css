@@ -1,0 +1,84 @@
+.contact-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─── Contrib checklist ──────────────────────────────────── */
+.contrib-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contrib-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.5;
+}
+
+.contrib-list .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--md-sys-color-primary);
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* ─── Links ──────────────────────────────────────────────── */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.contact-link .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.contact-link:hover {
+  background: var(--md-sys-color-surface-container);
+  border-color: var(--md-sys-color-outline);
+}
+
+.contact-link--support {
+  border-color: #93c5fd;
+  color: #1d4ed8;
+  background: #eff6ff;
+}
+
+.contact-link--support:hover {
+  background: #dbeafe;
+  border-color: #60a5fa;
+}
+
+:root[theme="dark"] .contact-link--support {
+  border-color: #1e3a5f;
+  color: #93c5fd;
+  background: #0c1a2e;
+}
+
+:root[theme="dark"] .contact-link--support:hover {
+  background: #112240;
+  border-color: #2563eb;
+}

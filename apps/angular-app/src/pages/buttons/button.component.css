@@ -3,32 +3,37 @@ h4 {
 }
 
 .emphasis-badge {
-    padding: 4px 12px;
-    border-radius: 16px;
-    font-size: 0.75rem;
+    padding: 2px 9px;
+    border-radius: 8px;
+    font-size: 0.6875rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.04em;
+    border: 1px solid transparent;
 }
 
 .emphasis-badge.high {
-    background: #d32f2f;
-    color: white;
+    background: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+    border-color: var(--md-sys-color-error);
 }
 
 .emphasis-badge.medium-high {
-    background: #f57c00;
-    color: white;
+    background: var(--md-sys-color-tertiary-container);
+    color: var(--md-sys-color-on-tertiary-container);
+    border-color: var(--md-sys-color-tertiary);
 }
 
 .emphasis-badge.medium {
-    background: #fbc02d;
-    color: #1d1b20;
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-color: var(--md-sys-color-secondary);
 }
 
 .emphasis-badge.low {
-    background: #7cb342;
-    color: white;
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    border-color: var(--md-sys-color-primary);
 }
 
 .demo-buttons {
@@ -52,14 +57,14 @@ h4 {
 
 .demo-item {
     padding: 16px;
-    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    background: var(--md-sys-color-surface-variant);
     border-radius: 8px;
 }
 
 /* Code block styles moved to global styles.css */
 
 .interactive-demo {
-    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    background: var(--md-sys-color-surface-variant);
     padding: 24px;
     border-radius: 12px;
     margin: 24px 0;
@@ -68,7 +73,7 @@ h4 {
 .help-text {
     margin-top: 12px;
     font-size: 0.875rem;
-    color: var(--md-sys-color-on-surface-variant, #49454f);
+    color: var(--md-sys-color-on-surface-variant);
 }
 
 .full-width-demo {
@@ -77,12 +82,12 @@ h4 {
     flex-direction: column;
     gap: 12px;
     padding: 24px;
-    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    background: var(--md-sys-color-surface-variant);
     border-radius: 12px;
 }
 
 .pattern-card {
-    background: var(--md-sys-color-surface-variant, #e7e0ec);
+    background: var(--md-sys-color-surface-variant);
     padding: 24px;
     border-radius: 12px;
     margin-bottom: 16px;
@@ -91,7 +96,7 @@ h4 {
 .dialog-example {
     margin-top: 16px;
     padding: 16px;
-    background: var(--md-sys-color-surface, #fef7ff);
+    background: var(--md-sys-color-surface);
     border-radius: 8px;
 }
 
@@ -109,7 +114,7 @@ h4 {
 }
 
 .card-example {
-    background: var(--md-sys-color-surface, #fef7ff);
+    background: var(--md-sys-color-surface);
     padding: 16px;
     border-radius: 8px;
     margin-top: 16px;

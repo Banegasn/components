@@ -8,12 +8,12 @@
 .component-card {
     padding: 1.5rem;
     background-color: var(--md-sys-color-secondary-container);
-    border-radius: 0.75rem;
+    border-radius: 10px;
 }
 
 .component-card h3 {
     margin: 0 0 0.5rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
     font-size: 1rem;
 }
 
@@ -26,7 +26,7 @@
     margin-bottom: 2rem;
     padding: 2rem;
     background-color: var(--md-sys-color-surface-variant);
-    border-radius: 1rem;
+    border-radius: 12px;
 }
 
 .example-card h3 {
@@ -53,7 +53,7 @@
     flex: 1;
     padding: 1rem;
     background-color: var(--md-sys-color-surface);
-    border-radius: 0.5rem;
+    border-radius: 8px;
 }
 
 .demo-content p {
@@ -75,12 +75,12 @@
     margin-bottom: 2rem;
     padding: 2rem;
     background-color: var(--md-sys-color-secondary-container);
-    border-radius: 1rem;
+    border-radius: 10px;
 }
 
 .api-card h3 {
     margin: 0 0 0.75rem 0;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .api-card > p {
@@ -97,7 +97,7 @@
     width: 100%;
     border-collapse: collapse;
     background-color: var(--md-sys-color-surface);
-    border-radius: 0.5rem;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -120,8 +120,8 @@
 .api-table code {
     padding: 0.2rem 0.4rem;
     background-color: var(--md-sys-color-surface-variant);
-    border-radius: 0.25rem;
-    font-family: 'Courier New', monospace;
+    border-radius: 4px;
+    font-family: var(--font-mono);
     font-size: 0.9em;
 }
 
@@ -147,4 +147,3 @@
         grid-template-columns: 1fr;
     }
 }
-

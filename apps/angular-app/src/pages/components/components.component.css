@@ -1,117 +1,147 @@
-.page-header {
-    margin-bottom: 2rem;
+/* ─── Section groups ─────────────────────────────────────── */
+.comp-section {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
 
-.page-header h1 {
-    margin: 0 0 0.5rem 0;
+.comp-section:last-child {
+  border-bottom: none;
 }
 
-.subtitle {
-    font-size: 1.1rem;
-    opacity: 0.8;
-    margin: 0;
+.comp-section h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--md-sys-color-on-surface-variant);
+  margin: 0 0 12px;
 }
 
-.components-grid {
-    column-count: 3;
-    column-gap: 1rem;
+@media (max-width: 600px) {
+  .comp-section {
+    padding: 18px 0;
+  }
 }
 
-.components-grid > m3-card {
-    display: inline-block;
-    width: 100%;
-    break-inside: avoid;
-    page-break-inside: avoid;
+/* ─── Table ──────────────────────────────────────────────── */
+.comp-table {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 12px;
+  /* use clip-path instead of overflow:hidden so badge indicators aren't clipped */
+  clip-path: inset(0 round 12px);
+  min-width: 0;
+  width: 100%;
 }
 
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 1000px) {
-    .components-grid {
-        column-count: 2;
-        column-gap: 2rem;
-    }
+.comp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 280px) 20px;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  cursor: pointer;
+  transition: background 0.15s;
+  min-width: 0;
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    .components-grid {
-        column-count: 1;
-        column-gap: 2rem;
-    }
+.comp-table > :last-child .comp-row {
+  border-bottom: none;
 }
 
-.actions {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+.comp-row:hover {
+  background: var(--md-sys-color-surface-container-low);
 }
 
-.badge {
-    padding: 0.25rem 0.75rem;
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
-    border-radius: 1rem;
-    font-size: 0.85rem;
-    font-weight: 500;
+.comp-row:hover .comp-arrow {
+  color: var(--md-sys-color-primary);
+  transform: translateX(2px);
 }
 
-.upcoming-badge {
-    background-color: var(--md-sys-color-tertiary);
-    color: var(--md-sys-color-on-tertiary);
+/* ─── Info column ────────────────────────────────────────── */
+.comp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  overflow: hidden;
 }
 
-.description {
-    margin: 0;
-    line-height: 1.6;
+.comp-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--md-sys-color-on-surface);
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-.preview {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: var(--md-sys-color-surface-variant);
-    border-radius: 0.5rem;
+.comp-desc {
+  font-size: 0.8125rem;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.4;
+  min-width: 0;
 }
 
-.preview h3 {
-    margin: 0 0 1rem 0;
-    font-size: 1rem;
+/* ─── Preview column ─────────────────────────────────────── */
+.comp-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+.comp-preview--wide m3-slider,
+.comp-preview--wide m3-text-field,
+.comp-preview--wide m3-progress,
+.comp-preview--wide m3-tabs {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: block;
 }
 
-.feature-list, .roadmap-list {
-    display: grid;
-    gap: 0.5rem;
+/* badge indicators render above the element — give vertical breathing room */
+.comp-preview--badge {
+  padding-top: 12px;
+  align-items: flex-end;
 }
 
-.feature-item, .roadmap-item {
-    padding: 0.5rem 1rem;
-    background-color: var(--md-sys-color-surface-variant);
-    border-radius: 0.5rem;
+.comp-note {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 0.7;
+  font-style: italic;
+  white-space: nowrap;
 }
 
-.info-note {
-    padding: 1rem;
-    background-color: var(--md-sys-color-primary-container);
-    border-radius: 0.5rem;
-    margin: 0;
+/* ─── Arrow ──────────────────────────────────────────────── */
+.comp-arrow {
+  font-size: 16px;
+  color: var(--md-sys-color-outline);
+  transition: color 0.15s, transform 0.15s;
+  flex-shrink: 0;
+  justify-self: end;
 }
 
-.header-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+/* ─── Tablet: hide preview to avoid squeeze ─────────────── */
+@media (max-width: 768px) {
+  .comp-row {
+    grid-template-columns: minmax(0, 1fr) 20px;
+  }
+
+  .comp-preview {
+    display: none;
+  }
 }
 
-.header-content h2 {
-    margin: 0;
-    font-size: 1.3rem;
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .comp-row {
+    gap: 4px 8px;
+    padding: 11px 14px;
+  }
 }

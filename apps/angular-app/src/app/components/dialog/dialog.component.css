@@ -32,14 +32,14 @@
 }
 
 .dialog-container {
-  background-color: var(--md-sys-color-surface, #f5f5f5);
-  border-radius: 28px;
+  background-color: var(--md-sys-color-surface);
+  border-radius: 16px;
   width: var(--dialog-width, 90%);
   max-width: var(--dialog-max-width, 500px);
   max-height: 80vh;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--md-sys-color-outline-variant);
+  animation: slideUp 0.25s ease-out;
   display: flex;
   flex-direction: column;
 }
@@ -59,16 +59,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 24px 16px 24px;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant, #e9e9e9);
+  padding: 20px 20px 14px 20px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
   flex-shrink: 0;
 }
 
 .dialog-header h2 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--md-sys-color-on-surface, #141414);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
 }
 
 .dialog-content-wrapper {

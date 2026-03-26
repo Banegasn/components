@@ -99,7 +99,7 @@ export const m3ButtonStyles = css`
     padding: 0 var(--_spacing);
     border: none;
     border-radius: var(--_container-shape);
-    font-family: Roboto, system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: var(--_label-text-size);
     font-weight: var(--_label-text-weight);
     line-height: 20px;

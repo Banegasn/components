@@ -17,13 +17,13 @@
     align-items: center;
     gap: 12px;
     padding: 12px;
-    background: var(--md-sys-color-surface, #fffbfe);
+    background: var(--md-sys-color-surface);
     border-radius: 8px;
 }
 
 .radio-item label {
     font-size: 1rem;
-    color: var(--md-sys-color-on-surface, #1d1b20);
+    color: var(--md-sys-color-on-surface);
     font-weight: 400;
     cursor: pointer;
     flex: 1;
@@ -32,9 +32,9 @@
 .selection-info {
     margin: 16px 0 0 0;
     padding: 12px;
-    background: var(--md-sys-color-primary-container, #e8def8);
+    background: var(--md-sys-color-primary-container);
     border-radius: 8px;
-    color: var(--md-sys-color-on-primary-container, #1d192b);
+    color: var(--md-sys-color-on-primary-container);
     font-size: 0.9375rem;
 }
 
@@ -50,7 +50,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px;
-    background: var(--md-sys-color-surface, #fffbfe);
+    background: var(--md-sys-color-surface);
     border-radius: 12px;
     gap: 16px;
     cursor: pointer;
@@ -71,13 +71,13 @@
     font-size: 1rem;
     font-weight: 500;
     margin: 0 0 4px 0;
-    color: var(--md-sys-color-on-surface, #1d1b20);
+    color: var(--md-sys-color-on-surface);
 }
 
 .setting-info p {
     font-size: 0.875rem;
     margin: 0;
-    color: var(--md-sys-color-on-surface-variant, #49454f);
+    color: var(--md-sys-color-on-surface-variant);
     line-height: 1.4;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .props-table thead {
-    background: var(--md-sys-color-surface-container-highest, #e6e0e9);
+    background: var(--md-sys-color-surface-container-highest);
 }
 
 .props-table th {
@@ -96,24 +96,24 @@
     padding: 12px 16px;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--md-sys-color-on-surface, #1d1b20);
-    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+    color: var(--md-sys-color-on-surface);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
 
 .props-table td {
     padding: 12px 16px;
     font-size: 0.875rem;
-    color: var(--md-sys-color-on-surface-variant, #49454f);
-    border-bottom: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+    color: var(--md-sys-color-on-surface-variant);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
 
 .props-table code {
-    font-family: 'Roboto Mono', monospace;
-    background: var(--md-sys-color-surface-container-highest, #e6e0e9);
+    font-family: var(--font-mono);
+    background: var(--md-sys-color-surface-container-highest);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.8125rem;
-    color: var(--md-sys-color-primary, #6750a4);
+    color: var(--md-sys-color-primary);
 }
 
 .props-table tbody tr:last-child td {
@@ -123,10 +123,6 @@
 @media (max-width: 768px) {
     .radio-button-page {
         padding: 16px;
-    }
-
-    .page-header h1 {
-        font-size: 2rem;
     }
 
     .setting-item {
@@ -143,4 +139,3 @@
         padding: 8px 12px;
     }
 }
-

@@ -1,118 +1,74 @@
-/* Use styles similar to components.component.css */
-
-.page-header {
-  margin-bottom: 2rem;
-}
-
-.page-header h1 {
-  margin: 0 0 0.5rem 0;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  opacity: 0.8;
-  margin: 0;
-  color: var(--md-sys-color-on-surface-variant);
-  line-height: 1.6;
-}
-
-.quick-start-section {
-  margin-bottom: 3rem;
-  max-width: 800px;
-}
-
-.header-content {
+.qs-sections {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  max-width: 760px;
 }
 
-.header-content h2 {
-  margin: 0;
-  font-size: 1.3rem;
-}
-
-.description {
-  margin: 0 0 1rem 0;
-  line-height: 1.6;
-  color: var(--md-sys-color-on-surface-variant);
-  font-size: 1rem;
-}
-
-.preview h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--md-sys-color-on-surface);
-}
-
+/* ─── Install grid ───────────────────────────────────────── */
 .code-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
+.code-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--md-sys-color-on-surface-variant);
+  margin: 0 0 6px;
+}
+
+/* ─── Demo showcase ──────────────────────────────────────── */
 .demo-showcase {
-  background: var(--md-sys-color-surface);
-  border-radius: 16px;
-  padding: 2rem;
   border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--md-sys-color-surface-container-low);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 20px;
 }
 
 .demo-images {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 2rem;
+  gap: 24px;
   width: 100%;
 }
 
 .demo-image {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   border: 1px solid var(--md-sys-color-outline-variant);
-  max-height: 400px;
   object-fit: contain;
+  max-height: 360px;
 }
 
-.demo-image.desktop {
-  width: 65%;
+.demo-image--desktop { width: 65%; }
+.demo-image--mobile  { width: 22%; }
+
+.demo-cta {
+  text-decoration: none;
 }
 
-.demo-image.mobile {
-  width: 25%;
-}
-
-.demo-actions {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding-top: 1rem;
-}
-
-@media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 2rem;
-  }
-  
-  .header-content h2 {
-    font-size: 1.25rem;
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .code-grid {
+    grid-template-columns: 1fr;
   }
 
   .demo-images {
     flex-direction: column;
     align-items: center;
   }
-  
-  .demo-image.desktop, .demo-image.mobile {
+
+  .demo-image--desktop,
+  .demo-image--mobile {
     width: 100%;
-    max-width: 400px;
+    max-width: 360px;
   }
 }
