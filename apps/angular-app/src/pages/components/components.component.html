@@ -4,7 +4,7 @@
         <p class="subtitle">Available Material 3 components in the library.</p>
     </header>
     <div class="components-grid">
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🎨 Buttons</h2>
@@ -45,7 +45,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🎴 Cards</h2>
@@ -54,7 +54,8 @@
             </div>
             <p class="description">
                 Cards contain content and actions about a single subject.
-                Available in 3 variants: elevated, filled, and outlined, with support for media, actions, and interactions.
+                Available in 3 variants: elevated, filled, and outlined, with support for media, actions, and
+                interactions.
             </p>
 
             <div class="feature-list" style="margin-top: 1rem;">
@@ -72,7 +73,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🧭 Navigation Rail</h2>
@@ -104,7 +105,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>📱 Navigation Bar</h2>
@@ -136,7 +137,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🔘 Switches</h2>
@@ -144,7 +145,8 @@
                 </div>
             </div>
             <p class="description">
-                Switches toggle the state of a single setting on or off. They are the preferred way to adjust settings on
+                Switches toggle the state of a single setting on or off. They are the preferred way to adjust settings
+                on
                 mobile.
             </p>
 
@@ -158,7 +160,8 @@
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
                         <m3-switch checked></m3-switch>
-                        <span style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">On</span>
+                        <span
+                            style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">On</span>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
                         <m3-switch disabled></m3-switch>
@@ -176,7 +179,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🔘 Radio Buttons</h2>
@@ -184,7 +187,8 @@
                 </div>
             </div>
             <p class="description">
-                Radio buttons allow users to select a single option from a group of options. They are best used when users
+                Radio buttons allow users to select a single option from a group of options. They are best used when
+                users
                 need to see all available options.
             </p>
 
@@ -217,7 +221,94 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>☑️ Checkboxes</h2>
+                    <span class="badge">Interactive</span>
+                </div>
+            </div>
+            <p class="description">
+                Checkboxes allow the user to select one or more items from a set. They can also reflect an indeterminate
+                state.
+            </p>
+
+            <div class="preview">
+                <h3>Checkbox States</h3>
+                <div class="switch-group" style="display: flex; gap: 24px; align-items: center; margin-top: 1rem;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                        <m3-checkbox></m3-checkbox>
+                        <span
+                            style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Unchecked</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                        <m3-checkbox checked></m3-checkbox>
+                        <span
+                            style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Checked</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                        <m3-checkbox indeterminate></m3-checkbox>
+                        <span
+                            style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant, #49454f);">Indeterminate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div slot="actions" class="actions">
+                <app-seo-link href="checkboxes">
+                    <m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button>
+                </app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>🎚️ Sliders</h2>
+                    <span class="badge">Interactive</span>
+                </div>
+            </div>
+            <p class="description">
+                Sliders allow users to make selections from a range of values.
+            </p>
+
+            <div class="preview" style="padding: 16px 0;">
+                <m3-slider min="0" max="100" value="70" style="width: 100%;"></m3-slider>
+            </div>
+
+            <div slot="actions" class="actions">
+                <app-seo-link href="sliders">
+                    <m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button>
+                </app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>📝 Text Fields</h2>
+                    <span class="badge">Input</span>
+                </div>
+            </div>
+            <p class="description">
+                Text fields let users enter and edit text.
+            </p>
+
+            <div class="preview" style="padding: 16px;">
+                <m3-text-field label="Example Label" style="width: 100%;"></m3-text-field>
+            </div>
+
+            <div slot="actions" class="actions">
+                <app-seo-link href="text-fields">
+                    <m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button>
+                </app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🔍 Search Bar</h2>
@@ -225,7 +316,8 @@
                 </div>
             </div>
             <p class="description">
-                A search bar component with support for leading and trailing content projection slots. Perfect for search
+                A search bar component with support for leading and trailing content projection slots. Perfect for
+                search
                 interfaces with icons, buttons, or avatars.
             </p>
 
@@ -244,7 +336,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>✂️ Split Button</h2>
@@ -270,7 +362,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>☰ Menu</h2>
@@ -295,7 +387,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>⏳ Loading Indicator</h2>
@@ -320,7 +412,7 @@
             </div>
         </m3-card>
 
-        <m3-card variant="elevated">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
                     <h2>🍔 FAB Menu</h2>
@@ -346,28 +438,131 @@
             </div>
         </m3-card>
 
-        <m3-card variant="outlined">
+        <m3-card variant="elevated" width="full">
             <div slot="header">
                 <div class="header-content">
-                    <h2>🚀 More Components</h2>
-                    <span class="badge upcoming-badge">Coming Soon</span>
+                    <h2>🏷️ Chips</h2>
+                    <span class="badge">Interactive</span>
                 </div>
             </div>
-            <p class="description">
-                We're actively developing more Material Design 3 components. Here's what's on the roadmap:
-            </p>
-
-            <div class="roadmap-list" style="margin-top: 1rem;">
-                <div class="roadmap-item">📝 Text Fields & Input</div>
-                <div class="roadmap-item">📋 Lists & Data Tables</div>
-                <div class="roadmap-item">🎚️ Sliders & Controls</div>
-                <div class="roadmap-item">💬 Dialogs & Modals</div>
-                <div class="roadmap-item">🎨 Chips & Badges</div>
+            <p class="description">Chips help people enter information, make selections, filter content, or trigger
+                actions.</p>
+            <div class="preview">
+                <div class="switch-group"
+                    style="display: flex; gap: 12px; align-items: center; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <m3-chip variant="assist">Assist</m3-chip>
+                    <m3-chip variant="filter" selected>Filter</m3-chip>
+                    <m3-chip variant="input" removable>Input</m3-chip>
+                    <m3-chip variant="suggestion">Suggestion</m3-chip>
+                </div>
             </div>
+            <div slot="actions" class="actions">
+                <app-seo-link href="chips"><m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button></app-seo-link>
+            </div>
+        </m3-card>
 
-            <p class="info-note" style="margin-top: 1rem;">
-                Want to contribute or request a component? Visit our GitHub repository!
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>💬 Dialog</h2>
+                    <span class="badge">Surface</span>
+                </div>
+            </div>
+            <p class="description">Dialogs provide important prompts in a user flow. They can require an action,
+                communicate information, or help users accomplish a task.</p>
+            <div class="feature-list" style="margin-top: 1rem;">
+                <div class="feature-item">✓ Scrim overlay</div>
+                <div class="feature-item">✓ Focus trapping</div>
+                <div class="feature-item">✓ Keyboard dismiss</div>
+            </div>
+            <div slot="actions" class="actions">
+                <app-seo-link href="dialog"><m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button></app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>💡 Tooltip</h2>
+                    <span class="badge">Utility</span>
+                </div>
+            </div>
+            <p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.
             </p>
+            <div class="feature-list" style="margin-top: 1rem;">
+                <div class="feature-item">✓ Plain & rich variants</div>
+                <div class="feature-item">✓ Configurable placement</div>
+                <div class="feature-item">✓ Hover & focus triggers</div>
+            </div>
+            <div slot="actions" class="actions">
+                <app-seo-link href="tooltip"><m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button></app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>🔴 Badge</h2>
+                    <span class="badge">Status</span>
+                </div>
+            </div>
+            <p class="description">Badges convey dynamic information, such as a count or status. They can be a dot or
+                include a short label.</p>
+            <div class="preview" style="margin-top: 1rem;">
+                <div class="switch-group"
+                    style="display: flex; gap: 48px; align-items: center; justify-content: center;">
+                    <m3-badge><span class="material-symbols-outlined" style="font-size:32px;">mail</span></m3-badge>
+                    <m3-badge label="5"><span class="material-symbols-outlined"
+                            style="font-size:32px;">notifications</span></m3-badge>
+                </div>
+            </div>
+            <div slot="actions" class="actions">
+                <app-seo-link href="badge"><m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button></app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>📊 Progress Indicator</h2>
+                    <span class="badge">Status</span>
+                </div>
+            </div>
+            <p class="description">Progress indicators express an unspecified wait time or display the length of a
+                process.</p>
+            <div class="preview" style="padding: 16px 0;">
+                <m3-progress value="0.6" style="width: 100%;"></m3-progress>
+            </div>
+            <div slot="actions" class="actions">
+                <app-seo-link href="progress"><m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button></app-seo-link>
+            </div>
+        </m3-card>
+
+        <m3-card variant="elevated" width="full">
+            <div slot="header">
+                <div class="header-content">
+                    <h2>📑 Tabs</h2>
+                    <span class="badge">Navigation</span>
+                </div>
+            </div>
+            <p class="description">Tabs organize content across different screens, data sets, and other interactions.
+            </p>
+            <div class="preview" style="padding: 16px 0;">
+                <m3-tabs style="width: 100%;">
+                    <m3-tab>Flights</m3-tab>
+                    <m3-tab>Hotels</m3-tab>
+                    <m3-tab>Explore</m3-tab>
+                </m3-tabs>
+            </div>
+            <div slot="actions" class="actions">
+                <app-seo-link href="tabs"><m3-button variant="elevated" size="medium">View Full
+                        Documentation</m3-button></app-seo-link>
+            </div>
         </m3-card>
     </div>
 </div>

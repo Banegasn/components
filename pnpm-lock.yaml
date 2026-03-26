@@ -44,12 +44,24 @@ importers:
       '@angular/ssr':
         specifier: ^20.3.7
         version: 20.3.20(v5fzicpotg7vplkjbuhe6q6eqa)
+      '@banegasn/m3-badge':
+        specifier: workspace:*
+        version: link:../../packages/m3-badge
       '@banegasn/m3-button':
         specifier: workspace:*
         version: link:../../packages/m3-button
       '@banegasn/m3-card':
         specifier: workspace:*
         version: link:../../packages/m3-card
+      '@banegasn/m3-checkbox':
+        specifier: workspace:*
+        version: link:../../packages/m3-checkbox
+      '@banegasn/m3-chip':
+        specifier: workspace:*
+        version: link:../../packages/m3-chip
+      '@banegasn/m3-dialog':
+        specifier: workspace:*
+        version: link:../../packages/m3-dialog
       '@banegasn/m3-fab-menu':
         specifier: workspace:^
         version: link:../../packages/m3-fab-menu
@@ -65,18 +77,33 @@ importers:
       '@banegasn/m3-navigation-rail':
         specifier: workspace:*
         version: link:../../packages/m3-navigation-rail
+      '@banegasn/m3-progress':
+        specifier: workspace:*
+        version: link:../../packages/m3-progress
       '@banegasn/m3-radio-button':
         specifier: workspace:*
         version: link:../../packages/m3-radio-button
       '@banegasn/m3-search-bar':
         specifier: workspace:*
         version: link:../../packages/m3-search-bar
+      '@banegasn/m3-slider':
+        specifier: workspace:*
+        version: link:../../packages/m3-slider
       '@banegasn/m3-split-button':
         specifier: workspace:^
         version: link:../../packages/m3-split-button
       '@banegasn/m3-switch':
         specifier: workspace:*
         version: link:../../packages/m3-switch
+      '@banegasn/m3-tabs':
+        specifier: workspace:*
+        version: link:../../packages/m3-tabs
+      '@banegasn/m3-text-field':
+        specifier: workspace:*
+        version: link:../../packages/m3-text-field
+      '@banegasn/m3-tooltip':
+        specifier: workspace:*
+        version: link:../../packages/m3-tooltip
       highlight.js:
         specifier: ^11.11.1
         version: 11.11.1
@@ -109,6 +136,16 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1
 
+  packages/m3-badge:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
   packages/m3-button:
     dependencies:
       lit:
@@ -120,6 +157,36 @@ importers:
         version: 5.9.3
 
   packages/m3-card:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-checkbox:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-chip:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-dialog:
     dependencies:
       lit:
         specifier: ^3.2.0
@@ -179,6 +246,16 @@ importers:
         specifier: ^5.6.3
         version: 5.9.3
 
+  packages/m3-progress:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
   packages/m3-radio-button:
     dependencies:
       lit:
@@ -199,6 +276,16 @@ importers:
         specifier: ^5.6.3
         version: 5.9.3
 
+  packages/m3-slider:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
   packages/m3-split-button:
     dependencies:
       lit:
@@ -210,6 +297,36 @@ importers:
         version: 5.9.3
 
   packages/m3-switch:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-tabs:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-text-field:
+    dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
+  packages/m3-tooltip:
     dependencies:
       lit:
         specifier: ^3.2.0
@@ -1025,9 +1142,6 @@ packages:
     peerDependencies:
       '@inquirer/prompts': '>= 3 < 8'
       listr2: 9.0.1
-
-  '@lit-labs/ssr-dom-shim@1.4.0':
-    resolution: {integrity: sha512-ficsEARKnmmW5njugNYKipTm4SFnbik7CXtoencDZzmzo/dQ+2Q0bgkzJuoJP20Aj0F+izzJjOqsnkd6F/o1bw==}
 
   '@lit-labs/ssr-dom-shim@1.5.1':
     resolution: {integrity: sha512-Aou5UdlSpr5whQe8AA/bZG0jMj96CoJIWbGfZ91qieWu5AWUMKw8VR/pAkQkJYvBNhmCcWnZlyyk5oze8JIqYA==}
@@ -3869,13 +3983,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@lit-labs/ssr-dom-shim@1.4.0': {}
-
   '@lit-labs/ssr-dom-shim@1.5.1': {}
 
   '@lit/reactive-element@2.1.1':
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.4.0
+      '@lit-labs/ssr-dom-shim': 1.5.1
 
   '@lmdb/lmdb-darwin-arm64@3.4.2':
     optional: true
@@ -5059,7 +5171,7 @@ snapshots:
 
   lit-element@4.2.1:
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.4.0
+      '@lit-labs/ssr-dom-shim': 1.5.1
       '@lit/reactive-element': 2.1.1
       lit-html: 3.3.1
 

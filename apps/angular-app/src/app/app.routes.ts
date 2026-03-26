@@ -14,6 +14,15 @@ import { LoadingIndicatorComponent } from '../pages/loading-indicator/loading-in
 import { FabMenuComponent } from '../pages/fab-menu/fab-menu.component';
 import { MenuComponent } from '../pages/menu/menu.component';
 import { QuickStartComponent } from '../pages/quick-start/quick-start.component';
+import { CheckboxComponent } from '../pages/checkbox/checkbox.component';
+import { SliderComponent } from '../pages/slider/slider.component';
+import { TextFieldComponent } from '../pages/text-field/text-field.component';
+import { DialogComponent } from '../pages/dialog/dialog.component';
+import { ChipsComponent } from '../pages/chips/chips.component';
+import { TooltipComponent } from '../pages/tooltip/tooltip.component';
+import { BadgeComponent } from '../pages/badge/badge.component';
+import { ProgressComponent } from '../pages/progress/progress.component';
+import { TabsComponent } from '../pages/tabs/tabs.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -83,6 +92,78 @@ export const routes: Routes = [
         title: 'Radio Buttons',
         data: {
             description: 'Material 3 Expressive Radio Button components for selecting a single option from a list.'
+        }
+    },
+    {
+        path: 'checkboxes',
+        component: CheckboxComponent,
+        title: 'Checkboxes',
+        data: {
+            description: 'Material 3 Expressive Checkbox components for selecting multiple options.'
+        }
+    },
+    {
+        path: 'sliders',
+        component: SliderComponent,
+        title: 'Sliders',
+        data: {
+            description: 'Material 3 Expressive Slider components for selecting from a range of values.'
+        }
+    },
+    {
+        path: 'text-fields',
+        component: TextFieldComponent,
+        title: 'Text Fields',
+        data: {
+            description: 'Material 3 Expressive Text Field components for entering text.'
+        }
+    },
+    {
+        path: 'chips',
+        component: ChipsComponent,
+        title: 'Chips',
+        data: {
+            description: 'Material 3 Expressive Chip components for entering information, making selections, filtering content, or triggering actions.'
+        }
+    },
+    {
+        path: 'dialog',
+        component: DialogComponent,
+        title: 'Dialog',
+        data: {
+            description: 'Material 3 Expressive Dialog component for important prompts in a user flow.'
+        }
+    },
+    {
+        path: 'tooltip',
+        component: TooltipComponent,
+        title: 'Tooltip',
+        data: {
+            description: 'Material 3 Expressive Tooltip component for informative text on hover or focus.'
+        }
+    },
+    {
+        path: 'badge',
+        component: BadgeComponent,
+        title: 'Badge',
+        data: {
+            description: 'Material 3 Expressive Badge component for conveying dynamic information like counts or status.'
+        }
+    },
+    {
+        path: 'progress',
+        component: ProgressComponent,
+        title: 'Progress Indicator',
+        data: {
+            description: 'Material 3 Expressive Linear Progress Indicator for displaying operation status.'
+        }
+    },
+    {
+        path: 'tabs',
+        component: TabsComponent,
+        title: 'Tabs',
+        data: {
+            description: 'Material 3 Expressive Tabs component for organizing content across screens.'
         }
     },
     {

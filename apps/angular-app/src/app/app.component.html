@@ -4,61 +4,50 @@
     <m3-navigation-rail-toggle></m3-navigation-rail-toggle>
 
     <app-seo-link href="home">
-      <m3-navigation-rail-item label="Home"
-        [active]="currentRoute() === '/home'">
+      <m3-navigation-rail-item label="Home" [active]="currentRoute() === '/home'">
         <span slot="icon" class="material-symbols-outlined">home</span>
       </m3-navigation-rail-item>
     </app-seo-link>
 
     <app-seo-link href="quick-start">
-      <m3-navigation-rail-item label="Quick Start"
-        [active]="currentRoute() === '/quick-start'">
+      <m3-navigation-rail-item label="Quick Start" [active]="currentRoute() === '/quick-start'">
         <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
       </m3-navigation-rail-item>
     </app-seo-link>
 
-    <div class="desktop-components-trigger"
-      (mouseenter)="onDesktopComponentsMouseEnter()"
-      (mouseleave)="onDesktopComponentsMouseLeave()"
-      (menu-item-select)="onComponentsMenuItemSelect($event)">
+    <div class="desktop-components-trigger" (mouseenter)="onDesktopComponentsMouseEnter()"
+      (mouseleave)="onDesktopComponentsMouseLeave()" (menu-item-select)="onComponentsMenuItemSelect($event)">
       <app-seo-link href="components">
-        <m3-navigation-rail-item label="Components"
-          [active]="isComponentsRoute()">
+        <m3-navigation-rail-item label="Components" [active]="isComponentsRoute()">
           <span slot="icon" class="material-symbols-outlined">browse</span>
         </m3-navigation-rail-item>
       </app-seo-link>
 
-      <m3-menu
-        placement="right-start"
-        [offset]="railExpanded() ? 24 : 8"
-        [open]="componentsMenuOpen()"
-        (mouseenter)="onDesktopComponentsMouseEnter()"
-        (mouseleave)="onDesktopComponentsMouseLeave()"
-        (menu-dismiss)="onComponentsMenuDismiss($event)"
-        style="--md-menu-max-height: calc(100vh - 200px);">
+      <m3-menu placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()"
+        (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
+        (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-menu-max-height: calc(100vh - 400px);">
         @for (item of componentMenuItems; track item.path) {
-          <app-seo-link [href]="item.path.substring(1)">
-            <m3-menu-item [value]="item.path">
-              <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
-              {{ item.label }}
-            </m3-menu-item>
-          </app-seo-link>
+        <app-seo-link [href]="item.path.substring(1)">
+          <m3-menu-item [value]="item.path">
+            <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
+            {{ item.label }}
+          </m3-menu-item>
+        </app-seo-link>
         }
       </m3-menu>
     </div>
 
     <app-seo-link href="contact">
-      <m3-navigation-rail-item label="Contact"
-        [active]="currentRoute() === '/contact'">
+      <m3-navigation-rail-item label="Contact" [active]="currentRoute() === '/contact'">
         <span slot="icon" class="material-symbols-outlined">person</span>
       </m3-navigation-rail-item>
     </app-seo-link>
 
     <m3-navigation-rail-item label="Theme" slot="bottom" (item-click)="toggleTheme()">
       @if(currentTheme !== 'dark') {
-        <span slot="icon" class="material-symbols-outlined">dark_mode</span>
+      <span slot="icon" class="material-symbols-outlined">dark_mode</span>
       } @else {
-        <span slot="icon" class="material-symbols-outlined">light_mode</span>
+      <span slot="icon" class="material-symbols-outlined">light_mode</span>
       }
     </m3-navigation-rail-item>
 
@@ -67,7 +56,8 @@
     </m3-navigation-rail-item>
 
     <m3-navigation-rail-item label="GitHub" slot="bottom" (item-click)="openGitHub()">
-      <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+        fill="currentColor">
         <path
           d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
       </svg>
@@ -81,66 +71,49 @@
   </div>
 </div>
 
-<div class="mobile-nav-shell"
-  (menu-item-select)="onComponentsMenuItemSelect($event)">
+<div class="mobile-nav-shell" (menu-item-select)="onComponentsMenuItemSelect($event)">
   <div class="mobile-components-anchor">
-    <m3-menu
-      placement="top-center"
-      [offset]="12"
-      [open]="componentsMenuOpen()"
-      (menu-dismiss)="onComponentsMenuDismiss($event)"
-      style="--md-menu-max-height: calc(100dvh - 120px);">
+    <m3-menu placement="top-center" [offset]="12" [open]="componentsMenuOpen()"
+      (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-menu-max-height: calc(100dvh - 200px);">
       @for (item of componentMenuItems; track item.path) {
-        <app-seo-link [href]="item.path.substring(1)">
-          <m3-menu-item [value]="item.path">
-            <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
-            {{ item.label }}
-          </m3-menu-item>
-        </app-seo-link>
+      <app-seo-link [href]="item.path.substring(1)">
+        <m3-menu-item [value]="item.path">
+          <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
+          {{ item.label }}
+        </m3-menu-item>
+      </app-seo-link>
       }
     </m3-menu>
   </div>
 
   <m3-navigation-bar class="mobile-nav" auto-layout>
     <app-seo-link href="home">
-      <m3-navigation-bar-item
-        label="Home"
-        [active]="currentRoute() === '/home'">
+      <m3-navigation-bar-item label="Home" [active]="currentRoute() === '/home'">
         <span slot="icon" class="material-symbols-outlined">home</span>
       </m3-navigation-bar-item>
     </app-seo-link>
 
     <app-seo-link href="quick-start">
-      <m3-navigation-bar-item
-        label="Quick Start"
-        [active]="currentRoute() === '/quick-start'">
+      <m3-navigation-bar-item label="Quick Start" [active]="currentRoute() === '/quick-start'">
         <span slot="icon" class="material-symbols-outlined">rocket_launch</span>
       </m3-navigation-bar-item>
     </app-seo-link>
 
     <app-seo-link href="components">
-      <m3-navigation-bar-item
-        id="mobile-components-trigger"
-        label="Components"
-        [active]="isComponentsRoute()"
-        (pointerdown)="onMobileComponentsPointerDown($event)"
-        (pointerup)="onMobileComponentsPointerUp($event)"
-        (pointercancel)="onMobileComponentsPointerCancel($event)"
-        (contextmenu)="onMobileComponentsContextMenu($event)">
+      <m3-navigation-bar-item id="mobile-components-trigger" label="Components" [active]="isComponentsRoute()"
+        (pointerdown)="onMobileComponentsPointerDown($event)" (pointerup)="onMobileComponentsPointerUp($event)"
+        (pointercancel)="onMobileComponentsPointerCancel($event)" (contextmenu)="onMobileComponentsContextMenu($event)">
         <span slot="icon" class="material-symbols-outlined">browse</span>
       </m3-navigation-bar-item>
     </app-seo-link>
 
     <app-seo-link href="contact">
-      <m3-navigation-bar-item
-        label="Contact"
-        [active]="currentRoute() === '/contact'">
+      <m3-navigation-bar-item label="Contact" [active]="currentRoute() === '/contact'">
         <span slot="icon" class="material-symbols-outlined">person</span>
       </m3-navigation-bar-item>
     </app-seo-link>
 
-    <m3-navigation-bar-item label="Settings"
-      (item-click)="openSettings()">
+    <m3-navigation-bar-item label="Settings" (item-click)="openSettings()">
       <span slot="icon" class="material-symbols-outlined">settings</span>
     </m3-navigation-bar-item>
   </m3-navigation-bar>

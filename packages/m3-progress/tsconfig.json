@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es2022", "module": "es2022", "moduleResolution": "node",
+    "declaration": true, "sourceMap": true, "outDir": "./dist", "rootDir": "./src",
+    "strict": true, "experimentalDecorators": true, "lib": ["es2022", "dom"],
+    "useDefineForClassFields": false
+  },
+  "include": ["src/**/*"]
+}

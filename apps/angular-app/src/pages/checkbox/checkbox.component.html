@@ -1,0 +1,60 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Checkbox</h1>
+    <p class="subtitle">
+      Material 3 Expressive Checkbox components allow the user to select one or more items from a set.
+    </p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Usage</h2>
+    <p>Checkboxes can be used to turn an option on or off.</p>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-checkbox></m3-checkbox>
+        <m3-checkbox checked></m3-checkbox>
+      </div>
+      <app-code-block [code]="basicExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Indeterminate State</h2>
+    <p>
+      Checkboxes can have an indeterminate state, representing a mix of checked and unchecked values.
+    </p>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-checkbox indeterminate></m3-checkbox>
+      </div>
+      <app-code-block [code]="indeterminateExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Disabled State</h2>
+    <p>
+      Checkboxes can be disabled to prevent user interaction. They can be unchecked, checked, or indeterminate while disabled.
+    </p>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-checkbox disabled></m3-checkbox>
+        <m3-checkbox checked disabled></m3-checkbox>
+        <m3-checkbox indeterminate disabled></m3-checkbox>
+      </div>
+      <app-code-block [code]="disabledExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Interactive Example</h2>
+    <p>Listen to the <code>checkbox-change</code> event to respond to user interaction.</p>
+    <div class="interactive-demo">
+      <div class="demo-row" style="gap: 12px; align-items: center;">
+        <m3-checkbox (checkbox-change)="onCheckboxChange($event, 'terms')"></m3-checkbox>
+        <span style="color: var(--md-sys-color-on-surface)">I accept the terms and conditions</span>
+      </div>
+      <app-code-block [code]="interactiveExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,22 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Dialog</h1>
+    <p class="subtitle">Dialogs provide important prompts in a user flow.</p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Usage</h2>
+    <p>A dialog is a modal window that appears in front of app content to provide critical information or ask for a decision.</p>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-button (click)="openDialog()">Open Dialog</m3-button>
+        <m3-dialog [open]="dialogOpen" headline="Confirm Action" (dialog-close)="closeDialog()">
+          <p>Are you sure you want to proceed with this action?</p>
+          <m3-button slot="actions" variant="text" (click)="closeDialog()">Cancel</m3-button>
+          <m3-button slot="actions" (click)="closeDialog()">Confirm</m3-button>
+        </m3-dialog>
+      </div>
+      <app-code-block [code]="basicExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

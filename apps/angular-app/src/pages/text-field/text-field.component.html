@@ -1,0 +1,44 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Text Field</h1>
+    <p class="subtitle">
+      Material 3 Expressive Text Fields let users enter and edit text.
+    </p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Usage</h2>
+    <p>Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.</p>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-text-field label="Username"></m3-text-field>
+        <m3-text-field label="Password" type="password"></m3-text-field>
+      </div>
+      <app-code-block [code]="basicExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Disabled State</h2>
+    <p>Text fields can be disabled to prevent user interaction.</p>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-text-field label="Disabled" disabled></m3-text-field>
+        <m3-text-field label="Disabled with value" value="Some value" disabled></m3-text-field>
+      </div>
+      <app-code-block [code]="disabledExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Interactive Example</h2>
+    <p>Listen to the <code>textfield-change</code> event to respond to user interaction.</p>
+    <div class="interactive-demo">
+      <div class="demo-row" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+        <m3-text-field label="Email address" [value]="email" (textfield-change)="onTextFieldChange($event)"></m3-text-field>
+        <div style="color: var(--md-sys-color-on-surface)">You typed: {{ email }}</div>
+      </div>
+      <app-code-block [code]="interactiveExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

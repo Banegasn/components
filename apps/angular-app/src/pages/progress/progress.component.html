@@ -1,0 +1,28 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Progress Indicator</h1>
+    <p class="subtitle">Progress indicators express an unspecified wait time or display the length of a process.</p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Determinate</h2>
+    <div class="interactive-demo">
+      <div class="demo-row" style="flex-direction:column; gap:24px; width:100%; max-width:400px; padding: 20px 0;">
+        <m3-progress value="0.3"></m3-progress>
+        <m3-progress value="0.6"></m3-progress>
+        <m3-progress value="1"></m3-progress>
+      </div>
+      <app-code-block [code]="determinateExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Indeterminate</h2>
+    <div class="interactive-demo">
+      <div class="demo-row" style="width:100%; max-width:400px; padding: 20px 0;">
+        <m3-progress indeterminate></m3-progress>
+      </div>
+      <app-code-block [code]="indeterminateExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

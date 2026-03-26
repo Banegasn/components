@@ -32,7 +32,16 @@
       "@banegasn/m3-fab-menu": ["../../packages/m3-fab-menu/dist/index.js"],
       "@banegasn/m3-loading-indicator": ["../../packages/m3-loading-indicator/dist/index.js"],
       "@banegasn/m3-split-button": ["../../packages/m3-split-button/dist/index.js"],
-      "@banegasn/m3-menu": ["../../packages/m3-menu/dist/index.js"]
+      "@banegasn/m3-menu": ["../../packages/m3-menu/dist/index.js"],
+      "@banegasn/m3-checkbox": ["../../packages/m3-checkbox/dist/index.js"],
+      "@banegasn/m3-slider": ["../../packages/m3-slider/dist/index.js"],
+      "@banegasn/m3-text-field": ["../../packages/m3-text-field/dist/index.js"],
+      "@banegasn/m3-dialog": ["../../packages/m3-dialog/dist/index.js"],
+      "@banegasn/m3-chip": ["../../packages/m3-chip/dist/index.js"],
+      "@banegasn/m3-tooltip": ["../../packages/m3-tooltip/dist/index.js"],
+      "@banegasn/m3-badge": ["../../packages/m3-badge/dist/index.js"],
+      "@banegasn/m3-progress": ["../../packages/m3-progress/dist/index.js"],
+      "@banegasn/m3-tabs": ["../../packages/m3-tabs/dist/index.js"]
     }
   },
   "angularCompilerOptions": {

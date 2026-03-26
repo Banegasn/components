@@ -8,6 +8,15 @@ import '@banegasn/m3-split-button';
 import '@banegasn/m3-loading-indicator';
 import '@banegasn/m3-fab-menu';
 import '@banegasn/m3-menu';
+import '@banegasn/m3-checkbox';
+import '@banegasn/m3-slider';
+import '@banegasn/m3-text-field';
+import '@banegasn/m3-chip';
+import '@banegasn/m3-dialog';
+import '@banegasn/m3-tooltip';
+import '@banegasn/m3-badge';
+import '@banegasn/m3-progress';
+import '@banegasn/m3-tabs';
 
 import { SeoLinkComponent } from '../../app/components/seo-link/seo-link.component';
 
@@ -65,5 +74,17 @@ export class ComponentsComponent {
 
   navigateToFabMenu() {
     this.router.navigate(['/fab-menu']);
+  }
+
+  navigateToCheckboxes() {
+    this.router.navigate(['/checkboxes']);
+  }
+
+  navigateToSliders() {
+    this.router.navigate(['/sliders']);
+  }
+
+  navigateToTextFields() {
+    this.router.navigate(['/text-fields']);
   }
 }
