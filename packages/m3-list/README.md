@@ -1,5 +1,7 @@
 # @banegasn/m3-list
 
+![Preview](images/preview.png)
+
 Material Design 3 List and List Item web components with expressive interactions.
 
 ## Features
@@ -51,6 +53,45 @@ npm install @banegasn/m3-list
 
 <!-- Rounded shape -->
 <m3-list-item shape="rounded">Rounded Item</m3-list-item>
+```
+
+## CDN Usage (no build step)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 List Demo</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-list/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <m3-list>
+    <m3-list-item>
+      <span slot="leading" class="material-symbols-outlined">inbox</span>
+      Inbox
+      <span slot="trailing" class="material-symbols-outlined">chevron_right</span>
+    </m3-list-item>
+    <m3-list-item>
+      <span slot="leading" class="material-symbols-outlined">star</span>
+      Starred
+    </m3-list-item>
+    <m3-list-item selected>
+      <span slot="leading" class="material-symbols-outlined">send</span>
+      Sent
+    </m3-list-item>
+    <m3-list-item lines="2">
+      <span slot="leading" class="material-symbols-outlined">draft</span>
+      Drafts
+      <span slot="supporting-text">4 new drafts available</span>
+    </m3-list-item>
+  </m3-list>
+</body>
+</html>
 ```
 
 ## Events

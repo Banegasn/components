@@ -46,8 +46,11 @@ const PACKAGES = [
   { name: 'm3-checkbox' },
   { name: 'm3-chip' },
   { name: 'm3-dialog' },
+  { name: 'm3-divider' },
   { name: 'm3-fab-menu' },
+  { name: 'm3-icon-button' },
   { name: 'm3-loading-indicator' },
+  { name: 'm3-list' },
   {
     name: 'm3-menu',
     // menu is already open via `open` attribute in the README example
@@ -58,10 +61,19 @@ const PACKAGES = [
   { name: 'm3-radio-button' },
   { name: 'm3-search-bar' },
   { name: 'm3-slider' },
+  {
+    name: 'm3-snackbar',
+    postLoad: () => {
+      document.querySelectorAll('m3-snackbar').forEach((el) => {
+        if (el.show) el.show();
+      });
+    },
+  },
   { name: 'm3-split-button' },
   { name: 'm3-switch' },
   { name: 'm3-tabs' },
   { name: 'm3-text-field' },
+  { name: 'm3-top-app-bar' },
   {
     name: 'm3-tooltip',
     // Set _visible directly on each tooltip instance and trigger a re-render

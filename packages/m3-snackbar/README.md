@@ -1,5 +1,7 @@
 # @banegasn/m3-snackbar
 
+![Preview](images/preview.png)
+
 Material Design 3 Snackbar web component with expressive entrance/exit animations.
 
 ## Features
@@ -44,6 +46,36 @@ npm install @banegasn/m3-snackbar
 <script>
   document.getElementById('snack').show();
 </script>
+```
+
+## CDN Usage (no build step)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>M3 Snackbar Demo</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-snackbar/+esm"></script>
+  <style>
+    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
+    .col { display: flex; flex-direction: column; gap: 16px; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <div class="col">
+    <m3-snackbar open>Settings saved</m3-snackbar>
+    <m3-snackbar open>
+      Message deleted
+      <button slot="action">Undo</button>
+    </m3-snackbar>
+    <m3-snackbar open lines="2">
+      This is a longer message that might wrap to two lines on smaller screens.
+      <button slot="action">Action</button>
+    </m3-snackbar>
+  </div>
+</body>
+</html>
 ```
 
 ## Events
