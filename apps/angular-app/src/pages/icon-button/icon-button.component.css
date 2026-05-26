@@ -1,0 +1,6 @@
+.demo-row.icon-button-demo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}

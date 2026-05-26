@@ -1,0 +1,13 @@
+.demo-row.divider-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.vertical-demo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-height: 40px;
+}

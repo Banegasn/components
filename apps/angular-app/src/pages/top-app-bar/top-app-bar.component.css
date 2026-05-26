@@ -1,0 +1,11 @@
+.app-bar-demo {
+  width: 100%;
+  border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.app-bar-demo m3-top-app-bar {
+  width: 100%;
+  display: block;
+}

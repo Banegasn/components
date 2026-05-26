@@ -1,0 +1,78 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Icon Button</h1>
+    <p class="subtitle">Icon buttons trigger an action with expressive press animations and multiple variants.</p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Standard</h2>
+    <div class="interactive-demo">
+      <div class="demo-row icon-button-demo">
+        <m3-icon-button aria-label="Settings"><span class="material-symbols-outlined">settings</span></m3-icon-button>
+        <m3-icon-button aria-label="Search"><span class="material-symbols-outlined">search</span></m3-icon-button>
+        <m3-icon-button aria-label="More"><span class="material-symbols-outlined">more_vert</span></m3-icon-button>
+      </div>
+      <app-code-block [code]="standardExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Filled</h2>
+    <div class="interactive-demo">
+      <div class="demo-row icon-button-demo">
+        <m3-icon-button variant="filled" aria-label="Add"><span class="material-symbols-outlined">add</span></m3-icon-button>
+        <m3-icon-button variant="filled" aria-label="Edit"><span class="material-symbols-outlined">edit</span></m3-icon-button>
+        <m3-icon-button variant="filled" aria-label="Delete"><span class="material-symbols-outlined">delete</span></m3-icon-button>
+      </div>
+      <app-code-block [code]="filledExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Tonal</h2>
+    <div class="interactive-demo">
+      <div class="demo-row icon-button-demo">
+        <m3-icon-button variant="tonal" aria-label="Favorite"><span class="material-symbols-outlined">favorite</span></m3-icon-button>
+        <m3-icon-button variant="tonal" aria-label="Share"><span class="material-symbols-outlined">share</span></m3-icon-button>
+        <m3-icon-button variant="tonal" aria-label="Bookmark"><span class="material-symbols-outlined">bookmark</span></m3-icon-button>
+      </div>
+      <app-code-block [code]="tonalExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Outlined</h2>
+    <div class="interactive-demo">
+      <div class="demo-row icon-button-demo">
+        <m3-icon-button variant="outlined" aria-label="Menu"><span class="material-symbols-outlined">menu</span></m3-icon-button>
+        <m3-icon-button variant="outlined" aria-label="Filter"><span class="material-symbols-outlined">filter_list</span></m3-icon-button>
+        <m3-icon-button variant="outlined" aria-label="Sort"><span class="material-symbols-outlined">sort</span></m3-icon-button>
+      </div>
+      <app-code-block [code]="outlinedExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Toggle</h2>
+    <div class="interactive-demo">
+      <div class="demo-row icon-button-demo">
+        <m3-icon-button toggle aria-label="Bookmark"><span class="material-symbols-outlined">bookmark</span></m3-icon-button>
+        <m3-icon-button toggle aria-label="Favorite"><span class="material-symbols-outlined">favorite</span></m3-icon-button>
+        <m3-icon-button toggle aria-label="Notifications"><span class="material-symbols-outlined">notifications</span></m3-icon-button>
+      </div>
+      <app-code-block [code]="toggleExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Sizes</h2>
+    <div class="interactive-demo">
+      <div class="demo-row icon-button-demo">
+        <m3-icon-button size="small" aria-label="Close"><span class="material-symbols-outlined">close</span></m3-icon-button>
+        <m3-icon-button aria-label="Close"><span class="material-symbols-outlined">close</span></m3-icon-button>
+        <m3-icon-button size="large" aria-label="Close"><span class="material-symbols-outlined">close</span></m3-icon-button>
+      </div>
+      <app-code-block [code]="sizesExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

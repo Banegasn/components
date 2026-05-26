@@ -1,0 +1,54 @@
+# @banegasn/m3-top-app-bar
+
+Material Design 3 Top App Bar web component.
+
+## Features
+
+- **Variants**: `small`, `center-aligned`, `medium`, `large`
+- **Slots**: `navigation-icon`, `headline` (default), `actions`
+- **Elevation**: Smooth shadow transition with `elevated` attribute
+- **Scroll behaviors**: `hide` and `shrink` modes
+- **Accessible**: Proper `<header>` and `<h1>` semantics
+
+## Installation
+
+```bash
+npm install @banegasn/m3-top-app-bar
+```
+
+## Usage
+
+```html
+<script type="module">
+  import '@banegasn/m3-top-app-bar';
+</script>
+
+<!-- Small (default) -->
+<m3-top-app-bar>
+  <span slot="navigation-icon" class="material-symbols-outlined">menu</span>
+  My App
+  <span slot="actions" class="material-symbols-outlined">more_vert</span>
+</m3-top-app-bar>
+
+<!-- Center-aligned -->
+<m3-top-app-bar variant="center-aligned">
+  <span slot="navigation-icon" class="material-symbols-outlined">arrow_back</span>
+  Page Title
+</m3-top-app-bar>
+
+<!-- Medium -->
+<m3-top-app-bar variant="medium">
+  <span slot="navigation-icon" class="material-symbols-outlined">menu</span>
+  Headline
+</m3-top-app-bar>
+
+<!-- Large -->
+<m3-top-app-bar variant="large">
+  <span slot="navigation-icon" class="material-symbols-outlined">menu</span>
+  Large Headline
+</m3-top-app-bar>
+```
+
+## License
+
+MIT

@@ -61,6 +61,8 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly componentMenuItems = [
     { path: '/components', label: 'Browse all', icon: 'apps' },
     { path: '/buttons', label: 'Buttons', icon: 'smart_button' },
+    { path: '/divider', label: 'Divider', icon: 'horizontal_rule' },
+    { path: '/list', label: 'List', icon: 'list' },
     { path: '/cards', label: 'Cards', icon: 'style' },
     { path: '/navigation-rail', label: 'Navigation Rail', icon: 'dock_to_left' },
     { path: '/navigation-bar', label: 'Navigation Bar', icon: 'bottom_navigation' },
@@ -79,7 +81,10 @@ export class AppComponent implements OnInit, OnDestroy {
     { path: '/split-button', label: 'Split Button', icon: 'arrow_split' },
     { path: '/menu', label: 'Menu', icon: 'menu' },
     { path: '/loading-indicator', label: 'Loading Indicator', icon: 'progress_activity' },
-    { path: '/fab-menu', label: 'FAB Menu', icon: 'add_circle' }
+    { path: '/fab-menu', label: 'FAB Menu', icon: 'add_circle' },
+    { path: '/icon-button', label: 'Icon Button', icon: 'smart_button' },
+    { path: '/top-app-bar', label: 'Top App Bar', icon: 'web_asset' },
+    { path: '/snackbar', label: 'Snackbar', icon: 'notifications' }
   ];
 
   ngOnInit() {

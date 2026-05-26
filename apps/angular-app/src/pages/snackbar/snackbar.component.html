@@ -1,0 +1,53 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Snackbar</h1>
+    <p class="subtitle">Snackbars provide brief messages about app processes with expressive animations.</p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Basic</h2>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-button variant="filled" (button-click)="showBasic.set(true)">Show Snackbar</m3-button>
+      </div>
+      <div class="demo-row snackbar-demo">
+        <m3-snackbar [attr.open]="showBasic() ? '' : null" duration="3000" (snackbar-dismiss)="showBasic.set(false)">
+          Settings saved successfully
+        </m3-snackbar>
+      </div>
+      <app-code-block [code]="basicExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>With Action</h2>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-button variant="filled" (button-click)="showAction.set(true)">Show Snackbar</m3-button>
+      </div>
+      <div class="demo-row snackbar-demo">
+        <m3-snackbar [attr.open]="showAction() ? '' : null" duration="5000" (snackbar-dismiss)="showAction.set(false)">
+          Message deleted
+          <m3-button slot="action" variant="text">Undo</m3-button>
+        </m3-snackbar>
+      </div>
+      <app-code-block [code]="actionExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Two-Line</h2>
+    <div class="interactive-demo">
+      <div class="demo-row">
+        <m3-button variant="filled" (button-click)="showTwoLine.set(true)">Show Snackbar</m3-button>
+      </div>
+      <div class="demo-row snackbar-demo">
+        <m3-snackbar [attr.open]="showTwoLine() ? '' : null" lines="2" duration="6000" (snackbar-dismiss)="showTwoLine.set(false)">
+          This item was moved to trash. It will be deleted permanently in 30 days.
+          <m3-button slot="action" variant="text">Undo</m3-button>
+        </m3-snackbar>
+      </div>
+      <app-code-block [code]="twoLineExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,89 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>List</h1>
+    <p class="subtitle">Lists display a continuous group of text or images with expressive entrance animations.</p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Simple List</h2>
+    <div class="interactive-demo">
+      <div class="demo-row list-demo">
+        <m3-list>
+          <m3-list-item>Item One</m3-list-item>
+          <m3-list-item>Item Two</m3-list-item>
+          <m3-list-item>Item Three</m3-list-item>
+        </m3-list>
+      </div>
+      <app-code-block [code]="simpleExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Staggered Entrance</h2>
+    <div class="interactive-demo">
+      <div class="demo-row list-demo">
+        <m3-list staggered>
+          <m3-list-item>Animated 1</m3-list-item>
+          <m3-list-item>Animated 2</m3-list-item>
+          <m3-list-item>Animated 3</m3-list-item>
+          <m3-list-item>Animated 4</m3-list-item>
+        </m3-list>
+      </div>
+      <app-code-block [code]="staggeredExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Two-Line with Leading Icon</h2>
+    <div class="interactive-demo">
+      <div class="demo-row list-demo">
+        <m3-list>
+          <m3-list-item lines="2">
+            <span slot="leading" class="material-symbols-outlined">person</span>
+            Alice Smith
+            <span slot="supporting-text">Software Engineer</span>
+          </m3-list-item>
+          <m3-list-item lines="2">
+            <span slot="leading" class="material-symbols-outlined">person</span>
+            Bob Jones
+            <span slot="supporting-text">Product Designer</span>
+          </m3-list-item>
+          <m3-list-item lines="2">
+            <span slot="leading" class="material-symbols-outlined">person</span>
+            Carol White
+            <span slot="supporting-text">Engineering Manager</span>
+          </m3-list-item>
+        </m3-list>
+      </div>
+      <app-code-block [code]="twoLineExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Selected State</h2>
+    <div class="interactive-demo">
+      <div class="demo-row list-demo">
+        <m3-list>
+          <m3-list-item selected>Selected Item</m3-list-item>
+          <m3-list-item>Normal Item</m3-list-item>
+          <m3-list-item>Normal Item</m3-list-item>
+        </m3-list>
+      </div>
+      <app-code-block [code]="selectedExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Rounded Shape</h2>
+    <div class="interactive-demo">
+      <div class="demo-row list-demo">
+        <m3-list>
+          <m3-list-item shape="rounded">Rounded Item 1</m3-list-item>
+          <m3-list-item shape="rounded">Rounded Item 2</m3-list-item>
+          <m3-list-item shape="rounded">Rounded Item 3</m3-list-item>
+        </m3-list>
+      </div>
+      <app-code-block [code]="roundedExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>

@@ -17,8 +17,13 @@ This repository contains a collection of web components that can be used in any 
 - **[@banegasn/m3-card](packages/m3-card)** - Material Design 3 Card with 3 variants (Elevated, Filled, Outlined), media and action slots
 - **[@banegasn/m3-checkbox](packages/m3-checkbox)** - Material Design 3 Checkbox with checked, unchecked, and indeterminate states
 - **[@banegasn/m3-chip](packages/m3-chip)** - Material Design 3 Chip for filters, selections, and input tags
-- **[@banegasn/m3-dialog](packages/m3-dialog)** - Material Design 3 Dialog with expressive open/close animations
-- **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu for expressive floating action interactions
+ - **[@banegasn/m3-dialog](packages/m3-dialog)** - Material Design 3 Dialog with expressive open/close animations
+ - **[@banegasn/m3-divider](packages/m3-divider)** - Material Design 3 Divider with entrance animations and vertical support
+ - **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu for expressive floating action interactions
+ - **[@banegasn/m3-icon-button](packages/m3-icon-button)** - Material Design 3 Icon Button with press animations and multiple variants
+ - **[@banegasn/m3-list](packages/m3-list)** - Material Design 3 List and List Item with staggered entrance animations and multi-line support
+ - **[@banegasn/m3-snackbar](packages/m3-snackbar)** - Material Design 3 Snackbar with entrance/exit animations and action support
+ - **[@banegasn/m3-top-app-bar](packages/m3-top-app-bar)** - Material Design 3 Top App Bar with multiple size variants
 - **[@banegasn/m3-loading-indicator](packages/m3-loading-indicator)** - Material Design 3 Loading Indicator with shape morphing animation
 - **[@banegasn/m3-menu](packages/m3-menu)** - Material Design 3 Menu with smart positioning and keyboard navigation
 - **[@banegasn/m3-navigation-bar](packages/m3-navigation-bar)** - Material Design 3 Navigation Bar with responsive layouts and badge support
@@ -68,7 +73,10 @@ This monorepo is designed for building and distributing web components:
 │   ├── m3-checkbox/
 │   ├── m3-chip/
 │   ├── m3-dialog/
+│   ├── m3-divider/
 │   ├── m3-fab-menu/
+│   ├── m3-icon-button/
+│   ├── m3-list/
 │   ├── m3-loading-indicator/
 │   ├── m3-menu/
 │   ├── m3-navigation-bar/
@@ -77,10 +85,12 @@ This monorepo is designed for building and distributing web components:
 │   ├── m3-radio-button/
 │   ├── m3-search-bar/
 │   ├── m3-slider/
+│   ├── m3-snackbar/
 │   ├── m3-split-button/
 │   ├── m3-switch/
 │   ├── m3-tabs/
 │   ├── m3-text-field/
+│   ├── m3-top-app-bar/
 │   ├── m3-tooltip/
 │   └── svelte-components/
 ├── scripts/                  # Build, publish, and screenshot utilities

@@ -1,0 +1,72 @@
+<div class="page-container docs-page">
+  <header class="page-header">
+    <h1>Divider</h1>
+    <p class="subtitle">Dividers separate content into clear groups with expressive entrance animations.</p>
+  </header>
+
+  <section class="demo-section">
+    <h2>Full-Width</h2>
+    <div class="interactive-demo">
+      <div class="demo-row divider-demo">
+        <m3-divider></m3-divider>
+      </div>
+      <app-code-block [code]="fullWidthExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Inset</h2>
+    <div class="interactive-demo">
+      <div class="demo-row divider-demo">
+        <m3-divider variant="inset"></m3-divider>
+      </div>
+      <app-code-block [code]="insetExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Middle</h2>
+    <div class="interactive-demo">
+      <div class="demo-row divider-demo">
+        <m3-divider variant="middle"></m3-divider>
+      </div>
+      <app-code-block [code]="middleExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Vertical</h2>
+    <div class="interactive-demo">
+      <div class="vertical-demo">
+        <span>Item A</span>
+        <m3-divider orientation="vertical" style="height:24px;"></m3-divider>
+        <span>Item B</span>
+        <m3-divider orientation="vertical" style="height:24px;"></m3-divider>
+        <span>Item C</span>
+      </div>
+      <app-code-block [code]="verticalExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Thickness</h2>
+    <div class="interactive-demo">
+      <div class="demo-row divider-demo">
+        <m3-divider thickness="1"></m3-divider>
+        <m3-divider thickness="2"></m3-divider>
+        <m3-divider thickness="4"></m3-divider>
+      </div>
+      <app-code-block [code]="thicknessExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Pulsing (Loading State)</h2>
+    <div class="interactive-demo">
+      <div class="demo-row divider-demo">
+        <m3-divider pulsing></m3-divider>
+      </div>
+      <app-code-block [code]="pulsingExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
+</div>
