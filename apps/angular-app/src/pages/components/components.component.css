@@ -35,7 +35,7 @@
 
 .comp-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 280px) 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 280px) 32px;
   align-items: center;
   gap: 12px 16px;
   padding: 13px 20px;
@@ -54,7 +54,7 @@
 }
 
 .comp-row:hover .comp-arrow {
-  color: var(--md-sys-color-primary);
+  --md-sys-color-on-surface-variant: var(--md-sys-color-primary);
   transform: translateX(2px);
 }
 
@@ -120,9 +120,8 @@
 
 /* ─── Arrow ──────────────────────────────────────────────── */
 .comp-arrow {
-  font-size: 16px;
-  color: var(--md-sys-color-outline);
-  transition: color 0.15s, transform 0.15s;
+  --md-sys-color-on-surface-variant: var(--md-sys-color-outline);
+  transition: transform 0.15s;
   flex-shrink: 0;
   justify-self: end;
 }
@@ -130,7 +129,7 @@
 /* ─── Tablet: hide preview to avoid squeeze ─────────────── */
 @media (max-width: 768px) {
   .comp-row {
-    grid-template-columns: minmax(0, 1fr) 20px;
+    grid-template-columns: minmax(0, 1fr) 32px;
   }
 
   .comp-preview {

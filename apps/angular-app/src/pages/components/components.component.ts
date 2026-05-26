@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, inject, } from "@angular/core";
 import { Router } from "@angular/router";
 import '@banegasn/m3-button';
+import '@banegasn/m3-icon-button';
 import '@banegasn/m3-card';
 import '@banegasn/m3-switch';
 import '@banegasn/m3-radio-button';
