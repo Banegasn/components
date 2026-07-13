@@ -20,6 +20,8 @@
     "dev": "tsc --watch",
     "test": "wtr src/**/*.test.ts --node-resolve",
     "test:watch": "wtr src/**/*.test.ts --node-resolve --watch",
+    "prepack": "node ../../scripts/package-license.js prepare",
+    "postpack": "node ../../scripts/package-license.js clean",
     "clean": "rm -rf dist"
   },
   "repository": {

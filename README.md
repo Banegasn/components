@@ -393,11 +393,12 @@ pnpm install --force
 
 ## 🤝 Contributing
 
-1. Create a new branch
-2. Make your changes
-3. Run `pnpm build` and `pnpm test`
-4. Submit a pull request
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for repository setup, architecture,
+quality checks, pull request requirements, semantic-versioning guidance, and
+the autonomous-agent workflow. All participation is governed by the
+[Code of Conduct](CODE_OF_CONDUCT.md). Report vulnerabilities privately by
+following [SECURITY.md](SECURITY.md).
 
 ## 📄 License
 
-MIT
+[MIT](LICENSE)

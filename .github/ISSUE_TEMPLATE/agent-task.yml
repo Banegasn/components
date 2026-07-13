@@ -1,0 +1,84 @@
+name: Agent implementation task
+description: Specify bounded, verifiable work for later maintainer triage into the autonomous queue.
+title: "[Agent task]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submitting this form does not make work agent-ready. A maintainer applies `agent-ready` only after checking scope, dependencies, permissions, and verification.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State one concrete outcome, not a list of unrelated improvements.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Current-state evidence
+      description: Cite files and lines, failing tests, screenshots, standards, or reproducible behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: In scope
+      description: List files, packages, behavior, documentation, and tests the implementation may change.
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: List adjacent work that must remain unchanged.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use testable checkboxes that define completion.
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and execution order
+      description: Link issues that must land first, identify external decisions, or write "None".
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Authorized external actions
+      description: State whether the agent may only edit/test or may also commit, push, and open a pull request. Publishing and merging require explicit authorization.
+      placeholder: "May edit, test, commit, push a codex/* branch, and open a PR. Must not merge or publish."
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Required verification evidence
+      description: List exact commands, manual checks, screenshots, archive inspection, or browser coverage expected.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and rollback
+      description: Identify compatibility, accessibility, security, data, release, or deployment risks and a safe rollback.
+    validations:
+      required: true
+  - type: checkboxes
+    id: readiness
+    attributes:
+      label: Specification checks
+      options:
+        - label: The task can be implemented without guessing a product or API decision.
+          required: true
+        - label: Acceptance criteria describe the outcome rather than prescribing incidental implementation details.
+          required: true
+        - label: Dependencies and maintainer-only actions are explicit.
+          required: true
