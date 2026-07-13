@@ -1,11 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "checkJs": true,
-    "noEmit": true
-  },
+  "extends": "../../tsconfig.svelte.json",
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

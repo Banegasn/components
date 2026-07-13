@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { m3SwitchStyles } from './m3-switch.styles.js';
 
@@ -220,4 +220,3 @@ declare global {
     'm3-switch': M3Switch;
   }
 }
-

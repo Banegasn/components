@@ -16,13 +16,15 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json",
     "dev": "tsc --watch",
-    "test": "wtr src/**/*.test.ts --node-resolve",
-    "test:watch": "wtr src/**/*.test.ts --node-resolve --watch",
+    "test": "wtr --config ../../web-test-runner.config.mjs \"src/**/*.test.ts\"",
+    "test:watch": "wtr --config ../../web-test-runner.config.mjs \"src/**/*.test.ts\" --watch",
     "prepack": "node ../../scripts/package-license.js prepare",
     "postpack": "node ../../scripts/package-license.js clean",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { navigationRailItemStyles } from './navigation-rail-item.styles.js';
 
 @customElement('m3-navigation-rail-item')

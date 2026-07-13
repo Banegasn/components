@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { m3SearchBarStyles } from './m3-search-bar.styles.js';
 
@@ -274,4 +274,3 @@ declare global {
     'm3-search-bar': M3SearchBar;
   }
 }
-

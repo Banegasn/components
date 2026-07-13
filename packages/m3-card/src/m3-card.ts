@@ -111,7 +111,7 @@ export class M3Card extends LitElement {
     `;
   }
 
-  private _handleClick(e: MouseEvent) {
+  private _handleClick(_e: MouseEvent) {
     if (this.disabled || !this.clickable) {
       return;
     }

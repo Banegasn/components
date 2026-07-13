@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, inject, } from "@angular/core";
+import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, inject, } from "@angular/core";
 import { Router } from "@angular/router";
 import '@banegasn/m3-button';
 import '@banegasn/m3-icon-button';
