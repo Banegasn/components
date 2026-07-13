@@ -1,0 +1,8 @@
+**/dist
+**/node_modules
+**/.angular
+**/.turbo
+**/coverage
+pnpm-lock.yaml
+packages/*/images
+apps/angular-app/public

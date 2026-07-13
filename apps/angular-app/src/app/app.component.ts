@@ -291,7 +291,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }, 150);
   }
 
-  onMobileComponentsPointerDown(event: Event) {
+  onMobileComponentsPointerDown(_event: Event) {
     this.mobileComponentsLongPressFired = false;
     this.mobileComponentsLongPressTimer = setTimeout(() => {
       this.mobileComponentsLongPressTimer = null;
@@ -300,14 +300,14 @@ export class AppComponent implements OnInit, OnDestroy {
     }, 500); // 500ms for long press
   }
 
-  onMobileComponentsPointerUp(event: Event) {
+  onMobileComponentsPointerUp(_event: Event) {
     if (this.mobileComponentsLongPressTimer !== null) {
       clearTimeout(this.mobileComponentsLongPressTimer);
       this.mobileComponentsLongPressTimer = null;
     }
   }
 
-  onMobileComponentsPointerCancel(event: Event) {
+  onMobileComponentsPointerCancel(_event: Event) {
     if (this.mobileComponentsLongPressTimer !== null) {
       clearTimeout(this.mobileComponentsLongPressTimer);
       this.mobileComponentsLongPressTimer = null;
@@ -318,7 +318,7 @@ export class AppComponent implements OnInit, OnDestroy {
     event.preventDefault(); // Prevent browser context menu on long press
   }
 
-  onMobileComponentsItemClick(event: Event) {
+  onMobileComponentsItemClick(_event: Event) {
     // If long press fired, it means the menu opened. Don't navigate.
     if (this.mobileComponentsLongPressFired) {
       return;

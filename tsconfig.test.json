@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.lit.json",
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "noEmit": true,
+    "types": ["@open-wc/testing", "mocha"]
+  }
+}

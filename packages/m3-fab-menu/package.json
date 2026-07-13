@@ -17,12 +17,14 @@
     "images"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json",
     "dev": "tsc --watch",
     "prepack": "node ../../scripts/package-license.js prepare",
     "postpack": "node ../../scripts/package-license.js clean",
     "clean": "rm -rf dist",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node ../../scripts/no-tests.mjs"
   },
   "repository": {
     "type": "git",

@@ -1,16 +1,9 @@
 {
+  "extends": "../../tsconfig.lit.json",
   "compilerOptions": {
-    "target": "es2022",
-    "module": "es2022",
-    "moduleResolution": "node",
-    "declaration": true,
-    "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "experimentalDecorators": true,
-    "lib": ["es2022", "dom"],
-    "useDefineForClassFields": false
+    "rootDir": "./src"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "node_modules", "dist"]
 }

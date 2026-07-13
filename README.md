@@ -17,13 +17,13 @@ This repository contains a collection of web components that can be used in any 
 - **[@banegasn/m3-card](packages/m3-card)** - Material Design 3 Card with 3 variants (Elevated, Filled, Outlined), media and action slots
 - **[@banegasn/m3-checkbox](packages/m3-checkbox)** - Material Design 3 Checkbox with checked, unchecked, and indeterminate states
 - **[@banegasn/m3-chip](packages/m3-chip)** - Material Design 3 Chip for filters, selections, and input tags
- - **[@banegasn/m3-dialog](packages/m3-dialog)** - Material Design 3 Dialog with expressive open/close animations
- - **[@banegasn/m3-divider](packages/m3-divider)** - Material Design 3 Divider with entrance animations and vertical support
- - **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu for expressive floating action interactions
- - **[@banegasn/m3-icon-button](packages/m3-icon-button)** - Material Design 3 Icon Button with press animations and multiple variants
- - **[@banegasn/m3-list](packages/m3-list)** - Material Design 3 List and List Item with staggered entrance animations and multi-line support
- - **[@banegasn/m3-snackbar](packages/m3-snackbar)** - Material Design 3 Snackbar with entrance/exit animations and action support
- - **[@banegasn/m3-top-app-bar](packages/m3-top-app-bar)** - Material Design 3 Top App Bar with multiple size variants
+- **[@banegasn/m3-dialog](packages/m3-dialog)** - Material Design 3 Dialog with expressive open/close animations
+- **[@banegasn/m3-divider](packages/m3-divider)** - Material Design 3 Divider with entrance animations and vertical support
+- **[@banegasn/m3-fab-menu](packages/m3-fab-menu)** - Material Design 3 FAB Menu for expressive floating action interactions
+- **[@banegasn/m3-icon-button](packages/m3-icon-button)** - Material Design 3 Icon Button with press animations and multiple variants
+- **[@banegasn/m3-list](packages/m3-list)** - Material Design 3 List and List Item with staggered entrance animations and multi-line support
+- **[@banegasn/m3-snackbar](packages/m3-snackbar)** - Material Design 3 Snackbar with entrance/exit animations and action support
+- **[@banegasn/m3-top-app-bar](packages/m3-top-app-bar)** - Material Design 3 Top App Bar with multiple size variants
 - **[@banegasn/m3-loading-indicator](packages/m3-loading-indicator)** - Material Design 3 Loading Indicator with shape morphing animation
 - **[@banegasn/m3-menu](packages/m3-menu)** - Material Design 3 Menu with smart positioning and keyboard navigation
 - **[@banegasn/m3-navigation-bar](packages/m3-navigation-bar)** - Material Design 3 Navigation Bar with responsive layouts and badge support
@@ -54,6 +54,7 @@ Every push to the `main` branch triggers an automatic deployment.
 ## 🏗️ Architecture
 
 This monorepo is designed for building and distributing web components:
+
 - **Framework-agnostic components**: Built with Lit, Svelte, and other modern web component technologies
 - **Universal compatibility**: Components work in any JavaScript framework (Angular, React, Vue, etc.) or vanilla JavaScript
 - **Efficient builds**: Turborepo for intelligent build caching and parallelization
@@ -107,12 +108,15 @@ You can use the components directly in any HTML file without installing anything
 
 ```html
 <!-- Import directly as a module -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"></script>
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm"
+></script>
 
 <!-- Or import multiple components -->
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm";
-  import "https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm";
+  import 'https://cdn.jsdelivr.net/npm/@banegasn/m3-button/+esm';
+  import 'https://cdn.jsdelivr.net/npm/@banegasn/m3-card/+esm';
 </script>
 
 <!-- Use the components -->
@@ -124,9 +128,11 @@ You can use the components directly in any HTML file without installing anything
 #### Prerequisites
 
 - **Node.js** >= 22.16.0
-- **PNPM** >= 9.0.0
+- **Node.js** 22.16.x
+- **pnpm** 9.12.1
 
 Install PNPM if you haven't already:
+
 ```bash
 npm install -g pnpm@9.12.1
 ```
@@ -186,6 +192,9 @@ The Angular app will be available at `http://localhost:4200`
 # Run linters
 pnpm lint
 
+# Type-check every workspace (including existing browser tests)
+pnpm typecheck
+
 # Run tests
 pnpm test
 
@@ -196,6 +205,31 @@ pnpm smoke:packages
 pnpm clean
 ```
 
+### Quality checks
+
+The supported local toolchain is Node.js 22.16.x with pnpm 9.12.1. Use the
+version pinned in `.nvmrc`, then run:
+
+```bash
+corepack enable
+pnpm install --frozen-lockfile
+pnpm test:browser:install
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+`pnpm test` runs the existing browser suites with Playwright. Workspaces that
+do not have tests yet print an explicit temporary status instead of being
+silently skipped; adding their behavioral coverage is tracked in issue #12.
+
+Formatting uses the shared Prettier policy:
+
+```bash
+pnpm format
+```
+
 ## 🎯 Demo Applications
 
 ### angular-app
@@ -203,12 +237,14 @@ pnpm clean
 A demonstration Angular application showcasing how to use the web components in a real-world application.
 
 **Features:**
+
 - Angular 20 with standalone components
 - Live examples of all available web components
 - Integration patterns and best practices
 - Deployed to GitHub Pages for live preview
 
 **Run:**
+
 ```bash
 cd apps/angular-app
 pnpm dev
@@ -227,6 +263,7 @@ The `turbo.json` file defines the build pipeline:
 - **clean**: Cleans build artifacts
 
 ### Key Features:
+
 - **Caching**: Turborepo caches build outputs for faster rebuilds
 - **Parallelization**: Runs independent tasks in parallel
 - **Dependency graph**: Ensures packages build in the correct order
@@ -236,11 +273,13 @@ The `turbo.json` file defines the build pipeline:
 ### Add a new component package:
 
 1. Create package directory:
+
 ```bash
 mkdir -p packages/my-web-component/src
 ```
 
 2. Create `package.json`:
+
 ```json
 {
   "name": "@banegasn/my-web-component",
@@ -258,6 +297,7 @@ mkdir -p packages/my-web-component/src
 3. Create your web component using Lit, Svelte, or vanilla JavaScript
 
 4. Install dependencies from root:
+
 ```bash
 pnpm install
 ```
@@ -265,6 +305,7 @@ pnpm install
 ### Add a new demo app:
 
 1. Create app directory:
+
 ```bash
 mkdir -p apps/my-demo-app
 ```
@@ -272,6 +313,7 @@ mkdir -p apps/my-demo-app
 2. Set up your framework (React, Vue, etc.)
 
 3. Add workspace dependencies in `package.json`:
+
 ```json
 {
   "dependencies": {
@@ -303,6 +345,7 @@ Add test scripts to individual packages:
 ```
 
 Run all tests:
+
 ```bash
 pnpm test
 ```
@@ -310,16 +353,19 @@ pnpm test
 ## 🚢 Building for Production
 
 ### Build all packages and apps:
+
 ```bash
 pnpm build
 ```
 
 Turborepo will:
+
 1. Build packages in dependency order
 2. Cache successful builds
 3. Only rebuild what changed
 
 ### Build for GitHub Pages:
+
 ```bash
 pnpm build:gh-pages
 ```
@@ -358,6 +404,7 @@ See [PUBLISHING.md](PUBLISHING.md) for detailed publishing instructions and GitH
 ## 🔍 Troubleshooting
 
 ### Clear all caches:
+
 ```bash
 pnpm clean
 rm -rf node_modules pnpm-lock.yaml
@@ -365,11 +412,13 @@ pnpm install
 ```
 
 ### Clear Turborepo cache:
+
 ```bash
 rm -rf .turbo
 ```
 
 ### Reinstall dependencies:
+
 ```bash
 pnpm install --force
 ```
@@ -377,16 +426,19 @@ pnpm install --force
 ## 📖 Resources
 
 ### Web Components
+
 - [Web Components Standards](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 - [Lit Documentation](https://lit.dev/)
 - [Svelte Documentation](https://svelte.dev/)
 - [Material Design 3](https://m3.material.io/)
 
 ### Monorepo Tools
+
 - [Turborepo Documentation](https://turbo.build/repo/docs)
 - [PNPM Workspaces](https://pnpm.io/workspaces)
 
 ### Framework Integration
+
 - [Angular Documentation](https://angular.dev/)
 - [Using Web Components in React](https://react.dev/reference/react-dom/components#custom-html-elements)
 - [Using Web Components in Vue](https://vuejs.org/guide/extras/web-components.html)

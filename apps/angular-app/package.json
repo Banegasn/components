@@ -8,8 +8,10 @@
     "build": "ng build",
     "build:gh-pages": "ng build --configuration=github-pages",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "clean": "rm -rf dist .angular"
+    "test": "node ../../scripts/no-tests.mjs",
+    "clean": "rm -rf dist .angular",
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "ngc -p tsconfig.app.json --noEmit"
   },
   "dependencies": {
     "@angular/animations": "~21.2.18",

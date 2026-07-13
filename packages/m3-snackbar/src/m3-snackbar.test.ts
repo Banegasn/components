@@ -73,6 +73,7 @@ describe('M3Snackbar', () => {
 
   it('is accessible when open', async () => {
     const el = await fixture<M3Snackbar>(html`<m3-snackbar open>Accessible message</m3-snackbar>`);
+    await new Promise(resolve => setTimeout(resolve, 450));
     await expect(el).to.be.accessible();
   });
 });
