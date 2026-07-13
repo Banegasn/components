@@ -91,6 +91,12 @@ m3-divider {
 }
 ```
 
+The shared token foundation also supports `--md-comp-divider-color`,
+`--md-comp-divider-motion-duration`, and `--md-comp-divider-motion-easing`.
+Canonical component tokens take precedence over the compatible
+`--md-sys-color-outline-variant` override. Literal fallbacks remain available
+when no shared theme is loaded.
+
 ## License
 
 MIT

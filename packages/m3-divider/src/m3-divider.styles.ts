@@ -6,13 +6,13 @@ export const m3DividerStyles = css`
     align-items: center;
     justify-content: center;
     width: 100%;
-    --_color: var(--md-sys-color-outline-variant, #cac4d0);
+    --_color: var(--md-comp-divider-color, var(--md-sys-color-outline-variant, #cac4d0));
     --_thickness: 1px;
     --_inset-start: 16px;
     --_inset-end: 16px;
     --_middle-space: 16px;
-    --_animation-duration: 0.6s;
-    --_animation-easing: cubic-bezier(0.2, 0, 0, 1);
+    --_animation-duration: var(--md-comp-divider-motion-duration, 0.6s);
+    --_animation-easing: var(--md-comp-divider-motion-easing, cubic-bezier(0.2, 0, 0, 1));
   }
 
   /* Horizontal (default) */
