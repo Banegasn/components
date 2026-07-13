@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@angular/build": "~21.2.19",
-    "@angular/cli": "~21.2.19",
+    "@angular/cli": "~22.0.6",
     "@angular/compiler-cli": "~21.2.18",
     "@lit-labs/ssr-dom-shim": "^1.5.1",
     "@types/node": "^20.17.19",
