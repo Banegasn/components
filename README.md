@@ -189,6 +189,9 @@ pnpm lint
 # Run tests
 pnpm test
 
+# Pack, install, and import every public package (run after pnpm build)
+pnpm smoke:packages
+
 # Clean all build artifacts
 pnpm clean
 ```
