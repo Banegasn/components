@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "~21.2.18",
     "@angular/platform-server": "~21.2.18",
     "@angular/router": "~21.2.18",
-    "@angular/ssr": "~21.2.19",
+    "@angular/ssr": "~22.0.6",
     "@banegasn/m3-badge": "workspace:*",
     "@banegasn/m3-button": "workspace:*",
     "@banegasn/m3-card": "workspace:*",
