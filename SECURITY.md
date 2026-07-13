@@ -27,3 +27,26 @@ through the private advisory, and credit reporters who want attribution. Please
 do not test against systems or data you do not own or have permission to use.
 
 For non-security defects, use the public bug report form.
+
+## Dependency maintenance
+
+Production dependencies are checked with:
+
+```bash
+pnpm audit:prod
+```
+
+The command fails for moderate, high, or critical advisories. Dependabot checks
+npm dependencies and GitHub Actions weekly, grouping compatible minor and patch
+updates.
+
+## Svelte package decision
+
+`packages/svelte-components` remains private but is still built in the workspace,
+so its runtime dependency remains part of the production audit. It is retained and
+upgraded to the supported Svelte 5 line rather than archived. Its package tooling
+supports Svelte 5, and the package build verifies compatibility.
+
+There are currently no accepted production advisories. If an advisory cannot be
+patched immediately, this file must record its exposure, compensating controls,
+owner, and review date; the audit threshold must not be weakened silently.

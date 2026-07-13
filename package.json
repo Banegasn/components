@@ -10,6 +10,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "smoke:packages": "node scripts/smoke-packages.mjs",
+    "audit:prod": "pnpm audit --prod --audit-level=moderate",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "publish:npm": "bash scripts/publish-unpublished.sh npm",
     "publish:github": "bash scripts/publish-unpublished.sh github",
