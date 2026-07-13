@@ -25,27 +25,40 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
-      
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.12.1
-      
+
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: '22.16.0'
-          cache: 'pnpm'
-      
+          node-version: '24.18.0'
+
+      - name: Enable pinned pnpm with Corepack
+        run: |
+          npm install --global corepack@0.35.0
+          corepack enable
+          corepack install --global pnpm@11.12.0
+          test "$(node --version)" = "v24.18.0"
+          test "$(pnpm --version)" = "11.12.0"
+
+      - name: Resolve pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-${{ runner.os }}-${{ runner.arch }}-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       - name: Build packages
         run: pnpm build
-      
+
       - name: Bump version
         if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
         run: |
@@ -60,12 +73,12 @@ jobs:
         run: pnpm run publish:npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
+
       - name: Publish to GitHub Packages
         run: pnpm run publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Create git tags
         if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
         run: |
