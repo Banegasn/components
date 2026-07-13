@@ -19,7 +19,7 @@
     "@angular/forms": "~21.2.18",
     "@angular/platform-browser": "~21.2.18",
     "@angular/platform-browser-dynamic": "~21.2.18",
-    "@angular/platform-server": "~21.2.18",
+    "@angular/platform-server": "~22.0.6",
     "@angular/router": "~21.2.18",
     "@angular/ssr": "~21.2.19",
     "@banegasn/m3-badge": "workspace:*",
