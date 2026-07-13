@@ -14,7 +14,7 @@
     "typecheck": "ngc -p tsconfig.app.json --noEmit"
   },
   "dependencies": {
-    "@angular/animations": "~21.2.18",
+    "@angular/animations": "~22.0.6",
     "@angular/common": "~21.2.18",
     "@angular/compiler": "~21.2.18",
     "@angular/core": "~21.2.18",
