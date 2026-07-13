@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { m3CardStyles } from './m3-card.styles';
+import { m3CardStyles } from './m3-card.styles.js';
 
 /**
  * Material Design 3 Card Component
@@ -158,4 +158,3 @@ declare global {
     'm3-card': M3Card;
   }
 }
-
