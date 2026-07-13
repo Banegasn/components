@@ -1,4 +1,13 @@
-import { Component, ComponentRef, EventEmitter, Output, CUSTOM_ELEMENTS_SCHEMA, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  EventEmitter,
+  Output,
+  CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 import '@banegasn/m3-button';
 import '@banegasn/m3-switch';
@@ -7,7 +16,8 @@ import '@banegasn/m3-switch';
   selector: 'app-dialog',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./dialog.component.css'],
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Output() closeEvent = new EventEmitter<void>();
@@ -36,7 +46,10 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   handleBackdropClick(event: MouseEvent): void {
-    if (this.closeOnBackdrop && (event.target as HTMLElement).classList.contains('dialog-backdrop')) {
+    if (
+      this.closeOnBackdrop &&
+      (event.target as HTMLElement).classList.contains('dialog-backdrop')
+    ) {
       this.closeEvent.emit();
     }
   }
@@ -48,12 +61,14 @@ export class DialogComponent implements OnInit, OnDestroy {
   ngAfterViewInit(): void {
     // Insert the content component into the dialog content container
     if (this.contentComponent) {
-      const contentContainer = document.querySelector('.dialog-content-wrapper');
+      const contentContainer = document.querySelector(
+        '.dialog-content-wrapper',
+      );
       if (contentContainer) {
-        const contentElement = (this.contentComponent.hostView as any).rootNodes[0] as HTMLElement;
+        const contentElement = (this.contentComponent.hostView as any)
+          .rootNodes[0] as HTMLElement;
         contentContainer.appendChild(contentElement);
       }
     }
   }
 }
-

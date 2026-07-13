@@ -3,7 +3,8 @@
   "version": 1,
   "newProjectRoot": "projects",
   "cli": {
-    "packageManager": "pnpm"
+    "packageManager": "pnpm",
+    "analytics": false
   },
   "projects": {
     "angular-app": {
@@ -35,7 +36,7 @@
             "preserveSymlinks": true,
             "server": "src/main.server.ts",
             "prerender": true,
-            "externalDependencies": ["@lit-labs/ssr-dom-shim", "xhr2"]
+            "externalDependencies": ["@lit-labs/ssr-dom-shim"]
           },
           "configurations": {
             "production": {
@@ -94,6 +95,13 @@
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "runner": "vitest",
+            "tsConfig": "tsconfig.spec.json"
+          }
         }
       }
     }

@@ -1,26 +1,31 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CodeBlockComponent } from '../../app/components/code-block/code-block.component';
 import '@banegasn/m3-menu';
 import '@banegasn/m3-split-button';
 
 @Component({
-    selector: 'app-split-button',
-    standalone: true,
-    templateUrl: './split-button.component.html',
-    styleUrls: ['./split-button.component.css'],
-    imports: [CodeBlockComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  selector: 'app-split-button',
+  standalone: true,
+  templateUrl: './split-button.component.html',
+  styleUrls: ['./split-button.component.css'],
+  imports: [CodeBlockComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SplitButtonComponent {
-    lastInteraction = 'None';
-    menuState: Record<string, boolean> = {
-        send: false,
-        save: false,
-        edit: false,
-        create: false
-    };
+  lastInteraction = 'None';
+  menuState: Record<string, boolean> = {
+    send: false,
+    save: false,
+    edit: false,
+    create: false,
+  };
 
-    readonly basicExample = `<div class="split-button-demo">
+  readonly basicExample = `<div class="split-button-demo">
   <m3-split-button menu-id="send-menu" menu-open>Send</m3-split-button>
   <m3-menu id="send-menu" open placement="bottom-end">
     <m3-menu-item value="schedule-send">Schedule send</m3-menu-item>
@@ -28,28 +33,28 @@ export class SplitButtonComponent {
   </m3-menu>
 </div>`;
 
-    handleMenuToggle(key: string, event: any) {
-        const { action, open } = event.detail ?? {};
+  handleMenuToggle(key: string, event: any) {
+    const { action, open } = event.detail ?? {};
 
-        if (action === 'menu') {
-            this.menuState[key] = Boolean(open);
-            this.lastInteraction = `${action}: ${key}`;
-            return;
-        }
-
-        if (action === 'main') {
-            this.menuState[key] = false;
-            this.lastInteraction = `${action}: ${key}`;
-        }
+    if (action === 'menu') {
+      this.menuState[key] = Boolean(open);
+      this.lastInteraction = `${action}: ${key}`;
+      return;
     }
 
-    handleMenuDismiss(key: string) {
-        this.menuState[key] = false;
+    if (action === 'main') {
+      this.menuState[key] = false;
+      this.lastInteraction = `${action}: ${key}`;
     }
+  }
 
-    handleMenuItemSelect(key: string, event: Event) {
-        const menuEvent = event as CustomEvent<{ text: string }>;
-        this.menuState[key] = false;
-        this.lastInteraction = `menu-item: ${key} -> ${menuEvent.detail.text}`;
-    }
+  handleMenuDismiss(key: string) {
+    this.menuState[key] = false;
+  }
+
+  handleMenuItemSelect(key: string, event: Event) {
+    const menuEvent = event as CustomEvent<{ text: string }>;
+    this.menuState[key] = false;
+    this.lastInteraction = `menu-item: ${key} -> ${menuEvent.detail.text}`;
+  }
 }

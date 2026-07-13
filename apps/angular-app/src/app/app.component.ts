@@ -1,5 +1,17 @@
-
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, OnDestroy, DOCUMENT, NgZone, signal, DestroyRef, effect, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  inject,
+  OnInit,
+  OnDestroy,
+  DOCUMENT,
+  NgZone,
+  signal,
+  DestroyRef,
+  effect,
+  PLATFORM_ID,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
@@ -18,9 +30,10 @@ import { SeoLinkComponent } from './components/seo-link/seo-link.component';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, SeoLinkComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   #document = inject(DOCUMENT);
@@ -43,15 +56,22 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       effect(() => {
-        localStorage.setItem('railExpanded', JSON.stringify(this.railExpanded()));
+        localStorage.setItem(
+          'railExpanded',
+          JSON.stringify(this.railExpanded()),
+        );
       });
     }
   }
-  private mobileComponentsLongPressTimer: ReturnType<typeof setTimeout> | null = null;
+  private mobileComponentsLongPressTimer: ReturnType<typeof setTimeout> | null =
+    null;
   private mobileComponentsLongPressFired = false;
-  private desktopComponentsCloseTimer: ReturnType<typeof setTimeout> | null = null;
-  private boundMenuClick = (event: Event) => this.handleComponentsMenuClick(event);
-  private boundMenuItemSelect = (event: Event) => this.handleMenuItemSelectCapture(event);
+  private desktopComponentsCloseTimer: ReturnType<typeof setTimeout> | null =
+    null;
+  private boundMenuClick = (event: Event) =>
+    this.handleComponentsMenuClick(event);
+  private boundMenuItemSelect = (event: Event) =>
+    this.handleMenuItemSelectCapture(event);
 
   onRailToggle(event: Event) {
     const e = event as CustomEvent<{ expanded: boolean }>;
@@ -64,10 +84,22 @@ export class AppComponent implements OnInit, OnDestroy {
     { path: '/divider', label: 'Divider', icon: 'horizontal_rule' },
     { path: '/list', label: 'List', icon: 'list' },
     { path: '/cards', label: 'Cards', icon: 'style' },
-    { path: '/navigation-rail', label: 'Navigation Rail', icon: 'dock_to_left' },
-    { path: '/navigation-bar', label: 'Navigation Bar', icon: 'bottom_navigation' },
+    {
+      path: '/navigation-rail',
+      label: 'Navigation Rail',
+      icon: 'dock_to_left',
+    },
+    {
+      path: '/navigation-bar',
+      label: 'Navigation Bar',
+      icon: 'bottom_navigation',
+    },
     { path: '/switches', label: 'Switches', icon: 'toggle_on' },
-    { path: '/radio-buttons', label: 'Radio Buttons', icon: 'radio_button_checked' },
+    {
+      path: '/radio-buttons',
+      label: 'Radio Buttons',
+      icon: 'radio_button_checked',
+    },
     { path: '/checkboxes', label: 'Checkboxes', icon: 'check_box' },
     { path: '/sliders', label: 'Sliders', icon: 'linear_scale' },
     { path: '/text-fields', label: 'Text Fields', icon: 'text_fields' },
@@ -80,11 +112,15 @@ export class AppComponent implements OnInit, OnDestroy {
     { path: '/search-bar', label: 'Search Bar', icon: 'search' },
     { path: '/split-button', label: 'Split Button', icon: 'arrow_split' },
     { path: '/menu', label: 'Menu', icon: 'menu' },
-    { path: '/loading-indicator', label: 'Loading Indicator', icon: 'progress_activity' },
+    {
+      path: '/loading-indicator',
+      label: 'Loading Indicator',
+      icon: 'progress_activity',
+    },
     { path: '/fab-menu', label: 'FAB Menu', icon: 'add_circle' },
     { path: '/icon-button', label: 'Icon Button', icon: 'smart_button' },
     { path: '/top-app-bar', label: 'Top App Bar', icon: 'web_asset' },
-    { path: '/snackbar', label: 'Snackbar', icon: 'notifications' }
+    { path: '/snackbar', label: 'Snackbar', icon: 'notifications' },
   ];
 
   ngOnInit() {
@@ -92,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.initializeTheme();
     // Initialize RTL
     this.initializeRTL();
-    
+
     // Listen for theme changes from settings dialog
     if (typeof window !== 'undefined') {
       window.addEventListener('theme-changed', ((event: CustomEvent) => {
@@ -101,7 +137,11 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     // Capture menu-item-select at document so we handle it before the menu (menu stays open until we close it)
-    this.#document.addEventListener('menu-item-select', this.boundMenuItemSelect, true);
+    this.#document.addEventListener(
+      'menu-item-select',
+      this.boundMenuItemSelect,
+      true,
+    );
     // Fallback: click on menu item
     this.#document.addEventListener('click', this.boundMenuClick, true);
 
@@ -109,8 +149,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.currentRoute.set(this.#router.url);
     this.#router.events
       .pipe(
-        filter(event => event instanceof NavigationEnd),
-        takeUntilDestroyed(this.#destroyRef)
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.#destroyRef),
       )
       .subscribe((event: any) => {
         this.currentRoute.set(event.url);
@@ -120,7 +160,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.#document.removeEventListener('menu-item-select', this.boundMenuItemSelect, true);
+    this.#document.removeEventListener(
+      'menu-item-select',
+      this.boundMenuItemSelect,
+      true,
+    );
     this.#document.removeEventListener('click', this.boundMenuClick, true);
   }
 
@@ -129,7 +173,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (typeof localStorage !== 'undefined') {
       savedTheme = localStorage.getItem('theme');
     }
-    
+
     if (savedTheme) {
       // Use saved theme
       this.#document.documentElement.setAttribute('theme', savedTheme);
@@ -138,7 +182,9 @@ export class AppComponent implements OnInit, OnDestroy {
       // Use system preference
       let systemPrefersDark = false;
       if (typeof window !== 'undefined' && window.matchMedia) {
-        systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        systemPrefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)',
+        ).matches;
       }
       const theme = systemPrefersDark ? 'dark' : 'light';
       this.#document.documentElement.setAttribute('theme', theme);
@@ -158,14 +204,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleTheme() {
     this.closeComponentsMenu();
-    const currentTheme = this.#document.documentElement.getAttribute('theme') || 'light';
+    const currentTheme =
+      this.#document.documentElement.getAttribute('theme') || 'light';
     const isDark = currentTheme.endsWith('dark') || currentTheme === 'dark';
-    const palette = currentTheme.replace(/-?dark$/, '').replace(/^light$/, '') || '';
+    const palette =
+      currentTheme.replace(/-?dark$/, '').replace(/^light$/, '') || '';
     const newTheme = isDark
-      ? (palette || 'light')
-      : (palette ? `${palette}-dark` : 'dark');
+      ? palette || 'light'
+      : palette
+        ? `${palette}-dark`
+        : 'dark';
     this.#document.documentElement.setAttribute('theme', newTheme);
-    if (typeof localStorage !== 'undefined') localStorage.setItem('theme', newTheme);
+    if (typeof localStorage !== 'undefined')
+      localStorage.setItem('theme', newTheme);
     this.currentTheme = newTheme;
   }
 
@@ -175,7 +226,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Settings',
       maxWidth: '500px',
       closeOnBackdrop: true,
-      showCloseButton: true
+      showCloseButton: true,
     });
   }
 
@@ -190,7 +241,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   isComponentsRoute() {
-    return this.componentMenuItems.some((item) => item.path === this.currentRoute());
+    return this.componentMenuItems.some(
+      (item) => item.path === this.currentRoute(),
+    );
   }
 
   isDarkTheme() {
@@ -206,7 +259,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onComponentsMenuDismiss(event: Event) {
-    const reason = (event as CustomEvent<{ reason: string }>)?.detail?.reason ?? 'unknown';
+    const reason =
+      (event as CustomEvent<{ reason: string }>)?.detail?.reason ?? 'unknown';
     const wasOpen = this.componentsMenuOpen();
     if (!wasOpen) return;
     // Defer close when user selected an item so menu-item-select can bubble and be handled first
@@ -220,7 +274,7 @@ export class AppComponent implements OnInit, OnDestroy {
   closeComponentsMenu() {
     const wasOpen = this.componentsMenuOpen();
     if (!wasOpen) return;
-    
+
     if (this.desktopComponentsCloseTimer !== null) {
       clearTimeout(this.desktopComponentsCloseTimer);
       this.desktopComponentsCloseTimer = null;
@@ -230,10 +284,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private isFromAppComponentsMenu(path: unknown[]): boolean {
     return path.some(
-      (n) => n instanceof Element && (
-        (n as Element).closest?.('.desktop-components-trigger') ||
-        (n as Element).closest?.('.mobile-nav-shell')
-      )
+      (n) =>
+        n instanceof Element &&
+        ((n as Element).closest?.('.desktop-components-trigger') ||
+          (n as Element).closest?.('.mobile-nav-shell')),
     );
   }
 
@@ -242,11 +296,15 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!this.isFromAppComponentsMenu(path)) return;
 
     const menuItem = path.find(
-      (n): n is HTMLElement => n instanceof HTMLElement && n.tagName === 'M3-MENU-ITEM'
+      (n): n is HTMLElement =>
+        n instanceof HTMLElement && n.tagName === 'M3-MENU-ITEM',
     );
     if (!menuItem) return;
 
-    const value = (menuItem as unknown as { value?: string }).value ?? menuItem.getAttribute('value') ?? '';
+    const value =
+      (menuItem as unknown as { value?: string }).value ??
+      menuItem.getAttribute('value') ??
+      '';
     if (value) this.navigate(value);
   }
 
@@ -327,10 +385,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   scrollToTop() {
-    const container = this.#document.querySelector('.app-container') as HTMLElement;
+    const container = this.#document.querySelector(
+      '.app-container',
+    ) as HTMLElement;
     if (container && typeof container.scrollTo === 'function') {
       container.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
-
 }

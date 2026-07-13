@@ -1,4 +1,9 @@
-import { Component, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogRef } from '../../services/dialog.service';
 
@@ -10,7 +15,8 @@ import '@banegasn/m3-button';
   imports: [CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.css']
+  styleUrls: ['./confirm-dialog.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class ConfirmDialogComponent {
   dialogRef?: DialogRef<boolean>;
@@ -27,4 +33,3 @@ export class ConfirmDialogComponent {
     this.dialogRef?.close(false);
   }
 }
-
