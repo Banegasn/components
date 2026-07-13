@@ -128,14 +128,15 @@ You can use the components directly in any HTML file without installing anything
 
 #### Prerequisites
 
-- **Node.js** >= 22.16.0
-- **Node.js** 22.16.x
-- **pnpm** 9.12.1
+- **Node.js** 24.18.x
+- **pnpm** 11.12.0
 
-Install PNPM if you haven't already:
+Enable the pinned pnpm version with Corepack:
 
 ```bash
-npm install -g pnpm@9.12.1
+npm install --global corepack@0.35.0
+corepack enable
+corepack install --global pnpm@11.12.0
 ```
 
 ### Installation
@@ -208,7 +209,7 @@ pnpm clean
 
 ### Quality checks
 
-The supported local toolchain is Node.js 22.16.x with pnpm 9.12.1. Use the
+The supported local toolchain is Node.js 24.18.x with pnpm 11.12.0. Use the
 version pinned in `.nvmrc`, then run:
 
 ```bash

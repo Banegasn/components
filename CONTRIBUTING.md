@@ -28,16 +28,21 @@ Avoid unrelated cleanup in a focused pull request.
 
 ## Set up the repository
 
-Requirements are Node.js 22.16 or newer and pnpm 9. The pinned pnpm version is
-9.12.1.
+Requirements are Node.js 24.18.x and pnpm 11. The pinned pnpm version is
+11.12.0.
 
 ```bash
 git clone https://github.com/Banegasn/components.git
 cd components
+npm install --global corepack@0.35.0
 corepack enable
-corepack prepare pnpm@9.12.1 --activate
+corepack install --global pnpm@11.12.0
 pnpm install --frozen-lockfile
 ```
+
+pnpm 11 runs dependency build scripts only for the reviewed packages listed in
+`pnpm-workspace.yaml`. If an upgrade introduces a new build script, review that
+package before adding it to `allowBuilds`; do not bypass the policy globally.
 
 Run the demo during development with:
 

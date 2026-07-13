@@ -2,5 +2,17 @@ packages:
   - 'packages/*'
   - 'apps/*'
 
+publicHoistPattern:
+  - lit
+  - lit-*
+  - '@lit/*'
+  - svelte
+
 overrides:
   browserslist: 4.28.1
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true

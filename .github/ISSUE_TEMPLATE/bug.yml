@@ -29,7 +29,7 @@ body:
     attributes:
       label: Environment
       description: Browser, operating system, framework and version, package manager, and relevant assistive technology.
-      placeholder: "Chrome 128, macOS, Angular 21, pnpm 9.12.1"
+      placeholder: "Chrome 128, macOS, Angular 21, pnpm 11.12.0"
     validations:
       required: true
   - type: textarea
