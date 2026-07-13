@@ -57,7 +57,7 @@
     "@angular/build": "~21.2.19",
     "@angular/cli": "~21.2.19",
     "@angular/compiler-cli": "~21.2.18",
-    "@lit-labs/ssr-dom-shim": "^1.5.1",
+    "@lit-labs/ssr-dom-shim": "^1.6.0",
     "@types/node": "^20.17.19",
     "typescript": "~5.9.3",
     "xhr2": "^0.2.1"
