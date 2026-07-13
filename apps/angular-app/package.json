@@ -54,7 +54,7 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@angular/build": "~21.2.19",
+    "@angular/build": "~22.0.6",
     "@angular/cli": "~21.2.19",
     "@angular/compiler-cli": "~21.2.18",
     "@lit-labs/ssr-dom-shim": "^1.6.0",
