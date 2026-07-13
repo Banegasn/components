@@ -1,4 +1,11 @@
-import { Component, inject, CUSTOM_ELEMENTS_SCHEMA, DOCUMENT, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+  DOCUMENT,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { DialogRef } from '../../services/dialog.service';
 import '@banegasn/m3-switch';
 
@@ -6,7 +13,8 @@ import '@banegasn/m3-switch';
   selector: 'app-settings',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./settings.component.css'],
 })
 export class SettingsComponent implements OnInit {
   #document = inject(DOCUMENT);
@@ -24,7 +32,8 @@ export class SettingsComponent implements OnInit {
   ];
 
   ngOnInit() {
-    const savedTheme = this.#document.documentElement.getAttribute('theme') || 'light';
+    const savedTheme =
+      this.#document.documentElement.getAttribute('theme') || 'light';
     this.darkModeEnabled = savedTheme.endsWith('dark') || savedTheme === 'dark';
     this.activePalette = this.#getPaletteFromTheme(savedTheme);
     this.isRTL = this.#document.documentElement.getAttribute('dir') === 'rtl';
@@ -44,7 +53,8 @@ export class SettingsComponent implements OnInit {
 
   #applyTheme(theme: string) {
     this.#document.documentElement.setAttribute('theme', theme);
-    if (typeof localStorage !== 'undefined') localStorage.setItem('theme', theme);
+    if (typeof localStorage !== 'undefined')
+      localStorage.setItem('theme', theme);
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('theme-changed', { detail: theme }));
     }
@@ -57,7 +67,9 @@ export class SettingsComponent implements OnInit {
 
   onDarkModeChange(event: Event) {
     this.darkModeEnabled = (event as CustomEvent).detail.checked;
-    this.#applyTheme(this.#buildTheme(this.activePalette, this.darkModeEnabled));
+    this.#applyTheme(
+      this.#buildTheme(this.activePalette, this.darkModeEnabled),
+    );
   }
 
   onRTLChange(event: Event) {
@@ -67,6 +79,7 @@ export class SettingsComponent implements OnInit {
     } else {
       this.#document.documentElement.removeAttribute('dir');
     }
-    if (typeof localStorage !== 'undefined') localStorage.setItem('rtl', this.isRTL.toString());
+    if (typeof localStorage !== 'undefined')
+      localStorage.setItem('rtl', this.isRTL.toString());
   }
 }

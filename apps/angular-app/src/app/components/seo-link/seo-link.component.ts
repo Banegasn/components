@@ -1,30 +1,42 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seo-link',
   standalone: true,
   template: `
-    <a [href]="processedHref" [target]="target || '_self'" (click)="onClick($event)">
+    <a
+      [href]="processedHref"
+      [target]="target || '_self'"
+      (click)="onClick($event)"
+    >
       <ng-content></ng-content>
     </a>
   `,
-  styles: [`
-    :host {
-      display: contents;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    a {
-      display: contents;
-      text-decoration: none;
-      color: inherit;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-  `]
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styles: [
+    `
+      :host {
+        display: contents;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      a {
+        display: contents;
+        text-decoration: none;
+        color: inherit;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+    `,
+  ],
 })
 export class SeoLinkComponent {
   @Input() href!: string;
@@ -41,7 +53,9 @@ export class SeoLinkComponent {
     if (!this.target || this.target === '_self') {
       event.preventDefault();
       event.stopPropagation();
-      const navigatePath = this.href.startsWith('/') ? this.href : '/' + this.href;
+      const navigatePath = this.href.startsWith('/')
+        ? this.href
+        : '/' + this.href;
       this.router.navigateByUrl(navigatePath);
     }
   }
