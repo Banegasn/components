@@ -4,6 +4,7 @@
   "private": true,
   "description": "Banegasn component library monorepo using Turborepo and PNPM",
   "scripts": {
+    "prebuild": "pnpm tokens:check",
     "build": "turbo run build",
     "build:gh-pages": "pnpm build --filter='./packages/*' && pnpm --filter @apps/angular-app build:gh-pages",
     "dev": "turbo run dev --parallel",
@@ -26,7 +27,10 @@
     "screenshots": "node scripts/screenshot-packages.js",
     "screenshots:dark": "node scripts/screenshot-packages.js --theme dark",
     "screenshots:both": "node scripts/screenshot-packages.js --theme both",
-    "verify:package-licenses": "node scripts/verify-package-licenses.js"
+    "verify:package-licenses": "node scripts/verify-package-licenses.js",
+    "tokens:generate": "node scripts/generate-tokens.js",
+    "tokens:inventory": "node scripts/generate-tokens.js --update-inventory",
+    "tokens:check": "node scripts/generate-tokens.js --check && node scripts/validate-tokens.js"
   },
   "repository": {
     "type": "git",

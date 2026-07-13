@@ -1,0 +1,1012 @@
+{
+  "generatedFrom": [
+    "packages/**/*.{css,html,md,ts}",
+    "apps/**/*.{css,html,md,ts}",
+    "README.md"
+  ],
+  "tokens": [
+    {
+      "name": "--md-button-container-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts"
+      ]
+    },
+    {
+      "name": "--md-button-container-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts"
+      ]
+    },
+    {
+      "name": "--md-button-icon-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts"
+      ]
+    },
+    {
+      "name": "--md-button-label-text-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts"
+      ]
+    },
+    {
+      "name": "--md-button-label-text-weight",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts"
+      ]
+    },
+    {
+      "name": "--md-button-spacing",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts"
+      ]
+    },
+    {
+      "name": "--md-card-container-color",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts"
+      ]
+    },
+    {
+      "name": "--md-card-container-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts"
+      ]
+    },
+    {
+      "name": "--md-card-elevation",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts"
+      ]
+    },
+    {
+      "name": "--md-card-width",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-divider-color",
+      "tier": "component",
+      "locations": [
+        "packages/m3-divider/README.md",
+        "packages/m3-divider/src/m3-divider.styles.ts",
+        "packages/m3-divider/src/m3-divider.test.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-divider-motion-duration",
+      "tier": "component",
+      "locations": [
+        "packages/m3-divider/README.md",
+        "packages/m3-divider/src/m3-divider.styles.ts",
+        "packages/m3-divider/src/m3-divider.test.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-divider-motion-easing",
+      "tier": "component",
+      "locations": [
+        "packages/m3-divider/README.md",
+        "packages/m3-divider/src/m3-divider.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-dialog-container-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-dialog/README.md"
+      ]
+    },
+    {
+      "name": "--md-loading-indicator-color",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-loading-indicator/src/m3-loading-indicator.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-loading-indicator-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-loading-indicator/README.md",
+        "packages/m3-loading-indicator/src/m3-loading-indicator.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-menu-container-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-menu/README.md"
+      ]
+    },
+    {
+      "name": "--md-menu-max-height",
+      "tier": "legacy-component",
+      "locations": [
+        "apps/angular-app/src/app/app.component.html",
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-menu-min-width",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-menu-offset",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts",
+        "packages/m3-menu/src/m3-menu.ts"
+      ]
+    },
+    {
+      "name": "--md-progress-track-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-progress/README.md"
+      ]
+    },
+    {
+      "name": "--md-radio-inner-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-radio-button/README.md",
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-radio-outer-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-radio-button/README.md",
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-radio-ripple-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-radio-button/README.md",
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts",
+        "packages/m3-radio-button/src/m3-radio-button.ts"
+      ]
+    },
+    {
+      "name": "--md-radio-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-radio-button/README.md",
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts",
+        "packages/m3-radio-button/src/m3-radio-button.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-container-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-container-padding",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-icon-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-input-font-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-input-line-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-padding-horizontal",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-padding-vertical",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-search-bar-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-slider-handle-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-slider/README.md"
+      ]
+    },
+    {
+      "name": "--md-split-button-color-bg",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-split-button-color-text",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-split-button-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-split-button-shape-end",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-split-button-shape-start",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-switch-thumb-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-switch-thumb-size",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts"
+      ]
+    },
+    {
+      "name": "--md-switch-track-height",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts"
+      ]
+    },
+    {
+      "name": "--md-switch-track-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-switch-track-width",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-error",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "packages/m3-badge/README.md",
+        "packages/m3-badge/src/m3-badge.styles.ts",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-text-field/README.md"
+      ]
+    },
+    {
+      "name": "--md-sys-color-error-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/pages/buttons/button.component.css"
+      ]
+    },
+    {
+      "name": "--md-sys-color-inverse-on-surface",
+      "tier": "system",
+      "locations": [
+        "packages/m3-snackbar/src/m3-snackbar.styles.ts",
+        "packages/m3-snackbar/src/m3-snackbar.ts",
+        "packages/m3-tooltip/README.md",
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts",
+        "packages/m3-tooltip/src/m3-tooltip.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-inverse-surface",
+      "tier": "system",
+      "locations": [
+        "packages/m3-snackbar/src/m3-snackbar.styles.ts",
+        "packages/m3-snackbar/src/m3-snackbar.ts",
+        "packages/m3-tooltip/README.md",
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts",
+        "packages/m3-tooltip/src/m3-tooltip.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-error",
+      "tier": "system",
+      "locations": [
+        "packages/m3-badge/README.md",
+        "packages/m3-badge/src/m3-badge.styles.ts",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-error-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/pages/buttons/button.component.css"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-primary",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts",
+        "packages/m3-checkbox/README.md",
+        "packages/m3-checkbox/src/m3-checkbox.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.ts",
+        "packages/m3-split-button/README.md",
+        "packages/m3-split-button/src/m3-split-button.styles.ts",
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-primary-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/cards/cards.component.html",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-fab-menu/README.md",
+        "packages/m3-fab-menu/src/m3-fab-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-secondary",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/styles.css"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-secondary-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts",
+        "packages/m3-chip/src/m3-chip.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.ts",
+        "packages/m3-list/src/m3-list-item.styles.ts",
+        "packages/m3-list/src/m3-list-item.ts",
+        "packages/m3-navigation-bar/README.md",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-surface",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/public/cdn-example.html",
+        "apps/angular-app/src/app/components/confirm-dialog/confirm-dialog.component.css",
+        "apps/angular-app/src/app/components/dialog/dialog.component.css",
+        "apps/angular-app/src/app/components/settings/settings.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/badge/badge.component.html",
+        "apps/angular-app/src/pages/cards/cards.component.html",
+        "apps/angular-app/src/pages/checkbox/checkbox.component.html",
+        "apps/angular-app/src/pages/components/components.component.css",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/pages/search-bar/search-bar.component.css",
+        "apps/angular-app/src/pages/slider/slider.component.html",
+        "apps/angular-app/src/pages/switches/switch.component.css",
+        "apps/angular-app/src/pages/text-field/text-field.component.html",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-checkbox/README.md",
+        "packages/m3-checkbox/src/m3-checkbox.styles.ts",
+        "packages/m3-chip/README.md",
+        "packages/m3-chip/src/m3-chip.styles.ts",
+        "packages/m3-chip/src/m3-chip.ts",
+        "packages/m3-dialog/README.md",
+        "packages/m3-dialog/src/m3-dialog.styles.ts",
+        "packages/m3-dialog/src/m3-dialog.ts",
+        "packages/m3-list/src/m3-list-item.styles.ts",
+        "packages/m3-list/src/m3-list-item.ts",
+        "packages/m3-menu/README.md",
+        "packages/m3-menu/src/m3-menu-item.ts",
+        "packages/m3-menu/src/m3-menu.styles.ts",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-progress/src/m3-progress.styles.ts",
+        "packages/m3-radio-button/README.md",
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts",
+        "packages/m3-radio-button/src/m3-radio-button.ts",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts",
+        "packages/m3-slider/src/m3-slider.styles.ts",
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts",
+        "packages/m3-text-field/README.md",
+        "packages/m3-text-field/src/m3-text-field.styles.ts",
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts",
+        "packages/m3-top-app-bar/src/m3-top-app-bar.styles.ts",
+        "packages/m3-top-app-bar/src/m3-top-app-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-surface-rgb",
+      "tier": "system",
+      "locations": [
+        "packages/m3-text-field/src/m3-text-field.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-surface-variant",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/app/app.component.css",
+        "apps/angular-app/src/app/components/settings/settings.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/cards/cards.component.html",
+        "apps/angular-app/src/pages/components/components.component.css",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/quick-start/quick-start.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/pages/slider/slider.component.html",
+        "apps/angular-app/src/pages/switches/switch.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-checkbox/src/m3-checkbox.styles.ts",
+        "packages/m3-chip/src/m3-chip.styles.ts",
+        "packages/m3-dialog/src/m3-dialog.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.ts",
+        "packages/m3-list/src/m3-list-item.styles.ts",
+        "packages/m3-list/src/m3-list-item.ts",
+        "packages/m3-navigation-bar/README.md",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail-toggle.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail.ts",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts",
+        "packages/m3-tabs/README.md",
+        "packages/m3-tabs/src/m3-tabs.styles.ts",
+        "packages/m3-text-field/src/m3-text-field.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-tertiary",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/styles.css"
+      ]
+    },
+    {
+      "name": "--md-sys-color-on-tertiary-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-fab-menu/src/m3-fab-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-outline",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/app/app.component.css",
+        "apps/angular-app/src/app/components/settings/settings.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/components/components.component.css",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/fab-menu/fab-menu.component.html",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-chip/README.md",
+        "packages/m3-chip/src/m3-chip.styles.ts",
+        "packages/m3-chip/src/m3-chip.ts",
+        "packages/m3-divider/src/m3-divider.ts",
+        "packages/m3-icon-button/src/m3-icon-button.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.ts",
+        "packages/m3-menu/src/m3-menu.styles.ts",
+        "packages/m3-radio-button/src/m3-radio-button.ts",
+        "packages/m3-split-button/README.md",
+        "packages/m3-split-button/src/m3-split-button.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-outline-variant",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/app/components/dialog/dialog.component.css",
+        "apps/angular-app/src/app/components/settings/settings.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/components/components.component.css",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/navigation-bar/navigation-bar.component.css",
+        "apps/angular-app/src/pages/navigation-rail/navigation-rail.component.css",
+        "apps/angular-app/src/pages/quick-start/quick-start.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/pages/search-bar/search-bar.component.css",
+        "apps/angular-app/src/pages/switches/switch.component.css",
+        "apps/angular-app/src/pages/top-app-bar/top-app-bar.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts",
+        "packages/m3-divider/README.md",
+        "packages/m3-divider/src/m3-divider.styles.ts",
+        "packages/m3-divider/src/m3-divider.ts",
+        "packages/m3-menu/src/m3-menu.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail.ts",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts",
+        "packages/m3-tabs/src/m3-tabs.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-primary",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/public/cdn-example.html",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/cards/cards.component.html",
+        "apps/angular-app/src/pages/components/components.component.css",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/pages/search-bar/search-bar.component.css",
+        "apps/angular-app/src/pages/switches/switch.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-checkbox/README.md",
+        "packages/m3-checkbox/src/m3-checkbox.styles.ts",
+        "packages/m3-chip/README.md",
+        "packages/m3-icon-button/src/m3-icon-button.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.ts",
+        "packages/m3-list/src/m3-list-item.styles.ts",
+        "packages/m3-loading-indicator/README.md",
+        "packages/m3-loading-indicator/src/m3-loading-indicator.styles.ts",
+        "packages/m3-menu/src/m3-menu-item.ts",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail-toggle.styles.ts",
+        "packages/m3-progress/README.md",
+        "packages/m3-progress/src/m3-progress.styles.ts",
+        "packages/m3-progress/src/m3-progress.ts",
+        "packages/m3-radio-button/README.md",
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts",
+        "packages/m3-radio-button/src/m3-radio-button.ts",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts",
+        "packages/m3-slider/README.md",
+        "packages/m3-slider/src/m3-slider.styles.ts",
+        "packages/m3-split-button/README.md",
+        "packages/m3-split-button/src/m3-split-button.styles.ts",
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts",
+        "packages/m3-tabs/README.md",
+        "packages/m3-tabs/src/m3-tabs.styles.ts",
+        "packages/m3-text-field/README.md",
+        "packages/m3-text-field/src/m3-text-field.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-primary-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/cards/cards.component.html",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/navigation-bar/navigation-bar.component.css",
+        "apps/angular-app/src/pages/navigation-rail/navigation-rail.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-fab-menu/README.md",
+        "packages/m3-fab-menu/src/m3-fab-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-primary-hover",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-secondary",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-dialog/src/m3-dialog.styles.ts",
+        "packages/m3-navigation-bar/README.md",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-secondary-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/navigation-bar/navigation-bar.component.css",
+        "apps/angular-app/src/pages/navigation-rail/navigation-rail.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts",
+        "packages/m3-chip/src/m3-chip.styles.ts",
+        "packages/m3-chip/src/m3-chip.ts",
+        "packages/m3-icon-button/src/m3-icon-button.styles.ts",
+        "packages/m3-icon-button/src/m3-icon-button.ts",
+        "packages/m3-list/src/m3-list-item.styles.ts",
+        "packages/m3-list/src/m3-list-item.ts",
+        "packages/m3-menu/README.md",
+        "packages/m3-navigation-bar/README.md",
+        "packages/m3-navigation-bar/src/navigation-bar-item.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail-toggle.styles.ts",
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-surface",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/public/cdn-example.html",
+        "apps/angular-app/src/app/components/dialog/dialog.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/navigation-bar/navigation-bar.component.css",
+        "apps/angular-app/src/pages/navigation-rail/navigation-rail.component.css",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/pages/switches/switch.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts",
+        "packages/m3-checkbox/src/m3-checkbox.styles.ts",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail.ts",
+        "packages/m3-slider/src/m3-slider.styles.ts",
+        "packages/m3-top-app-bar/src/m3-top-app-bar.styles.ts",
+        "packages/m3-top-app-bar/src/m3-top-app-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-surface-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/public/cdn-example.html",
+        "apps/angular-app/src/app/components/settings/settings.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/search-bar/search-bar.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-menu/README.md",
+        "packages/m3-menu/src/m3-menu.styles.ts",
+        "packages/m3-navigation-bar/README.md",
+        "packages/m3-navigation-bar/src/navigation-bar.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts",
+        "packages/m3-tabs/README.md",
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-surface-container-high",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/pages/search-bar/search-bar.component.css",
+        "packages/m3-dialog/README.md",
+        "packages/m3-dialog/src/m3-dialog.styles.ts",
+        "packages/m3-dialog/src/m3-dialog.ts",
+        "packages/m3-fab-menu/README.md",
+        "packages/m3-loading-indicator/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
+        "packages/m3-search-bar/src/m3-search-bar.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-surface-container-highest",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/radio-buttons/radio-button.component.css",
+        "apps/angular-app/src/pages/switches/switch.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts",
+        "packages/m3-progress/README.md",
+        "packages/m3-progress/src/m3-progress.styles.ts",
+        "packages/m3-slider/README.md",
+        "packages/m3-slider/src/m3-slider.styles.ts",
+        "packages/m3-switch/README.md",
+        "packages/m3-switch/src/m3-switch.styles.ts",
+        "packages/m3-switch/src/m3-switch.ts",
+        "packages/m3-text-field/README.md",
+        "packages/m3-text-field/src/m3-text-field.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-surface-container-low",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/app/components/settings/settings.component.css",
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/README.md",
+        "apps/angular-app/src/pages/components/components.component.css",
+        "apps/angular-app/src/pages/contact/contact.component.css",
+        "apps/angular-app/src/pages/fab-menu/fab-menu.component.html",
+        "apps/angular-app/src/pages/home/home.component.css",
+        "apps/angular-app/src/pages/quick-start/quick-start.component.css",
+        "apps/angular-app/src/pages/snackbar/snackbar.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-button/README.md",
+        "packages/m3-button/src/m3-button.styles.ts",
+        "packages/m3-button/src/m3-button.ts",
+        "packages/m3-card/README.md",
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.ts",
+        "packages/m3-chip/src/m3-chip.styles.ts",
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-surface-variant",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/pages/cards/cards.component.html",
+        "apps/angular-app/src/pages/menu/menu.component.css",
+        "apps/angular-app/src/pages/navigation-bar/navigation-bar.component.css",
+        "apps/angular-app/src/pages/navigation-rail/navigation-rail.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-navigation-rail/README.md",
+        "packages/m3-navigation-rail/src/navigation-rail-item.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail-toggle.styles.ts",
+        "packages/m3-navigation-rail/src/navigation-rail.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-color-tertiary",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/styles.css"
+      ]
+    },
+    {
+      "name": "--md-sys-color-tertiary-container",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/pages/buttons/button.component.css",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-fab-menu/src/m3-fab-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-elevation-level1",
+      "tier": "system",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-elevation-level2",
+      "tier": "system",
+      "locations": [
+        "apps/angular-app/src/index.html",
+        "apps/angular-app/src/styles.css",
+        "packages/m3-navigation-bar/README.md",
+        "packages/m3-navigation-bar/src/navigation-bar.ts",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-typescale-body-large-font",
+      "tier": "system",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-typescale-body-large-weight",
+      "tier": "system",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-typescale-label-large-font",
+      "tier": "system",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-typescale-label-large-line-height",
+      "tier": "system",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-typescale-label-large-size",
+      "tier": "system",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-sys-typescale-label-large-weight",
+      "tier": "system",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-tooltip-shape",
+      "tier": "legacy-component",
+      "locations": [
+        "packages/m3-tooltip/README.md"
+      ]
+    }
+  ]
+}

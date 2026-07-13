@@ -12,6 +12,28 @@ describe('M3Divider', () => {
     expect(hr!.getAttribute('aria-orientation')).to.equal('horizontal');
   });
 
+  it('preserves standalone visual defaults without a shared theme', async () => {
+    const el = await fixture<M3Divider>(html`<m3-divider></m3-divider>`);
+    const hr = el.shadowRoot!.querySelector('hr')!;
+    const style = getComputedStyle(hr);
+
+    expect(style.backgroundColor).to.equal('rgb(202, 196, 208)');
+    expect(style.animationDuration).to.equal('0.6s');
+    expect(style.animationTimingFunction).to.equal('cubic-bezier(0.2, 0, 0, 1)');
+  });
+
+  it('accepts canonical component token overrides', async () => {
+    const el = await fixture<M3Divider>(html`
+      <m3-divider
+        style="--md-comp-divider-color: rgb(1, 2, 3); --md-comp-divider-motion-duration: 1s"
+      ></m3-divider>
+    `);
+    const style = getComputedStyle(el.shadowRoot!.querySelector('hr')!);
+
+    expect(style.backgroundColor).to.equal('rgb(1, 2, 3)');
+    expect(style.animationDuration).to.equal('1s');
+  });
+
   it('reflects variant="inset"', async () => {
     const el = await fixture<M3Divider>(html`<m3-divider variant="inset"></m3-divider>`);
     
