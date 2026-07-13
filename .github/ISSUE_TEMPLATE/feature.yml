@@ -1,0 +1,84 @@
+name: Feature request
+description: Propose a user-facing component, API, documentation, or tooling improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user outcome
+      description: Describe the user need and the outcome, independently of a preferred implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and use cases
+      description: Include examples, standards, current limitations, or prior discussion.
+    validations:
+      required: true
+  - type: input
+    id: area
+    attributes:
+      label: Affected packages or areas
+      placeholder: "@banegasn/m3-dialog, Angular demo, documentation"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed scope
+      description: Describe the smallest coherent capability to add.
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: State related work that this request should not include.
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Public API or UX sketch
+      description: Show proposed tags, attributes, properties, events, slots, CSS hooks, or user flow when relevant.
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility considerations
+      description: Describe semantics, keyboard behavior, focus, announcements, motion, contrast, RTL, and touch implications.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable, testable completion conditions.
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies or blockers
+      description: Link dependent issues or write "None known".
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: List the tests, documentation, demos, or manual evidence expected.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched for an existing component or issue that addresses this need.
+          required: true
+        - label: I have identified compatibility or semver impact where possible.
+          required: true

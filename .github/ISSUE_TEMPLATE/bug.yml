@@ -1,0 +1,92 @@
+name: Bug report
+description: Report reproducible incorrect behavior in a component, package, or demo.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Do not include secrets or security vulnerabilities here; use the private security advisory link instead.
+  - type: input
+    id: package
+    attributes:
+      label: Affected package or area
+      description: Name the package, custom element, demo route, or repository tool.
+      placeholder: "@banegasn/m3-button / m3-button / demo / publishing"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Include the package version and, for source builds, the commit SHA.
+      placeholder: "@banegasn/m3-button 2.2.3"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, operating system, framework and version, package manager, and relevant assistive technology.
+      placeholder: "Chrome 128, macOS, Angular 21, pnpm 9.12.1"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide a repository, URL, or the smallest markup/script and exact steps that reproduce the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and evidence
+      description: Include errors, screenshots, recordings, accessibility output, or logs with secrets removed.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Suggested scope and non-goals
+      description: If known, state the smallest safe fix and what should remain unchanged.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions that prove the bug is fixed without regressions.
+      placeholder: |
+        - [ ] The reproduction no longer fails.
+        - [ ] A regression test covers the failure.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies or blockers
+      description: Link dependent issues or write "None known".
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: List automated and manual checks that should demonstrate completion.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched for duplicate issues.
+          required: true
+        - label: This report does not disclose a security vulnerability or secret.
+          required: true

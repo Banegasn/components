@@ -19,7 +19,8 @@
     "version:major": "pnpm --filter \"./packages/*\" exec -- npm version major",
     "screenshots": "node scripts/screenshot-packages.js",
     "screenshots:dark": "node scripts/screenshot-packages.js --theme dark",
-    "screenshots:both": "node scripts/screenshot-packages.js --theme both"
+    "screenshots:both": "node scripts/screenshot-packages.js --theme both",
+    "verify:package-licenses": "node scripts/verify-package-licenses.js"
   },
   "repository": {
     "type": "git",
