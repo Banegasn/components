@@ -204,15 +204,15 @@ searchBar.addEventListener('search-clear', () => {
 
 | Property | Default | Description |
 |----------|---------|-------------|
-| `--md-search-bar-container-height` | `64px` | Height of the container |
-| `--md-search-bar-container-padding` | `16px` | Padding of the container |
-| `--md-search-bar-height` | `56px` | Height of the search bar |
-| `--md-search-bar-shape` | `28px` | Border radius of the search bar |
-| `--md-search-bar-padding-horizontal` | `16px` | Horizontal padding |
-| `--md-search-bar-padding-vertical` | `12px` | Vertical padding |
-| `--md-search-bar-input-font-size` | `16px` | Font size of input |
-| `--md-search-bar-input-line-height` | `24px` | Line height of input |
-| `--md-search-bar-icon-size` | `24px` | Size of icons in slots |
+| `--md-comp-search-bar-container-height` | `auto` | Height of the container |
+| `--md-comp-search-bar-container-padding` | `0` | Padding of the container |
+| `--md-comp-search-bar-height` | `38px` | Height of the search bar |
+| `--md-comp-search-bar-shape` | `28px` | Border radius of the search bar |
+| `--md-comp-search-bar-padding-horizontal` | `16px` | Horizontal padding |
+| `--md-comp-search-bar-padding-vertical` | `8px` | Vertical padding |
+| `--md-comp-search-bar-input-font-size` | `16px` | Font size of input |
+| `--md-comp-search-bar-input-line-height` | `24px` | Line height of input |
+| `--md-comp-search-bar-icon-size` | `24px` | Size of icons in slots |
 
 ## Accessibility
 

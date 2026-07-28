@@ -108,7 +108,7 @@ import '@banegasn/m3-dialog';
 |----------|---------|-------------|
 | `--md-sys-color-surface-container-high` | `#ece6f0` | Dialog background |
 | `--md-sys-color-on-surface` | `#1d1b20` | Dialog text color |
-| `--md-dialog-container-shape` | `28px` | Dialog border radius |
+| `--md-comp-dialog-container-shape` | `28px` | Dialog border radius |
 
 ## Framework Usage
 

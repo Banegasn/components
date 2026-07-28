@@ -10,7 +10,7 @@ export const m3TooltipStyles = css`
     position: absolute;
     z-index: 999;
     padding: 4px 8px;
-    border-radius: var(--md-comp-tooltip-shape, var(--md-tooltip-shape, 4px));
+    border-radius: var(--md-comp-tooltip-shape, 4px);
     font-size: 0.75rem;
     line-height: 1rem;
     white-space: nowrap;
@@ -33,7 +33,7 @@ export const m3TooltipStyles = css`
   :host([variant="rich"]) .tooltip-surface {
     background-color: var(--md-sys-color-surface-container, #f3edf7);
     color: var(--md-sys-color-on-surface, #1d1b20);
-    border-radius: var(--md-comp-tooltip-shape, var(--md-tooltip-shape, 12px));
+    border-radius: var(--md-comp-tooltip-shape, 12px);
     padding: 12px 16px;
     max-width: 320px;
     white-space: normal;

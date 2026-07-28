@@ -18,9 +18,9 @@ import { m3CardStyles } from './m3-card.styles.js';
  * @slot media - Optional media content (e.g., image, video)
  * @slot actions - Optional action buttons at the bottom
  * 
- * @cssprop --md-card-container-shape - Border radius (default: 12px for medium shape)
- * @cssprop --md-card-container-color - Background color
- * @cssprop --md-card-elevation - Box shadow elevation
+ * @cssprop --md-comp-card-container-shape - Border radius (default: 12px for medium shape)
+ * @cssprop --md-comp-card-container-color - Background color
+ * @cssprop --md-comp-card-elevation - Box shadow elevation
  * @cssprop --md-sys-color-surface-container-low - Elevated card surface
  * @cssprop --md-sys-color-surface-container-highest - Filled card surface
  * @cssprop --md-sys-color-surface - Outlined card surface

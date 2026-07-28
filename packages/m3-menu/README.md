@@ -120,7 +120,7 @@ import '@banegasn/m3-menu';
 | `--md-sys-color-surface-container` | `#f7f2fa` | Menu background |
 | `--md-sys-color-on-surface` | `#1d1b20` | Menu item text color |
 | `--md-sys-color-secondary-container` | `#e8def8` | Hover state background |
-| `--md-menu-container-shape` | `4px` | Menu border radius |
+| `--md-comp-menu-container-shape` | `16px` | Menu border radius |
 
 ## Framework Usage
 

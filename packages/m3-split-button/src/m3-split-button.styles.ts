@@ -6,11 +6,11 @@ export const m3SplitButtonStyles = css`
     align-items: center;
     gap: 1px;
     vertical-align: middle;
-    --_height: var(--md-comp-split-button-height, var(--md-split-button-height, 40px));
-    --_shape-start: var(--md-comp-split-button-shape-start, var(--md-split-button-shape-start, 20px 4px 4px 20px));
-    --_shape-end: var(--md-comp-split-button-shape-end, var(--md-split-button-shape-end, 4px 20px 20px 4px));
-    --_color-bg: var(--md-comp-split-button-color-bg, var(--md-split-button-color-bg, var(--md-sys-color-primary, #6750a4)));
-    --_color-text: var(--md-comp-split-button-color-text, var(--md-split-button-color-text, var(--md-sys-color-on-primary, #ffffff)));
+    --_height: var(--md-comp-split-button-height, 40px);
+    --_shape-start: var(--md-comp-split-button-shape-start, 20px 4px 4px 20px);
+    --_shape-end: var(--md-comp-split-button-shape-end, 4px 20px 20px 4px);
+    --_color-bg: var(--md-comp-split-button-color-bg, var(--md-sys-color-primary, #6750a4));
+    --_color-text: var(--md-comp-split-button-color-text, var(--md-sys-color-on-primary, #ffffff));
   }
 
   .button {

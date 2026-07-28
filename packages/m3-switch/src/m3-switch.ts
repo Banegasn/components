@@ -10,9 +10,9 @@ import { m3SwitchStyles } from './m3-switch.styles.js';
  * 
  * @fires switch-change - Fired when the switch state changes
  * 
- * @cssprop --md-switch-track-width - Width of the switch track (default: 52px)
- * @cssprop --md-switch-track-height - Height of the switch track (default: 32px)
- * @cssprop --md-switch-thumb-size - Size of the switch thumb (default: 24px)
+ * @cssprop --md-comp-switch-track-width - Width of the switch track (default: 52px)
+ * @cssprop --md-comp-switch-track-height - Height of the switch track (default: 32px)
+ * @cssprop --md-comp-switch-thumb-size - Size of the switch thumb (default: 24px)
  * @cssprop --md-sys-color-primary - Primary color for the switch when on
  * @cssprop --md-sys-color-on-surface - Color for the switch track when off
  * @cssprop --md-sys-color-outline - Outline color for disabled state

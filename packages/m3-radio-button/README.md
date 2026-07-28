@@ -213,10 +213,10 @@ You can customize the radio button appearance using CSS custom properties:
 
 ```css
 m3-radio-button {
-  --md-radio-size: 20px;
-  --md-radio-outer-size: 20px;
-  --md-radio-inner-size: 10px;
-  --md-radio-ripple-size: 40px;
+  --md-comp-radio-size: 20px;
+  --md-comp-radio-outer-size: 20px;
+  --md-comp-radio-inner-size: 10px;
+  --md-comp-radio-ripple-size: 40px;
   --md-sys-color-primary: #6750a4;
   --md-sys-color-on-surface: #1d1b20;
 }

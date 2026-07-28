@@ -204,10 +204,10 @@ import '@banegasn/m3-card';
 
 | Property | Default | Description |
 |----------|---------|-------------|
-| `--md-card-container-shape` | `12px` | Border radius of the card |
-| `--md-card-container-color` | varies | Background color (overrides default) |
-| `--md-card-elevation` | varies | Box shadow elevation |
-| `--md-card-width` | `320px` | Fixed width (when width="fixed") |
+| `--md-comp-card-container-shape` | `12px` | Border radius of the card |
+| `--md-comp-card-container-color` | varies | Background color (overrides default) |
+| `--md-comp-card-elevation` | varies | Box shadow elevation |
+| `--md-comp-card-width` | `320px` | Fixed width (when width="fixed") |
 | `--md-sys-color-surface-container-low` | `#f7f2fa` | Elevated card background |
 | `--md-sys-color-surface-container-highest` | `#e6e0e9` | Filled card background |
 | `--md-sys-color-surface` | `#fef7ff` | Outlined card background |

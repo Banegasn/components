@@ -94,7 +94,7 @@ import '@banegasn/m3-tooltip';
 |----------|---------|-------------|
 | `--md-sys-color-inverse-surface` | `#322f35` | Tooltip background |
 | `--md-sys-color-inverse-on-surface` | `#f5eff7` | Tooltip text color |
-| `--md-tooltip-shape` | `4px` | Tooltip border radius |
+| `--md-comp-tooltip-shape` | `4px` | Tooltip border radius |
 
 ## Framework Usage
 

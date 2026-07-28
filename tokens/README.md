@@ -12,13 +12,11 @@ can consume them without running repository tooling.
 - `--md-sys-*` contains semantic color, typography, shape, elevation, state,
   and motion roles. Applications normally customize this tier.
 - `--md-comp-*` contains component-specific decisions composed from system
-  roles. This is the preferred fine-grained override tier for new migrations.
-- Existing `--md-<component>-*` names are compatibility aliases. They remain
-  public until a documented major release removes them.
+  roles. This is the fine-grained component override tier.
 
 Names use lowercase kebab case and identify the tier, domain, role, and state
-from broadest to narrowest. New source usage must be declared in `tokens.json`
-or explicitly reviewed into the legacy inventory.
+from broadest to narrowest. Every source usage must be declared in
+`tokens.json`.
 
 ## Consumption and precedence
 
@@ -33,26 +31,22 @@ Import all three generated files once at application scope, in this order:
 Light is the default. Set `theme="dark"` or `theme="high-contrast"` on the
 document root to activate another generated role set.
 
-Migrated component fallback chains use this precedence:
+Component styles use this precedence:
 
 1. a canonical `--md-comp-*` override;
-2. an existing compatible public property;
-3. a semantic `--md-sys-*` role; and
-4. the component's original literal fallback.
+2. a semantic `--md-sys-*` role where the component has one; and
+3. the component's literal default.
 
 The final literal is required. It keeps every published component usable when
 no theme stylesheet is loaded and prevents token adoption from changing its
 standalone default appearance.
 
-Most component aliases live in the `componentAliases` section of the canonical
-source instead of the generated root declarations. Their size, shape, or color
-defaults depend on a component variant, so emitting one value at `:root` would
-mask that variant default and could also prevent a legacy override from taking
-effect. The alias and its legacy mapping remain canonical; the component owns
-its final fallback chain. Only component values that are safe as theme-wide
-defaults are emitted in the generated CSS.
+Component values that vary by a component attribute are declared and consumed
+in that component's executable stylesheet rather than emitted at `:root`.
+This keeps an override live without flattening size or shape variants into a
+single application-wide default.
 
-The divider is the intentionally small proof migration:
+The divider is a small canonical component-token example:
 
 ```css
 --_color: var(
@@ -61,30 +55,18 @@ The divider is the intentionally small proof migration:
 );
 ```
 
-## Compatibility and incremental migration
+## Canonical API
 
-[TOKEN_COMPATIBILITY.md](TOKEN_COMPATIBILITY.md) is generated from the reviewed
-legacy inventory. It records current concrete `--md-*` names and their source
-locations. Existing names continue to work. Migrate one component family at a
-time, introduce a canonical component alias, retain the prior fallback, and
-add computed-style or screenshot evidence before changing defaults.
-
-To intentionally accept a previously unknown legacy name:
-
-```bash
-pnpm tokens:inventory
-```
-
-Review the inventory and compatibility-table diff carefully. Prefer defining a
-proper canonical token instead of growing the legacy baseline. Every inventoried
-legacy component property must have a canonical `--md-comp-*` mapping, and
-validation requires its source stylesheet to use that canonical alias before
-the legacy fallback.
+The token contract contains only the three naming tiers above. Historical
+`--md-<component>-*` properties are not aliases and are not supported. Add a
+new public component decision as `--md-comp-<component>-<role>`, declare it in
+`tokens.json`, consume it in the owning stylesheet, and add computed-style or
+screenshot evidence before changing a default.
 
 ## Validation workflow
 
 ```bash
-pnpm tokens:generate   # update generated CSS and compatibility documentation
+pnpm tokens:generate   # update generated CSS
 pnpm tokens:check      # prove generated files are clean and names are known
 ```
 

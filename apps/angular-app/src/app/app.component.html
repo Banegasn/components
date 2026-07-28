@@ -25,7 +25,7 @@
 
       <m3-menu placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()"
         (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
-        (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-menu-max-height: calc(100vh - 400px);">
+        (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-comp-menu-max-height: calc(100vh - 400px);">
         @for (item of componentMenuItems; track item.path) {
         <app-seo-link [href]="item.path.substring(1)">
           <m3-menu-item [value]="item.path">
@@ -74,7 +74,7 @@
 <div class="mobile-nav-shell" (menu-item-select)="onComponentsMenuItemSelect($event)">
   <div class="mobile-components-anchor">
     <m3-menu placement="top-center" [offset]="12" [open]="componentsMenuOpen()"
-      (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-menu-max-height: calc(100dvh - 200px);">
+      (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-comp-menu-max-height: calc(100dvh - 200px);">
       @for (item of componentMenuItems; track item.path) {
       <app-seo-link [href]="item.path.substring(1)">
         <m3-menu-item [value]="item.path">

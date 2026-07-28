@@ -13,12 +13,12 @@ import { m3ButtonStyles } from './m3-button.styles.js';
  * @slot - Default slot for button label text
  * @slot icon - Optional icon to display before the label
  * 
- * @cssprop --md-button-container-height - Height of the button (default: varies by size)
- * @cssprop --md-button-container-shape - Border radius (default: varies by shape)
- * @cssprop --md-button-label-text-size - Font size of label (default: varies by size)
- * @cssprop --md-button-label-text-weight - Font weight of label (default: 500)
- * @cssprop --md-button-icon-size - Size of the icon (default: varies by size)
- * @cssprop --md-button-spacing - Horizontal padding (default: varies by padding setting)
+ * @cssprop --md-comp-button-container-height - Height of the button (default: varies by size)
+ * @cssprop --md-comp-button-container-shape - Border radius (default: varies by shape)
+ * @cssprop --md-comp-button-label-text-size - Font size of label (default: varies by size)
+ * @cssprop --md-comp-button-label-text-weight - Font weight of label (default: 500)
+ * @cssprop --md-comp-button-icon-size - Size of the icon (default: varies by size)
+ * @cssprop --md-comp-button-spacing - Horizontal padding (default: varies by padding setting)
  * @cssprop --md-sys-color-primary - Primary color
  * @cssprop --md-sys-color-on-primary - Text color on primary
  * @cssprop --md-sys-color-secondary-container - Secondary container color
@@ -194,4 +194,3 @@ declare global {
     'm3-button': M3Button;
   }
 }
-

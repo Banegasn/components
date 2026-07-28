@@ -308,12 +308,12 @@ Show loading spinner while processing:
 
 | Property | Default | Description |
 |----------|---------|-------------|
-| `--md-button-container-height` | Varies by size* | Height of the button |
-| `--md-button-container-shape` | Varies by shape/size* | Border radius |
-| `--md-button-label-text-size` | Varies by size* | Font size of label |
-| `--md-button-label-text-weight` | `500` | Font weight of label |
-| `--md-button-icon-size` | Varies by size* | Size of the icon |
-| `--md-button-spacing` | `24dp` or `16dp`* | Horizontal padding |
+| `--md-comp-button-container-height` | Varies by size* | Height of the button |
+| `--md-comp-button-container-shape` | Varies by shape/size* | Border radius |
+| `--md-comp-button-label-text-size` | Varies by size* | Font size of label |
+| `--md-comp-button-label-text-weight` | `500` | Font weight of label |
+| `--md-comp-button-icon-size` | Varies by size* | Size of the icon |
+| `--md-comp-button-spacing` | `24dp` or `16dp`* | Horizontal padding |
 | `--md-sys-color-primary` | `#6750a4` | Primary color |
 | `--md-sys-color-on-primary` | `#ffffff` | Text color on primary |
 | `--md-sys-color-secondary-container` | `#e8def8` | Secondary container color |
@@ -390,15 +390,15 @@ Customize the button appearance with CSS custom properties:
 
 /* Per-component customization */
 m3-button {
-  --md-button-container-height: 48px;
-  --md-button-container-shape: 24px;
-  --md-button-label-text-size: 16px;
+  --md-comp-button-container-height: 48px;
+  --md-comp-button-container-shape: 24px;
+  --md-comp-button-label-text-size: 16px;
 }
 
 /* Specific instance */
 m3-button.large {
-  --md-button-container-height: 56px;
-  --md-button-spacing: 32px;
+  --md-comp-button-container-height: 56px;
+  --md-comp-button-spacing: 32px;
 }
 ```
 

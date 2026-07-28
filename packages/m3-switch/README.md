@@ -182,11 +182,11 @@ You can customize the switch appearance using CSS custom properties:
 
 ```css
 m3-switch {
-  --md-switch-track-width: 52px;
-  --md-switch-track-height: 32px;
-  --md-switch-thumb-size: 24px;
-  --md-switch-track-shape: 16px;
-  --md-switch-thumb-shape: 12px;
+  --md-comp-switch-track-width: 52px;
+  --md-comp-switch-track-height: 32px;
+  --md-comp-switch-thumb-size: 24px;
+  --md-comp-switch-track-shape: 16px;
+  --md-comp-switch-thumb-shape: 12px;
   --md-sys-color-primary: #6750a4;
   --md-sys-color-on-primary: #ffffff;
   --md-sys-color-on-surface: #1d1b20;
