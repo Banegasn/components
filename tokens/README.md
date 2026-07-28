@@ -63,6 +63,32 @@ new public component decision as `--md-comp-<component>-<role>`, declare it in
 `tokens.json`, consume it in the owning stylesheet, and add computed-style or
 screenshot evidence before changing a default.
 
+## Motion contract
+
+Motion is a system role, not a component-local magic number. The public API
+includes the Material duration scale (`short1` through `short4`, `medium1`
+through `medium4`, `long1` through `long4`, and `extra-long1` through
+`extra-long4`), standard/emphasized entry and exit curves, and two CSS
+spring-emulation curves. Components use `--md-sys-motion-*` directly; they do
+not create component aliases for generic interaction timing.
+
+Use motion only to clarify a state change, hierarchy, or spatial relationship:
+
+- short durations for press, selection, and state-layer feedback;
+- medium durations for dialog, menu, tooltip, and snackbar visibility;
+- long durations for staged entrances or intentional container transforms;
+- linear timing only for continuous progress; and
+- `spring-fast` only on composited transforms where a compact spatial cue is
+  helpful. `spring-bouncy` is opt-in and must not be used for essential state.
+
+Every generated theme contains a `prefers-reduced-motion: reduce` override
+that collapses duration roles to `1ms`. The final state remains visible rather
+than being hidden or delayed. Continuous indicators have component-specific
+alternatives: loading rings freeze, indeterminate progress shows a centred
+partial bar, pulses stop at full opacity, and interaction ripples are omitted.
+Consumers should continue to announce progress/status with semantic text or
+ARIA live regions; motion never carries essential information by itself.
+
 ## Validation workflow
 
 ```bash

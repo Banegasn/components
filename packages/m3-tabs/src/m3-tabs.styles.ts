@@ -22,7 +22,7 @@ export const m3TabsStyles = css`
     height: 3px;
     background-color: var(--md-sys-color-primary, #6750a4);
     border-radius: 3px 3px 0 0;
-    transition: left 0.3s cubic-bezier(0.2, 0, 0, 1), width 0.3s cubic-bezier(0.2, 0, 0, 1);
+    transition: left var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized), width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
     z-index: 1;
   }
 `;
@@ -52,7 +52,7 @@ export const m3TabStyles = css`
     line-height: 1.25rem;
     font-family: inherit;
     position: relative;
-    transition: color 0.2s;
+    transition: color var(--md-sys-motion-duration-short4);
     outline: none;
     overflow: hidden;
   }
@@ -75,7 +75,7 @@ export const m3TabStyles = css`
     inset: 0;
     background-color: currentColor;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
     z-index: 1;
   }

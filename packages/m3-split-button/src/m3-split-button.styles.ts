@@ -27,7 +27,7 @@ export const m3SplitButtonStyles = css`
     font-weight: var(--md-sys-typescale-label-large-weight, 500);
     line-height: var(--md-sys-typescale-label-large-line-height, 20px);
     cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    transition: background-color var(--md-sys-motion-duration-short4), box-shadow var(--md-sys-motion-duration-short4);
     border-radius: var(--_shape-start);
   }
 
@@ -41,7 +41,7 @@ export const m3SplitButtonStyles = css`
     background-color: var(--_color-bg);
     color: var(--_color-text);
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s, border-radius 0.2s;
+    transition: background-color var(--md-sys-motion-duration-short4), transform var(--md-sys-motion-duration-short4), border-radius var(--md-sys-motion-duration-short4);
     border-radius: var(--_shape-end);
   }
 

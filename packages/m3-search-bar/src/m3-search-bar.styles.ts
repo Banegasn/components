@@ -25,9 +25,9 @@ export const m3SearchBarStyles = css`
     align-items: center;
     padding: var(--_bar-padding-vertical) var(--_bar-padding-horizontal);
     gap: 12px;
-    transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1),
-                border-color 0.2s cubic-bezier(0.2, 0, 0, 1),
-                box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: background-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                border-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     box-shadow: var(--md-sys-elevation-level1, 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15));
   }
 
@@ -118,7 +118,7 @@ export const m3SearchBarStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface);
     opacity: 0;
-    transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     pointer-events: none;
   }
 
@@ -134,7 +134,7 @@ export const m3SearchBarStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface);
     opacity: 0;
-    transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     pointer-events: none;
   }
 

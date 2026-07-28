@@ -11,7 +11,7 @@ export const m3DialogStyles = css`
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.32);
     opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
     pointer-events: none;
   }
 
@@ -43,7 +43,7 @@ export const m3DialogStyles = css`
     flex-direction: column;
     transform: scale(0.9);
     opacity: 0;
-    transition: transform 0.2s cubic-bezier(0, 0, 0, 1), opacity 0.15s cubic-bezier(0, 0, 0, 1);
+    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized-decelerate), opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate);
     pointer-events: none;
   }
 

@@ -1,4 +1,12 @@
 /* ─── Section groups ─────────────────────────────────────── */
+.motion-note {
+  max-width: 44rem;
+  margin-top: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
 .comp-section {
   padding: 24px 0;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
@@ -41,7 +49,7 @@
   padding: 13px 20px;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background var(--md-sys-motion-duration-short3);
   min-width: 0;
 }
 
@@ -121,7 +129,7 @@
 /* ─── Arrow ──────────────────────────────────────────────── */
 .comp-arrow {
   --md-sys-color-on-surface-variant: var(--md-sys-color-outline);
-  transition: transform 0.15s;
+  transition: transform var(--md-sys-motion-duration-short3);
   flex-shrink: 0;
   justify-self: end;
 }

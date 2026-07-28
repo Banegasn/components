@@ -22,7 +22,7 @@ export const m3FabMenuStyles = css`
     border: none;
     cursor: pointer;
     box-shadow: 0px 4px 8px 3px rgba(0,0,0,0.15);
-    transition: transform 0.3s cubic-bezier(0.2, 0.0, 0, 1.0), border-radius 0.3s, background-color 0.3s;
+    transition: transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-spring-fast), border-radius var(--md-sys-motion-duration-medium2), background-color var(--md-sys-motion-duration-medium2);
   }
 
   .fab:hover {
@@ -44,7 +44,7 @@ export const m3FabMenuStyles = css`
     opacity: 0;
     pointer-events: none;
     transform: translateX(-50%) translateY(20px) scale(0.8);
-    transition: opacity 0.2s, transform 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+    transition: opacity var(--md-sys-motion-duration-short4), transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-spring-fast);
     transform-origin: bottom center;
   }
 

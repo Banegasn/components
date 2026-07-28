@@ -106,7 +106,7 @@ export const m3ButtonStyles = css`
     letter-spacing: 0.1px;
     cursor: pointer;
     outline: none;
-    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s, border-radius 0.2s;
+    transition: background-color var(--md-sys-motion-duration-short4), box-shadow var(--md-sys-motion-duration-short4), transform var(--md-sys-motion-duration-short2), border-radius var(--md-sys-motion-duration-short4);
     user-select: none;
     white-space: nowrap;
     overflow: hidden;
@@ -156,7 +156,7 @@ export const m3ButtonStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-primary, #ffffff);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
   }
 
   :host([variant="filled"]) button:hover::before,
@@ -188,7 +188,7 @@ export const m3ButtonStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
   }
 
   :host([variant="elevated"]) button:hover::before {
@@ -213,7 +213,7 @@ export const m3ButtonStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-secondary-container, #1d192b);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
   }
 
   :host([variant="tonal"]) button:hover::before {
@@ -239,7 +239,7 @@ export const m3ButtonStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
   }
 
   :host([variant="outlined"]) button:hover::before {
@@ -269,7 +269,7 @@ export const m3ButtonStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
   }
 
   :host([variant="text"]) button:hover::before {
@@ -340,13 +340,20 @@ export const m3ButtonStyles = css`
     border: 2px solid currentColor;
     border-top-color: transparent;
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    animation: spin var(--md-sys-motion-duration-extra-long2) var(--md-sys-motion-easing-linear) infinite;
     z-index: 2;
   }
 
   @keyframes spin {
     to {
       transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  /* A static ring still communicates that the action is pending. */
+  @media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+      animation: none;
     }
   }
 

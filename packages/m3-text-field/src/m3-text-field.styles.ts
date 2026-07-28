@@ -20,7 +20,7 @@ export const m3TextFieldStyles = css`
     align-items: center;
     background-color: var(--md-sys-color-surface-container-highest, #e6e0e9);
     border-radius: inherit;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    transition: background-color var(--md-sys-motion-duration-short4), box-shadow var(--md-sys-motion-duration-short4);
     cursor: text;
     overflow: hidden;
   }
@@ -35,7 +35,7 @@ export const m3TextFieldStyles = css`
     inset: 0;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: var(--_state-layer-opacity);
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
     z-index: 0;
   }
@@ -48,7 +48,7 @@ export const m3TextFieldStyles = css`
     right: 0;
     height: 1px;
     background-color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: height 0.2s, background-color 0.2s;
+    transition: height var(--md-sys-motion-duration-short4), background-color var(--md-sys-motion-duration-short4);
     z-index: 3;
   }
 
@@ -65,7 +65,7 @@ export const m3TextFieldStyles = css`
     transform: translateY(-50%);
     pointer-events: none;
     transform-origin: top left;
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s, top 0.2s;
+    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), color var(--md-sys-motion-duration-short4), top var(--md-sys-motion-duration-short4);
     color: var(--md-sys-color-on-surface-variant, #49454f);
     font-size: 1rem;
     line-height: normal;
@@ -105,6 +105,7 @@ export const m3TextFieldStyles = css`
   .input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px var(--md-sys-color-surface-container-highest, #e6e0e9) inset !important;
     -webkit-text-fill-color: var(--md-sys-color-on-surface, #1d1b20) !important;
+    /* Browser autofill paint workaround; it intentionally does not represent UI motion. */
     transition: background-color 5000s ease-in-out 0s;
   }
 

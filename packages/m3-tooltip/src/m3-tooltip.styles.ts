@@ -17,7 +17,7 @@ export const m3TooltipStyles = css`
     pointer-events: none;
     opacity: 0;
     transform: scale(0.8);
-    transition: opacity 0.15s cubic-bezier(0, 0, 0, 1), transform 0.15s cubic-bezier(0, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate), transform var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate);
   }
 
   /* Plain tooltip */

@@ -11,8 +11,8 @@ export const m3DividerStyles = css`
     --_inset-start: 16px;
     --_inset-end: 16px;
     --_middle-space: 16px;
-    --_animation-duration: var(--md-comp-divider-motion-duration, 0.6s);
-    --_animation-easing: var(--md-comp-divider-motion-easing, cubic-bezier(0.2, 0, 0, 1));
+    --_animation-duration: var(--md-comp-divider-motion-duration, var(--md-sys-motion-duration-long4, 600ms));
+    --_animation-easing: var(--md-comp-divider-motion-easing, var(--md-sys-motion-easing-emphasized-decelerate, cubic-bezier(0.2, 0, 0, 1)));
   }
 
   /* Horizontal (default) */
@@ -81,12 +81,12 @@ export const m3DividerStyles = css`
   /* Pulsing divider for loading/placeholder states */
   :host([pulsing]) .divider {
     animation: divider-enter var(--_animation-duration) var(--_animation-easing) forwards,
-               divider-pulse 2s ease-in-out infinite var(--_animation-duration);
+               divider-pulse var(--md-sys-motion-duration-extra-long4) var(--md-sys-motion-easing-standard) infinite var(--_animation-duration);
   }
 
   :host([pulsing][orientation="vertical"]) .divider {
     animation: divider-enter-vertical var(--_animation-duration) var(--_animation-easing) forwards,
-               divider-pulse 2s ease-in-out infinite var(--_animation-duration);
+               divider-pulse var(--md-sys-motion-duration-extra-long4) var(--md-sys-motion-easing-standard) infinite var(--_animation-duration);
   }
 
   @keyframes divider-enter {
@@ -117,6 +117,16 @@ export const m3DividerStyles = css`
     }
     50% {
       opacity: 0.4;
+    }
+  }
+
+  /* The divider remains fully visible; the loading pulse is nonessential. */
+  @media (prefers-reduced-motion: reduce) {
+    :host([pulsing]) .divider,
+    :host([pulsing][orientation="vertical"]) .divider {
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 `;

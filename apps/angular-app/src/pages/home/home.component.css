@@ -93,7 +93,7 @@
   gap: 12px 16px;
   padding: 13px 20px;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
-  transition: background .15s;
+  transition: background var(--md-sys-motion-duration-short3);
   cursor: pointer;
 }
 .component-table > :last-child .component-row {
@@ -141,7 +141,7 @@
 .component-arrow {
   font-size: 16px;
   color: var(--md-sys-color-outline);
-  transition: color .15s, transform .15s;
+  transition: color var(--md-sys-motion-duration-short3), transform var(--md-sys-motion-duration-short3);
   flex-shrink: 0;
 }
 .install {

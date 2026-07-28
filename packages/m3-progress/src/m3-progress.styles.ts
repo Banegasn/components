@@ -24,13 +24,13 @@ export const m3ProgressStyles = css`
     bottom: 0;
     background-color: var(--md-sys-color-primary, #6750a4);
     border-radius: inherit;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard);
   }
 
   /* Indeterminate animation */
   :host([indeterminate]) .indicator {
     width: 50% !important;
-    animation: indeterminate 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: indeterminate var(--md-sys-motion-duration-extra-long4) var(--md-sys-motion-easing-standard) infinite;
   }
 
   @keyframes indeterminate {
@@ -39,6 +39,14 @@ export const m3ProgressStyles = css`
     }
     100% {
       left: 100%;
+    }
+  }
+
+  /* Indeterminate progress becomes a static, centred partial track. */
+  @media (prefers-reduced-motion: reduce) {
+    :host([indeterminate]) .indicator {
+      left: 25%;
+      animation: none;
     }
   }
 

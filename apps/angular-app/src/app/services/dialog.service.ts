@@ -86,7 +86,7 @@ export class DialogService {
       const domElem = (this.dialogComponentRef.hostView as any).rootNodes[0] as HTMLElement;
       
       // Add fade-out animation
-      domElem.style.animation = 'fadeOut 0.2s ease-in-out';
+      domElem.style.animation = 'fadeOut var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)';
       
       setTimeout(() => {
         this.appRef.detachView(this.dialogComponentRef!.hostView);
@@ -96,4 +96,3 @@ export class DialogService {
     }
   }
 }
-

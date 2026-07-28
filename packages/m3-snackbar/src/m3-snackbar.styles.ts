@@ -3,9 +3,9 @@ import { css } from 'lit';
 export const m3SnackbarStyles = css`
   :host {
     display: block;
-    --_animation-duration: 0.4s;
-    --_animation-easing: cubic-bezier(0.2, 0, 0, 1);
-    --_exit-easing: cubic-bezier(0.4, 0, 1, 1);
+    --_animation-duration: var(--md-sys-motion-duration-medium4);
+    --_animation-easing: var(--md-sys-motion-easing-emphasized-decelerate);
+    --_exit-easing: var(--md-sys-motion-easing-emphasized-accelerate);
   }
 
   .snackbar {

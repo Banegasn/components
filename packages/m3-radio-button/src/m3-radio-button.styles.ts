@@ -70,8 +70,8 @@ export const m3RadioButtonStyles = css`
     border-radius: 50%;
     border: 2px solid var(--md-sys-color-on-surface, #1d1b20);
     background-color: transparent;
-    transition: border-color 0.2s cubic-bezier(0.2, 0, 0, 1),
-                background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: border-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                background-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@ export const m3RadioButtonStyles = css`
     border-radius: 50%;
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0;
-    transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     pointer-events: none;
   }
 
@@ -132,7 +132,7 @@ export const m3RadioButtonStyles = css`
     border-radius: 50%;
     background-color: var(--md-sys-color-primary, #6750a4);
     transform: scale(0);
-    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
   }
 
   .radio-outer[checked] .radio-inner {
@@ -157,7 +157,7 @@ export const m3RadioButtonStyles = css`
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0.3;
     transform: scale(0);
-    animation: ripple-animation 0.6s cubic-bezier(0.2, 0, 0, 1);
+    animation: ripple-animation var(--md-sys-motion-duration-long4) var(--md-sys-motion-easing-emphasized);
     pointer-events: none;
     z-index: 0;
   }
@@ -173,6 +173,12 @@ export const m3RadioButtonStyles = css`
     100% {
       transform: scale(1);
       opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ripple {
+      display: none;
     }
   }
 

@@ -9,7 +9,7 @@ export const m3ListItemStyles = css`
     --_leading-gap: 16px;
     --_trailing-gap: 16px;
     --_shape: 0px;
-    --_animation-duration: 0.3s;
+    --_animation-duration: var(--md-sys-motion-duration-medium2);
   }
 
   .item {
@@ -25,7 +25,7 @@ export const m3ListItemStyles = css`
     outline: none;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-    transition: background-color var(--_animation-duration) cubic-bezier(0.2, 0, 0, 1);
+    transition: background-color var(--_animation-duration) var(--md-sys-motion-easing-emphasized);
     background-color: transparent;
   }
 

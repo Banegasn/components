@@ -43,7 +43,7 @@ export const m3CheckboxStyles = css`
     border-radius: 50%;
     background-color: transparent;
     opacity: 0;
-    transition: background-color 0.2s, opacity 0.2s;
+    transition: background-color var(--md-sys-motion-duration-short4), opacity var(--md-sys-motion-duration-short4);
   }
 
   .checkbox-container:hover .state-layer {
@@ -75,7 +75,7 @@ export const m3CheckboxStyles = css`
     border-radius: 2px;
     box-sizing: border-box;
     border: 2px solid var(--md-sys-color-on-surface-variant, #49454f);
-    transition: border-color 0.2s, background-color 0.2s;
+    transition: border-color var(--md-sys-motion-duration-short4), background-color var(--md-sys-motion-duration-short4);
   }
 
   .outline[checked],
@@ -105,7 +105,7 @@ export const m3CheckboxStyles = css`
     color: var(--md-sys-color-on-primary, #ffffff);
     opacity: 0;
     transform: scale(0);
-    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4), transform var(--md-sys-motion-duration-short4);
   }
 
   .background[checked],

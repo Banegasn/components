@@ -27,7 +27,15 @@ function renderTheme(themeName, theme) {
     .map(([name, value]) => `  ${name}: ${value};`)
     .join('\n');
 
-  return `/* This file is generated from tokens/tokens.json. Do not edit. */\n${theme.selector} {\n${declarations}\n}\n`;
+  const reducedMotionDeclarations = source.tokens
+    .filter((token) => token.category === 'motion' && token.name.includes('-duration-'))
+    .map((token) => `  ${token.name}: 1ms;`)
+    .join('\n');
+  const reducedMotion = reducedMotionDeclarations
+    ? `\n/* Motion is optional: state changes remain visible without movement. */\n@media (prefers-reduced-motion: reduce) {\n  ${theme.selector} {\n${reducedMotionDeclarations}\n  }\n}\n`
+    : '';
+
+  return `/* This file is generated from tokens/tokens.json. Do not edit. */\n${theme.selector} {\n${declarations}\n}\n${reducedMotion}`;
 }
 
 function writeOrCheck(file, content, failures) {

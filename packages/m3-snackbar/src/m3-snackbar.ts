@@ -92,7 +92,7 @@ export class M3Snackbar extends LitElement {
     this._isLeaving = true;
     this.requestUpdate();
 
-    // Wait for exit animation then close
+    // Reduced-motion users keep the announcement but do not wait for movement.
     setTimeout(() => {
       this.open = false;
       this._isLeaving = false;
@@ -100,7 +100,11 @@ export class M3Snackbar extends LitElement {
         bubbles: true,
         composed: true
       }));
-    }, 350);
+    }, this._prefersReducedMotion() ? 0 : 400);
+  }
+
+  private _prefersReducedMotion() {
+    return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   /**

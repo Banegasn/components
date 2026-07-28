@@ -6,8 +6,8 @@ export const m3TopAppBarStyles = css`
     width: 100%;
     --_height: 64px;
     --_container-shape: 0px;
-    --_animation-duration: 0.3s;
-    --_animation-easing: cubic-bezier(0.2, 0, 0, 1);
+    --_animation-duration: var(--md-sys-motion-duration-medium2);
+    --_animation-easing: var(--md-sys-motion-easing-emphasized);
   }
 
   .app-bar {

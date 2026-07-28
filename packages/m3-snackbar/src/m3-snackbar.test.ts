@@ -44,6 +44,26 @@ describe('M3Snackbar', () => {
     expect(el.open).to.be.false;
   });
 
+  it('does not retain an exit delay when reduced motion is requested', async () => {
+    const originalMatchMedia = window.matchMedia;
+    Object.defineProperty(window, 'matchMedia', {
+      configurable: true,
+      value: () => ({ matches: true }),
+    });
+
+    try {
+      const el = await fixture<M3Snackbar>(html`<m3-snackbar open duration="0">Test</m3-snackbar>`);
+      el.dismiss();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      expect(el.open).to.be.false;
+    } finally {
+      Object.defineProperty(window, 'matchMedia', {
+        configurable: true,
+        value: originalMatchMedia,
+      });
+    }
+  });
+
   it('dispatches snackbar-action on action click', async () => {
     const el = await fixture<M3Snackbar>(html`
       <m3-snackbar open duration="0">

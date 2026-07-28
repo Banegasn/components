@@ -25,7 +25,7 @@ export const m3ChipStyles = css`
     background: transparent;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-    transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
+    transition: background-color var(--md-sys-motion-duration-short4), box-shadow var(--md-sys-motion-duration-short4), border-color var(--md-sys-motion-duration-short4), color var(--md-sys-motion-duration-short4);
     font-family: inherit;
     position: relative;
     overflow: hidden;
@@ -79,7 +79,7 @@ export const m3ChipStyles = css`
     inset: 0;
     background-color: currentColor;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
     z-index: 1;
   }

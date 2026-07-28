@@ -11,7 +11,7 @@ export const navigationRailToggleStyles = css`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s, margin 0.3s, box-shadow 0.2s ease;
+    transition: background-color var(--md-sys-motion-duration-short4), margin var(--md-sys-motion-duration-medium2), box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
     color: var(--md-sys-color-on-surface-variant, #49454f);
     place-self: flex-start;
     margin: 0;
@@ -50,4 +50,3 @@ export const navigationRailToggleStyles = css`
     fill: currentColor;
   }
 `;
-
