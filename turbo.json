@@ -18,7 +18,7 @@
     },
     "test": {
       "dependsOn": ["^build"],
-      "env": ["WTR_BROWSER_CHANNEL"]
+      "env": ["VITEST_BROWSER_CHANNEL"]
     },
     "clean": {
       "cache": false
