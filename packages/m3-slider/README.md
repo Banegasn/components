@@ -113,7 +113,7 @@ import '@banegasn/m3-slider';
 |----------|---------|-------------|
 | `--md-sys-color-primary` | `#6750a4` | Active track and handle color |
 | `--md-sys-color-surface-container-highest` | `#e6e0e9` | Inactive track color |
-| `--md-slider-handle-size` | `20px` | Size of the thumb handle |
+| `--md-comp-slider-handle-size` | `20px` | Size of the thumb handle |
 
 ## Framework Usage
 

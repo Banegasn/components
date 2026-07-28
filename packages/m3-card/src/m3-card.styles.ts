@@ -3,7 +3,7 @@ import { css } from 'lit';
 export const m3CardStyles = css`
   :host {
     display: block;
-    --_container-shape: var(--md-comp-card-container-shape, var(--md-card-container-shape, 12px));
+    --_container-shape: var(--md-comp-card-container-shape, 12px);
   }
 
   /* Width variants */
@@ -17,7 +17,7 @@ export const m3CardStyles = css`
   }
 
   :host([width="fixed"]) {
-    width: var(--md-comp-card-width, var(--md-card-width, 320px));
+    width: var(--md-comp-card-width, 320px);
   }
 
   :host([disabled]) {
@@ -56,13 +56,12 @@ export const m3CardStyles = css`
   :host(:not([variant])) .card {
     background-color: var(
       --md-comp-card-container-color,
-      var(--md-card-container-color, var(--md-sys-color-surface-container-low, #f7f2fa))
+      var(--md-sys-color-surface-container-low, #f7f2fa)
     );
     box-shadow: var(
       --md-comp-card-elevation,
-      var(--md-card-elevation,
       0 1px 2px rgba(0, 0, 0, 0.3),
-      0 1px 3px 1px rgba(0, 0, 0, 0.15))
+      0 1px 3px 1px rgba(0, 0, 0, 0.15)
     );
   }
 
@@ -122,7 +121,7 @@ export const m3CardStyles = css`
   :host([variant="filled"]) .card {
     background-color: var(
       --md-comp-card-container-color,
-      var(--md-card-container-color, var(--md-sys-color-surface-container-highest, #e6e0e9))
+      var(--md-sys-color-surface-container-highest, #e6e0e9)
     );
     box-shadow: none;
   }
@@ -173,7 +172,7 @@ export const m3CardStyles = css`
   :host([variant="outlined"]) .card {
     background-color: var(
       --md-comp-card-container-color,
-      var(--md-card-container-color, var(--md-sys-color-surface, #fef7ff))
+      var(--md-sys-color-surface, #fef7ff)
     );
     border: 1px solid var(--md-sys-color-outline-variant, #c9c5d0);
     box-shadow: none;

@@ -30,7 +30,6 @@
     "screenshots:both": "node scripts/screenshot-packages.js --theme both",
     "verify:package-licenses": "node scripts/verify-package-licenses.js",
     "tokens:generate": "node scripts/generate-tokens.js",
-    "tokens:inventory": "node scripts/generate-tokens.js --update-inventory",
     "tokens:check": "node scripts/generate-tokens.js --check && node scripts/validate-tokens.js"
   },
   "repository": {

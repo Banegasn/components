@@ -3,8 +3,8 @@ import { css } from 'lit';
 export const m3LoadingIndicatorStyles = css`
   :host {
     display: inline-block;
-    --_size: var(--md-comp-loading-indicator-size, var(--md-loading-indicator-size, 48px));
-    --_color: var(--md-comp-loading-indicator-color, var(--md-loading-indicator-color, var(--md-sys-color-primary, #6750a4)));
+    --_size: var(--md-comp-loading-indicator-size, 48px);
+    --_color: var(--md-comp-loading-indicator-color, var(--md-sys-color-primary, #6750a4));
   }
 
   .container {
@@ -39,8 +39,8 @@ export const m3LoadingIndicatorStyles = css`
   }
   
   :host([variant="contained"]) {
-      --_size: var(--md-comp-loading-indicator-size, var(--md-loading-indicator-size, 100%));
-      --_color: var(--md-comp-loading-indicator-color, var(--md-loading-indicator-color, currentColor));
+      --_size: var(--md-comp-loading-indicator-size, 100%);
+      --_color: var(--md-comp-loading-indicator-color, currentColor);
       display: inline-flex;
       align-items: center;
       justify-content: center;

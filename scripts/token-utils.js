@@ -3,7 +3,6 @@ const path = require('node:path');
 
 const repositoryRoot = path.resolve(__dirname, '..');
 const tokenSourcePath = path.join(repositoryRoot, 'tokens', 'tokens.json');
-const inventoryPath = path.join(repositoryRoot, 'tokens', 'generated', 'legacy-token-inventory.json');
 const generatedDirectory = path.join(repositoryRoot, 'tokens', 'generated');
 
 const SOURCE_EXTENSIONS = new Set(['.css', '.html', '.md', '.ts']);
@@ -35,7 +34,7 @@ function classifyToken(name) {
   if (name.startsWith('--md-ref-')) return 'reference';
   if (name.startsWith('--md-sys-')) return 'system';
   if (name.startsWith('--md-comp-')) return 'component';
-  return 'legacy-component';
+  return 'unknown';
 }
 
 function scanTokenUsage() {
@@ -62,6 +61,28 @@ function scanTokenUsage() {
     }));
 }
 
+function escapeForRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function scanComponentStyleUsage(name) {
+  const packageRoot = path.join(repositoryRoot, 'packages');
+  const expression = new RegExp(`var\\(\\s*${escapeForRegex(name)}(?:\\s*[,\\)])`);
+
+  return walk(packageRoot)
+    .filter((file) => file.endsWith('.styles.ts'))
+    .filter((file) => {
+      const packageName = path.relative(packageRoot, file).split(path.sep)[0]?.replace(/^m3-/, '');
+      const ownerNames = [packageName, packageName?.replace(/-button$/, '')].filter(Boolean);
+      return ownerNames.some((ownerName) => name.startsWith(`--md-comp-${ownerName}-`));
+    })
+    .filter((file) => {
+      const content = fs.readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+      return expression.test(content);
+    })
+    .map((file) => path.relative(repositoryRoot, file).split(path.sep).join('/'));
+}
+
 function formatJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
@@ -70,9 +91,9 @@ module.exports = {
   classifyToken,
   formatJson,
   generatedDirectory,
-  inventoryPath,
   readJson,
   repositoryRoot,
+  scanComponentStyleUsage,
   scanTokenUsage,
   tokenSourcePath,
 };

@@ -3,85 +3,85 @@ import { css } from 'lit';
 export const m3ButtonStyles = css`
   :host {
     display: inline-block;
-    --_container-height: var(--md-comp-button-container-height, var(--md-button-container-height, 40px));
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 20px));
-    --_label-text-size: var(--md-comp-button-label-text-size, var(--md-button-label-text-size, 14px));
-    --_label-text-weight: var(--md-comp-button-label-text-weight, var(--md-button-label-text-weight, 500));
-    --_icon-size: var(--md-comp-button-icon-size, var(--md-button-icon-size, 18px));
-    --_spacing: var(--md-comp-button-spacing, var(--md-button-spacing, 24px));
+    --_container-height: var(--md-comp-button-container-height, 40px);
+    --_container-shape: var(--md-comp-button-container-shape, 20px);
+    --_label-text-size: var(--md-comp-button-label-text-size, 14px);
+    --_label-text-weight: var(--md-comp-button-label-text-weight, 500);
+    --_icon-size: var(--md-comp-button-icon-size, 18px);
+    --_spacing: var(--md-comp-button-spacing, 24px);
   }
 
   /* Size variants - Material Design 3 Expressive */
   :host([size="extra-small"]) {
-    --_container-height: var(--md-comp-button-container-height, var(--md-button-container-height, 32px));
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 16px));
-    --_label-text-size: var(--md-comp-button-label-text-size, var(--md-button-label-text-size, 12px));
-    --_icon-size: var(--md-comp-button-icon-size, var(--md-button-icon-size, 16px));
+    --_container-height: var(--md-comp-button-container-height, 32px);
+    --_container-shape: var(--md-comp-button-container-shape, 16px);
+    --_label-text-size: var(--md-comp-button-label-text-size, 12px);
+    --_icon-size: var(--md-comp-button-icon-size, 16px);
   }
 
   :host([size="small"]),
   :host(:not([size])) {
-    --_container-height: var(--md-comp-button-container-height, var(--md-button-container-height, 40px));
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 20px));
-    --_label-text-size: var(--md-comp-button-label-text-size, var(--md-button-label-text-size, 14px));
-    --_icon-size: var(--md-comp-button-icon-size, var(--md-button-icon-size, 18px));
+    --_container-height: var(--md-comp-button-container-height, 40px);
+    --_container-shape: var(--md-comp-button-container-shape, 20px);
+    --_label-text-size: var(--md-comp-button-label-text-size, 14px);
+    --_icon-size: var(--md-comp-button-icon-size, 18px);
   }
 
   :host([size="medium"]) {
-    --_container-height: var(--md-comp-button-container-height, var(--md-button-container-height, 48px));
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 24px));
-    --_label-text-size: var(--md-comp-button-label-text-size, var(--md-button-label-text-size, 16px));
-    --_icon-size: var(--md-comp-button-icon-size, var(--md-button-icon-size, 20px));
+    --_container-height: var(--md-comp-button-container-height, 48px);
+    --_container-shape: var(--md-comp-button-container-shape, 24px);
+    --_label-text-size: var(--md-comp-button-label-text-size, 16px);
+    --_icon-size: var(--md-comp-button-icon-size, 20px);
   }
 
   :host([size="large"]) {
-    --_container-height: var(--md-comp-button-container-height, var(--md-button-container-height, 56px));
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 28px));
-    --_label-text-size: var(--md-comp-button-label-text-size, var(--md-button-label-text-size, 18px));
-    --_icon-size: var(--md-comp-button-icon-size, var(--md-button-icon-size, 24px));
+    --_container-height: var(--md-comp-button-container-height, 56px);
+    --_container-shape: var(--md-comp-button-container-shape, 28px);
+    --_label-text-size: var(--md-comp-button-label-text-size, 18px);
+    --_icon-size: var(--md-comp-button-icon-size, 24px);
   }
 
   :host([size="extra-large"]) {
-    --_container-height: var(--md-comp-button-container-height, var(--md-button-container-height, 64px));
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 32px));
-    --_label-text-size: var(--md-comp-button-label-text-size, var(--md-button-label-text-size, 20px));
-    --_icon-size: var(--md-comp-button-icon-size, var(--md-button-icon-size, 28px));
+    --_container-height: var(--md-comp-button-container-height, 64px);
+    --_container-shape: var(--md-comp-button-container-shape, 32px);
+    --_label-text-size: var(--md-comp-button-label-text-size, 20px);
+    --_icon-size: var(--md-comp-button-icon-size, 28px);
   }
 
   /* Shape variants */
   :host([shape="square"]) {
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 8px));
+    --_container-shape: var(--md-comp-button-container-shape, 8px);
   }
 
   :host([shape="square"][size="extra-small"]) {
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 4px));
+    --_container-shape: var(--md-comp-button-container-shape, 4px);
   }
 
   :host([shape="square"][size="small"]),
   :host([shape="square"]:not([size])) {
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 8px));
+    --_container-shape: var(--md-comp-button-container-shape, 8px);
   }
 
   :host([shape="square"][size="medium"]) {
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 10px));
+    --_container-shape: var(--md-comp-button-container-shape, 10px);
   }
 
   :host([shape="square"][size="large"]) {
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 12px));
+    --_container-shape: var(--md-comp-button-container-shape, 12px);
   }
 
   :host([shape="square"][size="extra-large"]) {
-    --_container-shape: var(--md-comp-button-container-shape, var(--md-button-container-shape, 14px));
+    --_container-shape: var(--md-comp-button-container-shape, 14px);
   }
 
   /* Padding variants */
   :host([padding="small"]) {
-    --_spacing: var(--md-comp-button-spacing, var(--md-button-spacing, 16px));
+    --_spacing: var(--md-comp-button-spacing, 16px);
   }
 
   :host([padding="default"]),
   :host(:not([padding])) {
-    --_spacing: var(--md-comp-button-spacing, var(--md-button-spacing, 24px));
+    --_spacing: var(--md-comp-button-spacing, 24px);
   }
 
   :host([disabled]) {

@@ -4,7 +4,7 @@ export const m3ProgressStyles = css`
   :host {
     display: block;
     width: 100%;
-    height: var(--md-comp-progress-track-height, var(--md-progress-track-height, 4px));
+    height: var(--md-comp-progress-track-height, 4px);
     position: relative;
     overflow: hidden;
     border-radius: 2px;

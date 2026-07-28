@@ -93,7 +93,7 @@ import '@banegasn/m3-progress';
 |----------|---------|-------------|
 | `--md-sys-color-primary` | `#6750a4` | Active track color |
 | `--md-sys-color-surface-container-highest` | `#e6e0e9` | Track background color |
-| `--md-progress-track-height` | `4px` | Height of the progress bar |
+| `--md-comp-progress-track-height` | `4px` | Height of the progress bar |
 
 ## Framework Usage
 

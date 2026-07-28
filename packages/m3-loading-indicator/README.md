@@ -92,7 +92,7 @@ import '@banegasn/m3-loading-indicator';
 |----------|---------|-------------|
 | `--md-sys-color-primary` | `#6750a4` | Indicator color |
 | `--md-sys-color-surface-container-high` | `#ece6f0` | Contained variant background |
-| `--md-loading-indicator-size` | `48px` | Size of the indicator |
+| `--md-comp-loading-indicator-size` | `48px` | Size of the indicator |
 
 ## Framework Usage
 

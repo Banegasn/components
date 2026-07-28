@@ -15,15 +15,15 @@ import { m3SearchBarStyles } from './m3-search-bar.styles.js';
  * @slot leading - Content to display before the input (e.g., search icon, menu button)
  * @slot trailing - Content to display after the input (e.g., clear button, avatar)
  * 
- * @cssprop --md-search-bar-container-height - Height of the container (default: 64px)
- * @cssprop --md-search-bar-container-padding - Padding of the container (default: 16px)
- * @cssprop --md-search-bar-height - Height of the search bar (default: 56px)
- * @cssprop --md-search-bar-shape - Border radius of the search bar (default: 28px)
- * @cssprop --md-search-bar-padding-horizontal - Horizontal padding (default: 16px)
- * @cssprop --md-search-bar-padding-vertical - Vertical padding (default: 12px)
- * @cssprop --md-search-bar-input-font-size - Font size of input (default: 16px)
- * @cssprop --md-search-bar-input-line-height - Line height of input (default: 24px)
- * @cssprop --md-search-bar-icon-size - Size of icons in slots (default: 24px)
+ * @cssprop --md-comp-search-bar-container-height - Height of the container
+ * @cssprop --md-comp-search-bar-container-padding - Padding of the container
+ * @cssprop --md-comp-search-bar-height - Height of the search bar
+ * @cssprop --md-comp-search-bar-shape - Border radius of the search bar
+ * @cssprop --md-comp-search-bar-padding-horizontal - Horizontal padding
+ * @cssprop --md-comp-search-bar-padding-vertical - Vertical padding
+ * @cssprop --md-comp-search-bar-input-font-size - Font size of input
+ * @cssprop --md-comp-search-bar-input-line-height - Line height of input
+ * @cssprop --md-comp-search-bar-icon-size - Size of icons in slots
  * @cssprop --md-sys-color-surface-container - Container background color
  * @cssprop --md-sys-color-surface-container-high - Search bar background color
  * @cssprop --md-sys-color-on-surface - Input text color

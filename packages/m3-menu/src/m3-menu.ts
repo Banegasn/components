@@ -180,7 +180,7 @@ export class M3Menu extends LitElement {
     }
 
     private _syncOffset() {
-        this.style.setProperty('--md-menu-offset', `${this.offset}px`);
+        this.style.setProperty('--_menu-offset', `${this.offset}px`);
     }
 }
 

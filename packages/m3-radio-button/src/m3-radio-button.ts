@@ -10,8 +10,8 @@ import { m3RadioButtonStyles } from './m3-radio-button.styles.js';
  * 
  * @fires radio-change - Fired when the radio button state changes
  * 
- * @cssprop --md-radio-size - Size of the radio button (default: 20px)
- * @cssprop --md-radio-ripple-size - Size of the ripple effect (default: 40px)
+ * @cssprop --md-comp-radio-size - Size of the radio button (default: 20px)
+ * @cssprop --md-comp-radio-ripple-size - Size of the ripple effect (default: 40px)
  * @cssprop --md-sys-color-primary - Primary color for the radio when checked
  * @cssprop --md-sys-color-on-surface - Color for the radio when unchecked
  * @cssprop --md-sys-color-outline - Outline color for disabled state
@@ -456,4 +456,3 @@ declare global {
     'm3-radio-button': M3RadioButton;
   }
 }
-
