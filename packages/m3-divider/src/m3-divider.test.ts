@@ -1,4 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import { describe, it } from 'vitest';
 import './m3-divider.js';
 import type { M3Divider } from './m3-divider.js';
 

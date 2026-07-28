@@ -30,7 +30,7 @@ export default defineConfig({
   root: workspaceDirectory,
   test: {
     include: ['src/**/*.test.ts'],
-    globals: true,
+    globals: false,
     passWithNoTests: false,
     setupFiles: [path.join(configDirectory, 'test/vitest-browser-setup.ts')],
     browser: {
@@ -51,8 +51,11 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: {
-      '@open-wc/testing': path.join(configDirectory, 'test/open-wc-vitest.ts'),
-    },
+    alias: [
+      {
+        find: /^@open-wc\/testing$/,
+        replacement: path.join(configDirectory, 'test/open-wc-vitest.ts'),
+      },
+    ],
   },
 });

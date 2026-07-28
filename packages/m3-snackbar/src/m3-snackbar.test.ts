@@ -1,4 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import { describe, it } from 'vitest';
 import './m3-snackbar.js';
 import type { M3Snackbar } from './m3-snackbar.js';
 
