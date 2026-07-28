@@ -1,4 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import { describe, it } from 'vitest';
 import './m3-icon-button.js';
 import type { M3IconButton } from './m3-icon-button.js';
 

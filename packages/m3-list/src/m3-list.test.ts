@@ -1,4 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
+import { describe, it } from 'vitest';
 import './m3-list.js';
 import './m3-list-item.js';
 import type { M3List } from './m3-list.js';

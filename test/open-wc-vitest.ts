@@ -1,12 +1,12 @@
 /**
- * Open WC 3's default entry point installs semantic DOM snapshot helpers that
- * import Web Test Runner's browser commands. The Lit suites do not use those
- * snapshot helpers, so use the official side-effect-free Open WC entry point
- * and install the same axe Chai assertion explicitly.
+ * Open WC's default entry point registers semantic DOM helpers that import
+ * Web Test Runner commands. Vitest does not provide those browser commands,
+ * so its browser test lane uses Open WC's supported side-effect-free entry
+ * point and installs the axe assertion used by the component suites.
  */
-import { chai } from '../node_modules/@open-wc/testing/index-no-side-effects.js';
+import { chai } from '@open-wc/testing/pure';
 import { chaiA11yAxe } from 'chai-a11y-axe';
 
 chai.use(chaiA11yAxe);
 
-export * from '../node_modules/@open-wc/testing/index-no-side-effects.js';
+export * from '@open-wc/testing/pure';
