@@ -4,6 +4,6 @@
     "declaration": false,
     "declarationMap": false,
     "noEmit": true,
-    "types": ["@open-wc/testing", "mocha"]
+    "types": ["@open-wc/testing", "vitest/globals"]
   }
 }
