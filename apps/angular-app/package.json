@@ -58,7 +58,7 @@
     "@angular/compiler-cli": "22.0.6",
     "@lit-labs/ssr-dom-shim": "^1.6.0",
     "@types/node": "24.13.3",
-    "jsdom": "29.1.1",
+    "jsdom": "30.0.0",
     "lit": "3.3.3",
     "typescript": "6.0.3",
     "vitest": "4.1.10",
