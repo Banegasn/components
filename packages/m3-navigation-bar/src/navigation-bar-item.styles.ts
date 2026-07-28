@@ -60,7 +60,7 @@ export const navigationBarItemStyles = css`
     height: 32px;
     border-radius: 16px;
     z-index: 0;
-    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, border-radius 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), border-radius var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
     opacity: 0;
     pointer-events: none;
     box-shadow: 0 0 0 0 transparent;
@@ -130,7 +130,7 @@ export const navigationBarItemStyles = css`
     width: 24px;
     height: 24px;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: color 0.2s ease;
+    transition: color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
     z-index: 2;
   }
 
@@ -146,7 +146,7 @@ export const navigationBarItemStyles = css`
     line-height: 16px;
     color: var(--md-sys-color-on-surface-variant, #49454f);
     text-align: center;
-    transition: color 0.2s ease;
+    transition: color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
     z-index: 2;
     max-width: 100%;
     overflow: hidden;
@@ -253,4 +253,3 @@ export const navigationBarItemStyles = css`
     white-space: nowrap;
   }
 `;
-

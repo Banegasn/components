@@ -11,7 +11,7 @@ import { m3ListStyles } from './m3-list.styles.js';
  *
  * @cssprop --_list-padding-top - Top padding of the list (default: 8px)
  * @cssprop --_list-padding-bottom - Bottom padding of the list (default: 8px)
- * @cssprop --_stagger-delay - Delay between each item's entrance animation (default: 0.05s)
+ * @cssprop --_stagger-delay - Delay between each item's entrance animation (default: `--md-sys-motion-duration-short1`)
  */
 @customElement('m3-list')
 export class M3List extends LitElement {

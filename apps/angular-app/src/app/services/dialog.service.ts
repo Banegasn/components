@@ -1,5 +1,6 @@
 import { Injectable, ComponentRef, ApplicationRef, createComponent, EnvironmentInjector, Type, inject } from '@angular/core';
 import { DialogComponent } from '../components/dialog/dialog.component';
+import { motionDuration } from '../utils/motion-duration';
 
 export interface DialogConfig {
   title?: string;
@@ -86,14 +87,14 @@ export class DialogService {
       const domElem = (this.dialogComponentRef.hostView as any).rootNodes[0] as HTMLElement;
       
       // Add fade-out animation
-      domElem.style.animation = 'fadeOut 0.2s ease-in-out';
+      domElem.style.animation = 'fadeOut var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard)';
+      const exitDuration = motionDuration(domElem, '--md-sys-motion-duration-short4');
       
       setTimeout(() => {
         this.appRef.detachView(this.dialogComponentRef!.hostView);
         this.dialogComponentRef?.destroy();
         this.dialogComponentRef = null;
-      }, 200);
+      }, exitDuration);
     }
   }
 }
-

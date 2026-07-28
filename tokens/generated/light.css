@@ -1,7 +1,7 @@
 /* This file is generated from tokens/tokens.json. Do not edit. */
 :root, :root[theme="light"] {
   --md-comp-divider-color: var(--md-sys-color-outline-variant);
-  --md-comp-divider-motion-duration: var(--md-sys-motion-duration-medium4);
+  --md-comp-divider-motion-duration: var(--md-sys-motion-duration-long4);
   --md-comp-divider-motion-easing: var(--md-sys-motion-easing-emphasized-decelerate);
   --md-ref-palette-error-40: #b3261e;
   --md-ref-palette-error-80: #ffb4ab;
@@ -43,12 +43,34 @@
   --md-sys-color-tertiary-container: #f3f4f6;
   --md-sys-elevation-level1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
   --md-sys-elevation-level2: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --md-sys-motion-continuous-play-state: running;
+  --md-sys-motion-duration-extra-long1: 700ms;
+  --md-sys-motion-duration-extra-long2: 800ms;
+  --md-sys-motion-duration-extra-long3: 900ms;
+  --md-sys-motion-duration-extra-long4: 1000ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+  --md-sys-motion-duration-long3: 550ms;
+  --md-sys-motion-duration-long4: 600ms;
+  --md-sys-motion-duration-medium1: 250ms;
   --md-sys-motion-duration-medium2: 300ms;
-  --md-sys-motion-duration-medium4: 600ms;
+  --md-sys-motion-duration-medium3: 350ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-short1: 50ms;
   --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
   --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
   --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-linear: linear;
   --md-sys-motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --md-sys-motion-progress-start: -50%;
+  --md-sys-motion-ripple-visibility: visible;
+  --md-sys-motion-spring-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --md-sys-motion-spring-fast: cubic-bezier(0.33, 1, 0.68, 1);
   --md-sys-shape-corner-extra-large: 28px;
   --md-sys-shape-corner-full: 9999px;
   --md-sys-shape-corner-large: 16px;
@@ -64,4 +86,51 @@
   --md-sys-typescale-label-large-line-height: 20px;
   --md-sys-typescale-label-large-size: 14px;
   --md-sys-typescale-label-large-weight: 500;
+}
+
+/* Motion is optional: state changes remain visible without movement. */
+:root[data-motion="reduced"] {
+  --md-sys-motion-continuous-play-state: paused;
+  --md-sys-motion-progress-start: 25%;
+  --md-sys-motion-ripple-visibility: hidden;
+  --md-sys-motion-duration-short1: 1ms;
+  --md-sys-motion-duration-short2: 1ms;
+  --md-sys-motion-duration-short3: 1ms;
+  --md-sys-motion-duration-short4: 1ms;
+  --md-sys-motion-duration-medium1: 1ms;
+  --md-sys-motion-duration-medium2: 1ms;
+  --md-sys-motion-duration-medium3: 1ms;
+  --md-sys-motion-duration-medium4: 1ms;
+  --md-sys-motion-duration-long1: 1ms;
+  --md-sys-motion-duration-long2: 1ms;
+  --md-sys-motion-duration-long3: 1ms;
+  --md-sys-motion-duration-long4: 1ms;
+  --md-sys-motion-duration-extra-long1: 1ms;
+  --md-sys-motion-duration-extra-long2: 1ms;
+  --md-sys-motion-duration-extra-long3: 1ms;
+  --md-sys-motion-duration-extra-long4: 1ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root, :root[theme="light"] {
+  --md-sys-motion-continuous-play-state: paused;
+  --md-sys-motion-progress-start: 25%;
+  --md-sys-motion-ripple-visibility: hidden;
+  --md-sys-motion-duration-short1: 1ms;
+  --md-sys-motion-duration-short2: 1ms;
+  --md-sys-motion-duration-short3: 1ms;
+  --md-sys-motion-duration-short4: 1ms;
+  --md-sys-motion-duration-medium1: 1ms;
+  --md-sys-motion-duration-medium2: 1ms;
+  --md-sys-motion-duration-medium3: 1ms;
+  --md-sys-motion-duration-medium4: 1ms;
+  --md-sys-motion-duration-long1: 1ms;
+  --md-sys-motion-duration-long2: 1ms;
+  --md-sys-motion-duration-long3: 1ms;
+  --md-sys-motion-duration-long4: 1ms;
+  --md-sys-motion-duration-extra-long1: 1ms;
+  --md-sys-motion-duration-extra-long2: 1ms;
+  --md-sys-motion-duration-extra-long3: 1ms;
+  --md-sys-motion-duration-extra-long4: 1ms;
+  }
 }

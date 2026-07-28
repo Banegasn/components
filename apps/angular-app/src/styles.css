@@ -15,6 +15,32 @@ html, body {
   width: 100%;
 }
 
+/* Angular view styles are outside component shadow roots. Make their final
+   state immediate when motion is reduced; component packages receive the same
+   duration override from the generated token stylesheets. */
+@media (prefers-reduced-motion: reduce) {
+  /* motion-literal-exempt: static reduced-motion final states. */
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  /* motion-literal-exempt: demo verification mode resolves to static states. */
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+  transition-delay: 0ms !important;
+}
+
 /* ─── Demo-brand overrides for the generated token contract ─ */
 :root {
   /* Brand */
@@ -251,10 +277,10 @@ html, body {
 /* ─── Theme transition ───────────────────────────────────── */
 *, *::before, *::after {
   transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s ease;
+    background-color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard),
+    border-color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard),
+    color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard);
 }
 
 /* Exclude elements where transition would look wrong */
@@ -325,7 +351,7 @@ code {
   font-size: 20px;
   /* Hide icon text until font is loaded to prevent FOUT */
   opacity: 0;
-  transition: opacity 0.15s ease;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -354,13 +380,13 @@ m3-radio-button {
   opacity: 1;
 }
 
-/* Fallback: show after 1s regardless, so icons never stay invisible */
+/* Fallback: reveal after the extra-long motion role so icons never stay invisible. */
 @keyframes icons-reveal {
   to { opacity: 1; }
 }
 
 .material-symbols-outlined {
-  animation: icons-reveal 0s 1s forwards;
+  animation: icons-reveal var(--md-sys-motion-duration-short1) var(--md-sys-motion-duration-extra-long4) forwards;
 }
 
 /* ─── Docs page layout ───────────────────────────────────── */

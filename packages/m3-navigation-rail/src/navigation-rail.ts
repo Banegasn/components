@@ -12,7 +12,7 @@ export class M3NavigationRail extends LitElement {
       height: 100%;
       background-color: var(--md-sys-color-surface, #fef7ff);
       border-inline-end: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
-      transition: width 0.3s ease;
+      transition: width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard);
     }
 
     :host([expanded]) {
@@ -50,7 +50,7 @@ export class M3NavigationRail extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.2s;
+      transition: background-color var(--md-sys-motion-duration-short4);
       color: var(--md-sys-color-on-surface-variant, #49454f);
     }
 
@@ -144,4 +144,3 @@ declare global {
     'm3-navigation-rail': M3NavigationRail;
   }
 }
-

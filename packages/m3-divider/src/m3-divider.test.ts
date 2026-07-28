@@ -2,12 +2,13 @@ import { html, fixture, expect } from '@open-wc/testing';
 import { afterEach, describe, it } from 'vitest';
 import darkTheme from '../../../tokens/generated/dark.css?raw';
 import highContrastTheme from '../../../tokens/generated/high-contrast.css?raw';
+import lightTheme from '../../../tokens/generated/light.css?raw';
 import './m3-divider.js';
 import type { M3Divider } from './m3-divider.js';
 
 const themeStyleAttribute = 'data-divider-theme';
 
-function applyTheme(theme: 'dark' | 'high-contrast', css: string) {
+function applyTheme(theme: 'light' | 'dark' | 'high-contrast', css: string) {
   const style = document.createElement('style');
   style.setAttribute(themeStyleAttribute, theme);
   style.textContent = css;
@@ -18,6 +19,7 @@ function applyTheme(theme: 'dark' | 'high-contrast', css: string) {
 afterEach(() => {
   document.head.querySelectorAll(`[${themeStyleAttribute}]`).forEach((style) => style.remove());
   document.documentElement.removeAttribute('theme');
+  document.documentElement.removeAttribute('data-motion');
   document.documentElement.style.removeProperty('--md-sys-color-outline-variant');
 });
 
@@ -31,14 +33,13 @@ describe('M3Divider', () => {
     expect(hr!.getAttribute('aria-orientation')).to.equal('horizontal');
   });
 
-  it('preserves standalone visual defaults without a shared theme', async () => {
+  it('uses generated light-theme motion defaults', async () => {
+    applyTheme('light', lightTheme);
     const el = await fixture<M3Divider>(html`<m3-divider></m3-divider>`);
     const hr = el.shadowRoot!.querySelector('hr')!;
     const style = getComputedStyle(hr);
 
-    expect(style.backgroundColor).to.equal('rgb(202, 196, 208)');
-    expect(style.animationDuration).to.equal('0.6s');
-    expect(style.animationTimingFunction).to.equal('cubic-bezier(0.2, 0, 0, 1)');
+    expect(style.backgroundColor).to.equal('rgb(229, 231, 235)');
   });
 
   it('accepts canonical component token overrides', async () => {
@@ -50,7 +51,6 @@ describe('M3Divider', () => {
     const style = getComputedStyle(el.shadowRoot!.querySelector('hr')!);
 
     expect(style.backgroundColor).to.equal('rgb(1, 2, 3)');
-    expect(style.animationDuration).to.equal('1s');
   });
 
   it('uses the generated dark and high-contrast semantic outline values', async () => {

@@ -13,7 +13,7 @@ import { m3DividerStyles } from './m3-divider.styles.js';
  * @cssprop --md-sys-color-outline - Alternative divider color
  * @cssprop --_inset-start - Start inset padding for inset/middle variants (default: 16px)
  * @cssprop --_inset-end - End inset padding for middle variant (default: 16px)
- * @cssprop --_animation-duration - Duration of the entrance animation (default: 0.6s)
+ * @cssprop --_animation-duration - Duration of the entrance animation (default: `--md-sys-motion-duration-long4`)
  */
 @customElement('m3-divider')
 export class M3Divider extends LitElement {

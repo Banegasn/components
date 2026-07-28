@@ -42,6 +42,7 @@ This repository contains a collection of web components that can be used in any 
 
 - **[Publishing Guide](PUBLISHING.md)** - How to publish web component packages
 - **[Design Token Contract](tokens/README.md)** - Shared token naming, themes, compatibility, and validation
+- **[Motion System](docs/MOTION.md)** - Motion roles, reduced-motion behavior, and component inventory
 - **[Web Components](#-web-components)** - List of available components
 - **[Component Packages](#-demo-applications)** - Individual package documentation
 

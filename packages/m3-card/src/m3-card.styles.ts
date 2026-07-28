@@ -32,10 +32,10 @@ export const m3CardStyles = css`
     border-radius: var(--_container-shape);
     overflow: hidden;
     transition: 
-      background-color 0.2s,
-      box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-      border-color 0.2s;
+      background-color var(--md-sys-motion-duration-short4),
+      box-shadow var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),
+      transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),
+      border-color var(--md-sys-motion-duration-short4);
     outline: none;
   }
 
@@ -83,7 +83,7 @@ export const m3CardStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
     z-index: 1;
   }
@@ -134,7 +134,7 @@ export const m3CardStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
     z-index: 1;
   }
@@ -186,7 +186,7 @@ export const m3CardStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
     z-index: 1;
   }

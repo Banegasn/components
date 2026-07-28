@@ -40,7 +40,7 @@ export class M3NavigationBar extends LitElement {
 
     /* Slot content */
     ::slotted(m3-navigation-bar-item) {
-      transition: flex 0.2s ease, width 0.2s ease;
+      transition: flex var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), width var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
     }
   `;
 
@@ -131,4 +131,3 @@ declare global {
     'm3-navigation-bar': M3NavigationBar;
   }
 }
-

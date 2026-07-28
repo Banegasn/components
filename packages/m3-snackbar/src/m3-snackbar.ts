@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3SnackbarStyles } from './m3-snackbar.styles.js';
+import { motionDuration } from './motion-duration.js';
 
 /**
  * Material Design 3 Snackbar Component
@@ -92,7 +93,10 @@ export class M3Snackbar extends LitElement {
     this._isLeaving = true;
     this.requestUpdate();
 
-    // Wait for exit animation then close
+    const snackbar = this.shadowRoot?.querySelector('.snackbar');
+    // Read --_animation-duration after render so consumer CSS token overrides
+    // and the reduced-motion media query determine the teardown lifetime.
+    const exitDuration = snackbar ? motionDuration(snackbar, '--_animation-duration') : 0;
     setTimeout(() => {
       this.open = false;
       this._isLeaving = false;
@@ -100,7 +104,7 @@ export class M3Snackbar extends LitElement {
         bubbles: true,
         composed: true
       }));
-    }, 350);
+    }, exitDuration);
   }
 
   /**

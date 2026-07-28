@@ -73,7 +73,7 @@ export const m3SliderStyles = css`
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0;
     transform: translateX(-50%);
-    transition: opacity 0.2s;
+    transition: opacity var(--md-sys-motion-duration-short4);
     z-index: 1;
   }
 

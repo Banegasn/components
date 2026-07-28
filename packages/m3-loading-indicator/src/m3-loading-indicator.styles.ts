@@ -11,7 +11,8 @@ export const m3LoadingIndicatorStyles = css`
     position: relative;
     width: var(--_size);
     height: var(--_size);
-    animation: rotate 1.5s linear infinite;
+    animation: rotate var(--md-sys-motion-duration-extra-long3) var(--md-sys-motion-easing-linear) infinite;
+    animation-play-state: var(--md-sys-motion-continuous-play-state, running);
   }
 
   .shape {
@@ -25,7 +26,7 @@ export const m3LoadingIndicatorStyles = css`
     border-right-color: transparent;
     border-bottom-color: transparent;
     box-sizing: border-box;
-    transition: border-radius 0.5s ease;
+    transition: border-radius var(--md-sys-motion-duration-long2) var(--md-sys-motion-easing-standard);
   }
   
   :host([shape="square"]) .shape {
@@ -36,6 +37,13 @@ export const m3LoadingIndicatorStyles = css`
     0% { transform: rotate(0deg); }
     50% { transform: rotate(180deg); border-width: 2px; }
     100% { transform: rotate(360deg); border-width: 4px; }
+  }
+
+  /* Keep the partial ring visible as a non-moving in-progress indicator. */
+  @media (prefers-reduced-motion: reduce) {
+    .container {
+      animation: none;
+    }
   }
   
   :host([variant="contained"]) {

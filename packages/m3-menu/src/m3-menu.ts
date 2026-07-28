@@ -52,7 +52,7 @@ export class M3Menu extends LitElement {
         const detail = ce.detail ?? {};
         event.stopPropagation();
         this.dispatchEvent(new CustomEvent('menu-item-select', { bubbles: true, composed: true, detail }));
-        setTimeout(() => this._requestDismiss('selection'), 0);
+        queueMicrotask(() => this._requestDismiss('selection'));
     };
 
     updated(changedProperties: Map<string, unknown>) {

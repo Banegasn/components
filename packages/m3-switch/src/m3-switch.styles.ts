@@ -48,8 +48,8 @@ export const m3SwitchStyles = css`
     border-radius: var(--_track-shape);
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0.38;
-    transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1),
-                opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: background-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     overflow: hidden;
   }
 
@@ -76,7 +76,7 @@ export const m3SwitchStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0;
-    transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     pointer-events: none;
   }
 
@@ -97,7 +97,7 @@ export const m3SwitchStyles = css`
     border-radius: inherit;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0;
-    transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     pointer-events: none;
   }
 
@@ -119,9 +119,9 @@ export const m3SwitchStyles = css`
     border-radius: var(--_thumb-shape);
     background-color: var(--md-sys-color-surface-container-highest, #e6e0e9);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1),
-                background-color 0.2s cubic-bezier(0.2, 0, 0, 1),
-                box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                background-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,8 +158,8 @@ export const m3SwitchStyles = css`
     color: var(--md-sys-color-primary, #6750a4);
     opacity: 0;
     transform: scale(0);
-    transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1),
-                transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized),
+                transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
   }
 
   .thumb[checked] .checkmark {

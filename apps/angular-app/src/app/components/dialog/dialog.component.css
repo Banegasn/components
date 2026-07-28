@@ -10,7 +10,7 @@
   justify-content: center;
   z-index: 1000;
   backdrop-filter: blur(4px);
-  animation: fadeIn 0.2s ease-in-out;
+  animation: fadeIn var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
 }
 
 @keyframes fadeIn {
@@ -39,7 +39,7 @@
   max-height: 80vh;
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--md-sys-color-outline-variant);
-  animation: slideUp 0.25s ease-out;
+  animation: slideUp var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized-decelerate);
   display: flex;
   flex-direction: column;
 }
@@ -75,4 +75,3 @@
   overflow-y: auto;
   flex: 1;
 }
-

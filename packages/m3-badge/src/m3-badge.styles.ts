@@ -18,7 +18,7 @@ export const m3BadgeStyles = css`
     align-items: center;
     justify-content: center;
     z-index: 1;
-    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized);
     transform: scale(1);
   }
 

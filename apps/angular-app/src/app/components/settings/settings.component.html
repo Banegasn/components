@@ -39,6 +39,22 @@
 
   <div class="setting-item">
     <div class="setting-info">
+      <h3>Reduced motion verification</h3>
+      <p>Preview static component states without changing your system preference</p>
+    </div>
+    <div class="setting-control">
+      <m3-switch
+        [checked]="reducedMotionEnabled"
+        (switch-change)="onReducedMotionChange($event)"
+        aria-label="Enable reduced motion verification">
+      </m3-switch>
+    </div>
+  </div>
+
+  <div class="setting-divider"></div>
+
+  <div class="setting-item">
+    <div class="setting-info">
       <h3>RTL Layout</h3>
       <p>Test components in Right-to-Left mode</p>
     </div>

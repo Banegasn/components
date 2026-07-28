@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { m3TooltipStyles } from './m3-tooltip.styles.js';
+import { motionDuration } from './motion-duration.js';
 
 /**
  * Material Design 3 Tooltip Component
@@ -54,14 +55,14 @@ export class M3Tooltip extends LitElement {
     this._clearTimeouts();
     this._showTimeout = setTimeout(() => {
       this._visible = true;
-    }, 500);
+    }, motionDuration(this, '--_show-delay'));
   }
 
   private _handleMouseLeave() {
     this._clearTimeouts();
     this._hideTimeout = setTimeout(() => {
       this._visible = false;
-    }, 100);
+    }, motionDuration(this, '--_hide-delay'));
   }
 
   private _handleFocus() {

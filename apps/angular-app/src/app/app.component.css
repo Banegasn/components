@@ -49,7 +49,7 @@
 
 m3-navigation-rail {
   opacity: 1;
-  transition: opacity 0.15s ease-in;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard-decelerate);
 }
 
 m3-navigation-rail:not(:defined) {
@@ -59,7 +59,7 @@ m3-navigation-rail:not(:defined) {
 
 m3-navigation-bar {
   opacity: 1;
-  transition: opacity 0.15s ease-in;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard-decelerate);
 }
 
 m3-navigation-bar:not(:defined) {
@@ -68,7 +68,7 @@ m3-navigation-bar:not(:defined) {
 
 m3-menu {
   opacity: 1;
-  transition: opacity 0.15s ease-in;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard-decelerate);
 }
 
 m3-menu:not(:defined) {

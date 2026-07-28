@@ -6,7 +6,7 @@ export const m3ListStyles = css`
     width: 100%;
     --_list-padding-top: 8px;
     --_list-padding-bottom: 8px;
-    --_stagger-delay: 0.05s;
+    --_stagger-delay: var(--md-sys-motion-duration-short1);
   }
 
   .list {
@@ -21,7 +21,7 @@ export const m3ListStyles = css`
   :host([staggered]) ::slotted(m3-list-item) {
     opacity: 0;
     transform: translateY(8px);
-    animation: list-item-enter 0.4s cubic-bezier(0.2, 0, 0, 1) forwards;
+    animation: list-item-enter var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-emphasized-decelerate) forwards;
   }
 
   /* We can't use nth-child on slotted elements with dynamic delay easily in pure CSS,
@@ -55,6 +55,14 @@ export const m3ListStyles = css`
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :host([staggered]) ::slotted(m3-list-item) {
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 `;

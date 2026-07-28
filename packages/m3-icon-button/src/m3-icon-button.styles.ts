@@ -6,8 +6,8 @@ export const m3IconButtonStyles = css`
     --_size: 40px;
     --_icon-size: 24px;
     --_shape: 999px;
-    --_animation-duration: 0.2s;
-    --_animation-easing: cubic-bezier(0.2, 0, 0, 1);
+    --_animation-duration: var(--md-sys-motion-duration-short4);
+    --_animation-easing: var(--md-sys-motion-easing-emphasized);
   }
 
   .icon-button {
@@ -156,8 +156,8 @@ export const m3IconButtonStyles = css`
 
   /* Toggle transition for selected state */
   :host([toggle]) .icon-button {
-    transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1),
-                background-color 0.3s cubic-bezier(0.2, 0, 0, 1),
-                color 0.3s cubic-bezier(0.2, 0, 0, 1);
+    transition: transform var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized),
+                background-color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+                color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
   }
 `;

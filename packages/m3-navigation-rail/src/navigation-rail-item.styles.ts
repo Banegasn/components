@@ -50,7 +50,7 @@ export const navigationRailItemStyles = css`
     height: calc(100% - 20px);
     border-radius: 16px;
     z-index: -1;
-    transition: transform 0.2s, background-color 0.2s ease-in-out, padding 0.3s, box-shadow 0.2s ease;
+    transition: transform var(--md-sys-motion-duration-short4), background-color var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), padding var(--md-sys-motion-duration-medium2), box-shadow var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
     pointer-events: none;
     box-shadow: 0 0 0 0 transparent;
   }
@@ -89,7 +89,7 @@ export const navigationRailItemStyles = css`
     align-items: center;
     justify-content: center;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: color 0.2s, transform 0.1s;
+    transition: color var(--md-sys-motion-duration-short4), transform var(--md-sys-motion-duration-short2);
   }
 
   :host([expanded]) .icon {
@@ -109,7 +109,7 @@ export const navigationRailItemStyles = css`
     text-align: center;
     max-width: 64px;
     z-index: 2;
-    transition: color 0.2s;
+    transition: color var(--md-sys-motion-duration-short4);
   }
 
   :host([expanded]) .label {
@@ -163,4 +163,3 @@ export const navigationRailItemStyles = css`
     border-radius: 3px;
   }
 `;
-

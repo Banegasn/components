@@ -142,6 +142,23 @@ export const m3MenuStyles = css`
     display: none;
   }
 
+  :host([open]) .surface {
+    animation: menu-enter var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized-decelerate);
+    transform-origin: top right;
+  }
+
+  @keyframes menu-enter {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Closing remains immediate because the hidden surface must leave the focus order. */
+  @media (prefers-reduced-motion: reduce) {
+    :host([open]) .surface {
+      animation: none;
+    }
+  }
+
   ::slotted(m3-menu-item) {
     display: block;
   }

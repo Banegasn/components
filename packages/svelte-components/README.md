@@ -64,6 +64,13 @@ A customizable button component built natively with Svelte.
 <SvelteButton label="Clicked {count} times" on:svelte-button-click={() => count++} />
 ```
 
+## Motion
+
+`SvelteButton` uses the canonical `--md-sys-motion-duration-short2` and
+`--md-sys-motion-duration-short4` roles. Import the generated token themes in
+the application stylesheet. When `prefers-reduced-motion: reduce` is active,
+the button resolves directly to its final hover/press state.
+
 ## Related Packages
 
 The monorepo also includes framework-agnostic Material Design 3 web components:
