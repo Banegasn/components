@@ -1,0 +1,101 @@
+name: Quality
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_call:
+
+# The PR gate only reads repository content. Release publishing declares its
+# separate write permissions in the calling workflow.
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.18.0'
+
+      - name: Enable pinned pnpm with Corepack
+        run: |
+          npm install --global corepack@0.35.0
+          corepack enable
+          corepack install --global pnpm@11.12.0
+          test "$(node --version)" = "v24.18.0"
+          test "$(pnpm --version)" = "11.12.0"
+
+      - name: Resolve pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-store-${{ runner.os }}-${{ runner.arch }}-node-24.18-pnpm-11.12-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-${{ runner.arch }}-node-24.18-pnpm-11.12-
+
+      # Turbo verifies task hashes before reusing restored outputs. The source
+      # and lockfile are part of its task hash, so this cache cannot hide a
+      # changed input or a failed command.
+      - name: Restore Turbo cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}-${{ hashFiles('pnpm-lock.yaml', 'turbo.json', 'package.json', 'apps/**/package.json', 'packages/**/package.json') }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}-
+            turbo-${{ runner.os }}-${{ runner.arch }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Chromium is installed from the Playwright version locked in
+      # pnpm-lock.yaml. `--with-deps` makes the Ubuntu system dependencies
+      # explicit rather than relying on the image's preinstalled browser.
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Token and motion guard
+        run: pnpm tokens:check
+
+      - name: Build
+        run: pnpm exec turbo run build
+
+      - name: Production dependency audit
+        run: pnpm audit:prod
+
+      - name: Packed package smoke test
+        run: pnpm smoke:packages
+
+      - name: Svelte Vite consumer smoke test
+        run: pnpm smoke:svelte-vite
+
+      - name: Verify package licenses
+        run: pnpm verify:package-licenses
