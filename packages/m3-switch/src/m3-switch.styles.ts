@@ -3,11 +3,11 @@ import { css } from 'lit';
 export const m3SwitchStyles = css`
   :host {
     display: inline-block;
-    --_track-width: var(--md-switch-track-width, 52px);
-    --_track-height: var(--md-switch-track-height, 32px);
-    --_thumb-size: var(--md-switch-thumb-size, 24px);
-    --_track-shape: var(--md-switch-track-shape, 16px);
-    --_thumb-shape: var(--md-switch-thumb-shape, 12px);
+    --_track-width: var(--md-comp-switch-track-width, var(--md-switch-track-width, 52px));
+    --_track-height: var(--md-comp-switch-track-height, var(--md-switch-track-height, 32px));
+    --_thumb-size: var(--md-comp-switch-thumb-size, var(--md-switch-thumb-size, 24px));
+    --_track-shape: var(--md-comp-switch-track-shape, var(--md-switch-track-shape, 16px));
+    --_thumb-shape: var(--md-comp-switch-thumb-shape, var(--md-switch-thumb-shape, 12px));
   }
 
   .switch-container {
@@ -192,4 +192,3 @@ export const m3SwitchStyles = css`
     }
   }
 `;
-

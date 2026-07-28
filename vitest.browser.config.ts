@@ -14,6 +14,7 @@ const configDirectory = path.dirname(fileURLToPath(import.meta.url));
  */
 const browserPorts: Record<string, number> = {
   'm3-divider': 63_320,
+  'm3-card': 63_325,
   'm3-icon-button': 63_321,
   'm3-list': 63_322,
   'm3-snackbar': 63_323,

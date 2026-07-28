@@ -3,14 +3,14 @@ import { css } from 'lit';
 export const m3LoadingIndicatorStyles = css`
   :host {
     display: inline-block;
-    --md-loading-indicator-size: 48px;
-    --md-loading-indicator-color: var(--md-sys-color-primary, #6750a4);
+    --_size: var(--md-comp-loading-indicator-size, var(--md-loading-indicator-size, 48px));
+    --_color: var(--md-comp-loading-indicator-color, var(--md-loading-indicator-color, var(--md-sys-color-primary, #6750a4)));
   }
 
   .container {
     position: relative;
-    width: var(--md-loading-indicator-size);
-    height: var(--md-loading-indicator-size);
+    width: var(--_size);
+    height: var(--_size);
     animation: rotate 1.5s linear infinite;
   }
 
@@ -21,7 +21,7 @@ export const m3LoadingIndicatorStyles = css`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 4px solid var(--md-loading-indicator-color);
+    border: 4px solid var(--_color);
     border-right-color: transparent;
     border-bottom-color: transparent;
     box-sizing: border-box;
@@ -39,8 +39,8 @@ export const m3LoadingIndicatorStyles = css`
   }
   
   :host([variant="contained"]) {
-      --md-loading-indicator-size: 100%;
-      --md-loading-indicator-color: currentColor;
+      --_size: var(--md-comp-loading-indicator-size, var(--md-loading-indicator-size, 100%));
+      --_color: var(--md-comp-loading-indicator-color, var(--md-loading-indicator-color, currentColor));
       display: inline-flex;
       align-items: center;
       justify-content: center;

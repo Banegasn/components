@@ -3,13 +3,13 @@ import { css } from 'lit';
 export const m3SearchBarStyles = css`
   :host {
     display: block;
-    --_bar-height: var(--md-search-bar-height, 38px);
-    --_bar-shape: var(--md-search-bar-shape, 28px);
-    --_bar-padding-horizontal: var(--md-search-bar-padding-horizontal, 16px);
-    --_bar-padding-vertical: var(--md-search-bar-padding-vertical, 8px);
-    --_input-font-size: var(--md-search-bar-input-font-size, 16px);
-    --_input-line-height: var(--md-search-bar-input-line-height, 24px);
-    --_icon-size: var(--md-search-bar-icon-size, 24px);
+    --_bar-height: var(--md-comp-search-bar-height, var(--md-search-bar-height, 38px));
+    --_bar-shape: var(--md-comp-search-bar-shape, var(--md-search-bar-shape, 28px));
+    --_bar-padding-horizontal: var(--md-comp-search-bar-padding-horizontal, var(--md-search-bar-padding-horizontal, 16px));
+    --_bar-padding-vertical: var(--md-comp-search-bar-padding-vertical, var(--md-search-bar-padding-vertical, 8px));
+    --_input-font-size: var(--md-comp-search-bar-input-font-size, var(--md-search-bar-input-font-size, 16px));
+    --_input-line-height: var(--md-comp-search-bar-input-line-height, var(--md-search-bar-input-line-height, 24px));
+    --_icon-size: var(--md-comp-search-bar-icon-size, var(--md-search-bar-icon-size, 24px));
   }
 
   .search-bar {
@@ -146,4 +146,3 @@ export const m3SearchBarStyles = css`
     outline-offset: 2px;
   }
 `;
-

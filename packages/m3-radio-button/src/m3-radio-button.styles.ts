@@ -3,30 +3,30 @@ import { css } from 'lit';
 export const m3RadioButtonStyles = css`
   :host {
     display: inline-block;
-    --_radio-size: var(--md-radio-size, 16px);
-    --_radio-ripple-size: var(--md-radio-ripple-size, 40px);
-    --_radio-outer-size: var(--md-radio-outer-size, 16px);
-    --_radio-inner-size: var(--md-radio-inner-size, 8px);
+    --_radio-size: var(--md-comp-radio-size, var(--md-radio-size, 16px));
+    --_radio-ripple-size: var(--md-comp-radio-ripple-size, var(--md-radio-ripple-size, 40px));
+    --_radio-outer-size: var(--md-comp-radio-outer-size, var(--md-radio-outer-size, 16px));
+    --_radio-inner-size: var(--md-comp-radio-inner-size, var(--md-radio-inner-size, 8px));
   }
 
   /* Size variants */
   :host([size="small"]),
   :host(:not([size])) {
-    --_radio-outer-size: var(--md-radio-outer-size, 16px);
-    --_radio-inner-size: var(--md-radio-inner-size, 8px);
-    --_radio-ripple-size: var(--md-radio-ripple-size, 40px);
+    --_radio-outer-size: var(--md-comp-radio-outer-size, var(--md-radio-outer-size, 16px));
+    --_radio-inner-size: var(--md-comp-radio-inner-size, var(--md-radio-inner-size, 8px));
+    --_radio-ripple-size: var(--md-comp-radio-ripple-size, var(--md-radio-ripple-size, 40px));
   }
 
   :host([size="medium"]) {
-    --_radio-outer-size: var(--md-radio-outer-size, 20px);
-    --_radio-inner-size: var(--md-radio-inner-size, 10px);
-    --_radio-ripple-size: var(--md-radio-ripple-size, 48px);
+    --_radio-outer-size: var(--md-comp-radio-outer-size, var(--md-radio-outer-size, 20px));
+    --_radio-inner-size: var(--md-comp-radio-inner-size, var(--md-radio-inner-size, 10px));
+    --_radio-ripple-size: var(--md-comp-radio-ripple-size, var(--md-radio-ripple-size, 48px));
   }
 
   :host([size="large"]) {
-    --_radio-outer-size: var(--md-radio-outer-size, 24px);
-    --_radio-inner-size: var(--md-radio-inner-size, 12px);
-    --_radio-ripple-size: var(--md-radio-ripple-size, 56px);
+    --_radio-outer-size: var(--md-comp-radio-outer-size, var(--md-radio-outer-size, 24px));
+    --_radio-inner-size: var(--md-comp-radio-inner-size, var(--md-radio-inner-size, 12px));
+    --_radio-ripple-size: var(--md-comp-radio-ripple-size, var(--md-radio-ripple-size, 56px));
   }
 
   .radio-container {
@@ -184,4 +184,3 @@ export const m3RadioButtonStyles = css`
     border-radius: 50%;
   }
 `;
-
