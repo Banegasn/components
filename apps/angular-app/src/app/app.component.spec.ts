@@ -6,6 +6,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import '@banegasn/m3-button';
+import { describe, expect, it } from 'vitest';
 
 import { AppComponent } from './app.component';
 

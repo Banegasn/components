@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Meta, Title } from '@angular/platform-browser';
 import { provideRouter, Router, TitleStrategy } from '@angular/router';
+import { describe, expect, it } from 'vitest';
 
 import { AppTitleStrategy } from './app.config';
 
