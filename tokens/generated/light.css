@@ -1,6 +1,6 @@
 /* This file is generated from tokens/tokens.json. Do not edit. */
 :root, :root[theme="light"] {
-  --md-comp-divider-color: #cac4d0;
+  --md-comp-divider-color: var(--md-sys-color-outline-variant);
   --md-comp-divider-motion-duration: var(--md-sys-motion-duration-medium4);
   --md-comp-divider-motion-easing: var(--md-sys-motion-easing-emphasized-decelerate);
   --md-ref-palette-error-40: #b3261e;

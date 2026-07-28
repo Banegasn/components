@@ -3,6 +3,8 @@ import { css } from 'lit';
 export const m3SearchBarStyles = css`
   :host {
     display: block;
+    height: var(--md-comp-search-bar-container-height, var(--md-search-bar-container-height, auto));
+    padding: var(--md-comp-search-bar-container-padding, var(--md-search-bar-container-padding, 0));
     --_bar-height: var(--md-comp-search-bar-height, var(--md-search-bar-height, 38px));
     --_bar-shape: var(--md-comp-search-bar-shape, var(--md-search-bar-shape, 28px));
     --_bar-padding-horizontal: var(--md-comp-search-bar-padding-horizontal, var(--md-search-bar-padding-horizontal, 16px));

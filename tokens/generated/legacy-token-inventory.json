@@ -167,6 +167,13 @@
       ]
     },
     {
+      "name": "--md-comp-dialog-container-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-dialog/src/m3-dialog.styles.ts"
+      ]
+    },
+    {
       "name": "--md-comp-divider-color",
       "tier": "component",
       "locations": [
@@ -207,6 +214,13 @@
       ]
     },
     {
+      "name": "--md-comp-menu-container-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
       "name": "--md-comp-menu-max-height",
       "tier": "component",
       "locations": [
@@ -225,6 +239,13 @@
       "tier": "component",
       "locations": [
         "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-progress-track-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-progress/src/m3-progress.styles.ts"
       ]
     },
     {
@@ -253,6 +274,20 @@
       "tier": "component",
       "locations": [
         "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-container-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-container-padding",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
       ]
     },
     {
@@ -302,6 +337,13 @@
       "tier": "component",
       "locations": [
         "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-slider-handle-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-slider/src/m3-slider.styles.ts"
       ]
     },
     {
@@ -375,10 +417,18 @@
       ]
     },
     {
+      "name": "--md-comp-tooltip-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts"
+      ]
+    },
+    {
       "name": "--md-dialog-container-shape",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-dialog/README.md"
+        "packages/m3-dialog/README.md",
+        "packages/m3-dialog/src/m3-dialog.styles.ts"
       ]
     },
     {
@@ -400,7 +450,8 @@
       "name": "--md-menu-container-shape",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-menu/README.md"
+        "packages/m3-menu/README.md",
+        "packages/m3-menu/src/m3-menu.styles.ts"
       ]
     },
     {
@@ -430,7 +481,8 @@
       "name": "--md-progress-track-height",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-progress/README.md"
+        "packages/m3-progress/README.md",
+        "packages/m3-progress/src/m3-progress.styles.ts"
       ]
     },
     {
@@ -472,6 +524,7 @@
       "tier": "legacy-component",
       "locations": [
         "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
         "packages/m3-search-bar/src/m3-search-bar.ts"
       ]
     },
@@ -480,6 +533,7 @@
       "tier": "legacy-component",
       "locations": [
         "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
         "packages/m3-search-bar/src/m3-search-bar.ts"
       ]
     },
@@ -550,7 +604,8 @@
       "name": "--md-slider-handle-size",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-slider/README.md"
+        "packages/m3-slider/README.md",
+        "packages/m3-slider/src/m3-slider.styles.ts"
       ]
     },
     {
@@ -928,6 +983,7 @@
         "packages/m3-card/src/m3-card.ts",
         "packages/m3-divider/README.md",
         "packages/m3-divider/src/m3-divider.styles.ts",
+        "packages/m3-divider/src/m3-divider.test.ts",
         "packages/m3-divider/src/m3-divider.ts",
         "packages/m3-menu/src/m3-menu.styles.ts",
         "packages/m3-navigation-rail/README.md",
@@ -1259,7 +1315,8 @@
       "name": "--md-tooltip-shape",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-tooltip/README.md"
+        "packages/m3-tooltip/README.md",
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts"
       ]
     }
   ]

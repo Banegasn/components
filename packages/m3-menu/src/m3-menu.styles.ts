@@ -111,7 +111,7 @@ export const m3MenuStyles = css`
     max-block-size: var(--md-comp-menu-max-height, var(--md-menu-max-height, calc(100vh - 64px)));
     overflow-y: auto;
     padding: 8px;
-    border-radius: 16px;
+    border-radius: var(--md-comp-menu-container-shape, var(--md-menu-container-shape, 16px));
     background: var(--md-sys-color-surface-container, #f3edf7);
     color: var(--md-sys-color-on-surface, #1d1b20);
     border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);

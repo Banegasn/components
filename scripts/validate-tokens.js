@@ -1,8 +1,10 @@
 const fs = require('node:fs');
+const path = require('node:path');
 const {
   classifyToken,
   inventoryPath,
   readJson,
+  repositoryRoot,
   scanTokenUsage,
   tokenSourcePath,
 } = require('./token-utils.js');
@@ -69,7 +71,6 @@ for (const [canonical, legacy] of Object.entries(source.componentAliases ?? {}))
 
 const inventoryNames = new Set(inventory.tokens.map((token) => token.name));
 const currentUsage = scanTokenUsage();
-const usageByName = new Map(currentUsage.map((token) => [token.name, token]));
 for (const token of currentUsage) {
   if (!names.has(token.name) && !inventoryNames.has(token.name)) {
     failures.push(
@@ -79,6 +80,14 @@ for (const token of currentUsage) {
   }
 }
 
+function escapeForRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function countMatches(content, expression) {
+  return [...content.matchAll(expression)].length;
+}
+
 for (const legacy of inventory.tokens.filter((token) => token.tier === 'legacy-component')) {
   const canonical = componentAliases.get(legacy.name);
   if (!canonical) {
@@ -86,10 +95,24 @@ for (const legacy of inventory.tokens.filter((token) => token.tier === 'legacy-c
     continue;
   }
 
-  const canonicalUsage = usageByName.get(canonical)?.locations ?? [];
   for (const location of legacy.locations.filter((item) => item.endsWith('.styles.ts'))) {
-    if (!canonicalUsage.includes(location)) {
-      failures.push(`${legacy.name}: ${location} must consume ${canonical} before the legacy fallback`);
+    const content = fs.readFileSync(path.join(repositoryRoot, location), 'utf8');
+    const legacyCalls = countMatches(
+      content,
+      new RegExp(`var\\(\\s*${escapeForRegex(legacy.name)}\\s*,`, 'g')
+    );
+    const canonicalFirstChains = countMatches(
+      content,
+      new RegExp(
+        `var\\(\\s*${escapeForRegex(canonical)}\\s*,\\s*var\\(\\s*${escapeForRegex(legacy.name)}\\s*,`,
+        'g'
+      )
+    );
+    if (legacyCalls !== canonicalFirstChains) {
+      failures.push(
+        `${legacy.name}: ${location} must use ${canonical} → ${legacy.name} → literal fallback ` +
+        `for every legacy var() call (${canonicalFirstChains}/${legacyCalls} valid chains).`
+      );
     }
   }
 }
