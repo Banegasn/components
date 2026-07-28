@@ -24,7 +24,7 @@
     "clean": "rm -rf dist",
     "lint": "eslint src --max-warnings 0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node ../../scripts/no-tests.mjs"
+    "test": "vitest run --config ../../vitest.browser.config.ts"
   },
   "repository": {
     "type": "git",

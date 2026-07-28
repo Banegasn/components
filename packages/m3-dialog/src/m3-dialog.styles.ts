@@ -37,7 +37,7 @@ export const m3DialogStyles = css`
     width: calc(100% - 48px);
     max-height: calc(100% - 48px);
     background-color: var(--md-sys-color-surface-container-high, #ece6f0);
-    border-radius: 28px;
+    border-radius: var(--md-comp-dialog-container-shape, var(--md-dialog-container-shape, 28px));
     box-shadow: 0 8px 12px 6px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;

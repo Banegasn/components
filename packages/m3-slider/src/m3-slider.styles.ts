@@ -8,7 +8,7 @@ export const m3SliderStyles = css`
     height: 48px; /* Touch target size */
     --_track-height: 16px;
     --_active-track-height: 16px;
-    --_thumb-size: 20px;
+    --_thumb-size: var(--md-comp-slider-handle-size, var(--md-slider-handle-size, 20px));
   }
 
   /* Slider container is exactly touch-target size */

@@ -44,6 +44,14 @@ The final literal is required. It keeps every published component usable when
 no theme stylesheet is loaded and prevents token adoption from changing its
 standalone default appearance.
 
+Most component aliases live in the `componentAliases` section of the canonical
+source instead of the generated root declarations. Their size, shape, or color
+defaults depend on a component variant, so emitting one value at `:root` would
+mask that variant default and could also prevent a legacy override from taking
+effect. The alias and its legacy mapping remain canonical; the component owns
+its final fallback chain. Only component values that are safe as theme-wide
+defaults are emitted in the generated CSS.
+
 The divider is the intentionally small proof migration:
 
 ```css
@@ -68,7 +76,10 @@ pnpm tokens:inventory
 ```
 
 Review the inventory and compatibility-table diff carefully. Prefer defining a
-proper canonical token instead of growing the legacy baseline.
+proper canonical token instead of growing the legacy baseline. Every inventoried
+legacy component property must have a canonical `--md-comp-*` mapping, and
+validation requires its source stylesheet to use that canonical alias before
+the legacy fallback.
 
 ## Validation workflow
 

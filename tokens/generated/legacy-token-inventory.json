@@ -65,6 +65,7 @@
       "locations": [
         "packages/m3-card/README.md",
         "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.test.ts",
         "packages/m3-card/src/m3-card.ts"
       ]
     },
@@ -95,6 +96,84 @@
       ]
     },
     {
+      "name": "--md-comp-button-container-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-button-container-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-button-icon-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-button-label-text-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-button-label-text-weight",
+      "tier": "component",
+      "locations": [
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-button-spacing",
+      "tier": "component",
+      "locations": [
+        "packages/m3-button/src/m3-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-card-container-color",
+      "tier": "component",
+      "locations": [
+        "packages/m3-card/src/m3-card.styles.ts",
+        "packages/m3-card/src/m3-card.test.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-card-container-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-card/src/m3-card.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-card-elevation",
+      "tier": "component",
+      "locations": [
+        "packages/m3-card/src/m3-card.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-card-width",
+      "tier": "component",
+      "locations": [
+        "packages/m3-card/src/m3-card.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-dialog-container-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-dialog/src/m3-dialog.styles.ts"
+      ]
+    },
+    {
       "name": "--md-comp-divider-color",
       "tier": "component",
       "locations": [
@@ -121,10 +200,235 @@
       ]
     },
     {
+      "name": "--md-comp-loading-indicator-color",
+      "tier": "component",
+      "locations": [
+        "packages/m3-loading-indicator/src/m3-loading-indicator.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-loading-indicator-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-loading-indicator/src/m3-loading-indicator.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-menu-container-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-menu-max-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-menu-min-width",
+      "tier": "component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-menu-offset",
+      "tier": "component",
+      "locations": [
+        "packages/m3-menu/src/m3-menu.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-progress-track-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-progress/src/m3-progress.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-radio-inner-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-radio-outer-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-radio-ripple-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-radio-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-radio-button/src/m3-radio-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-container-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-container-padding",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-icon-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-input-font-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-input-line-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-padding-horizontal",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-padding-vertical",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-search-bar-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-slider-handle-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-slider/src/m3-slider.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-split-button-color-bg",
+      "tier": "component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-split-button-color-text",
+      "tier": "component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-split-button-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-split-button-shape-end",
+      "tier": "component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-split-button-shape-start",
+      "tier": "component",
+      "locations": [
+        "packages/m3-split-button/src/m3-split-button.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-switch-thumb-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-switch-thumb-size",
+      "tier": "component",
+      "locations": [
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-switch-track-height",
+      "tier": "component",
+      "locations": [
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-switch-track-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-switch-track-width",
+      "tier": "component",
+      "locations": [
+        "packages/m3-switch/src/m3-switch.styles.ts"
+      ]
+    },
+    {
+      "name": "--md-comp-tooltip-shape",
+      "tier": "component",
+      "locations": [
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts"
+      ]
+    },
+    {
       "name": "--md-dialog-container-shape",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-dialog/README.md"
+        "packages/m3-dialog/README.md",
+        "packages/m3-dialog/src/m3-dialog.styles.ts"
       ]
     },
     {
@@ -146,7 +450,8 @@
       "name": "--md-menu-container-shape",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-menu/README.md"
+        "packages/m3-menu/README.md",
+        "packages/m3-menu/src/m3-menu.styles.ts"
       ]
     },
     {
@@ -176,7 +481,8 @@
       "name": "--md-progress-track-height",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-progress/README.md"
+        "packages/m3-progress/README.md",
+        "packages/m3-progress/src/m3-progress.styles.ts"
       ]
     },
     {
@@ -218,6 +524,7 @@
       "tier": "legacy-component",
       "locations": [
         "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
         "packages/m3-search-bar/src/m3-search-bar.ts"
       ]
     },
@@ -226,6 +533,7 @@
       "tier": "legacy-component",
       "locations": [
         "packages/m3-search-bar/README.md",
+        "packages/m3-search-bar/src/m3-search-bar.styles.ts",
         "packages/m3-search-bar/src/m3-search-bar.ts"
       ]
     },
@@ -296,7 +604,8 @@
       "name": "--md-slider-handle-size",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-slider/README.md"
+        "packages/m3-slider/README.md",
+        "packages/m3-slider/src/m3-slider.styles.ts"
       ]
     },
     {
@@ -674,6 +983,7 @@
         "packages/m3-card/src/m3-card.ts",
         "packages/m3-divider/README.md",
         "packages/m3-divider/src/m3-divider.styles.ts",
+        "packages/m3-divider/src/m3-divider.test.ts",
         "packages/m3-divider/src/m3-divider.ts",
         "packages/m3-menu/src/m3-menu.styles.ts",
         "packages/m3-navigation-rail/README.md",
@@ -1005,7 +1315,8 @@
       "name": "--md-tooltip-shape",
       "tier": "legacy-component",
       "locations": [
-        "packages/m3-tooltip/README.md"
+        "packages/m3-tooltip/README.md",
+        "packages/m3-tooltip/src/m3-tooltip.styles.ts"
       ]
     }
   ]

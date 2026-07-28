@@ -1,4 +1,7 @@
 @import "highlight.js/styles/github-dark.css";
+@import "../../../tokens/generated/light.css";
+@import "../../../tokens/generated/dark.css";
+@import "../../../tokens/generated/high-contrast.css";
 
 /* ─── Reset ─────────────────────────────────────────────── */
 *, *::before, *::after {
@@ -12,7 +15,7 @@ html, body {
   width: 100%;
 }
 
-/* ─── Design tokens – light ─────────────────────────────── */
+/* ─── Demo-brand overrides for the generated token contract ─ */
 :root {
   /* Brand */
   --md-sys-color-primary: #5b5bd6;

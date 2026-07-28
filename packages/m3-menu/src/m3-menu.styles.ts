@@ -5,12 +5,12 @@ export const m3MenuStyles = css`
     position: absolute;
     z-index: 1000;
     display: block;
-    top: calc(100% + var(--md-menu-offset, 8px));
+    top: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-end: 0;
   }
 
   :host([placement="bottom-start"]) {
-    top: calc(100% + var(--md-menu-offset, 8px));
+    top: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     bottom: auto;
     inset-inline-start: 0;
     inset-inline-end: auto;
@@ -18,7 +18,7 @@ export const m3MenuStyles = css`
   }
 
   :host([placement="bottom-center"]) {
-    top: calc(100% + var(--md-menu-offset, 8px));
+    top: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     bottom: auto;
     inset-inline-start: 50%;
     inset-inline-end: auto;
@@ -26,7 +26,7 @@ export const m3MenuStyles = css`
   }
 
   :host([placement="bottom-end"]) {
-    top: calc(100% + var(--md-menu-offset, 8px));
+    top: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     bottom: auto;
     inset-inline-start: auto;
     inset-inline-end: 0;
@@ -35,7 +35,7 @@ export const m3MenuStyles = css`
 
   :host([placement="top-start"]) {
     top: auto;
-    bottom: calc(100% + var(--md-menu-offset, 8px));
+    bottom: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-start: 0;
     inset-inline-end: auto;
     transform: none;
@@ -43,7 +43,7 @@ export const m3MenuStyles = css`
 
   :host([placement="top-center"]) {
     top: auto;
-    bottom: calc(100% + var(--md-menu-offset, 8px));
+    bottom: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-start: 50%;
     inset-inline-end: auto;
     transform: translateX(-50%);
@@ -51,7 +51,7 @@ export const m3MenuStyles = css`
 
   :host([placement="top-end"]) {
     top: auto;
-    bottom: calc(100% + var(--md-menu-offset, 8px));
+    bottom: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-start: auto;
     inset-inline-end: 0;
     transform: none;
@@ -60,7 +60,7 @@ export const m3MenuStyles = css`
   :host([placement="right-start"]) {
     top: 0;
     bottom: auto;
-    inset-inline-start: calc(100% + var(--md-menu-offset, 8px));
+    inset-inline-start: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-end: auto;
     transform: none;
   }
@@ -68,7 +68,7 @@ export const m3MenuStyles = css`
   :host([placement="right-center"]) {
     top: 50%;
     bottom: auto;
-    inset-inline-start: calc(100% + var(--md-menu-offset, 8px));
+    inset-inline-start: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-end: auto;
     transform: translateY(-50%);
   }
@@ -76,7 +76,7 @@ export const m3MenuStyles = css`
   :host([placement="right-end"]) {
     top: auto;
     bottom: 0;
-    inset-inline-start: calc(100% + var(--md-menu-offset, 8px));
+    inset-inline-start: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     inset-inline-end: auto;
     transform: none;
   }
@@ -85,7 +85,7 @@ export const m3MenuStyles = css`
     top: 0;
     bottom: auto;
     inset-inline-start: auto;
-    inset-inline-end: calc(100% + var(--md-menu-offset, 8px));
+    inset-inline-end: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     transform: none;
   }
 
@@ -93,7 +93,7 @@ export const m3MenuStyles = css`
     top: 50%;
     bottom: auto;
     inset-inline-start: auto;
-    inset-inline-end: calc(100% + var(--md-menu-offset, 8px));
+    inset-inline-end: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     transform: translateY(-50%);
   }
 
@@ -101,17 +101,17 @@ export const m3MenuStyles = css`
     top: auto;
     bottom: 0;
     inset-inline-start: auto;
-    inset-inline-end: calc(100% + var(--md-menu-offset, 8px));
+    inset-inline-end: calc(100% + var(--md-comp-menu-offset, var(--md-menu-offset, 8px)));
     transform: none;
   }
 
   .surface {
-    min-inline-size: var(--md-menu-min-width, 180px);
+    min-inline-size: var(--md-comp-menu-min-width, var(--md-menu-min-width, 180px));
     max-inline-size: min(280px, calc(100vw - 32px));
-    max-block-size: var(--md-menu-max-height, calc(100vh - 64px));
+    max-block-size: var(--md-comp-menu-max-height, var(--md-menu-max-height, calc(100vh - 64px)));
     overflow-y: auto;
     padding: 8px;
-    border-radius: 16px;
+    border-radius: var(--md-comp-menu-container-shape, var(--md-menu-container-shape, 16px));
     background: var(--md-sys-color-surface-container, #f3edf7);
     color: var(--md-sys-color-on-surface, #1d1b20);
     border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);

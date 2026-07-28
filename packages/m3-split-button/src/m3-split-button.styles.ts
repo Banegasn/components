@@ -6,43 +6,43 @@ export const m3SplitButtonStyles = css`
     align-items: center;
     gap: 1px;
     vertical-align: middle;
-    --md-split-button-height: 40px;
-    --md-split-button-shape-start: 20px 4px 4px 20px;
-    --md-split-button-shape-end: 4px 20px 20px 4px;
-    --md-split-button-color-bg: var(--md-sys-color-primary, #6750a4);
-    --md-split-button-color-text: var(--md-sys-color-on-primary, #ffffff);
+    --_height: var(--md-comp-split-button-height, var(--md-split-button-height, 40px));
+    --_shape-start: var(--md-comp-split-button-shape-start, var(--md-split-button-shape-start, 20px 4px 4px 20px));
+    --_shape-end: var(--md-comp-split-button-shape-end, var(--md-split-button-shape-end, 4px 20px 20px 4px));
+    --_color-bg: var(--md-comp-split-button-color-bg, var(--md-split-button-color-bg, var(--md-sys-color-primary, #6750a4)));
+    --_color-text: var(--md-comp-split-button-color-text, var(--md-split-button-color-text, var(--md-sys-color-on-primary, #ffffff)));
   }
 
   .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: var(--md-split-button-height);
+    height: var(--_height);
     padding: 0 24px;
     border: none;
-    background-color: var(--md-split-button-color-bg);
-    color: var(--md-split-button-color-text);
+    background-color: var(--_color-bg);
+    color: var(--_color-text);
     font-family: var(--md-sys-typescale-label-large-font, Roboto, sans-serif);
     font-size: var(--md-sys-typescale-label-large-size, 14px);
     font-weight: var(--md-sys-typescale-label-large-weight, 500);
     line-height: var(--md-sys-typescale-label-large-line-height, 20px);
     cursor: pointer;
     transition: background-color 0.2s, box-shadow 0.2s;
-    border-radius: var(--md-split-button-shape-start);
+    border-radius: var(--_shape-start);
   }
 
   .menu-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: var(--md-split-button-height);
+    height: var(--_height);
     width: 40px;
     border: none;
-    background-color: var(--md-split-button-color-bg);
-    color: var(--md-split-button-color-text);
+    background-color: var(--_color-bg);
+    color: var(--_color-text);
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s, border-radius 0.2s;
-    border-radius: var(--md-split-button-shape-end);
+    border-radius: var(--_shape-end);
   }
 
   .button:hover, .menu-button:hover {
