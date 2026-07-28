@@ -16,3 +16,6 @@ allowBuilds:
   esbuild: true
   lmdb: true
   msgpackr-extract: true
+
+minimumReleaseAgeExclude:
+  - svelte-check@4.7.4
