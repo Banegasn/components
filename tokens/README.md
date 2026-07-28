@@ -89,6 +89,18 @@ partial bar, pulses stop at full opacity, and interaction ripples are omitted.
 Consumers should continue to announce progress/status with semantic text or
 ARIA live regions; motion never carries essential information by itself.
 
+### CSS and JavaScript synchronization
+
+JavaScript must not duplicate a timeout for a CSS transition or animation.
+Components that remove temporary DOM state (snackbar exit and radio ripple)
+read their rendered `--_*-duration` custom property with `getComputedStyle()`;
+that property resolves from the public motion token. The Angular dialog service
+uses the same pattern. A consumer override, generated reduced-motion rule, or
+demo verification mode therefore changes both the CSS duration and JavaScript
+lifetime together. For non-motion interaction thresholds (for example, a
+long-press gesture), document the intentional literal with
+`motion-literal-exempt` so validation does not mistake it for animation time.
+
 ## Validation workflow
 
 ```bash

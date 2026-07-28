@@ -21,6 +21,7 @@ export class SettingsComponent implements OnInit {
 
   dialogRef?: DialogRef;
   darkModeEnabled = false;
+  reducedMotionEnabled = false;
   isRTL = false;
   activePalette = 'indigo';
 
@@ -37,6 +38,11 @@ export class SettingsComponent implements OnInit {
     this.darkModeEnabled = savedTheme.endsWith('dark') || savedTheme === 'dark';
     this.activePalette = this.#getPaletteFromTheme(savedTheme);
     this.isRTL = this.#document.documentElement.getAttribute('dir') === 'rtl';
+    const savedMotion = typeof localStorage !== 'undefined' ? localStorage.getItem('motion') : null;
+    this.reducedMotionEnabled = savedMotion === 'reduced' || this.#document.documentElement.getAttribute('data-motion') === 'reduced';
+    if (this.reducedMotionEnabled) {
+      this.#document.documentElement.setAttribute('data-motion', 'reduced');
+    }
   }
 
   #getPaletteFromTheme(theme: string): string {
@@ -81,5 +87,17 @@ export class SettingsComponent implements OnInit {
     }
     if (typeof localStorage !== 'undefined')
       localStorage.setItem('rtl', this.isRTL.toString());
+  }
+
+  onReducedMotionChange(event: Event) {
+    this.reducedMotionEnabled = (event as CustomEvent).detail.checked;
+    if (this.reducedMotionEnabled) {
+      this.#document.documentElement.setAttribute('data-motion', 'reduced');
+    } else {
+      this.#document.documentElement.removeAttribute('data-motion');
+    }
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('motion', this.reducedMotionEnabled ? 'reduced' : 'system');
+    }
   }
 }

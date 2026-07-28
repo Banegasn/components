@@ -7,6 +7,9 @@ const requiredTokens = [
   ...['medium1', 'medium2', 'medium3', 'medium4'].map((name) => `--md-sys-motion-duration-${name}`),
   ...['long1', 'long2', 'long3', 'long4'].map((name) => `--md-sys-motion-duration-${name}`),
   ...['extra-long1', 'extra-long2', 'extra-long3', 'extra-long4'].map((name) => `--md-sys-motion-duration-${name}`),
+  '--md-sys-motion-continuous-play-state',
+  '--md-sys-motion-progress-start',
+  '--md-sys-motion-ripple-visibility',
   '--md-sys-motion-easing-standard',
   '--md-sys-motion-easing-standard-accelerate',
   '--md-sys-motion-easing-standard-decelerate',
@@ -18,31 +21,69 @@ const requiredTokens = [
   '--md-sys-motion-spring-bouncy',
 ];
 
-const continuousAlternatives = [
-  'packages/m3-button/src/m3-button.styles.ts',
-  'packages/m3-divider/src/m3-divider.styles.ts',
-  'packages/m3-list/src/m3-list.styles.ts',
-  'packages/m3-loading-indicator/src/m3-loading-indicator.styles.ts',
-  'packages/m3-progress/src/m3-progress.styles.ts',
-  'packages/m3-radio-button/src/m3-radio-button.styles.ts',
-];
-
 const source = readJson(tokenSourcePath);
 const tokenNames = new Set(source.tokens.map((token) => token.name));
 const failures = requiredTokens.filter((name) => !tokenNames.has(name)).map((name) => `Missing public motion token: ${name}`);
+const extensions = new Set(['.css', '.ts', '.js', '.svelte']);
 
-for (const relativeFile of continuousAlternatives) {
-  const content = fs.readFileSync(path.join(repositoryRoot, relativeFile), 'utf8');
-  if (!content.includes('prefers-reduced-motion: reduce')) {
-    failures.push(`${relativeFile}: continuous animation has no reduced-motion alternative`);
+function walk(entry, files = []) {
+  const stat = fs.statSync(entry);
+  if (stat.isFile()) {
+    if (extensions.has(path.extname(entry)) && !entry.endsWith('.test.ts')) files.push(entry);
+    return files;
+  }
+  for (const child of fs.readdirSync(entry, { withFileTypes: true })) {
+    if (['dist', 'node_modules', '.angular', '.turbo', '.svelte-kit'].includes(child.name)) continue;
+    walk(path.join(entry, child.name), files);
+  }
+  return files;
+}
+
+function hasRecentExemption(lines, index) {
+  return lines.slice(Math.max(0, index - 10), index + 1).some((line) => line.includes('motion-literal-exempt'));
+}
+
+const motionFiles = [
+  ...walk(path.join(repositoryRoot, 'packages')),
+  ...walk(path.join(repositoryRoot, 'apps')),
+];
+let checkedSources = 0;
+
+for (const file of motionFiles) {
+  const content = fs.readFileSync(file, 'utf8');
+  const relativeFile = path.relative(repositoryRoot, file);
+  const hasMotion = /\b(?:transition|animation)\s*:/.test(content);
+  const hasTimer = /\bsetTimeout\s*\(/.test(content);
+  if (!hasMotion && !hasTimer) continue;
+  checkedSources += 1;
+
+  const lines = content.split('\n');
+  for (const [index, line] of lines.entries()) {
+    const isComment = /^\s*(?:\/\/|\/\*|\*)/.test(line);
+    const literalTime = !isComment && /(?<![-\w])(?:\d+(?:\.\d+)?|\.\d+)(?:ms|s)\b/.test(line);
+    if (literalTime && !hasRecentExemption(lines, index)) {
+      failures.push(`${relativeFile}:${index + 1}: literal timing must use a motion token or carry a motion-literal-exempt explanation`);
+    }
+    if (/\bsetTimeout\s*\([^,]+,\s*\d/.test(line) && !hasRecentExemption(lines, index)) {
+      failures.push(`${relativeFile}:${index + 1}: runtime timeout must derive from a computed motion token or be documented as non-motion`);
+    }
+  }
+
+  if (hasMotion && !content.includes('--md-sys-motion-')) {
+    failures.push(`${relativeFile}: motion declaration does not consume the canonical motion vocabulary`);
+  }
+  if (/animation:[^;]*\binfinite\b/.test(content)) {
+    if (!content.includes('prefers-reduced-motion: reduce') || !content.includes('--md-sys-motion-continuous-play-state')) {
+      failures.push(`${relativeFile}: continuous animation requires static reduced-motion behavior and a verification-mode play state`);
+    }
   }
 }
 
 for (const theme of Object.keys(source.themes)) {
   const file = path.join(repositoryRoot, 'tokens', 'generated', `${theme}.css`);
   const content = fs.readFileSync(file, 'utf8');
-  if (!content.includes('@media (prefers-reduced-motion: reduce)') || !content.includes('--md-sys-motion-duration-short4: 1ms;')) {
-    failures.push(`${path.relative(repositoryRoot, file)}: missing generated reduced-motion duration contract`);
+  if (!content.includes(':root[data-motion="reduced"]') || !content.includes('@media (prefers-reduced-motion: reduce)') || !content.includes('--md-sys-motion-duration-short4: 1ms;') || !content.includes('--md-sys-motion-continuous-play-state: paused;')) {
+    failures.push(`${path.relative(repositoryRoot, file)}: missing media-query or demo verification-mode reduced-motion contract`);
   }
 }
 
@@ -51,4 +92,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Validated ${requiredTokens.length} public motion tokens and ${continuousAlternatives.length} static reduced-motion alternatives.`);
+console.log(`Validated ${requiredTokens.length} public motion tokens and ${checkedSources} package/demo motion sources.`);

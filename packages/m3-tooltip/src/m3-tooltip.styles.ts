@@ -4,6 +4,8 @@ export const m3TooltipStyles = css`
   :host {
     display: inline-block;
     position: relative;
+    --_show-delay: var(--md-sys-motion-duration-long2);
+    --_hide-delay: var(--md-sys-motion-duration-short2);
   }
 
   .tooltip-surface {

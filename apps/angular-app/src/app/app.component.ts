@@ -346,7 +346,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.desktopComponentsCloseTimer = setTimeout(() => {
       this.desktopComponentsCloseTimer = null;
       this.closeComponentsMenu();
-    }, 150);
+    }, 150); // motion-literal-exempt: pointer-intent debounce, not animation timing.
   }
 
   onMobileComponentsPointerDown(_event: Event) {
@@ -355,7 +355,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.mobileComponentsLongPressTimer = null;
       this.mobileComponentsLongPressFired = true;
       this.openComponentsMenu();
-    }, 500); // 500ms for long press
+    }, 500); // motion-literal-exempt: long-press interaction threshold, not animation timing.
   }
 
   onMobileComponentsPointerUp(_event: Event) {

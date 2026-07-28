@@ -31,11 +31,12 @@ export const m3ProgressStyles = css`
   :host([indeterminate]) .indicator {
     width: 50% !important;
     animation: indeterminate var(--md-sys-motion-duration-extra-long4) var(--md-sys-motion-easing-standard) infinite;
+    animation-play-state: var(--md-sys-motion-continuous-play-state, running);
   }
 
   @keyframes indeterminate {
     0% {
-      left: -50%;
+      left: var(--md-sys-motion-progress-start, -50%);
     }
     100% {
       left: 100%;

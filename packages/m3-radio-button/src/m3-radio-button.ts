@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { m3RadioButtonStyles } from './m3-radio-button.styles.js';
+import { motionDuration } from './motion-duration.js';
 
 /**
  * Material Design 3 Radio Button Component
@@ -422,9 +423,13 @@ export class M3RadioButton extends LitElement {
 
   private _triggerRipple() {
     this._ripple = true;
-    setTimeout(() => {
-      this._ripple = false;
-    }, 600);
+    void this.updateComplete.then(() => {
+      const ripple = this.shadowRoot?.querySelector('.ripple');
+      const duration = ripple ? motionDuration(ripple, '--_ripple-duration') : 0;
+      setTimeout(() => {
+        this._ripple = false;
+      }, duration);
+    });
   }
 
   /**

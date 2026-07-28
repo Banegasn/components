@@ -12,6 +12,7 @@ export const m3LoadingIndicatorStyles = css`
     width: var(--_size);
     height: var(--_size);
     animation: rotate var(--md-sys-motion-duration-extra-long3) var(--md-sys-motion-easing-linear) infinite;
+    animation-play-state: var(--md-sys-motion-continuous-play-state, running);
   }
 
   .shape {

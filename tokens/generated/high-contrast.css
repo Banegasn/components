@@ -43,6 +43,7 @@
   --md-sys-color-tertiary-container: #005a00;
   --md-sys-elevation-level1: 0 0 0 1px #000000;
   --md-sys-elevation-level2: 0 0 0 2px #000000;
+  --md-sys-motion-continuous-play-state: running;
   --md-sys-motion-duration-extra-long1: 700ms;
   --md-sys-motion-duration-extra-long2: 800ms;
   --md-sys-motion-duration-extra-long3: 900ms;
@@ -66,6 +67,8 @@
   --md-sys-motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
   --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --md-sys-motion-progress-start: -50%;
+  --md-sys-motion-ripple-visibility: visible;
   --md-sys-motion-spring-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
   --md-sys-motion-spring-fast: cubic-bezier(0.33, 1, 0.68, 1);
   --md-sys-shape-corner-extra-large: 28px;
@@ -86,8 +89,33 @@
 }
 
 /* Motion is optional: state changes remain visible without movement. */
+:root[data-motion="reduced"] {
+  --md-sys-motion-continuous-play-state: paused;
+  --md-sys-motion-progress-start: 25%;
+  --md-sys-motion-ripple-visibility: hidden;
+  --md-sys-motion-duration-short1: 1ms;
+  --md-sys-motion-duration-short2: 1ms;
+  --md-sys-motion-duration-short3: 1ms;
+  --md-sys-motion-duration-short4: 1ms;
+  --md-sys-motion-duration-medium1: 1ms;
+  --md-sys-motion-duration-medium2: 1ms;
+  --md-sys-motion-duration-medium3: 1ms;
+  --md-sys-motion-duration-medium4: 1ms;
+  --md-sys-motion-duration-long1: 1ms;
+  --md-sys-motion-duration-long2: 1ms;
+  --md-sys-motion-duration-long3: 1ms;
+  --md-sys-motion-duration-long4: 1ms;
+  --md-sys-motion-duration-extra-long1: 1ms;
+  --md-sys-motion-duration-extra-long2: 1ms;
+  --md-sys-motion-duration-extra-long3: 1ms;
+  --md-sys-motion-duration-extra-long4: 1ms;
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root[theme="high-contrast"] {
+  --md-sys-motion-continuous-play-state: paused;
+  --md-sys-motion-progress-start: 25%;
+  --md-sys-motion-ripple-visibility: hidden;
   --md-sys-motion-duration-short1: 1ms;
   --md-sys-motion-duration-short2: 1ms;
   --md-sys-motion-duration-short3: 1ms;

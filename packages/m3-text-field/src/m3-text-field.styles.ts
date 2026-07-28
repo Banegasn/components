@@ -105,7 +105,7 @@ export const m3TextFieldStyles = css`
   .input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px var(--md-sys-color-surface-container-highest, #e6e0e9) inset !important;
     -webkit-text-fill-color: var(--md-sys-color-on-surface, #1d1b20) !important;
-    /* Browser autofill paint workaround; it intentionally does not represent UI motion. */
+    /* motion-literal-exempt: browser autofill paint workaround, not UI motion. */
     transition: background-color 5000s ease-in-out 0s;
   }
 

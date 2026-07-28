@@ -341,6 +341,7 @@ export const m3ButtonStyles = css`
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin var(--md-sys-motion-duration-extra-long2) var(--md-sys-motion-easing-linear) infinite;
+    animation-play-state: var(--md-sys-motion-continuous-play-state, running);
     z-index: 2;
   }
 

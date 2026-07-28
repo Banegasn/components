@@ -11,8 +11,8 @@ export const m3DividerStyles = css`
     --_inset-start: 16px;
     --_inset-end: 16px;
     --_middle-space: 16px;
-    --_animation-duration: var(--md-comp-divider-motion-duration, var(--md-sys-motion-duration-long4, 600ms));
-    --_animation-easing: var(--md-comp-divider-motion-easing, var(--md-sys-motion-easing-emphasized-decelerate, cubic-bezier(0.2, 0, 0, 1)));
+    --_animation-duration: var(--md-comp-divider-motion-duration, var(--md-sys-motion-duration-long4));
+    --_animation-easing: var(--md-comp-divider-motion-easing, var(--md-sys-motion-easing-emphasized-decelerate));
   }
 
   /* Horizontal (default) */
@@ -82,11 +82,13 @@ export const m3DividerStyles = css`
   :host([pulsing]) .divider {
     animation: divider-enter var(--_animation-duration) var(--_animation-easing) forwards,
                divider-pulse var(--md-sys-motion-duration-extra-long4) var(--md-sys-motion-easing-standard) infinite var(--_animation-duration);
+    animation-play-state: running, var(--md-sys-motion-continuous-play-state, running);
   }
 
   :host([pulsing][orientation="vertical"]) .divider {
     animation: divider-enter-vertical var(--_animation-duration) var(--_animation-easing) forwards,
                divider-pulse var(--md-sys-motion-duration-extra-long4) var(--md-sys-motion-easing-standard) infinite var(--_animation-duration);
+    animation-play-state: running, var(--md-sys-motion-continuous-play-state, running);
   }
 
   @keyframes divider-enter {

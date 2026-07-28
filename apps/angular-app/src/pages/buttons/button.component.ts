@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
+import { motionDuration } from '../../app/utils/motion-duration';
 
 import  '@banegasn/m3-button';
 import  '@banegasn/m3-card';
@@ -47,7 +48,6 @@ export class ButtonComponent {
     (button as any).loading = true;
     setTimeout(() => {
       (button as any).loading = false;
-    }, 2000);
+    }, motionDuration(button, '--md-sys-motion-duration-extra-long4'));
   }
 }
-

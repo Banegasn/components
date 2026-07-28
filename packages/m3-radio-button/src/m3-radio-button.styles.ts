@@ -7,6 +7,7 @@ export const m3RadioButtonStyles = css`
     --_radio-ripple-size: var(--md-comp-radio-ripple-size, 40px);
     --_radio-outer-size: var(--md-comp-radio-outer-size, 16px);
     --_radio-inner-size: var(--md-comp-radio-inner-size, 8px);
+    --_ripple-duration: var(--md-sys-motion-duration-long4);
   }
 
   /* Size variants */
@@ -157,7 +158,9 @@ export const m3RadioButtonStyles = css`
     background-color: var(--md-sys-color-primary, #6750a4);
     opacity: 0.3;
     transform: scale(0);
-    animation: ripple-animation var(--md-sys-motion-duration-long4) var(--md-sys-motion-easing-emphasized);
+    animation: ripple-animation var(--_ripple-duration) var(--md-sys-motion-easing-emphasized);
+    animation-play-state: var(--md-sys-motion-continuous-play-state, running);
+    visibility: var(--md-sys-motion-ripple-visibility, visible);
     pointer-events: none;
     z-index: 0;
   }
@@ -178,7 +181,7 @@ export const m3RadioButtonStyles = css`
 
   @media (prefers-reduced-motion: reduce) {
     .ripple {
-      display: none;
+      visibility: hidden;
     }
   }
 

@@ -64,6 +64,13 @@ describe('M3Snackbar', () => {
     }
   });
 
+  it('uses a consumer-overridden CSS duration for exit teardown', async () => {
+    const el = await fixture<M3Snackbar>(html`<m3-snackbar open duration="0" style="--_animation-duration: 1ms">Test</m3-snackbar>`);
+    el.dismiss();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(el.open).to.be.false;
+  });
+
   it('dispatches snackbar-action on action click', async () => {
     const el = await fixture<M3Snackbar>(html`
       <m3-snackbar open duration="0">
