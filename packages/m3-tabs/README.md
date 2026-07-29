@@ -1,159 +1,69 @@
 # @banegasn/m3-tabs
 
-![Preview](images/preview.png)
-
-
-> Material Design 3 Tabs web component — framework-agnostic, built with Lit.
-
-[![npm version](https://img.shields.io/npm/v/@banegasn/m3-tabs.svg)](https://www.npmjs.com/package/@banegasn/m3-tabs)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
-
-Accessible **M3 Tabs** web components following the [Material Design 3 tabs specifications](https://m3.material.io/components/tabs/overview). Includes primary and secondary tab styles with animated indicator. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
-
-## Features
-
-- Primary and secondary tab variants
-- Animated active indicator
-- Optional icon support per tab
-- Keyboard accessible (arrow key navigation)
-- Framework-agnostic custom elements
+Accessible Material 3 tabs with a complete ARIA tab/tabpanel contract.
 
 ## Installation
 
 ```bash
-npm install @banegasn/m3-tabs
-# or
 pnpm add @banegasn/m3-tabs
-# or
-yarn add @banegasn/m3-tabs
 ```
-
-## CDN Usage (no build step)
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>M3 Tabs Demo</title>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-tabs/+esm"></script>
-  <style>
-    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
-    .tab-content { padding: 24px 0; color: #1d1b20; }
-  </style>
-</head>
-<body>
-  <m3-tabs>
-    <m3-tab label="Videos" active></m3-tab>
-    <m3-tab label="Music"></m3-tab>
-    <m3-tab label="Podcasts"></m3-tab>
-  </m3-tabs>
-
-  <div class="tab-content" id="content">Videos content</div>
-
-  <script>
-    const contents = ['Videos content', 'Music content', 'Podcasts content'];
-    document.querySelector('m3-tabs').addEventListener('tab-change', (e) => {
-      document.getElementById('content').textContent = contents[e.detail.index];
-    });
-  </script>
-</body>
-</html>
-```
-
-## npm Usage
 
 ```js
 import '@banegasn/m3-tabs';
 ```
 
-```html
-<m3-tabs>
-  <m3-tab label="Tab One" active></m3-tab>
-  <m3-tab label="Tab Two"></m3-tab>
-  <m3-tab label="Tab Three"></m3-tab>
-</m3-tabs>
-```
+## Usage
 
-## With Icons
+Every `m3-tab` has a required `panel` property identifying its unique panel. `m3-tabs` applies `role="tab"`, `aria-controls`, `aria-selected`, and roving `tabindex` to the tab. It applies `role="tabpanel"`, `aria-labelledby`, and `hidden` to the associated panel.
 
 ```html
-<m3-tabs>
-  <m3-tab label="Home" active>
-    <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
-      <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-    </svg>
-  </m3-tab>
-  <m3-tab label="Search">
-    <svg slot="icon" viewBox="0 0 24 24" width="24" height="24">
-      <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-    </svg>
-  </m3-tab>
+<m3-tabs active-tab="0">
+  <m3-tab panel="overview-panel" value="overview">Overview</m3-tab>
+  <m3-tab panel="activity-panel" value="activity">Activity</m3-tab>
 </m3-tabs>
+
+<section id="overview-panel">Overview content</section>
+<section id="activity-panel" hidden>Activity content</section>
 ```
+
+## Keyboard policy
+
+`orientation="horizontal"` (the default) uses Left/Right; `orientation="vertical"` uses Up/Down. Home and End always move to the first and last enabled tab. Navigation wraps and skips disabled tabs.
+
+`activation="automatic"` (the default) selects the focused destination tab. With `activation="manual"`, arrows only move focus; Space or Enter selects that focused tab. Click always selects its enabled tab.
+
+`active-tab` is zero-based. Invalid values are clamped and then recover to the first enabled tab at or after that index, wrapping as needed. If no tabs are enabled, it becomes `-1`.
 
 ## API
 
-### `m3-tabs` Properties
+### `m3-tabs`
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary'` | `'primary'` | Tab bar style variant |
+| Property                   | Type                         | Default        | Meaning                     |
+| -------------------------- | ---------------------------- | -------------- | --------------------------- |
+| `activeTab` / `active-tab` | `number`                     | `0`            | Selected enabled tab index  |
+| `orientation`              | `'horizontal' \| 'vertical'` | `'horizontal'` | Tab-list keyboard axis      |
+| `activation`               | `'automatic' \| 'manual'`    | `'automatic'`  | Arrow-key activation policy |
 
-### `m3-tabs` Events
+### `m3-tab`
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `tab-change` | `{ index: number, label: string }` | Fired when the active tab changes |
+| Property   | Type      | Default | Meaning                                   |
+| ---------- | --------- | ------- | ----------------------------------------- |
+| `panel`    | `string`  | `''`    | Required ID of the associated tabpanel    |
+| `value`    | `string`  | `''`    | Application value reported by the event   |
+| `disabled` | `boolean` | `false` | Excludes the tab from selection and focus |
 
-### `m3-tab` Properties
+### `tab-change`
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `label` | `string` | `''` | Tab label text |
-| `active` | `boolean` | `false` | Whether this tab is currently active |
-| `disabled` | `boolean` | `false` | Disables the tab |
+This is the sole selection event. It bubbles and is composed. It fires only when a click or keyboard activation changes the selection.
 
-### CSS Custom Properties
-
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--md-sys-color-primary` | `#6750a4` | Active tab indicator and text color |
-| `--md-sys-color-on-surface-variant` | `#49454f` | Inactive tab text color |
-| `--md-sys-color-surface-container` | `#f7f2fa` | Tab bar background |
-
-## Framework Usage
-
-### Angular
-```typescript
-import '@banegasn/m3-tabs';
-```
-```html
-<m3-tabs (tab-change)="onTabChange($event)">
-  <m3-tab label="Overview" active></m3-tab>
-  <m3-tab label="Details"></m3-tab>
-</m3-tabs>
+```ts
+type TabChangeDetail = {
+  activeTab: number;
+  value: string;
+  reason: 'click' | 'keyboard';
+};
 ```
 
-### React
-```jsx
-import '@banegasn/m3-tabs';
-// <m3-tabs ontab-change={handleTabChange}>...</m3-tabs>
-```
+## Responsive indicator
 
-### Vue
-```vue
-<m3-tabs @tab-change="handleTabChange">
-  <m3-tab label="Overview" active />
-  <m3-tab label="Details" />
-</m3-tabs>
-```
-
-## Resources
-
-- [Material Design 3 Tabs](https://m3.material.io/components/tabs/overview)
-- [GitHub Repository](https://github.com/banegasn/components)
-
-## License
-
-MIT
+The indicator is measured again after tab-list or tab resize, window resize, font loading, and light-DOM content changes. No imperative indicator API is required.
