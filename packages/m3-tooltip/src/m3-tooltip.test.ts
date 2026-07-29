@@ -134,4 +134,35 @@ describe('M3Tooltip public interaction contract', () => {
     expect(trigger.getAttribute('aria-describedby')!.split(/\s+/)).to.include(tooltipId);
     expect(surface(tooltip).hasAttribute('visible')).to.equal(false);
   });
+
+  it('does not recreate a description while detached after property updates', async () => {
+    const container = await fixture<HTMLDivElement>(html`
+      <div>
+        <m3-tooltip text="Original">
+          <button aria-describedby="existing">Details</button>
+          <span slot="title">Updated heading</span>
+          <span slot="content">Updated content</span>
+        </m3-tooltip>
+      </div>
+    `);
+    const tooltip = container.querySelector<M3Tooltip>('m3-tooltip')!;
+    const trigger = tooltip.querySelector<HTMLButtonElement>('button')!;
+    const tooltipId = surface(tooltip).id;
+
+    tooltip.remove();
+    tooltip.text = 'Changed while detached';
+    tooltip.variant = 'rich';
+    await tooltip.updateComplete;
+    expect(tooltip.querySelectorAll(`span[slot="description"]#${tooltipId}`).length).to.equal(0);
+    expect(trigger.getAttribute('aria-describedby')).to.equal('existing');
+
+    container.append(tooltip);
+    await settle(tooltip);
+    const descriptions = tooltip.querySelectorAll<HTMLSpanElement>(`span[slot="description"]#${tooltipId}`);
+    const ids = trigger.getAttribute('aria-describedby')!.split(/\s+/);
+    expect(descriptions).to.have.length(1);
+    expect(descriptions[0]!.textContent).to.equal('Updated heading Updated content');
+    expect(ids.filter((id) => id === tooltipId)).to.have.length(1);
+    expect(ids).to.include('existing');
+  });
 });

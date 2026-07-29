@@ -108,6 +108,9 @@ export class M3Tooltip extends LitElement {
   }
 
   updated(changedProperties: Map<string, unknown>) {
+    // Lit can finish an update after this element has been detached. Do not
+    // recreate owned light-DOM nodes or mutate a trigger until reconnection.
+    if (!this.isConnected) return;
     this._ensureDescription();
     this._syncDescription();
     this._setTrigger(this._findTrigger());
@@ -249,7 +252,20 @@ export class M3Tooltip extends LitElement {
   }
 
   private _ensureDescription() {
-    if (this._description?.isConnected) return;
+    if (!this.isConnected) return;
+    if (this._description?.parentNode === this) return;
+
+    const existing = Array.from(this.children).find((child): child is HTMLSpanElement =>
+      child instanceof HTMLSpanElement
+      && child.id === this._tooltipId
+      && child.slot === 'description',
+    );
+    if (existing) {
+      this._description = existing;
+      this._syncDescription();
+      return;
+    }
+
     const description = document.createElement('span');
     // IDREFs are resolved in the trigger's tree; the visual surface retains
     // the same stable ID in its shadow-tree scope.
