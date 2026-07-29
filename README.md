@@ -159,6 +159,21 @@ pnpm dev
 
 ## 🛠️ Development
 
+### Pull-request quality gate
+
+Every pull request to `main` runs the immutable, least-privilege `Quality`
+ workflow. Its required status check is **`quality`**. It verifies the
+pinned Node 24.18.0/pnpm 11.12.0 install, linting, type checks, Chromium
+Vitest and Angular tests, generated token and motion files, build output,
+production dependency audit, packed-package imports (including the Svelte Vite
+consumer), and package licenses. It keeps only dependency and Turbo caches—no
+test artifacts or coverage archives are retained.
+
+Configure `main` branch protection to require **`quality`** before
+merging, require the branch to be up to date, and restrict bypasses to
+maintainers. GitHub branch-protection settings are repository administration,
+so they must be applied by a maintainer in **Settings → Branches**.
+
 ### Build Commands
 
 ```bash

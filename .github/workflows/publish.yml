@@ -17,12 +17,16 @@ on:
         default: 'none'
 
 jobs:
+  quality:
+    uses: ./.github/workflows/quality.yml
+
   publish:
+    needs: quality
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -68,7 +72,7 @@ jobs:
           git add .
           git commit -m "chore: bump version (${{ github.event.inputs.version_type }})"
           git push
-      
+
       - name: Publish to NPM Registry
         run: pnpm run publish:npm
         env:
