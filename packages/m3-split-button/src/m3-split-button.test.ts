@@ -13,7 +13,8 @@ describe('M3SplitButton public interaction contract', () => {
       </m3-split-button>
     `);
     await el.updateComplete;
-    const trigger = el.shadowRoot!.querySelector<HTMLButtonElement>('.menu-button')!;
+    const trigger =
+      el.shadowRoot!.querySelector<HTMLButtonElement>('.menu-button')!;
     const menu = el.querySelector('m3-menu')!;
     expect(trigger.getAttribute('aria-haspopup')).to.equal('menu');
     expect(trigger.getAttribute('aria-controls')).to.equal(menu.id);
@@ -21,12 +22,17 @@ describe('M3SplitButton public interaction contract', () => {
 
     trigger.click();
     await el.updateComplete;
-    await (menu as unknown as { updateComplete: Promise<unknown> }).updateComplete;
+    await (menu as unknown as { updateComplete: Promise<unknown> })
+      .updateComplete;
     expect(el.open).to.be.true;
     expect(trigger.getAttribute('aria-expanded')).to.equal('true');
 
     menu.shadowRoot!.querySelector<HTMLElement>('.surface')!.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, composed: true }),
+      new KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+        composed: true,
+      }),
     );
     await el.updateComplete;
     expect(el.open).to.be.false;
@@ -34,15 +40,33 @@ describe('M3SplitButton public interaction contract', () => {
   });
 
   it('does not emit empty aria-controls or activate disabled actions', async () => {
-    const el = await fixture<M3SplitButton>(html`<m3-split-button disabled>Send</m3-split-button>`);
-    const [main, trigger] = Array.from(el.shadowRoot!.querySelectorAll<HTMLButtonElement>('button'));
+    const el = await fixture<M3SplitButton>(
+      html`<m3-split-button disabled>Send</m3-split-button>`,
+    );
+    const [main, trigger] = Array.from(
+      el.shadowRoot!.querySelectorAll<HTMLButtonElement>('button'),
+    );
     let clicked = false;
-    el.addEventListener('split-button-click', () => { clicked = true; });
+    el.addEventListener('split-button-click', () => {
+      clicked = true;
+    });
     expect(trigger.hasAttribute('aria-controls')).to.be.false;
     main.click();
     trigger.click();
     await el.updateComplete;
     expect(clicked).to.be.false;
     expect(el.open).to.be.false;
+  });
+
+  it('omits an empty optional menu label', async () => {
+    const el = await fixture<M3SplitButton>(
+      html`<m3-split-button>Send</m3-split-button>`,
+    );
+    const trigger =
+      el.shadowRoot!.querySelector<HTMLButtonElement>('.menu-button')!;
+    el.menuLabel = '';
+    await el.updateComplete;
+
+    expect(trigger.hasAttribute('aria-label')).to.be.false;
   });
 });

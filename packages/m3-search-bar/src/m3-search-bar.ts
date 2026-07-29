@@ -1,7 +1,10 @@
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { customElement, property, state, query } from 'lit/decorators.js';
-import { FormAssociatedElement, validityFlags } from '@banegasn/m3-form-associated';
+import {
+  FormAssociatedElement,
+  validityFlags,
+} from '@banegasn/m3-form-associated';
 import { m3SearchBarStyles } from './m3-search-bar.styles.js';
 
 /** Material Design 3 search bar with native form participation. */
@@ -14,10 +17,14 @@ export class M3SearchBar extends FormAssociatedElement {
   @property({ type: String, reflect: true }) value = '';
   @property({ type: Boolean, reflect: true }) disabled = false;
   @property({ type: String, reflect: true }) name: string | null = null;
-  @property({ type: String, attribute: 'aria-label' }) ariaLabel: string | null = null;
-  @property({ type: String, attribute: 'aria-labelledby' }) ariaLabelledBy: string | null = null;
-  @property({ type: Number, attribute: 'maxlength' }) maxLength: number | null = null;
-  @property({ type: Number, attribute: 'minlength' }) minLength: number | null = null;
+  @property({ type: String, attribute: 'aria-label' }) ariaLabel:
+    string | null = null;
+  @property({ type: String, attribute: 'aria-labelledby' }) ariaLabelledBy:
+    string | null = null;
+  @property({ type: Number, attribute: 'maxlength' }) maxLength: number | null =
+    null;
+  @property({ type: Number, attribute: 'minlength' }) minLength: number | null =
+    null;
   @property({ type: String }) pattern: string | null = null;
   @property({ type: Boolean, reflect: true }) required = false;
   @property({ type: String }) autocomplete: string | null = null;
@@ -45,8 +52,8 @@ export class M3SearchBar extends FormAssociatedElement {
               placeholder=${this.placeholder}
               ?disabled=${this.isFormDisabled}
               ?required=${this.required}
-              aria-label=${this.ariaLabel || ''}
-              aria-labelledby=${this.ariaLabelledBy || ''}
+              aria-label=${this.ariaLabel || nothing}
+              aria-labelledby=${this.ariaLabelledBy || nothing}
               maxlength=${ifDefined(this.maxLength ?? undefined)}
               minlength=${ifDefined(this.minLength ?? undefined)}
               pattern=${ifDefined(this.pattern ?? undefined)}
@@ -109,7 +116,10 @@ export class M3SearchBar extends FormAssociatedElement {
   }
 
   private _syncFormState(): void {
-    const flags = !this.isFormDisabled && this._input ? validityFlags(this._input.validity) : {};
+    const flags =
+      !this.isFormDisabled && this._input
+        ? validityFlags(this._input.validity)
+        : {};
     if (this.value) delete flags.valueMissing;
     else if (this.required && !this.isFormDisabled) flags.valueMissing = true;
     const invalid = Object.keys(flags).length > 0;
@@ -125,7 +135,9 @@ export class M3SearchBar extends FormAssociatedElement {
     this.value = this._defaultValue;
   }
 
-  protected restoreFormControlState(state: string | File | FormData | null): void {
+  protected restoreFormControlState(
+    state: string | File | FormData | null,
+  ): void {
     if (typeof state === 'string') this.value = state;
   }
 

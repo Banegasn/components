@@ -305,4 +305,15 @@ describe('m3-radio-button scoped groups', () => {
     label.click();
     expect(radio.checked).to.equal(false);
   });
+
+  it('omits unset ARIA name and IDREF attributes', async () => {
+    const radio = await fixture<M3RadioButton>(
+      html`<m3-radio-button></m3-radio-button>`,
+    );
+    const control =
+      radio.shadowRoot!.querySelector<HTMLElement>('.radio-container')!;
+
+    expect(control.hasAttribute('aria-label')).to.be.false;
+    expect(control.hasAttribute('aria-labelledby')).to.be.false;
+  });
 });

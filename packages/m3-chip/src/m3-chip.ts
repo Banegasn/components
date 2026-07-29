@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { m3ChipStyles } from './m3-chip.styles.js';
 
@@ -37,21 +37,23 @@ export class M3Chip extends LitElement {
   @property({ type: Boolean, reflect: true }) removable = false;
 
   /** ARIA label */
-  @property({ type: String, attribute: 'aria-label' }) ariaLabel: string | null = null;
+  @property({ type: String, attribute: 'aria-label' }) ariaLabel:
+    string | null = null;
 
   @state()
   private _hasIcon = false;
 
   render() {
-    const showLeadingIcon = (this.variant === 'filter' && this.selected) || this._hasIcon;
+    const showLeadingIcon =
+      (this.variant === 'filter' && this.selected) || this._hasIcon;
 
     return html`
       <button
         class="chip"
         ?disabled=${this.disabled}
         role=${this.variant === 'filter' ? 'option' : 'button'}
-        aria-selected=${this.variant === 'filter' ? this.selected : undefined as any}
-        aria-label=${this.ariaLabel || ''}
+        aria-selected=${this.variant === 'filter' ? this.selected : nothing}
+        aria-label=${this.ariaLabel || nothing}
         @click=${this._handleClick}
       >
         <span class="leading-icon" ?hidden=${!showLeadingIcon}>
@@ -66,11 +68,20 @@ export class M3Chip extends LitElement {
           <slot></slot>
         </span>
 
-        ${this.removable ? html`
-          <span class="trailing-icon" @click=${this._handleRemove}>
-            <svg viewBox="0 0 18 18" width="18" height="18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" fill="currentColor"/></svg>
-          </span>
-        ` : ''}
+        ${
+          this.removable
+            ? html`
+                <span class="trailing-icon" @click=${this._handleRemove}>
+                  <svg viewBox="0 0 18 18" width="18" height="18">
+                    <path
+                      d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              `
+            : ''
+        }
         <div class="state-layer"></div>
       </button>
     `;
@@ -98,28 +109,34 @@ export class M3Chip extends LitElement {
 
     if (this.variant === 'filter') {
       this.selected = !this.selected;
-      this.dispatchEvent(new CustomEvent('chip-select', {
-        bubbles: true,
-        composed: true,
-        detail: { selected: this.selected }
-      }));
+      this.dispatchEvent(
+        new CustomEvent('chip-select', {
+          bubbles: true,
+          composed: true,
+          detail: { selected: this.selected },
+        }),
+      );
     }
 
-    this.dispatchEvent(new CustomEvent('chip-click', {
-      bubbles: true,
-      composed: true,
-      detail: { variant: this.variant, selected: this.selected }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('chip-click', {
+        bubbles: true,
+        composed: true,
+        detail: { variant: this.variant, selected: this.selected },
+      }),
+    );
   }
 
   private _handleRemove(e: Event) {
     e.stopPropagation();
     if (this.disabled) return;
 
-    this.dispatchEvent(new CustomEvent('chip-remove', {
-      bubbles: true,
-      composed: true
-    }));
+    this.dispatchEvent(
+      new CustomEvent('chip-remove', {
+        bubbles: true,
+        composed: true,
+      }),
+    );
   }
 }
 

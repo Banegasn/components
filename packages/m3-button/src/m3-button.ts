@@ -1,20 +1,20 @@
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3ButtonStyles } from './m3-button.styles.js';
 
 /**
  * Material Design 3 Button Component
- * 
+ *
  * A flexible button component following Material Design 3 specifications with
  * support for multiple variants, icons, and accessibility features.
- * 
+ *
  * Native click semantics are exposed on the host. Submit and reset types act
  * on the owner form selected by the host's native `form` attribute.
- * 
+ *
  * @slot - Default slot for button label text
  * @slot icon - Optional icon to display before the label
- * 
+ *
  * @cssprop --md-comp-button-container-height - Height of the button (default: varies by size)
  * @cssprop --md-comp-button-container-shape - Border radius (default: varies by shape)
  * @cssprop --md-comp-button-label-text-size - Font size of label (default: varies by size)
@@ -127,8 +127,8 @@ export class M3Button extends FormAssociatedElement {
       <button
         type="button"
         ?disabled=${this.isFormDisabled || this.loading}
-        aria-label=${this.ariaLabel || ''}
-        aria-busy=${this.loading}
+        aria-label=${this.ariaLabel || nothing}
+        aria-busy=${this.loading ? 'true' : nothing}
         @click=${this._handleClick}
       >
         ${this.loading ? html`<span class="loading-spinner"></span>` : ''}
@@ -183,7 +183,9 @@ export class M3Button extends FormAssociatedElement {
     // Native buttons have no mutable form value to reset.
   }
 
-  protected restoreFormControlState(_state: string | File | FormData | null): void {
+  protected restoreFormControlState(
+    _state: string | File | FormData | null,
+  ): void {
     // Native buttons have no restorable form state.
   }
 

@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { navigationBarItemStyles } from './navigation-bar-item.styles.js';
 
@@ -23,11 +23,11 @@ export class M3NavigationBarItem extends LitElement {
 
   render() {
     return html`
-      <button 
-        class="item ${this.active ? 'active' : ''}" 
+      <button
+        class="item ${this.active ? 'active' : ''}"
         @click=${this._handleClick}
         aria-label=${this.label || 'Navigation item'}
-        aria-current=${this.active ? 'page' : 'false'}
+        aria-current=${this.active ? 'page' : nothing}
       >
         <div class="state-layer bubble"></div>
         <div class="indicator bubble"></div>
@@ -54,11 +54,13 @@ export class M3NavigationBarItem extends LitElement {
   }
 
   private _handleClick() {
-    this.dispatchEvent(new CustomEvent('item-click', {
-      bubbles: true,
-      composed: true,
-      detail: { label: this.label }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('item-click', {
+        bubbles: true,
+        composed: true,
+        detail: { label: this.label },
+      }),
+    );
   }
 }
 
@@ -67,4 +69,3 @@ declare global {
     'm3-navigation-bar-item': M3NavigationBarItem;
   }
 }
-

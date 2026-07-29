@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { m3ListItemStyles } from './m3-list-item.styles.js';
@@ -87,8 +87,8 @@ export class M3ListItem extends LitElement {
         role="listitem"
         tabindex=${this.clickable && !this.disabled ? '0' : '-1'}
         aria-selected=${ifDefined(this.selected ? 'true' : undefined)}
-        aria-label=${this.ariaLabel || ''}
-        aria-disabled=${this.disabled}
+        aria-label=${this.ariaLabel || nothing}
+        aria-disabled=${this.disabled ? 'true' : nothing}
         @click=${this._handleClick}
         @keydown=${this._handleKeydown}
       >
@@ -133,17 +133,21 @@ export class M3ListItem extends LitElement {
   private _handleClick() {
     if (this.disabled || !this.clickable) return;
 
-    this.dispatchEvent(new CustomEvent('item-click', {
-      bubbles: true,
-      composed: true,
-      detail: { value: this.value, selected: this.selected }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('item-click', {
+        bubbles: true,
+        composed: true,
+        detail: { value: this.value, selected: this.selected },
+      }),
+    );
 
-    this.dispatchEvent(new CustomEvent('item-select', {
-      bubbles: true,
-      composed: true,
-      detail: { value: this.value, selected: !this.selected }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('item-select', {
+        bubbles: true,
+        composed: true,
+        detail: { value: this.value, selected: !this.selected },
+      }),
+    );
   }
 
   private _handleKeydown(e: KeyboardEvent) {

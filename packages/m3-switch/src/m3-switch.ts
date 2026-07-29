@@ -1,16 +1,16 @@
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3SwitchStyles } from './m3-switch.styles.js';
 
 /**
  * Material Design 3 Switch Component
- * 
+ *
  * A switch component following Material Design 3 specifications that allows
  * users to toggle between on and off states.
- * 
+ *
  * Emits native `input` and `change` events when the checked state changes.
- * 
+ *
  * @cssprop --md-comp-switch-track-width - Width of the switch track (default: 52px)
  * @cssprop --md-comp-switch-track-height - Height of the switch track (default: 32px)
  * @cssprop --md-comp-switch-thumb-size - Size of the switch thumb (default: 24px)
@@ -82,9 +82,9 @@ export class M3Switch extends FormAssociatedElement {
         class="switch-container"
         role="switch"
         aria-checked=${this.checked}
-        aria-disabled=${this.isFormDisabled}
-        aria-label=${this.ariaLabel || ''}
-        aria-labelledby=${this.ariaLabelledBy || ''}
+        aria-disabled=${this.isFormDisabled ? 'true' : nothing}
+        aria-label=${this.ariaLabel || nothing}
+        aria-labelledby=${this.ariaLabelledBy || nothing}
         tabindex=${this.isFormDisabled ? -1 : 0}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
@@ -94,13 +94,34 @@ export class M3Switch extends FormAssociatedElement {
         @mousedown=${this._handleMouseDown}
         @mouseup=${this._handleMouseUp}
       >
-        <div class="track" ?checked=${this.checked} ?disabled=${this.isFormDisabled}>
-          <div class="thumb" ?checked=${this.checked} ?disabled=${this.isFormDisabled} ?pressed=${this._pressed}>
-            ${this.checked ? html`
-              <svg class="checkmark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/>
-              </svg>
-            ` : ''}
+        <div
+          class="track"
+          ?checked=${this.checked}
+          ?disabled=${this.isFormDisabled}
+        >
+          <div
+            class="thumb"
+            ?checked=${this.checked}
+            ?disabled=${this.isFormDisabled}
+            ?pressed=${this._pressed}
+          >
+            ${
+              this.checked
+                ? html`
+                    <svg
+                      class="checkmark"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  `
+                : ''
+            }
           </div>
         </div>
       </div>
@@ -178,11 +199,17 @@ export class M3Switch extends FormAssociatedElement {
 
   private _syncFormState(): void {
     const disabled = this.isFormDisabled;
-    this.setFormValue(!disabled && this.checked ? this.value ?? 'on' : null, this.checked ? 'checked' : 'unchecked');
+    this.setFormValue(
+      !disabled && this.checked ? (this.value ?? 'on') : null,
+      this.checked ? 'checked' : 'unchecked',
+    );
     this.setFormValidity(
       !disabled && this.required && !this.checked ? { valueMissing: true } : {},
-      !disabled && this.required && !this.checked ? 'Please turn this switch on.' : '',
-      this.shadowRoot?.querySelector<HTMLElement>('.switch-container') ?? undefined,
+      !disabled && this.required && !this.checked
+        ? 'Please turn this switch on.'
+        : '',
+      this.shadowRoot?.querySelector<HTMLElement>('.switch-container') ??
+        undefined,
     );
   }
 
@@ -190,7 +217,9 @@ export class M3Switch extends FormAssociatedElement {
     this.checked = this._defaultChecked;
   }
 
-  protected restoreFormControlState(state: string | File | FormData | null): void {
+  protected restoreFormControlState(
+    state: string | File | FormData | null,
+  ): void {
     if (typeof state === 'string') {
       this.checked = state === 'checked';
     }
@@ -200,14 +229,18 @@ export class M3Switch extends FormAssociatedElement {
    * Focuses the switch
    */
   focus() {
-    (this.shadowRoot?.querySelector('.switch-container') as HTMLElement)?.focus();
+    (
+      this.shadowRoot?.querySelector('.switch-container') as HTMLElement
+    )?.focus();
   }
 
   /**
    * Removes focus from the switch
    */
   blur() {
-    (this.shadowRoot?.querySelector('.switch-container') as HTMLElement)?.blur();
+    (
+      this.shadowRoot?.querySelector('.switch-container') as HTMLElement
+    )?.blur();
   }
 }
 

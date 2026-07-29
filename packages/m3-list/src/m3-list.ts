@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3ListStyles } from './m3-list.styles.js';
 
@@ -31,7 +31,7 @@ export class M3List extends LitElement {
 
   render() {
     return html`
-      <ul class="list" role=${this.role}>
+      <ul class="list" role=${this.role || nothing}>
         <slot></slot>
       </ul>
     `;
