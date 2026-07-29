@@ -30,6 +30,13 @@ export const m3FabMenuStyles = css`
     box-shadow: 0px 6px 10px 4px rgba(0,0,0,0.15);
   }
 
+  .fab:disabled {
+    cursor: default;
+    opacity: 0.38;
+    filter: none;
+    box-shadow: none;
+  }
+
   .fab.active {
     transform: rotate(135deg);
     border-radius: 28px; /* Circle */

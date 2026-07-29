@@ -3,6 +3,7 @@ import { css } from 'lit';
 export const m3SplitButtonStyles = css`
   :host {
     display: inline-flex;
+    position: relative;
     align-items: center;
     gap: 1px;
     vertical-align: middle;
@@ -51,6 +52,12 @@ export const m3SplitButtonStyles = css`
 
   .button:active, .menu-button:active {
     filter: brightness(0.8);
+  }
+
+  .button:disabled, .menu-button:disabled {
+    cursor: default;
+    opacity: 0.38;
+    filter: none;
   }
   
   .menu-button.active {

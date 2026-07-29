@@ -18,43 +18,32 @@ import '@banegasn/m3-split-button';
 })
 export class SplitButtonComponent {
   lastInteraction = 'None';
-  menuState: Record<string, boolean> = {
-    send: false,
-    save: false,
-    edit: false,
-    create: false,
-  };
+  menuOpen = false;
 
   readonly basicExample = `<div class="split-button-demo">
-  <m3-split-button menu-id="send-menu" menu-open>Send</m3-split-button>
-  <m3-menu id="send-menu" open placement="bottom-end">
+  <m3-split-button open>
+    Send
+    <m3-menu slot="menu" placement="bottom-end">
     <m3-menu-item value="schedule-send">Schedule send</m3-menu-item>
     <m3-menu-item value="save-draft">Save draft</m3-menu-item>
-  </m3-menu>
+    </m3-menu>
+  </m3-split-button>
 </div>`;
 
-  handleMenuToggle(key: string, event: any) {
-    const { action, open } = event.detail ?? {};
-
-    if (action === 'menu') {
-      this.menuState[key] = Boolean(open);
-      this.lastInteraction = `${action}: ${key}`;
-      return;
-    }
-
-    if (action === 'main') {
-      this.menuState[key] = false;
-      this.lastInteraction = `${action}: ${key}`;
-    }
+  handlePrimaryAction() {
+    this.menuOpen = false;
+    this.lastInteraction = 'main: send';
   }
 
-  handleMenuDismiss(key: string) {
-    this.menuState[key] = false;
+  handleMenuChange(event: Event) {
+    const detail = (event as CustomEvent<{ open: boolean; reason: string }>).detail;
+    this.menuOpen = detail.open;
+    this.lastInteraction = `menu: ${detail.reason}`;
   }
 
-  handleMenuItemSelect(key: string, event: Event) {
+  handleMenuItemSelect(event: Event) {
     const menuEvent = event as CustomEvent<{ text: string }>;
-    this.menuState[key] = false;
-    this.lastInteraction = `menu-item: ${key} -> ${menuEvent.detail.text}`;
+    this.menuOpen = false;
+    this.lastInteraction = `menu-item: ${menuEvent.detail.text}`;
   }
 }
