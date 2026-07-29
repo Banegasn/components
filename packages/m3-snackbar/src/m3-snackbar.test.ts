@@ -3,6 +3,11 @@ import { describe, it } from 'vitest';
 import './m3-snackbar.js';
 import type { M3Snackbar } from './m3-snackbar.js';
 
+async function settleSlotChange(el: M3Snackbar) {
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  await el.updateComplete;
+}
+
 describe('M3Snackbar', () => {
   it('is hidden by default', async () => {
     const el = await fixture<M3Snackbar>(html`<m3-snackbar></m3-snackbar>`);
@@ -31,6 +36,39 @@ describe('M3Snackbar', () => {
     `);
     const action = el.shadowRoot!.querySelector('.action');
     expect(action).to.exist;
+    await settleSlotChange(el);
+    expect(action!.hasAttribute('hidden')).to.be.false;
+  });
+
+  it('keeps an initially absent action region collapsed', async () => {
+    const el = await fixture<M3Snackbar>(html`<m3-snackbar open>Message</m3-snackbar>`);
+    expect(el.shadowRoot!.querySelector('.action')!.hasAttribute('hidden')).to.be.true;
+  });
+
+  it('reacts to action add, remove, reassignment, and reconnect', async () => {
+    const el = await fixture<M3Snackbar>(html`<m3-snackbar open duration="0">Message</m3-snackbar>`);
+    const action = document.createElement('button');
+    action.slot = 'action';
+    action.textContent = 'Undo';
+
+    el.append(action);
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.action')!.hasAttribute('hidden')).to.be.false;
+
+    action.slot = '';
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.action')!.hasAttribute('hidden')).to.be.true;
+
+    el.remove();
+    document.body.append(el);
+    action.slot = 'action';
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.action')!.hasAttribute('hidden')).to.be.false;
+
+    action.remove();
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.action')!.hasAttribute('hidden')).to.be.true;
+    el.remove();
   });
 
   it('dispatches snackbar-dismiss on dismiss', async () => {

@@ -28,6 +28,8 @@ const browserPorts: Record<string, number> = {
   'm3-radio-button': 63_332,
   'm3-tooltip': 63_333,
   'm3-tabs': 63_334,
+  'm3-button': 63_335,
+  'm3-chip': 63_336,
 };
 
 const port = browserPorts[workspaceName];

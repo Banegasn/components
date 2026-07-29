@@ -40,6 +40,10 @@ export const m3SnackbarStyles = css`
     flex-shrink: 0;
   }
 
+  .action[hidden] {
+    display: none;
+  }
+
   /* Two-line snackbar for longer messages */
   :host([lines="2"]) .snackbar {
     min-height: 68px;

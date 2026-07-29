@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { m3ListItemStyles } from './m3-list-item.styles.js';
 
 /**
@@ -75,12 +75,12 @@ export class M3ListItem extends LitElement {
   @property({ type: String })
   value: string | null = null;
 
-  render() {
-    const hasLeading = this.querySelector('[slot="leading"]');
-    const hasTrailing = this.querySelector('[slot="trailing"]');
-    const hasSupporting = this.querySelector('[slot="supporting-text"]');
-    const hasTertiary = this.querySelector('[slot="tertiary-text"]');
+  @state() private _hasLeading = false;
+  @state() private _hasTrailing = false;
+  @state() private _hasSupporting = false;
+  @state() private _hasTertiary = false;
 
+  render() {
     return html`
       <li
         class="item"
@@ -93,23 +93,41 @@ export class M3ListItem extends LitElement {
         @keydown=${this._handleKeydown}
       >
         <div class="state-layer"></div>
-        ${hasLeading ? html`
-          <div class="leading">
-            <slot name="leading"></slot>
-          </div>
-        ` : ''}
+        <div class="leading" ?hidden=${!this._hasLeading}>
+          <slot name="leading" @slotchange=${this._handleSlotChange}></slot>
+        </div>
         <div class="content">
           <span class="headline"><slot></slot></span>
-          ${hasSupporting ? html`<span class="supporting-text"><slot name="supporting-text"></slot></span>` : ''}
-          ${hasTertiary ? html`<span class="tertiary-text"><slot name="tertiary-text"></slot></span>` : ''}
+          <span class="supporting-text" ?hidden=${!this._hasSupporting}><slot name="supporting-text" @slotchange=${this._handleSlotChange}></slot></span>
+          <span class="tertiary-text" ?hidden=${!this._hasTertiary}><slot name="tertiary-text" @slotchange=${this._handleSlotChange}></slot></span>
         </div>
-        ${hasTrailing ? html`
-          <div class="trailing">
-            <slot name="trailing"></slot>
-          </div>
-        ` : ''}
+        <div class="trailing" ?hidden=${!this._hasTrailing}>
+          <slot name="trailing" @slotchange=${this._handleSlotChange}></slot>
+        </div>
       </li>
     `;
+  }
+
+  firstUpdated() {
+    this._syncSlotState();
+  }
+
+  private _handleSlotChange = () => {
+    queueMicrotask(() => this._syncSlotState());
+  };
+
+  private _syncSlotState() {
+    this._hasLeading = this._slotHasContent('leading');
+    this._hasTrailing = this._slotHasContent('trailing');
+    this._hasSupporting = this._slotHasContent('supporting-text');
+    this._hasTertiary = this._slotHasContent('tertiary-text');
+  }
+
+  private _slotHasContent(name: string): boolean {
+    return this.shadowRoot
+      ?.querySelector<HTMLSlotElement>(`slot[name="${name}"]`)
+      ?.assignedNodes({ flatten: true })
+      .some((node) => node.nodeType === Node.ELEMENT_NODE || (node.textContent ?? '').trim().length > 0) ?? false;
   }
 
   private _handleClick() {

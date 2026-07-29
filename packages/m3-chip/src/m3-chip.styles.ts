@@ -117,6 +117,10 @@ export const m3ChipStyles = css`
     margin-left: -4px;
   }
 
+  .leading-icon[hidden] {
+    display: none;
+  }
+
   .trailing-icon {
     margin-right: -4px;
   }

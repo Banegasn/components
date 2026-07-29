@@ -114,6 +114,10 @@ export const m3ButtonStyles = css`
     -webkit-tap-highlight-color: transparent;
   }
 
+  .icon[hidden] {
+    display: none;
+  }
+
   button:focus-visible {
     outline: 2px solid var(--md-sys-color-primary, #6750a4);
     outline-offset: 2px;

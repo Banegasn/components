@@ -3,6 +3,11 @@ import { describe, it } from 'vitest';
 import './m3-top-app-bar.js';
 import type { M3TopAppBar } from './m3-top-app-bar.js';
 
+async function settleSlotChange(el: M3TopAppBar) {
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  await el.updateComplete;
+}
+
 describe('M3TopAppBar', () => {
   it('renders a small top app bar by default', async () => {
     const el = await fixture<M3TopAppBar>(html`<m3-top-app-bar>Title</m3-top-app-bar>`);
@@ -46,6 +51,8 @@ describe('M3TopAppBar', () => {
     `);
     const nav = el.shadowRoot!.querySelector('.navigation-icon');
     expect(nav).to.exist;
+    await settleSlotChange(el);
+    expect(nav!.hasAttribute('hidden')).to.be.false;
   });
 
   it('supports actions slot', async () => {
@@ -57,6 +64,37 @@ describe('M3TopAppBar', () => {
     `);
     const actions = el.shadowRoot!.querySelector('.actions');
     expect(actions).to.exist;
+    await settleSlotChange(el);
+    expect(actions!.hasAttribute('hidden')).to.be.false;
+  });
+
+  it('keeps initially absent navigation and action regions collapsed', async () => {
+    const el = await fixture<M3TopAppBar>(html`<m3-top-app-bar>Title</m3-top-app-bar>`);
+    expect(el.shadowRoot!.querySelector('.navigation-icon')!.hasAttribute('hidden')).to.be.true;
+    expect(el.shadowRoot!.querySelector('.actions')!.hasAttribute('hidden')).to.be.true;
+  });
+
+  it('reacts to navigation and action add, remove, reassignment, and reconnect', async () => {
+    const el = await fixture<M3TopAppBar>(html`<m3-top-app-bar>Title</m3-top-app-bar>`);
+    const control = document.createElement('button');
+    control.slot = 'navigation-icon';
+    control.textContent = 'Menu';
+
+    el.append(control);
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.navigation-icon')!.hasAttribute('hidden')).to.be.false;
+
+    control.slot = 'actions';
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.navigation-icon')!.hasAttribute('hidden')).to.be.true;
+    expect(el.shadowRoot!.querySelector('.actions')!.hasAttribute('hidden')).to.be.false;
+
+    el.remove();
+    document.body.append(el);
+    control.remove();
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.actions')!.hasAttribute('hidden')).to.be.true;
+    el.remove();
   });
 
   it('is accessible', async () => {

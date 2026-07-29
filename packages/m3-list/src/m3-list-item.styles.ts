@@ -77,6 +77,13 @@ export const m3ListItemStyles = css`
     color: var(--md-sys-color-on-surface-variant, #49454f);
   }
 
+  .leading[hidden],
+  .trailing[hidden],
+  .supporting-text[hidden],
+  .tertiary-text[hidden] {
+    display: none;
+  }
+
   /* Trailing content */
   .trailing {
     display: flex;

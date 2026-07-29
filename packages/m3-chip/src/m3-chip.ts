@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { m3ChipStyles } from './m3-chip.styles.js';
 
 /**
@@ -39,9 +39,11 @@ export class M3Chip extends LitElement {
   /** ARIA label */
   @property({ type: String, attribute: 'aria-label' }) ariaLabel: string | null = null;
 
+  @state()
+  private _hasIcon = false;
+
   render() {
-    const hasIcon = this.querySelector('[slot="icon"]');
-    const showLeadingIcon = (this.variant === 'filter' && this.selected) || hasIcon;
+    const showLeadingIcon = (this.variant === 'filter' && this.selected) || this._hasIcon;
 
     return html`
       <button
@@ -52,14 +54,13 @@ export class M3Chip extends LitElement {
         aria-label=${this.ariaLabel || ''}
         @click=${this._handleClick}
       >
-        ${showLeadingIcon ? html`
-          <span class="leading-icon">
-            ${this.variant === 'filter' && this.selected
-              ? html`<svg class="checkmark" viewBox="0 0 18 18" width="18" height="18"><path d="M7 13.5L3 9.5l1.4-1.4L7 10.7l7.6-7.6L16 4.5l-9 9z" fill="currentColor"/></svg>`
-              : html`<slot name="icon"></slot>`
-            }
-          </span>
-        ` : ''}
+        <span class="leading-icon" ?hidden=${!showLeadingIcon}>
+          ${this.variant === 'filter' && this.selected
+            ? html`<svg class="checkmark" viewBox="0 0 18 18" width="18" height="18"><path d="M7 13.5L3 9.5l1.4-1.4L7 10.7l7.6-7.6L16 4.5l-9 9z" fill="currentColor"/></svg>`
+            : ''
+          }
+          <slot name="icon" ?hidden=${this.variant === 'filter' && this.selected} @slotchange=${this._handleIconSlotChange}></slot>
+        </span>
 
         <span class="label">
           <slot></slot>
@@ -73,6 +74,23 @@ export class M3Chip extends LitElement {
         <div class="state-layer"></div>
       </button>
     `;
+  }
+
+  firstUpdated() {
+    this._hasIcon = this._slotHasContent('icon');
+  }
+
+  private _handleIconSlotChange = () => {
+    queueMicrotask(() => {
+      this._hasIcon = this._slotHasContent('icon');
+    });
+  };
+
+  private _slotHasContent(name: string): boolean {
+    return this.shadowRoot
+      ?.querySelector<HTMLSlotElement>(`slot[name="${name}"]`)
+      ?.assignedNodes({ flatten: true })
+      .some((node) => node.nodeType === Node.ELEMENT_NODE || (node.textContent ?? '').trim().length > 0) ?? false;
   }
 
   private _handleClick() {
