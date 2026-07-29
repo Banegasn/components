@@ -268,22 +268,14 @@ async function closeBrowser(browser) {
 
 async function startServer(fixture) {
   let lastPortError;
+  const viteCli = join(fixture, 'node_modules', 'vite', 'bin', 'vite.js');
 
   for (let attempt = 1; attempt <= 3; attempt += 1) {
     const port = await availablePort();
     const url = `http://127.0.0.1:${port}`;
     const server = spawn(
-      'npm',
-      [
-        'exec',
-        '--',
-        'vite',
-        '--host',
-        '127.0.0.1',
-        '--port',
-        String(port),
-        '--strictPort',
-      ],
+      process.execPath,
+      [viteCli, '--host', '127.0.0.1', '--port', String(port), '--strictPort'],
       {
         cwd: fixture,
         stdio: ['ignore', 'pipe', 'pipe'],
