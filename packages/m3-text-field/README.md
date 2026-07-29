@@ -1,171 +1,131 @@
 # @banegasn/m3-text-field
 
-![Preview](images/preview.png)
-
-
-> Material Design 3 Text Field web component — framework-agnostic, built with Lit.
-
-[![npm version](https://img.shields.io/npm/v/@banegasn/m3-text-field.svg)](https://www.npmjs.com/package/@banegasn/m3-text-field)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
-
-An accessible **M3 Text Field** web component following the [Material Design 3 text field specifications](https://m3.material.io/components/text-fields/overview). Supports filled and outlined variants with labels, helper text, error states, and leading/trailing icons. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
-
-## Features
-
-- Filled and outlined variants
-- Floating label animation
-- Error and helper text states
-- Leading and trailing icon slots
-- Character counter support
-- Keyboard accessible with proper ARIA attributes
-- Framework-agnostic custom element
+Material Design 3 single-line text field, built with Lit. It is a
+form-associated custom element: its host participates in native `FormData`,
+constraint validation, reset, and browser state restoration.
 
 ## Installation
 
 ```bash
-npm install @banegasn/m3-text-field
-# or
 pnpm add @banegasn/m3-text-field
-# or
-yarn add @banegasn/m3-text-field
 ```
-
-## CDN Usage (no build step)
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>M3 Text Field Demo</title>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-text-field/+esm"></script>
-  <style>
-    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
-    .demo { display: flex; flex-direction: column; gap: 24px; max-width: 360px; }
-  </style>
-</head>
-<body>
-  <div class="demo">
-    <!-- Filled (default) -->
-    <m3-text-field label="Username" placeholder="Enter username"></m3-text-field>
-
-    <!-- Outlined -->
-    <m3-text-field variant="outlined" label="Email" type="email" placeholder="you@example.com"></m3-text-field>
-
-    <!-- With helper text -->
-    <m3-text-field label="Password" type="password" helper-text="At least 8 characters"></m3-text-field>
-
-    <!-- Error state -->
-    <m3-text-field label="Phone" error error-text="Invalid phone number" value="abc"></m3-text-field>
-
-    <!-- Disabled -->
-    <m3-text-field label="Read only" value="Cannot edit" disabled></m3-text-field>
-  </div>
-
-  <script>
-    document.querySelectorAll('m3-text-field').forEach(field => {
-      field.addEventListener('text-field-input', (e) => {
-        console.log('Input:', e.detail.value);
-      });
-    });
-  </script>
-</body>
-</html>
-```
-
-## npm Usage
 
 ```js
 import '@banegasn/m3-text-field';
 ```
 
+## Usage
+
 ```html
-<m3-text-field label="Name" placeholder="Enter your name"></m3-text-field>
-<m3-text-field variant="outlined" label="Email" type="email"></m3-text-field>
-<m3-text-field label="Password" type="password" helper-text="Min 8 characters"></m3-text-field>
+<form>
+  <m3-text-field
+    name="email"
+    type="email"
+    label="Email address"
+    autocomplete="email"
+    helper-text="We only use this for account messages."
+    required
+  ></m3-text-field>
+</form>
 ```
 
-## With Icons
+Use the host's native events. `input` fires once for every user edit and
+`change` fires once when the input value is committed. Programmatic `value`
+updates do not emit either event.
 
-```html
-<!-- Leading icon -->
-<m3-text-field label="Search" placeholder="Search...">
-  <svg slot="leading-icon" viewBox="0 0 24 24" width="20" height="20">
-    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-  </svg>
-</m3-text-field>
+```js
+const field = document.querySelector('m3-text-field');
+field.addEventListener('input', () => {
+  console.log(field.value);
+});
+field.addEventListener('change', () => {
+  save(field.value);
+});
 ```
 
 ## API
 
-### Properties
+### Properties and attributes
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `variant` | `'filled' \| 'outlined'` | `'filled'` | Text field style variant |
-| `label` | `string` | `''` | Floating label text |
-| `placeholder` | `string` | `''` | Placeholder text |
-| `value` | `string` | `''` | Current input value |
-| `type` | `string` | `'text'` | Input type (text, email, password, etc.) |
-| `disabled` | `boolean` | `false` | Disables the field |
-| `required` | `boolean` | `false` | Marks the field as required |
-| `error` | `boolean` | `false` | Shows error state |
-| `error-text` | `string` | `''` | Error message text |
-| `helper-text` | `string` | `''` | Helper text below the field |
-| `maxlength` | `number \| null` | `null` | Maximum character count |
-| `name` | `string \| null` | `null` | Name for form submission |
+Every property below has the named HTML attribute. Camel-case properties use
+the corresponding lower-case attribute shown in the table.
 
-### Events
+| Property          | Attribute          | Type                     | Default    | Description                                                            |
+| ----------------- | ------------------ | ------------------------ | ---------- | ---------------------------------------------------------------------- |
+| `variant`         | `variant`          | `'filled' \| 'outlined'` | `'filled'` | Visual style.                                                          |
+| `label`           | `label`            | `string`                 | `''`       | Visible label. It is associated with the internal input.               |
+| `value`           | `value`            | `string`                 | `''`       | Current value and submitted form value.                                |
+| `type`            | `type`             | `string`                 | `'text'`   | Native input type, such as `email`, `password`, or `tel`.              |
+| `placeholder`     | `placeholder`      | `string`                 | `''`       | Native input placeholder.                                              |
+| `name`            | `name`             | `string \| null`         | `null`     | Name contributed to `FormData`.                                        |
+| `disabled`        | `disabled`         | `boolean`                | `false`    | Disables interaction and form participation.                           |
+| `required`        | `required`         | `boolean`                | `false`    | Enables required-value validation.                                     |
+| `maxLength`       | `maxlength`        | `number \| null`         | `null`     | Native maximum length constraint.                                      |
+| `minLength`       | `minlength`        | `number \| null`         | `null`     | Native minimum length constraint.                                      |
+| `pattern`         | `pattern`          | `string \| null`         | `null`     | Native pattern constraint.                                             |
+| `autocomplete`    | `autocomplete`     | `string \| null`         | `null`     | Native autocomplete hint.                                              |
+| `helperText`      | `helper-text`      | `string`                 | `''`       | Supporting guidance announced with the input.                          |
+| `error`           | `error`            | `boolean`                | `false`    | Applies a custom form-validation error.                                |
+| `errorText`       | `error-text`       | `string`                 | `''`       | Message for the custom error; defaults to `Invalid value.` when empty. |
+| `showCounter`     | `show-counter`     | `boolean`                | `false`    | Displays `value.length/maxLength` when `maxLength` is set.             |
+| `ariaLabel`       | `aria-label`       | `string \| null`         | `null`     | Accessible name override, usually for an unlabeled field.              |
+| `ariaLabelledBy`  | `aria-labelledby`  | `string \| null`         | `null`     | External accessible-name ID reference.                                 |
+| `ariaDescribedBy` | `aria-describedby` | `string \| null`         | `null`     | Additional external description ID reference.                          |
 
-| Event | Description |
-|-------|-------------|
-| `input` | Native event fired on every user edit. |
-| `change` | Native event fired when the value is committed. |
-
-See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
+The native host `form` attribute can associate the control with an external
+form. The read-only `form` property returns that owner form. `validity`,
+`validationMessage`, `willValidate`, `checkValidity()`, and `reportValidity()`
+follow the form-associated custom-element platform contract.
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
-| `leading-icon` | Icon displayed before the input |
-| `trailing-icon` | Icon displayed after the input |
+| Slot            | Description                                               |
+| --------------- | --------------------------------------------------------- |
+| `leading-icon`  | Decorative or interactive content shown before the input. |
+| `trailing-icon` | Decorative or interactive content shown after the input.  |
 
-### CSS Custom Properties
-
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--md-sys-color-primary` | `#6750a4` | Focus indicator and label color |
-| `--md-sys-color-error` | `#ba1a1a` | Error state color |
-| `--md-sys-color-on-surface` | `#1d1b20` | Input text color |
-| `--md-sys-color-surface-container-highest` | `#e6e0e9` | Filled variant background |
-
-## Framework Usage
-
-### Angular
-```typescript
-import '@banegasn/m3-text-field';
-```
 ```html
-<m3-text-field label="Name" [value]="name" (text-field-input)="name = $event.detail.value"></m3-text-field>
+<m3-text-field label="Search" placeholder="Find a project">
+  <svg slot="leading-icon" aria-hidden="true" viewBox="0 0 24 24">...</svg>
+</m3-text-field>
 ```
 
-### React
-```jsx
-import '@banegasn/m3-text-field';
-// <m3-text-field label="Name" value={name} ontext-field-input={(e) => setName(e.detail.value)} />
-```
+### Events
 
-### Vue
-```vue
-<m3-text-field label="Name" :value="name" @text-field-input="name = $event.detail.value" />
-```
+| Event    | When it fires                             |
+| -------- | ----------------------------------------- |
+| `input`  | Once for each user edit.                  |
+| `change` | Once when a user commits an edited value. |
 
-## Resources
+### Methods
 
-- [Material Design 3 Text Fields](https://m3.material.io/components/text-fields/overview)
-- [GitHub Repository](https://github.com/banegasn/components)
+| Method    | Description                                   |
+| --------- | --------------------------------------------- |
+| `focus()` | Focuses the internal native input.            |
+| `blur()`  | Removes focus from the internal native input. |
 
-## License
+## Validation and accessible supporting text
 
-MIT
+`required`, `minLength`, `maxLength`, `pattern`, and the selected native
+`type` participate in the owner form's validation APIs. `error` adds a custom
+error, using `errorText` as its validation message. Disabled fields are omitted
+from `FormData` and validation, including when disabled by a fieldset.
+
+The visible `label` uses a generated `for`/`id` relationship, so activating it
+focuses the input. Helper text and validation errors have a generated stable ID
+and are referenced with `aria-describedby`; an active error also uses
+`aria-errormessage` and `aria-invalid`. Optional ARIA attributes are omitted
+when not supplied.
+
+## Migration from pre-1.1 documentation
+
+This is a clean API correction. The previous README mentioned
+`textfield-input`/`textfield-change` and `text-field-input` events, but those
+aliases are not part of the component contract and are removed. Listen for the
+native host `input` and `change` events instead, then read `field.value`.
+
+`variant`, `helper-text`, `error`, `error-text`, `show-counter`, and the
+`leading-icon`/`trailing-icon` slots are now the only documented presentation
+API. Do not use unlisted aliases. See the repository's
+[form-associated controls guide](../../docs/FORM_ASSOCIATED_CONTROLS.md) for
+browser support and platform fallback behavior.

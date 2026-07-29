@@ -1,5 +1,9 @@
-import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
+import {
+  Component,
+  ChangeDetectionStrategy,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
+import { CodeBlockComponent } from '../../app/components/code-block/code-block.component';
 
 import '@banegasn/m3-text-field';
 import '@banegasn/m3-card';
@@ -24,12 +28,11 @@ export class TextFieldComponent {
   readonly interactiveExample = `<m3-text-field
   label="Email"
   [value]="email"
-  (textfield-change)="onTextFieldChange($event)">
+  (input)="onTextFieldInput($event)">
 </m3-text-field>
 <p>Email: {{email}}</p>`;
 
-  onTextFieldChange(event: Event) {
-    const detail = (event as CustomEvent).detail;
-    this.email = detail.value;
+  onTextFieldInput(event: Event) {
+    this.email = (event.target as unknown as { value: string }).value;
   }
 }

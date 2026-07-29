@@ -5,7 +5,6 @@ export const m3TextFieldStyles = css`
     display: inline-flex;
     flex-direction: column;
     min-width: 240px;
-    height: 56px;
     position: relative;
     border-radius: 4px 4px 0 0;
     font-family: inherit;
@@ -15,17 +14,22 @@ export const m3TextFieldStyles = css`
   .field-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    min-height: 56px;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     background-color: var(--md-sys-color-surface-container-highest, #e6e0e9);
     border-radius: inherit;
-    transition: background-color var(--md-sys-motion-duration-short4), box-shadow var(--md-sys-motion-duration-short4);
+    box-sizing: border-box;
     cursor: text;
     overflow: hidden;
   }
 
-  /* Hover state using opacity on state-layer */
+  .field-container.outlined {
+    background-color: transparent;
+    border: 1px solid var(--md-sys-color-outline, #79747e);
+    border-radius: 4px;
+  }
+
   :host(:hover:not([disabled])) {
     --_state-layer-opacity: 0.08;
   }
@@ -35,21 +39,97 @@ export const m3TextFieldStyles = css`
     inset: 0;
     background-color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: var(--_state-layer-opacity);
-    transition: opacity var(--md-sys-motion-duration-short4);
     pointer-events: none;
-    z-index: 0;
   }
 
-  /* Focus indicator */
+  .input-area {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .leading-icon,
+  .trailing-icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .leading-icon {
+    padding-left: 12px;
+  }
+  .trailing-icon {
+    padding-right: 12px;
+  }
+  .field-container:not([has-leading-icon]) .leading-icon,
+  .field-container:not([has-trailing-icon]) .trailing-icon {
+    display: none;
+  }
+
+  ::slotted([slot='leading-icon']),
+  ::slotted([slot='trailing-icon']) {
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    display: block;
+    max-width: 24px;
+    max-height: 24px;
+  }
+
+  .label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    font-size: 1rem;
+    line-height: normal;
+    pointer-events: auto;
+    transform: translateY(-50%);
+    transform-origin: top left;
+    transition:
+      transform var(--md-sys-motion-duration-short4),
+      color var(--md-sys-motion-duration-short4),
+      top var(--md-sys-motion-duration-short4);
+    z-index: 1;
+  }
+
+  .field-container[focused] .label,
+  .field-container[has-value] .label {
+    top: 10px;
+    transform: scale(0.75) translateY(0);
+  }
+
+  .field-container[focused] .label {
+    color: var(--md-sys-color-primary, #6750a4);
+  }
+
+  .input {
+    width: 100%;
+    height: 56px;
+    box-sizing: border-box;
+    padding: 24px 16px 8px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--md-sys-color-on-surface, #1d1b20);
+    font: inherit;
+    caret-color: var(--md-sys-color-primary, #6750a4);
+  }
+
+  .input::placeholder {
+    color: transparent;
+  }
+  .field-container[focused] .input::placeholder {
+    color: var(--md-sys-color-on-surface-variant, #49454f);
+    opacity: 0.5;
+  }
+
   .indicator {
     position: absolute;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     height: 1px;
     background-color: var(--md-sys-color-on-surface-variant, #49454f);
-    transition: height var(--md-sys-motion-duration-short4), background-color var(--md-sys-motion-duration-short4);
-    z-index: 3;
   }
 
   .field-container[focused] .indicator {
@@ -57,110 +137,56 @@ export const m3TextFieldStyles = css`
     background-color: var(--md-sys-color-primary, #6750a4);
   }
 
-  /* Label styles */
-  .label-wrapper {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transform-origin: top left;
-    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard), color var(--md-sys-motion-duration-short4), top var(--md-sys-motion-duration-short4);
+  .outlined .indicator {
+    display: none;
+  }
+  .outlined[focused] {
+    border: 2px solid var(--md-sys-color-primary, #6750a4);
+  }
+
+  .field-container[invalid] .indicator {
+    background-color: var(--md-sys-color-error, #ba1a1a);
+  }
+  .field-container[invalid] .label {
+    color: var(--md-sys-color-error, #ba1a1a);
+  }
+  .outlined[invalid] {
+    border-color: var(--md-sys-color-error, #ba1a1a);
+  }
+
+  .supporting-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 20px;
+    padding: 4px 16px 0;
     color: var(--md-sys-color-on-surface-variant, #49454f);
-    font-size: 1rem;
-    line-height: normal;
-    z-index: 2;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 
-  .field-container[focused] .label-wrapper,
-  .field-container[has-value] .label-wrapper {
-    top: 10px;
-    transform: scale(0.75) translateY(0);
+  .supporting-text {
+    flex: 1;
+  }
+  .counter {
+    white-space: nowrap;
+  }
+  .supporting-row[error] {
+    color: var(--md-sys-color-error, #ba1a1a);
   }
 
-  .field-container[focused] .label-wrapper {
-    color: var(--md-sys-color-primary, #6750a4);
-  }
-
-  /* Input styles */
-  .input {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 24px 16px 8px 16px;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: var(--md-sys-color-on-surface, #1d1b20);
-    font-size: 1rem;
-    font-family: inherit;
-    position: relative;
-    z-index: 1;
-    caret-color: var(--md-sys-color-primary, #6750a4);
-  }
-
-  /* Handle Autofill styles */
-  .input:-webkit-autofill,
-  .input:-webkit-autofill:hover,
-  .input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px var(--md-sys-color-surface-container-highest, #e6e0e9) inset !important;
-    -webkit-text-fill-color: var(--md-sys-color-on-surface, #1d1b20) !important;
-    /* motion-literal-exempt: browser autofill paint workaround, not UI motion. */
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
-  /* Placeholder */
-  .input::placeholder {
-    color: transparent;
-  }
-
-  .field-container[focused] .input::placeholder {
-    color: var(--md-sys-color-on-surface-variant, #49454f);
-    opacity: 0.5;
-  }
-
-  /* Disabled State */
   :host([disabled]) {
     cursor: default;
-    pointer-events: none;
   }
-
   :host([disabled]) .field-container {
-    background-color: var(--md-sys-color-on-surface, #1d1b20);
-    opacity: 0.04;
+    background-color: rgba(
+      var(--md-sys-color-on-surface-rgb, 29, 27, 32),
+      0.04
+    );
   }
-
-  /* Ensure label remains visible but faded in disabled state */
-  :host([disabled]) .label-wrapper {
-    opacity: 1 !important;
-    color: var(--md-sys-color-on-surface, #1d1b20);
-    filter: opacity(0.38); /* Use filter to apply opacity relative to parent's 4% */
-  }
-
-  /* Correction for disabled label invisibility: 
-     Apply 38% opacity directly to the elements, and 4% to container */
+  :host([disabled]) .label,
   :host([disabled]) .input,
-  :host([disabled]) .indicator {
-    opacity: 0.38;
-    color: var(--md-sys-color-on-surface, #1d1b20);
-  }
-
-  /* Re-fix: if container is 0.04, children are effectively invisible.
-     Let's use a different approach for disabled: fixed light/dark color with no container opacity */
-  :host([disabled]) .field-container {
-    background-color: rgba(var(--md-sys-color-on-surface-rgb, 29, 27, 32), 0.04);
-    opacity: 1;
-  }
-  
-  /* Fallback if rgb variable not present */
-  @supports not (color: rgba(var(--foo), 0.1)) {
-    :host([disabled]) .field-container {
-      background-color: #f5f5f5; /* Light fallback */
-    }
-  }
-
-  :host([disabled]) .label-wrapper,
-  :host([disabled]) .input {
+  :host([disabled]) ::slotted(*) {
     color: var(--md-sys-color-on-surface, #1d1b20);
     opacity: 0.38;
   }
