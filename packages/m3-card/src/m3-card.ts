@@ -1,23 +1,23 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3CardStyles } from './m3-card.styles.js';
 
 /**
  * Material Design 3 Card Component
- * 
+ *
  * A flexible card component following Material Design 3 specifications.
  * Cards contain content and actions about a single subject.
- * 
+ *
  * Based on official Material 3 guidelines:
  * https://m3.material.io/components/cards/guidelines
- * 
+ *
  * @fires card-click - Fired when the card is clicked (if clickable)
- * 
+ *
  * @slot - Default slot for card content
  * @slot header - Optional header content (e.g., title, subtitle)
  * @slot media - Optional media content (e.g., image, video)
  * @slot actions - Optional action buttons at the bottom
- * 
+ *
  * @cssprop --md-comp-card-container-shape - Border radius (default: 12px for medium shape)
  * @cssprop --md-comp-card-container-color - Background color
  * @cssprop --md-comp-card-elevation - Box shadow elevation
@@ -79,31 +79,31 @@ export class M3Card extends LitElement {
   role: string | null = null;
 
   render() {
-    const role = this.clickable ? (this.role || 'button') : this.role;
+    const role = this.clickable ? this.role || 'button' : this.role;
     const tabindex = this.clickable && !this.disabled ? '0' : undefined;
-    
+
     return html`
       <div
         class="card"
-        role=${role || ''}
-        tabindex=${tabindex || ''}
-        aria-label=${this.ariaLabel || ''}
-        aria-disabled=${this.disabled}
+        role=${role || nothing}
+        tabindex=${tabindex ?? nothing}
+        aria-label=${this.ariaLabel || nothing}
+        aria-disabled=${this.disabled ? 'true' : nothing}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
       >
         <div class="card-media">
           <slot name="media"></slot>
         </div>
-        
+
         <div class="card-header">
           <slot name="header"></slot>
         </div>
-        
+
         <div class="card-content">
           <slot></slot>
         </div>
-        
+
         <div class="card-actions">
           <slot name="actions"></slot>
         </div>
@@ -116,14 +116,16 @@ export class M3Card extends LitElement {
       return;
     }
 
-    this.dispatchEvent(new CustomEvent('card-click', {
-      bubbles: true,
-      composed: true,
-      detail: {
-        variant: this.variant,
-        width: this.width
-      }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('card-click', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          variant: this.variant,
+          width: this.width,
+        },
+      }),
+    );
   }
 
   private _handleKeyDown(e: KeyboardEvent) {

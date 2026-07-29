@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3IconButtonStyles } from './m3-icon-button.styles.js';
 
@@ -79,8 +79,8 @@ export class M3IconButton extends LitElement {
         class="icon-button"
         type=${this.type}
         ?disabled=${this.disabled}
-        aria-label=${this.ariaLabel || ''}
-        aria-pressed=${this.toggle ? this.selected : undefined as any}
+        aria-label=${this.ariaLabel || nothing}
+        aria-pressed=${this.toggle ? this.selected : nothing}
         @click=${this._handleClick}
       >
         <span class="icon">
@@ -99,18 +99,22 @@ export class M3IconButton extends LitElement {
 
     if (this.toggle) {
       this.selected = !this.selected;
-      this.dispatchEvent(new CustomEvent('icon-button-toggle', {
-        bubbles: true,
-        composed: true,
-        detail: { selected: this.selected }
-      }));
+      this.dispatchEvent(
+        new CustomEvent('icon-button-toggle', {
+          bubbles: true,
+          composed: true,
+          detail: { selected: this.selected },
+        }),
+      );
     }
 
-    this.dispatchEvent(new CustomEvent('icon-button-click', {
-      bubbles: true,
-      composed: true,
-      detail: { variant: this.variant, selected: this.selected }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('icon-button-click', {
+        bubbles: true,
+        composed: true,
+        detail: { variant: this.variant, selected: this.selected },
+      }),
+    );
   }
 
   /**

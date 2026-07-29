@@ -1,5 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { describe, it } from 'vitest';
+import { expectVisibleNameWithoutOptionalAttributes } from '../../../test/semantic-attributes.js';
 import './m3-chip.js';
 import type { M3Chip } from './m3-chip.js';
 
@@ -58,5 +59,18 @@ describe('M3Chip icon slot', () => {
       el.shadowRoot!.querySelector('.leading-icon')!.hasAttribute('hidden'),
     ).to.be.true;
     el.remove();
+  });
+});
+
+describe('M3Chip semantic attributes', () => {
+  it('keeps its slotted label as the browser-accessible name when aria-label is unset', async () => {
+    const element = await fixture<M3Chip>(html`<m3-chip>Priority</m3-chip>`);
+    const button =
+      element.shadowRoot!.querySelector<HTMLButtonElement>('button')!;
+
+    await expectVisibleNameWithoutOptionalAttributes(button, [
+      'aria-label',
+      'aria-selected',
+    ]);
   });
 });

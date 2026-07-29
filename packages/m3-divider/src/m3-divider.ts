@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3DividerStyles } from './m3-divider.styles.js';
 
@@ -68,7 +68,7 @@ export class M3Divider extends LitElement {
       <hr
         class="divider"
         .ariaOrientation=${this.orientation}
-        role=${this.role}
+        role=${this.role || nothing}
       />
     `;
   }

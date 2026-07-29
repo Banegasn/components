@@ -30,6 +30,7 @@ const browserPorts: Record<string, number> = {
   'm3-tabs': 63_334,
   'm3-button': 63_335,
   'm3-chip': 63_336,
+  'm3-badge': 63_337,
 };
 
 const port = browserPorts[workspaceName];

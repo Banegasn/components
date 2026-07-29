@@ -1,4 +1,4 @@
-import { html, type PropertyValues } from 'lit';
+import { html, nothing, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3RadioButtonStyles } from './m3-radio-button.styles.js';
@@ -48,9 +48,9 @@ export class M3RadioButton extends FormAssociatedElement {
         class="radio-container"
         role="radio"
         aria-checked=${this.checked}
-        aria-disabled=${this.isFormDisabled}
-        aria-label=${this.ariaLabel || ''}
-        aria-labelledby=${this.ariaLabelledBy || ''}
+        aria-disabled=${this.isFormDisabled ? 'true' : nothing}
+        aria-label=${this.ariaLabel || nothing}
+        aria-labelledby=${this.ariaLabelledBy || nothing}
         tabindex=${this._tabIndex()}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}

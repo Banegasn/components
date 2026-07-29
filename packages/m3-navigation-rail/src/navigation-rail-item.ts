@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { navigationRailItemStyles } from './navigation-rail-item.styles.js';
 
@@ -20,11 +20,11 @@ export class M3NavigationRailItem extends LitElement {
 
   render() {
     return html`
-      <button 
-        class="item ${this.active ? 'active' : ''}" 
+      <button
+        class="item ${this.active ? 'active' : ''}"
         @click=${this._handleClick}
         aria-label=${this.label || 'Navigation item'}
-        aria-current=${this.active ? 'page' : 'false'}
+        aria-current=${this.active ? 'page' : nothing}
       >
         <div class="indicator"></div>
         <div class="icon">
@@ -38,11 +38,13 @@ export class M3NavigationRailItem extends LitElement {
   }
 
   private _handleClick() {
-    this.dispatchEvent(new CustomEvent('item-click', {
-      bubbles: true,
-      composed: true,
-      detail: { label: this.label }
-    }));
+    this.dispatchEvent(
+      new CustomEvent('item-click', {
+        bubbles: true,
+        composed: true,
+        detail: { label: this.label },
+      }),
+    );
   }
 }
 

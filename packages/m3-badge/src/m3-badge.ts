@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3BadgeStyles } from './m3-badge.styles.js';
 
@@ -21,14 +21,17 @@ export class M3Badge extends LitElement {
   @property({ type: Boolean, reflect: true }) hidden = false;
 
   render() {
+    const isNamed = Boolean(this.label) && !this.hidden;
+
     return html`
       <slot></slot>
       <div
         class="badge"
         ?has-label=${!!this.label}
         ?hidden-badge=${this.hidden}
-        role="status"
-        aria-label=${this.label ? `${this.label} notifications` : 'notification'}
+        role=${isNamed ? 'status' : nothing}
+        aria-hidden=${isNamed ? nothing : 'true'}
+        aria-label=${isNamed ? `${this.label} notifications` : nothing}
       >
         ${this.label || ''}
       </div>

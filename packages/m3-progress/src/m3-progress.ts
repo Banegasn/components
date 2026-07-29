@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { m3ProgressStyles } from './m3-progress.styles.js';
 
@@ -21,19 +21,22 @@ export class M3Progress extends LitElement {
   @property({ type: Boolean, reflect: true }) disabled = false;
 
   /** ARIA label */
-  @property({ type: String, attribute: 'aria-label' }) ariaLabel: string | null = null;
+  @property({ type: String, attribute: 'aria-label' }) ariaLabel:
+    string | null = null;
 
   render() {
     const percentage = Math.max(0, Math.min(1, this.value)) * 100;
+    const isNamed = Boolean(this.ariaLabel);
 
     return html`
       <div
         class="track"
-        role="progressbar"
-        aria-valuenow=${this.indeterminate ? undefined as any : percentage}
-        aria-valuemin="0"
-        aria-valuemax="100"
-        aria-label=${this.ariaLabel || 'Progress'}
+        role=${isNamed ? 'progressbar' : nothing}
+        aria-hidden=${isNamed ? nothing : 'true'}
+        aria-valuenow=${isNamed && !this.indeterminate ? percentage : nothing}
+        aria-valuemin=${isNamed ? '0' : nothing}
+        aria-valuemax=${isNamed ? '100' : nothing}
+        aria-label=${this.ariaLabel || nothing}
       >
         <div
           class="indicator"

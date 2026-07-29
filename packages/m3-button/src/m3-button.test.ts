@@ -1,5 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import { describe, it } from 'vitest';
+import { expectVisibleNameWithoutOptionalAttributes } from '../../../test/semantic-attributes.js';
 import './m3-button.js';
 import type { M3Button } from './m3-button.js';
 
@@ -52,5 +53,17 @@ describe('M3Button icon slot', () => {
     expect(el.shadowRoot!.querySelector('.icon')!.hasAttribute('hidden')).to.be
       .true;
     el.remove();
+  });
+});
+
+describe('M3Button semantic attributes', () => {
+  it('keeps its visible label as the browser-accessible name when aria-label is unset', async () => {
+    const element = await fixture<M3Button>(
+      html`<m3-button>Save changes</m3-button>`,
+    );
+    const button =
+      element.shadowRoot!.querySelector<HTMLButtonElement>('button')!;
+
+    await expectVisibleNameWithoutOptionalAttributes(button, ['aria-label']);
   });
 });
