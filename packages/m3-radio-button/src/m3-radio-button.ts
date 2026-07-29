@@ -4,6 +4,12 @@ import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3RadioButtonStyles } from './m3-radio-button.styles.js';
 import { motionDuration } from './motion-duration.js';
 
+interface RadioGroupScope {
+  root: Document | ShadowRoot;
+  name: string | null;
+  form: HTMLFormElement | null;
+}
+
 /**
  * Material Design 3 radio button with native form participation.
  *
@@ -33,6 +39,7 @@ export class M3RadioButton extends FormAssociatedElement {
   @state() private _ripple = false;
   private _defaultChecked = false;
   private _lastScopeRoot: Document | ShadowRoot | null = null;
+  private _groupScope: RadioGroupScope | null = null;
   private readonly _labelListeners = new Map<HTMLLabelElement, EventListener>();
 
   render() {
@@ -74,13 +81,15 @@ export class M3RadioButton extends FormAssociatedElement {
     super.connectedCallback();
     this._lastScopeRoot = this._scopeRoot();
     this._connectLabels();
-    this._refreshScopedRadios();
+    this._reconcileGroupScope();
+    this.requestUpdate();
   }
 
   disconnectedCallback(): void {
     this._disconnectLabels();
-    this._refreshScopedRadios(this._lastScopeRoot);
+    this._refreshScopedRadios(this._groupScope?.root ?? this._lastScopeRoot);
     this._lastScopeRoot = null;
+    this._groupScope = null;
     super.disconnectedCallback();
   }
 
@@ -88,6 +97,7 @@ export class M3RadioButton extends FormAssociatedElement {
     if (changedProperties.has('checked') && this.checked)
       this._clearCheckedPeers();
     this._syncFormState();
+    if (changedProperties.has('name')) this._reconcileGroupScope();
     if (
       changedProperties.has('checked') ||
       changedProperties.has('name') ||
@@ -100,7 +110,8 @@ export class M3RadioButton extends FormAssociatedElement {
 
   formAssociatedCallback(form: HTMLFormElement | null): void {
     super.formAssociatedCallback(form);
-    this._refreshScopedRadios();
+    this._reconcileGroupScope();
+    this.requestUpdate();
   }
 
   formDisabledCallback(disabled: boolean): void {
@@ -189,6 +200,33 @@ export class M3RadioButton extends FormAssociatedElement {
     return root
       ? Array.from(root.querySelectorAll<M3RadioButton>('m3-radio-button'))
       : [this];
+  }
+
+  private _currentGroupScope(): RadioGroupScope | null {
+    const root = this._scopeRoot();
+    return root ? { root, name: this.name, form: this.form } : null;
+  }
+
+  private _reconcileGroupScope(): void {
+    const previous = this._groupScope;
+    const current = this._currentGroupScope();
+    const changed = !this._sameGroupScope(previous, current);
+    if (this.checked && current && changed) this._clearCheckedPeers();
+    this._groupScope = current;
+    if (previous?.root) this._refreshScopedRadios(previous.root);
+    if (current && current.root !== previous?.root)
+      this._refreshScopedRadios(current.root);
+  }
+
+  private _sameGroupScope(
+    first: RadioGroupScope | null,
+    second: RadioGroupScope | null,
+  ): boolean {
+    return (
+      first?.root === second?.root &&
+      first?.name === second?.name &&
+      first?.form === second?.form
+    );
   }
 
   private _clearCheckedPeers(): void {

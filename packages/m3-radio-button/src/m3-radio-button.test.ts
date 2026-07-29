@@ -125,6 +125,113 @@ describe('m3-radio-button scoped groups', () => {
     expect(new FormData(form).get('plan')).to.equal('pro');
   });
 
+  it('normalizes a checked radio renamed into another checked group', async () => {
+    const form = await fixture<HTMLFormElement>(html`
+      <form>
+        <m3-radio-button name="alpha" value="alpha-peer"></m3-radio-button>
+        <m3-radio-button
+          id="renamed"
+          name="alpha"
+          value="renamed"
+          checked
+        ></m3-radio-button>
+        <m3-radio-button
+          name="beta"
+          value="beta-peer"
+          checked
+        ></m3-radio-button>
+      </form>
+    `);
+    const [alphaPeer, renamed, betaPeer] = controls(form);
+    await updateAll([alphaPeer, renamed, betaPeer]);
+
+    renamed.name = 'beta';
+    await updateAll([alphaPeer, renamed, betaPeer]);
+
+    expect(alphaPeer.checked).to.equal(false);
+    expect(renamed.checked).to.equal(true);
+    expect(betaPeer.checked).to.equal(false);
+    expect(tabIndex(alphaPeer)).to.equal('0');
+    expect(tabIndex(renamed)).to.equal('0');
+    expect(tabIndex(betaPeer)).to.equal('-1');
+    expect(new FormData(form).get('alpha')).to.equal(null);
+    expect(new FormData(form).get('beta')).to.equal('renamed');
+  });
+
+  it('normalizes a checked radio reassociated with a form that already has a checked peer', async () => {
+    const container = await fixture<HTMLDivElement>(html`
+      <div>
+        <form id="first">
+          <m3-radio-button name="plan" value="basic"></m3-radio-button>
+          <m3-radio-button
+            id="moved"
+            name="plan"
+            value="pro"
+            checked
+          ></m3-radio-button>
+        </form>
+        <form id="second">
+          <m3-radio-button
+            name="plan"
+            value="enterprise"
+            checked
+          ></m3-radio-button>
+        </form>
+      </div>
+    `);
+    const first = container.querySelector<HTMLFormElement>('#first')!;
+    const second = container.querySelector<HTMLFormElement>('#second')!;
+    const [basic, moved] = controls(first);
+    const [enterprise] = controls(second);
+    await updateAll([basic, moved, enterprise]);
+
+    moved.setAttribute('form', 'second');
+    await updateAll([basic, moved, enterprise]);
+
+    expect(moved.form).to.equal(second);
+    expect(basic.checked).to.equal(false);
+    expect(moved.checked).to.equal(true);
+    expect(enterprise.checked).to.equal(false);
+    expect(tabIndex(basic)).to.equal('0');
+    expect(tabIndex(moved)).to.equal('0');
+    expect(tabIndex(enterprise)).to.equal('-1');
+    expect(new FormData(first).get('plan')).to.equal(null);
+    expect(new FormData(second).get('plan')).to.equal('pro');
+  });
+
+  it('normalizes a checked radio moved into a root that has a checked peer', async () => {
+    const container = await fixture<HTMLDivElement>(html`
+      <div>
+        <m3-radio-button name="root" value="document-peer"></m3-radio-button>
+        <m3-radio-button
+          id="moving"
+          name="root"
+          value="moving"
+          checked
+        ></m3-radio-button>
+        <div id="shadow-host"></div>
+      </div>
+    `);
+    const [documentPeer, moving] = controls(container);
+    const shadow = container
+      .querySelector('#shadow-host')!
+      .attachShadow({ mode: 'open' });
+    shadow.innerHTML =
+      '<m3-radio-button name="root" value="shadow-peer" checked></m3-radio-button>';
+    const [shadowPeer] = controls(shadow);
+    await updateAll([documentPeer, moving, shadowPeer]);
+
+    shadow.append(moving);
+    await updateAll([documentPeer, moving, shadowPeer]);
+
+    expect(documentPeer.checked).to.equal(false);
+    expect(moving.checked).to.equal(true);
+    expect(shadowPeer.checked).to.equal(false);
+    expect(tabIndex(documentPeer)).to.equal('0');
+    expect(tabIndex(moving)).to.equal('0');
+    expect(tabIndex(shadowPeer)).to.equal('-1');
+  });
+
   it('recomputes local groups after dynamic insertion and removal without touching sibling DOM', async () => {
     const container = await fixture<HTMLDivElement>(html`
       <div>
