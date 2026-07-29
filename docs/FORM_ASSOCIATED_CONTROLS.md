@@ -27,6 +27,19 @@ contract. They participate in the owner form directly through
   button `name`/`value` are not added to `FormData`. The library does not fake
   submitter data with a `formdata` listener.
 
+## Radio group scope and labels
+
+`m3-radio-button` groups are local: controls must share a non-empty `name`,
+the same owner form, and the same document or shadow root. Matching names in
+different forms or shadow roots do not interact. The checked radio is the
+single tab stop; arrow keys move focus and selection through enabled peers.
+
+For an external label, use the platform `for`/`id` association and point the
+radio's `aria-labelledby` at that label (or supply `aria-label`). This is the
+supported label contract. It observes only labels explicitly associated through
+`for`/`id`, removes those listeners when the radio disconnects, and never
+mutates surrounding DOM.
+
 ## Clean-break migration
 
 The component-specific `button-click`, `checkbox-change`, `radio-change`,

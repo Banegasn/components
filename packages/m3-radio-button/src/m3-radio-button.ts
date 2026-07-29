@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { html, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3RadioButtonStyles } from './m3-radio-button.styles.js';
@@ -7,9 +7,10 @@ import { motionDuration } from './motion-duration.js';
 /**
  * Material Design 3 radio button with native form participation.
  *
- * Radio grouping follows the platform rule: radios with the same `name` and
- * the same owner form are mutually exclusive. A selection emits one native
- * `input` and one native `change` event on the selected control.
+ * Radio grouping is local to a tree root. Radios with the same non-empty
+ * `name` and owner form are mutually exclusive; separate forms and shadow
+ * roots are intentionally independent. A selection emits one native `input`
+ * and one native `change` event on the selected control.
  */
 @customElement('m3-radio-button')
 export class M3RadioButton extends FormAssociatedElement {
@@ -21,13 +22,18 @@ export class M3RadioButton extends FormAssociatedElement {
   @property({ type: Boolean, reflect: true }) required = false;
   @property({ type: String, reflect: true }) name: string | null = null;
   @property({ type: String, reflect: true }) value: string | null = null;
-  @property({ type: String, attribute: 'aria-label' }) ariaLabel: string | null = null;
-  @property({ type: String, attribute: 'aria-labelledby' }) ariaLabelledBy: string | null = null;
-  @property({ type: String, reflect: true }) size: 'small' | 'medium' | 'large' = 'small';
+  @property({ type: String, attribute: 'aria-label' }) ariaLabel:
+    string | null = null;
+  @property({ type: String, attribute: 'aria-labelledby' }) ariaLabelledBy:
+    string | null = null;
+  @property({ type: String, reflect: true }) size:
+    'small' | 'medium' | 'large' = 'small';
 
   @state() private _pressed = false;
   @state() private _ripple = false;
   private _defaultChecked = false;
+  private _lastScopeRoot: Document | ShadowRoot | null = null;
+  private readonly _labelListeners = new Map<HTMLLabelElement, EventListener>();
 
   render() {
     return html`
@@ -38,7 +44,7 @@ export class M3RadioButton extends FormAssociatedElement {
         aria-disabled=${this.isFormDisabled}
         aria-label=${this.ariaLabel || ''}
         aria-labelledby=${this.ariaLabelledBy || ''}
-        tabindex=${this.isFormDisabled ? -1 : 0}
+        tabindex=${this._tabIndex()}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
         @keyup=${this._handleKeyUp}
@@ -46,7 +52,12 @@ export class M3RadioButton extends FormAssociatedElement {
         @mouseup=${this._handleMouseUp}
         @mouseleave=${this._handleMouseLeave}
       >
-        <div class="radio-outer" ?checked=${this.checked} ?disabled=${this.isFormDisabled} ?pressed=${this._pressed}>
+        <div
+          class="radio-outer"
+          ?checked=${this.checked}
+          ?disabled=${this.isFormDisabled}
+          ?pressed=${this._pressed}
+        >
           ${this.checked ? html`<div class="radio-inner"></div>` : ''}
         </div>
         ${this._ripple ? html`<div class="ripple"></div>` : ''}
@@ -59,8 +70,42 @@ export class M3RadioButton extends FormAssociatedElement {
     this._syncFormState();
   }
 
-  updated(): void {
+  connectedCallback(): void {
+    super.connectedCallback();
+    this._lastScopeRoot = this._scopeRoot();
+    this._connectLabels();
+    this._refreshScopedRadios();
+  }
+
+  disconnectedCallback(): void {
+    this._disconnectLabels();
+    this._refreshScopedRadios(this._lastScopeRoot);
+    this._lastScopeRoot = null;
+    super.disconnectedCallback();
+  }
+
+  updated(changedProperties: PropertyValues<this>): void {
+    if (changedProperties.has('checked') && this.checked)
+      this._clearCheckedPeers();
     this._syncFormState();
+    if (
+      changedProperties.has('checked') ||
+      changedProperties.has('name') ||
+      changedProperties.has('disabled') ||
+      changedProperties.has('required')
+    ) {
+      this._refreshScopedRadios();
+    }
+  }
+
+  formAssociatedCallback(form: HTMLFormElement | null): void {
+    super.formAssociatedCallback(form);
+    this._refreshScopedRadios();
+  }
+
+  formDisabledCallback(disabled: boolean): void {
+    super.formDisabledCallback(disabled);
+    this._refreshScopedRadios();
   }
 
   private _handleClick(event: MouseEvent): void {
@@ -87,7 +132,8 @@ export class M3RadioButton extends FormAssociatedElement {
   }
 
   private _handleKeyUp(event: KeyboardEvent): void {
-    if (this.isFormDisabled || (event.key !== ' ' && event.key !== 'Enter')) return;
+    if (this.isFormDisabled || (event.key !== ' ' && event.key !== 'Enter'))
+      return;
     event.preventDefault();
     this._pressed = false;
     this._select();
@@ -108,9 +154,9 @@ export class M3RadioButton extends FormAssociatedElement {
   private _select(emitEvents = true): void {
     if (this.checked || this.isFormDisabled) return;
     this.checked = true;
-    this._radioGroup().forEach((radio) => {
-      if (radio !== this && radio.checked) radio.checked = false;
-    });
+    this._clearCheckedPeers();
+    this._syncFormState();
+    this._refreshScopedRadios();
     this._triggerRipple();
     if (emitEvents) {
       this.emitInput();
@@ -129,20 +175,85 @@ export class M3RadioButton extends FormAssociatedElement {
 
   private _radioGroup(): M3RadioButton[] {
     if (!this.name) return [this];
-    return Array.from(document.querySelectorAll<M3RadioButton>('m3-radio-button')).filter((radio) =>
-      radio.name === this.name && radio.form === this.form,
+    return this._scopedRadios().filter(
+      (radio) => radio.name === this.name && radio.form === this.form,
     );
+  }
+
+  private _scopeRoot(): Document | ShadowRoot | null {
+    const root = this.getRootNode();
+    return root instanceof Document || root instanceof ShadowRoot ? root : null;
+  }
+
+  private _scopedRadios(root = this._scopeRoot()): M3RadioButton[] {
+    return root
+      ? Array.from(root.querySelectorAll<M3RadioButton>('m3-radio-button'))
+      : [this];
+  }
+
+  private _clearCheckedPeers(): void {
+    this._radioGroup().forEach((radio) => {
+      if (radio !== this && radio.checked) {
+        radio.checked = false;
+        radio._syncFormState();
+      }
+    });
+  }
+
+  private _tabIndex(): number {
+    if (this.isFormDisabled) return -1;
+    const enabled = this._radioGroup().filter((radio) => !radio.isFormDisabled);
+    const active = enabled.find((radio) => radio.checked) ?? enabled[0];
+    return active === this ? 0 : -1;
+  }
+
+  private _refreshScopedRadios(root = this._scopeRoot()): void {
+    this._scopedRadios(root).forEach((radio) => {
+      if (radio !== this) radio.requestUpdate();
+    });
+  }
+
+  private _connectLabels(): void {
+    Array.from(this.labels ?? []).forEach((label) => {
+      if (
+        !(label instanceof HTMLLabelElement) ||
+        this._labelListeners.has(label)
+      )
+        return;
+      const listener: EventListener = () => {
+        if (this.isFormDisabled) return;
+        this.focus();
+        this._select();
+      };
+      label.addEventListener('click', listener);
+      this._labelListeners.set(label, listener);
+    });
+  }
+
+  private _disconnectLabels(): void {
+    this._labelListeners.forEach((listener, label) =>
+      label.removeEventListener('click', listener),
+    );
+    this._labelListeners.clear();
   }
 
   private _syncFormState(): void {
     const disabled = this.isFormDisabled;
-    this.setFormValue(!disabled && this.checked ? this.value ?? 'on' : null, this.checked ? 'checked' : 'unchecked');
-    const requiredRadio = this._radioGroup().some((radio) => radio.required && !radio.isFormDisabled);
-    const selected = this._radioGroup().some((radio) => radio.checked && !radio.isFormDisabled);
+    this.setFormValue(
+      !disabled && this.checked ? (this.value ?? 'on') : null,
+      this.checked ? 'checked' : 'unchecked',
+    );
+    const requiredRadio = this._radioGroup().some(
+      (radio) => radio.required && !radio.isFormDisabled,
+    );
+    const selected = this._radioGroup().some(
+      (radio) => radio.checked && !radio.isFormDisabled,
+    );
     this.setFormValidity(
       !disabled && requiredRadio && !selected ? { valueMissing: true } : {},
       !disabled && requiredRadio && !selected ? 'Please select an option.' : '',
-      this.shadowRoot?.querySelector<HTMLElement>('.radio-container') ?? undefined,
+      this.shadowRoot?.querySelector<HTMLElement>('.radio-container') ??
+        undefined,
     );
   }
 
@@ -150,9 +261,12 @@ export class M3RadioButton extends FormAssociatedElement {
     this._ripple = true;
     void this.updateComplete.then(() => {
       const ripple = this.shadowRoot?.querySelector('.ripple');
-      setTimeout(() => {
-        this._ripple = false;
-      }, ripple ? motionDuration(ripple, '--_ripple-duration') : 0);
+      setTimeout(
+        () => {
+          this._ripple = false;
+        },
+        ripple ? motionDuration(ripple, '--_ripple-duration') : 0,
+      );
     });
   }
 
@@ -160,7 +274,9 @@ export class M3RadioButton extends FormAssociatedElement {
     this.checked = this._defaultChecked;
   }
 
-  protected restoreFormControlState(state: string | File | FormData | null): void {
+  protected restoreFormControlState(
+    state: string | File | FormData | null,
+  ): void {
     if (typeof state === 'string') this.checked = state === 'checked';
   }
 
