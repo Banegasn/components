@@ -23,8 +23,9 @@
     "postpack": "node ../../scripts/package-license.js clean",
     "clean": "rm -rf dist",
     "lint": "eslint src --max-warnings 0",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node ../../scripts/no-tests.mjs"
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run --config ../../vitest.browser.config.ts",
+    "test:watch": "vitest --config ../../vitest.browser.config.ts"
   },
   "repository": {
     "type": "git",

@@ -33,6 +33,7 @@ const browserPorts: Record<string, number> = {
   'm3-badge': 63_337,
   'm3-navigation-bar': 63_338,
   'm3-navigation-rail': 63_339,
+  'm3-text-field': 63_340,
 };
 
 const browserCoverageThresholds: Record<
