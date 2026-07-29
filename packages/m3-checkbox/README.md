@@ -64,7 +64,7 @@ yarn add @banegasn/m3-checkbox
 
   <script>
     document.querySelectorAll('m3-checkbox').forEach(cb => {
-      cb.addEventListener('checkbox-change', (e) => {
+      cb.addEventListener('change', (e) => {
         console.log('Checkbox changed:', e.detail);
       });
     });
@@ -101,9 +101,12 @@ import '@banegasn/m3-checkbox';
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `checkbox-change` | `{ checked: boolean, indeterminate: boolean, name: string \| null, value: string \| null }` | Fired when the checkbox state changes |
+| Event | Description |
+|-------|-------------|
+| `input` | Native event fired when the checked state changes. |
+| `change` | Native event fired after the checked state is committed. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ### CSS Custom Properties
 
@@ -120,18 +123,18 @@ import '@banegasn/m3-checkbox';
 import '@banegasn/m3-checkbox';
 ```
 ```html
-<m3-checkbox [checked]="isChecked" (checkbox-change)="onCheckboxChange($event)"></m3-checkbox>
+<m3-checkbox [checked]="isChecked" (change)="onCheckboxChange($event)"></m3-checkbox>
 ```
 
 ### React
 ```jsx
 import '@banegasn/m3-checkbox';
-// <m3-checkbox checked={isChecked} oncheckbox-change={handleChange} />
+// <m3-checkbox checked={isChecked} onChange={handleChange} />
 ```
 
 ### Vue
 ```vue
-<m3-checkbox :checked="isChecked" @checkbox-change="handleChange" />
+<m3-checkbox :checked="isChecked" @change="handleChange" />
 ```
 
 ## Resources

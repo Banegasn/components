@@ -117,10 +117,12 @@ import '@banegasn/m3-text-field';
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `text-field-input` | `{ value: string, name: string \| null }` | Fired on every keystroke |
-| `text-field-change` | `{ value: string, name: string \| null }` | Fired when value is committed |
+| Event | Description |
+|-------|-------------|
+| `input` | Native event fired on every user edit. |
+| `change` | Native event fired when the value is committed. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ### Slots
 

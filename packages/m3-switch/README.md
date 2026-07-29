@@ -59,7 +59,7 @@ yarn add @banegasn/m3-switch
   </div>
 
   <script>
-    document.getElementById('notifications').addEventListener('switch-change', (e) => {
+    document.getElementById('notifications').addEventListener('change', (e) => {
       console.log('Notifications:', e.detail.checked ? 'enabled' : 'disabled');
     });
   </script>
@@ -85,7 +85,7 @@ import '@banegasn/m3-switch';
 import '@banegasn/m3-switch';
 
 const switchElement = document.querySelector('m3-switch');
-switchElement.addEventListener('switch-change', (e) => {
+switchElement.addEventListener('change', (e) => {
   console.log('Switch is now:', e.detail.checked);
 });
 ```
@@ -116,7 +116,7 @@ import '@banegasn/m3-switch';
   template: `
     <m3-switch
       [checked]="isChecked"
-      (switch-change)="onSwitchChange($event)"
+      (change)="onSwitchChange($event)"
     ></m3-switch>
   `
 })
@@ -135,7 +135,7 @@ export class MyComponent {
 <template>
   <m3-switch
     :checked="isChecked"
-    @switch-change="onSwitchChange"
+    @change="onSwitchChange"
   />
 </template>
 
@@ -159,15 +159,18 @@ const onSwitchChange = (event) => {
 | `disabled` | `boolean` | `false` | Disables the switch |
 | `name` | `string` | `null` | Name attribute for form submission |
 | `value` | `string` | `null` | Value attribute for form submission |
-| `form` | `string` | `null` | Form attribute to associate switch with a form |
+| `form` | `HTMLFormElement \| null` | `null` | Current owner form; set the native `form` attribute to associate by ID |
 | `aria-label` | `string` | `null` | ARIA label for accessibility |
 | `aria-labelledby` | `string` | `null` | ARIA labelled by for accessibility |
 
 ## Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `switch-change` | `{ checked: boolean, name: string \| null, value: string \| null }` | Fired when the switch state changes |
+| Event | Description |
+|-------|-------------|
+| `input` | Native event fired when the checked state changes. |
+| `change` | Native event fired after the checked state is committed. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ## Methods
 

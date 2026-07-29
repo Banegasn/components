@@ -64,7 +64,7 @@ yarn add @banegasn/m3-button
 
   <script>
     const btn = document.getElementById('loading-btn');
-    btn.addEventListener('button-click', async () => {
+    btn.addEventListener('click', async () => {
       btn.loading = true;
       await new Promise(r => setTimeout(r, 2000));
       btn.loading = false;
@@ -231,7 +231,7 @@ Show loading spinner while processing:
 
 <script>
   const btn = document.getElementById('submit-btn');
-  btn.addEventListener('button-click', async () => {
+  btn.addEventListener('click', async () => {
     btn.loading = true;
     try {
       await submitForm();
@@ -280,15 +280,17 @@ Show loading spinner while processing:
 | `icon-only` | `boolean` | `false` | Button contains only an icon (hides label) |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type for form handling |
 | `aria-label` | `string` | `undefined` | Accessible label (required for icon-only) |
-| `name` | `string` | `undefined` | Name for form submission |
-| `value` | `string` | `undefined` | Value for form submission |
-| `form` | `string` | `undefined` | Associates button with a form by ID |
+| `name` | `string` | `undefined` | Button identifier; not a native custom-element submitter value |
+| `value` | `string` | `undefined` | Button identifier; not added to `FormData` |
+| `form` | `HTMLFormElement \| null` | `null` | Current owner form; set the native `form` attribute to associate by ID |
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `button-click` | `{ variant: string, size: string, shape: string, padding: string, name?: string, value?: string }` | Fired when button is clicked (not fired when disabled or loading) |
+| Event | Description |
+|-------|-------------|
+| `click` | Native composed click event. Submit and reset types act on the owner form once. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ### Slots
 
@@ -413,7 +415,7 @@ m3-button.large {
   import '@banegasn/m3-button';
   
   const btn = document.getElementById('my-btn');
-  btn.addEventListener('button-click', (e) => {
+  btn.addEventListener('click', (e) => {
     console.log('Button clicked!', e.detail);
   });
 </script>
@@ -432,7 +434,7 @@ function App() {
   return (
     <m3-button 
       variant="filled"
-      onbutton-click={handleClick}
+      onClick={handleClick}
     >
       Click me
     </m3-button>
@@ -452,7 +454,7 @@ import '@banegasn/m3-button';
   template: `
     <m3-button 
       variant="filled"
-      (button-click)="handleClick($event)"
+      (click)="handleClick($event)"
     >
       Click me
     </m3-button>
@@ -472,7 +474,7 @@ export class AppComponent {
 <template>
   <m3-button 
     variant="filled"
-    @button-click="handleClick"
+    @click="handleClick"
   >
     Click me
   </m3-button>
@@ -500,7 +502,7 @@ const handleClick = (event) => {
 
 <m3-button 
   variant="filled"
-  on:button-click={handleClick}
+  on:click={handleClick}
 >
   Click me
 </m3-button>
@@ -608,14 +610,14 @@ const handleClick = (event) => {
   <script>
     // Add click handlers
     document.querySelectorAll('m3-button').forEach(btn => {
-      btn.addEventListener('button-click', (e) => {
+      btn.addEventListener('click', (e) => {
         console.log('Button clicked:', e.detail);
       });
     });
 
     // Loading demo
     const loadingBtn = document.getElementById('loading-btn');
-    loadingBtn.addEventListener('button-click', async () => {
+    loadingBtn.addEventListener('click', async () => {
       loadingBtn.loading = true;
       await new Promise(resolve => setTimeout(resolve, 2000));
       loadingBtn.loading = false;

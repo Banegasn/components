@@ -67,11 +67,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Chromium is installed from the Playwright version locked in
-      # pnpm-lock.yaml. `--with-deps` makes the Ubuntu system dependencies
-      # explicit rather than relying on the image's preinstalled browser.
-      - name: Install Playwright Chromium
-        run: pnpm exec playwright install --with-deps chromium
+      # Each supported engine is installed from the Playwright version locked
+      # in pnpm-lock.yaml. `--with-deps` makes Ubuntu system dependencies
+      # explicit rather than relying on the image's preinstalled browsers.
+      - name: Install supported Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium firefox webkit
 
       - name: Lint
         run: pnpm lint

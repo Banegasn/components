@@ -20,9 +20,18 @@ const browserPorts: Record<string, number> = {
   'm3-snackbar': 63_323,
   'm3-top-app-bar': 63_324,
   'm3-progress': 63_326,
+  'm3-checkbox': 63_327,
 };
 
 const port = browserPorts[workspaceName];
+
+const browserInstances = browserChannel
+  ? [{ browser: 'chromium' as const }]
+  : [
+      { browser: 'chromium' as const },
+      { browser: 'firefox' as const },
+      { browser: 'webkit' as const },
+    ];
 
 if (port === undefined) {
   throw new Error(`No Vitest browser port is assigned to ${workspaceName}.`);
@@ -45,11 +54,10 @@ export default defineConfig({
       provider: playwright({
         launchOptions: browserChannel ? { channel: browserChannel } : undefined,
       }),
-      instances: [
-        {
-          browser: 'chromium',
-        },
-      ],
+      // This is the supported-browser matrix for browser tests. A channel is
+      // intentionally Chromium-only because Playwright channels are Chromium
+      // distributions rather than cross-browser engines.
+      instances: browserInstances,
     },
   },
   resolve: {

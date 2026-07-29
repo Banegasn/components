@@ -118,18 +118,18 @@ async function validateInstalledPackage(fixture, expectedManifest) {
 
 async function packPackage(packageInfo, archiveDirectory) {
   const { stdout } = await run(
-    'npm',
-    ['pack', packageInfo.directory, '--json', '--pack-destination', archiveDirectory],
-    { cwd: repositoryRoot, maxBuffer: 10 * 1024 * 1024 },
+    'pnpm',
+    ['pack', '--json', '--pack-destination', archiveDirectory],
+    { cwd: packageInfo.directory, maxBuffer: 10 * 1024 * 1024 },
   );
-  const result = JSON.parse(stdout);
-  const filename = result[0]?.filename;
+  const result = JSON.parse(stdout.slice(stdout.indexOf('{')));
+  const filename = result.filename;
 
   if (!filename) {
     throw new Error(`npm pack did not return an archive for ${packageInfo.manifest.name}`);
   }
 
-  return join(archiveDirectory, filename);
+  return filename;
 }
 
 async function importPackagesFromFixture(fixture, packageNames) {

@@ -64,10 +64,10 @@ yarn add @banegasn/m3-slider
   </div>
 
   <script>
-    document.getElementById('volume').addEventListener('slider-change', (e) => {
+    document.getElementById('volume').addEventListener('change', (e) => {
       document.getElementById('vol-out').textContent = e.detail.value;
     });
-    document.getElementById('steps').addEventListener('slider-change', (e) => {
+    document.getElementById('steps').addEventListener('change', (e) => {
       document.getElementById('step-out').textContent = e.detail.value;
     });
   </script>
@@ -102,10 +102,12 @@ import '@banegasn/m3-slider';
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `slider-change` | `{ value: number, name: string \| null }` | Fired when the value changes |
-| `slider-input` | `{ value: number, name: string \| null }` | Fired continuously while dragging |
+| Event | Description |
+|-------|-------------|
+| `input` | Native event fired continuously while the value changes. |
+| `change` | Native event fired after the value is committed. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ### CSS Custom Properties
 
@@ -122,18 +124,18 @@ import '@banegasn/m3-slider';
 import '@banegasn/m3-slider';
 ```
 ```html
-<m3-slider [value]="volume" min="0" max="100" (slider-change)="onVolumeChange($event)"></m3-slider>
+<m3-slider [value]="volume" min="0" max="100" (change)="onVolumeChange($event)"></m3-slider>
 ```
 
 ### React
 ```jsx
 import '@banegasn/m3-slider';
-// <m3-slider value={volume} min={0} max={100} onslider-change={handleChange} />
+// <m3-slider value={volume} min={0} max={100} onChange={handleChange} />
 ```
 
 ### Vue
 ```vue
-<m3-slider :value="volume" min="0" max="100" @slider-change="handleChange" />
+<m3-slider :value="volume" min="0" max="100" @change="handleChange" />
 ```
 
 ## Resources
