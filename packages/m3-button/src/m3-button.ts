@@ -119,9 +119,6 @@ export class M3Button extends FormAssociatedElement {
   @property({ type: String, reflect: true })
   value: string | null = null;
 
-  private _isSubmitting = false;
-  private _associatedForm: HTMLFormElement | null = null;
-
   render() {
     return html`
       <button
@@ -162,27 +159,11 @@ export class M3Button extends FormAssociatedElement {
 
   private _performFormAction(): void {
     if (this.type === 'submit') {
-      this._isSubmitting = true;
       this.form?.requestSubmit();
-      queueMicrotask(() => {
-        this._isSubmitting = false;
-      });
     } else if (this.type === 'reset') {
       this.form?.reset();
     }
   }
-
-  formAssociatedCallback(form: HTMLFormElement | null): void {
-    this._associatedForm?.removeEventListener('formdata', this._handleFormData);
-    this._associatedForm = form;
-    form?.addEventListener('formdata', this._handleFormData);
-  }
-
-  private _handleFormData = (event: FormDataEvent): void => {
-    if (this._isSubmitting && this.name) {
-      event.formData.append(this.name, this.value ?? '');
-    }
-  };
 
   protected resetFormControl(): void {
     // Native buttons have no mutable form value to reset.

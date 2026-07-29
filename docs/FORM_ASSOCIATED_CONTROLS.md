@@ -8,8 +8,9 @@ contract. They participate in the owner form directly through
 
 ## Native behaviour
 
-- `name` and `value` contribute to `FormData` as native successful controls.
-  Unchecked checkboxes, switches, and radios do not contribute a value.
+- Checkbox, radio, switch, slider, text-field, and search-bar `name`/`value`
+  properties contribute to `FormData` as native successful controls. Unchecked
+  checkboxes, switches, and radios do not contribute a value.
 - The host's native `form` attribute selects an external form. The `form`
   property returns the current owner form.
 - Disabled fieldsets disable descendants, remove their values from `FormData`,
@@ -20,8 +21,11 @@ contract. They participate in the owner form directly through
 - Form reset restores the initial component value/state. Browser history and
   autofill restoration use `formStateRestoreCallback` without synthetic input
   or change events.
-- A submit button calls its owner form exactly once; its `name`/`value` is
-  included only for that submission. A reset button calls its owner form once.
+- A submit button calls its owner form exactly once and a reset button calls
+  its owner form once. The platform has no custom-element submitter API:
+  `requestSubmit()` therefore exposes `SubmitEvent.submitter` as `null`, and
+  button `name`/`value` are not added to `FormData`. The library does not fake
+  submitter data with a `formdata` listener.
 
 ## Clean-break migration
 
@@ -57,7 +61,8 @@ component `form` property is gone: `control.form` is now the owner
 ## Browser support and fallback
 
 Form-associated custom elements require Chromium 77+, Firefox 98+, or Safari
-16.4+. In an older browser the controls still render and remain interactive,
+16.4+. The browser integration suite runs on Playwright Chromium, Firefox,
+and WebKit. In an older browser the controls still render and remain interactive,
 but the browser cannot supply equivalent `FormData`, validation, reset, or
 state-restoration semantics. There is deliberately no hidden-input fallback:
 it would produce different ownership, disabled-fieldset, validation, and

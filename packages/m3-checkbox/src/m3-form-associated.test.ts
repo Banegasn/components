@@ -118,7 +118,7 @@ describe('form-associated controls', () => {
     expect(new FormData(form).get('theme')).to.equal('dark');
   });
 
-  it('submits and resets through a form-associated button exactly once', async () => {
+  it('submits and resets through a form-associated button without inventing a submitter', async () => {
     const form = await fixture<HTMLFormElement>(html`
       <form>
         <m3-text-field name="title" value="Initial"></m3-text-field>
@@ -132,15 +132,18 @@ describe('form-associated controls', () => {
     expect(submit.type).to.equal('submit');
     expect(submit.form).to.equal(form);
     let submits = 0;
+    let nativeSubmitter: HTMLElement | null | undefined;
     let submitData: FormData | undefined;
     form.addEventListener('submit', (event) => {
       submits += 1;
+      nativeSubmitter = (event as SubmitEvent).submitter;
       event.preventDefault();
       submitData = new FormData(form);
     });
     submit.click();
     expect(submits).to.equal(1);
-    expect(submitData?.get('intent')).to.equal('save');
+    expect(nativeSubmitter).to.equal(null);
+    expect(submitData?.has('intent')).to.equal(false);
     text.value = 'Edited';
     await text.updateComplete;
     reset.click();

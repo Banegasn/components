@@ -280,8 +280,8 @@ Show loading spinner while processing:
 | `icon-only` | `boolean` | `false` | Button contains only an icon (hides label) |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type for form handling |
 | `aria-label` | `string` | `undefined` | Accessible label (required for icon-only) |
-| `name` | `string` | `undefined` | Name for form submission |
-| `value` | `string` | `undefined` | Value for form submission |
+| `name` | `string` | `undefined` | Button identifier; not a native custom-element submitter value |
+| `value` | `string` | `undefined` | Button identifier; not added to `FormData` |
 | `form` | `HTMLFormElement \| null` | `null` | Current owner form; set the native `form` attribute to associate by ID |
 
 ### Events

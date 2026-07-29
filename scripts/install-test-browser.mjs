@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { chromium } from 'playwright';
+import { chromium, firefox, webkit } from 'playwright';
 
 if (process.env.VITEST_BROWSER_CHANNEL) {
   console.log(
@@ -9,16 +9,22 @@ if (process.env.VITEST_BROWSER_CHANNEL) {
   process.exit(0);
 }
 
-const executablePath = chromium.executablePath();
+const browserEngines = [
+  ['Chromium', chromium],
+  ['Firefox', firefox],
+  ['WebKit', webkit],
+];
 
-if (existsSync(executablePath)) {
-  console.log(`[test] Using installed Playwright Chromium: ${executablePath}`);
+const missingBrowsers = browserEngines.filter(([, browser]) => !existsSync(browser.executablePath()));
+
+if (missingBrowsers.length === 0) {
+  console.log(`[test] Using installed Playwright browsers: ${browserEngines.map(([name]) => name).join(', ')}`);
   process.exit(0);
 }
 
 const result = spawnSync(
   'pnpm',
-  ['exec', 'playwright', 'install', 'chromium'],
+  ['exec', 'playwright', 'install', ...missingBrowsers.map(([name]) => name.toLowerCase())],
   {
     stdio: 'inherit',
     shell: process.platform === 'win32',
@@ -29,7 +35,7 @@ const result = spawnSync(
 
 if (result.error?.code === 'ETIMEDOUT') {
   console.error(
-    '[test] Timed out installing Chromium after two minutes. Retry once the Playwright browser cache is available.',
+    '[test] Timed out installing Playwright browsers after two minutes. Retry once the browser cache is available.',
   );
 }
 

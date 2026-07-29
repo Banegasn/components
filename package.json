@@ -15,7 +15,7 @@
     "smoke:packages": "node scripts/smoke-packages.mjs",
     "smoke:svelte-vite": "pnpm --filter @banegasn/svelte-components build && node scripts/smoke-svelte-vite.mjs",
     "audit:prod": "pnpm audit --prod --audit-level=moderate",
-    "test:browser:install": "playwright install chromium",
+    "test:browser:install": "playwright install chromium firefox webkit",
     "format": "prettier --write .",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "publish:npm": "bash scripts/publish-unpublished.sh npm",
