@@ -133,13 +133,14 @@ describe('M3Dialog modal contract', () => {
     dialog.closeOnScrim = false;
     await dialog.updateComplete;
 
-    const scrim = dialog.shadowRoot!.querySelector<HTMLElement>('.scrim')!;
-    scrim.click();
+    const surface =
+      dialog.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
+    surface.click();
     expect(dialog.open).to.equal(true);
 
     dialog.closeOnScrim = true;
     await dialog.updateComplete;
-    scrim.click();
+    surface.click();
     await dialog.updateComplete;
     expect(dialog.open).to.equal(false);
 
@@ -255,5 +256,57 @@ describe('M3Dialog modal contract', () => {
     expect(insideBackground.inert).to.equal(false);
     expect(document.body.style.overflow).to.equal('');
     background.remove();
+  });
+
+  it('puts the most recently opened dialog above an earlier DOM sibling across stacking contexts', async () => {
+    const wrapper = await fixture<HTMLDivElement>(html`
+      <div>
+        <div style="position: relative; z-index: 1; transform: translateZ(0)">
+          <m3-dialog id="newer" headline="Newer"
+            ><button>Newer</button></m3-dialog
+          >
+        </div>
+        <div style="position: relative; z-index: 2; transform: translateZ(0)">
+          <m3-dialog id="older" headline="Older"
+            ><button>Older</button></m3-dialog
+          >
+        </div>
+      </div>
+    `);
+    const newer = wrapper.querySelector<M3Dialog>('#newer')!;
+    const older = wrapper.querySelector<M3Dialog>('#older')!;
+
+    older.open = true;
+    await settleDialog(older);
+    newer.open = true;
+    await settleDialog(newer);
+
+    const newerSurface =
+      newer.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
+    const newerBounds = newerSurface.getBoundingClientRect();
+    expect(
+      document.elementFromPoint(newerBounds.x + 8, newerBounds.y + 8),
+    ).to.equal(newer);
+  });
+
+  it('inerts sibling branches in a ShadowRoot before ascending to the host', async () => {
+    const host = document.createElement('div');
+    const root = host.attachShadow({ mode: 'open' });
+    root.innerHTML =
+      '<button id="shadow-background">Background</button><m3-dialog><button>Dismiss</button></m3-dialog>';
+    document.body.append(host);
+
+    const shadowBackground =
+      root.querySelector<HTMLButtonElement>('#shadow-background')!;
+    const dialog = root.querySelector<M3Dialog>('m3-dialog')!;
+    await customElements.whenDefined('m3-dialog');
+    dialog.open = true;
+    await settleDialog(dialog);
+    expect(shadowBackground.inert).to.equal(true);
+
+    dialog.close();
+    await dialog.updateComplete;
+    expect(shadowBackground.inert).to.equal(false);
+    host.remove();
   });
 });

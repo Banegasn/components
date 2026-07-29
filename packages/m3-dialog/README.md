@@ -47,6 +47,7 @@ When open, the component:
 
 - Moves focus to an `[autofocus]` descendant, otherwise the first focusable descendant (including controls in slotted content and open component shadow roots).
 - Wraps Tab and Shift+Tab within the topmost dialog. If there are no focusable descendants, the dialog surface itself receives focus.
+- Uses the native `<dialog>` top layer, so visual and pointer-event stacking follows open order even when dialogs originate in different DOM or CSS stacking contexts.
 - Uses the platform `inert` property on background sibling branches up to `body` and locks document scrolling. Original inert and overflow values are restored after the final dialog closes.
 - Handles Escape and scrim clicks only for the topmost dialog. Both become cancelable close requests.
 - Restores focus to the element that opened the dialog when it is still connected. Removed openers are safely ignored.

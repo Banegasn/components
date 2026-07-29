@@ -122,30 +122,24 @@ export class M3Dialog extends LitElement {
       (this.hasDescription ? this.descriptionId : undefined);
 
     return html`
-      <div
-        class="scrim"
-        ?open=${this.open}
-        @click=${this.handleScrimClick}
-      ></div>
-      <div class="dialog-container" ?open=${this.open}>
-        <div
-          class="dialog"
-          ?open=${this.open}
-          role="dialog"
-          tabindex="-1"
-          aria-modal=${this.open ? 'true' : nothing}
-          aria-hidden=${this.open ? nothing : 'true'}
-          aria-labelledby=${labelledBy ?? nothing}
-          aria-describedby=${describedBy ?? nothing}
-        >
-          <div class="icon-slot"><slot name="icon"></slot></div>
-          ${this.headline ? html`<h2 class="headline" id=${this.headlineId}>${this.headline}</h2>` : nothing}
-          <div class="content" id=${this.descriptionId}>
-            <slot @slotchange=${this.handleContentSlotChange}></slot>
-          </div>
-          <div class="actions"><slot name="actions"></slot></div>
+      <dialog
+        class="dialog"
+        role="dialog"
+        tabindex="-1"
+        aria-modal=${this.open ? 'true' : nothing}
+        aria-hidden=${this.open ? nothing : 'true'}
+        aria-labelledby=${labelledBy ?? nothing}
+        aria-describedby=${describedBy ?? nothing}
+        @cancel=${this.handleNativeCancel}
+        @click=${this.handleDialogClick}
+      >
+        <div class="icon-slot"><slot name="icon"></slot></div>
+        ${this.headline ? html`<h2 class="headline" id=${this.headlineId}>${this.headline}</h2>` : nothing}
+        <div class="content" id=${this.descriptionId}>
+          <slot @slotchange=${this.handleContentSlotChange}></slot>
         </div>
-      </div>
+        <div class="actions"><slot name="actions"></slot></div>
+      </dialog>
     `;
   }
 
@@ -222,6 +216,7 @@ export class M3Dialog extends LitElement {
     );
 
     void this.updateComplete.then(() => {
+      this.showNativeModal();
       requestAnimationFrame(() => {
         if (this.open && M3Dialog.topDialog === this) {
           this.focusInitial();
@@ -238,6 +233,7 @@ export class M3Dialog extends LitElement {
     }
 
     M3Dialog.openDialogs.splice(dialogIndex, 1);
+    this.closeNativeModal();
     M3Dialog.updatePageContainment();
 
     const reason = this.closeReason;
@@ -255,8 +251,20 @@ export class M3Dialog extends LitElement {
     }
   }
 
-  private handleScrimClick() {
-    if (this.closeOnScrim && M3Dialog.topDialog === this) {
+  private handleNativeCancel(event: Event) {
+    event.preventDefault();
+
+    if (this.closeOnEscape && M3Dialog.topDialog === this) {
+      this.requestClose('escape');
+    }
+  }
+
+  private handleDialogClick(event: MouseEvent) {
+    if (
+      event.target === event.currentTarget &&
+      this.closeOnScrim &&
+      M3Dialog.topDialog === this
+    ) {
       this.requestClose('scrim');
     }
   }
@@ -295,8 +303,27 @@ export class M3Dialog extends LitElement {
     this.opener.focus({ preventScroll: true });
   }
 
-  private get dialogElement(): HTMLElement | null {
-    return this.shadowRoot?.querySelector<HTMLElement>('.dialog') ?? null;
+  private get dialogElement(): HTMLDialogElement | null {
+    return this.shadowRoot?.querySelector<HTMLDialogElement>('.dialog') ?? null;
+  }
+
+  /**
+   * The native modal dialog top layer is ordered by showModal() calls, not DOM
+   * order or ancestor stacking contexts. Calling it from the modal stack makes
+   * the most recently opened component the visual and pointer-event topmost.
+   */
+  private showNativeModal() {
+    const dialog = this.dialogElement;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+    }
+  }
+
+  private closeNativeModal() {
+    const dialog = this.dialogElement;
+    if (dialog?.open) {
+      dialog.close();
+    }
   }
 
   /** Finds focusable descendants across the light DOM and open component shadows. */
@@ -449,20 +476,33 @@ export class M3Dialog extends LitElement {
     let branch: HTMLElement = topDialog;
 
     while (branch !== document.body) {
+      const parent = branch.parentElement;
+      if (parent instanceof HTMLElement) {
+        for (const sibling of Array.from(parent.children) as HTMLElement[]) {
+          if (sibling !== branch) {
+            targets.add(sibling);
+          }
+        }
+
+        branch = parent;
+        continue;
+      }
+
       const root = branch.getRootNode();
-      const parent =
-        branch.parentElement ?? (root instanceof ShadowRoot ? root.host : null);
-      if (!(parent instanceof HTMLElement)) {
+      if (
+        !(root instanceof ShadowRoot) ||
+        !(root.host instanceof HTMLElement)
+      ) {
         break;
       }
 
-      for (const sibling of Array.from(parent.children) as HTMLElement[]) {
+      for (const sibling of Array.from(root.children) as HTMLElement[]) {
         if (sibling !== branch) {
           targets.add(sibling);
         }
       }
 
-      branch = parent;
+      branch = root.host;
     }
 
     return targets;
