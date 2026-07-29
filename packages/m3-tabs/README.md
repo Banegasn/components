@@ -32,6 +32,8 @@ Every `m3-tab` has a required `panel` property identifying its unique panel. `m3
 
 `activation="automatic"` (the default) selects the focused destination tab. With `activation="manual"`, arrows only move focus; Space or Enter selects that focused tab. Click always selects its enabled tab.
 
+The roving `tabindex="0"` always follows the focused tab. In manual mode that means the selected tab can remain `aria-selected="true"` while a different enabled tab is the sole tab stop.
+
 `active-tab` is zero-based. Invalid values are clamped and then recover to the first enabled tab at or after that index, wrapping as needed. If no tabs are enabled, it becomes `-1`.
 
 ## API

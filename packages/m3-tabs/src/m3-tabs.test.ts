@@ -85,9 +85,42 @@ describe('M3Tabs ARIA interaction contract', () => {
     await tabs.updateComplete;
     expect(document.activeElement).to.equal(last);
     expect(tabs.activeTab).to.equal(0);
+    expect(first.tabIndex).to.equal(-1);
+    expect(last.tabIndex).to.equal(0);
+    expect(first.getAttribute('aria-selected')).to.equal('true');
+    expect(last.getAttribute('aria-selected')).to.equal('false');
     keydown(last, 'Enter');
     await tabs.updateComplete;
     expect(tabs.activeTab).to.equal(2);
+    expect(last.tabIndex).to.equal(0);
+    expect(last.getAttribute('aria-selected')).to.equal('true');
+  });
+
+  it('links panels in the same ShadowRoot rather than looking them up globally', async () => {
+    const host = document.createElement('div');
+    const root = host.attachShadow({ mode: 'open' });
+    root.innerHTML = `
+      <m3-tabs>
+        <m3-tab panel="shadow-overview">Overview</m3-tab>
+        <m3-tab panel="shadow-details">Details</m3-tab>
+      </m3-tabs>
+      <section id="shadow-overview">Overview panel</section>
+      <section id="shadow-details">Details panel</section>
+    `;
+    document.body.append(host);
+    try {
+      const tabs = root.querySelector<M3Tabs>('m3-tabs')!;
+      await tabs.updateComplete;
+      const [first, second] = [...root.querySelectorAll<HTMLElement>('m3-tab')];
+      const firstPanel = root.querySelector<HTMLElement>('#shadow-overview')!;
+      const secondPanel = root.querySelector<HTMLElement>('#shadow-details')!;
+      expect(first.getAttribute('aria-controls')).to.equal(firstPanel.id);
+      expect(firstPanel.getAttribute('aria-labelledby')).to.equal(first.id);
+      expect(second.getAttribute('aria-controls')).to.equal(secondPanel.id);
+      expect(secondPanel.getAttribute('aria-labelledby')).to.equal(second.id);
+    } finally {
+      host.remove();
+    }
   });
 
   it('recovers from invalid indexes and dynamic removal or disabling without selecting a disabled tab', async () => {

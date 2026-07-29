@@ -34,6 +34,7 @@ export class M3Tabs extends LitElement {
   @state() private _indicatorSize = 0;
   private readonly _id = ++tabsId;
   private _activeTab?: M3Tab;
+  private _focusedTab?: M3Tab;
   private _indicatorFrame?: number;
   private _resizeObserver?: ResizeObserver;
   private _tabsObserver?: MutationObserver;
@@ -126,6 +127,7 @@ export class M3Tabs extends LitElement {
       preserve ? this._activeTab : undefined,
     );
     const selected = selectedIndex === -1 ? undefined : tabs[selectedIndex];
+    const focused = this._recoverFocusedTab(tabs, selected);
     const panels = new Map<HTMLElement, M3Tab>();
     for (const [panel, state] of this._managedPanels) {
       if (!tabs.some((tab) => this._panel(tab) === panel)) {
@@ -141,7 +143,7 @@ export class M3Tabs extends LitElement {
       tab.setAttribute('aria-selected', String(isSelected));
       if (tab.disabled) tab.setAttribute('aria-disabled', 'true');
       else tab.removeAttribute('aria-disabled');
-      tab.tabIndex = isSelected ? 0 : -1;
+      tab.tabIndex = tab === focused ? 0 : -1;
       const panel = this._panel(tab);
       if (panel && !panels.has(panel)) {
         panels.set(panel, tab);
@@ -153,6 +155,7 @@ export class M3Tabs extends LitElement {
       } else tab.removeAttribute('aria-controls');
     });
     this._activeTab = selected;
+    this._focusedTab = focused;
     if (this.activeTab !== selectedIndex) this.activeTab = selectedIndex;
   }
 
@@ -171,8 +174,26 @@ export class M3Tabs extends LitElement {
     return -1;
   }
 
+  private _recoverFocusedTab(tabs: M3Tab[], selected?: M3Tab) {
+    if (
+      this._focusedTab &&
+      tabs.includes(this._focusedTab) &&
+      !this._focusedTab.disabled
+    ) {
+      return this._focusedTab;
+    }
+    return selected;
+  }
+
   private _panel(tab: M3Tab) {
-    return tab.panel ? this.ownerDocument.getElementById(tab.panel) : null;
+    if (!tab.panel) return null;
+    const root = this.getRootNode();
+    if (!(root instanceof Document || root instanceof ShadowRoot)) return null;
+    return (
+      [...root.querySelectorAll<HTMLElement>('[id]')].find(
+        (element) => element.id === tab.panel,
+      ) ?? null
+    );
   }
   private _managePanel(panel: HTMLElement) {
     if (!this._managedPanels.has(panel))
@@ -202,7 +223,10 @@ export class M3Tabs extends LitElement {
     const tab = event
       .composedPath()
       .find((element): element is M3Tab => element instanceof M3Tab);
-    if (tab && !tab.disabled) this._activate(tab, 'click');
+    if (tab && !tab.disabled) {
+      this._setFocusedTab(tab);
+      this._activate(tab, 'click');
+    }
   }
   private _keydown(event: KeyboardEvent) {
     const current = event
@@ -233,6 +257,7 @@ export class M3Tabs extends LitElement {
     } else return;
     if (index === undefined || index === -1) return;
     event.preventDefault();
+    this._setFocusedTab(tabs[index]);
     tabs[index].focus();
     if (this._activation() === 'automatic')
       this._activate(tabs[index], 'keyboard');
@@ -243,6 +268,12 @@ export class M3Tabs extends LitElement {
       if (!tabs[index].disabled) return index;
     }
     return -1;
+  }
+  private _setFocusedTab(tab: M3Tab) {
+    this._focusedTab = tab;
+    this._tabs().forEach((candidate) => {
+      candidate.tabIndex = candidate === tab ? 0 : -1;
+    });
   }
   private _activate(tab: M3Tab, reason: TabChangeReason) {
     const activeTab = this._tabs().indexOf(tab);
