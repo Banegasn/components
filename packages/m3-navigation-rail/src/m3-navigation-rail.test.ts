@@ -32,21 +32,34 @@ describe('M3NavigationRail browser contract', () => {
       const toggle = rail.querySelector<M3NavigationRailToggle>(
         'm3-navigation-rail-toggle',
       )!;
+      const toggleEvents = captureCustomEvents<undefined>(
+        toggle,
+        'toggle-click',
+      );
       const items = [
         ...rail.querySelectorAll<M3NavigationRailItem>(
           'm3-navigation-rail-item',
         ),
       ];
-      toggle.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click();
-      await settleLitElement(rail);
+      try {
+        toggle.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click();
+        await settleLitElement(rail);
 
-      expect(rail.expanded).to.equal(true);
-      expect(toggle.expanded).to.equal(true);
-      expect(items.map((item) => item.expanded)).to.deep.equal([true, true]);
-      expect(events.events).to.have.length(1);
-      expect(events.events[0]!.detail).to.deep.equal({ expanded: true });
-      expect(events.events[0]!.bubbles).to.equal(true);
-      expect(events.events[0]!.composed).to.equal(true);
+        expect(rail.expanded).to.equal(true);
+        expect(toggle.expanded).to.equal(true);
+        expect(items.map((item) => item.expanded)).to.deep.equal([true, true]);
+        expect(events.events).to.have.length(1);
+        expect(events.events[0]!.detail).to.deep.equal({ expanded: true });
+        expect(events.events[0]!.bubbles).to.equal(true);
+        expect(events.events[0]!.composed).to.equal(true);
+        expect(events.events[0]!.cancelable).to.equal(false);
+        expect(toggleEvents.events).to.have.length(1);
+        expect(toggleEvents.events[0]!.bubbles).to.equal(true);
+        expect(toggleEvents.events[0]!.composed).to.equal(true);
+        expect(toggleEvents.events[0]!.cancelable).to.equal(false);
+      } finally {
+        toggleEvents.dispose();
+      }
     } finally {
       events.dispose();
     }
@@ -98,6 +111,9 @@ describe('M3NavigationRail browser contract', () => {
       item.shadowRoot!.querySelector<HTMLButtonElement>('button')!.click();
       expect(events.events).to.have.length(1);
       expect(events.events[0]!.detail).to.deep.equal({ label: 'Inbox' });
+      expect(events.events[0]!.bubbles).to.equal(true);
+      expect(events.events[0]!.composed).to.equal(true);
+      expect(events.events[0]!.cancelable).to.equal(false);
 
       rail.expanded = true;
       await settleLitElement(rail);

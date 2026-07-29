@@ -52,6 +52,7 @@ describe('M3NavigationBar browser contract', () => {
       expect(events.events[0]!.detail).to.deep.equal({ label: 'Inbox' });
       expect(events.events[0]!.bubbles).to.equal(true);
       expect(events.events[0]!.composed).to.equal(true);
+      expect(events.events[0]!.cancelable).to.equal(false);
     } finally {
       events.dispose();
     }
