@@ -1,5 +1,6 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3ButtonStyles } from './m3-button.styles.js';
 
 /**
@@ -8,7 +9,8 @@ import { m3ButtonStyles } from './m3-button.styles.js';
  * A flexible button component following Material Design 3 specifications with
  * support for multiple variants, icons, and accessibility features.
  * 
- * @fires button-click - Fired when the button is clicked
+ * Native click semantics are exposed on the host. Submit and reset types act
+ * on the owner form selected by the host's native `form` attribute.
  * 
  * @slot - Default slot for button label text
  * @slot icon - Optional icon to display before the label
@@ -27,8 +29,9 @@ import { m3ButtonStyles } from './m3-button.styles.js';
  * @cssprop --md-sys-color-outline - Border color for outlined variant
  */
 @customElement('m3-button')
-export class M3Button extends LitElement {
+export class M3Button extends FormAssociatedElement {
   static styles = m3ButtonStyles;
+  static readonly formAssociated = true;
 
   /**
    * Button variant style
@@ -95,7 +98,7 @@ export class M3Button extends LitElement {
   /**
    * Button type attribute for form submission
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   type: 'button' | 'submit' | 'reset' = 'button';
 
   /**
@@ -107,31 +110,25 @@ export class M3Button extends LitElement {
   /**
    * Name attribute for form submission
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   name: string | null = null;
 
   /**
    * Value attribute for form submission
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   value: string | null = null;
 
-  /**
-   * Form attribute to associate button with a form
-   */
-  @property({ type: String })
-  form: string | null = null;
+  private _isSubmitting = false;
+  private _associatedForm: HTMLFormElement | null = null;
 
   render() {
     return html`
       <button
-        type=${this.type}
-        ?disabled=${this.disabled || this.loading}
+        type="button"
+        ?disabled=${this.isFormDisabled || this.loading}
         aria-label=${this.ariaLabel || ''}
         aria-busy=${this.loading}
-        name=${this.name || ''}
-        value=${this.value || ''}
-        form=${this.form || ''}
         @click=${this._handleClick}
       >
         ${this.loading ? html`<span class="loading-spinner"></span>` : ''}
@@ -154,24 +151,45 @@ export class M3Button extends LitElement {
   }
 
   private _handleClick(e: MouseEvent) {
-    if (this.disabled || this.loading) {
+    if (this.isFormDisabled || this.loading) {
       e.preventDefault();
       e.stopPropagation();
       return;
     }
 
-    this.dispatchEvent(new CustomEvent('button-click', {
-      bubbles: true,
-      composed: true,
-      detail: {
-        variant: this.variant,
-        size: this.size,
-        shape: this.shape,
-        padding: this.padding,
-        name: this.name,
-        value: this.value
-      }
-    }));
+    this._performFormAction();
+  }
+
+  private _performFormAction(): void {
+    if (this.type === 'submit') {
+      this._isSubmitting = true;
+      this.form?.requestSubmit();
+      queueMicrotask(() => {
+        this._isSubmitting = false;
+      });
+    } else if (this.type === 'reset') {
+      this.form?.reset();
+    }
+  }
+
+  formAssociatedCallback(form: HTMLFormElement | null): void {
+    this._associatedForm?.removeEventListener('formdata', this._handleFormData);
+    this._associatedForm = form;
+    form?.addEventListener('formdata', this._handleFormData);
+  }
+
+  private _handleFormData = (event: FormDataEvent): void => {
+    if (this._isSubmitting && this.name) {
+      event.formData.append(this.name, this.value ?? '');
+    }
+  };
+
+  protected resetFormControl(): void {
+    // Native buttons have no mutable form value to reset.
+  }
+
+  protected restoreFormControlState(_state: string | File | FormData | null): void {
+    // Native buttons have no restorable form state.
   }
 
   /**
@@ -186,6 +204,13 @@ export class M3Button extends LitElement {
    */
   blur() {
     this.shadowRoot?.querySelector('button')?.blur();
+  }
+
+  click(): void {
+    if (!this.isFormDisabled && !this.loading) {
+      super.click();
+      this._performFormAction();
+    }
   }
 }
 

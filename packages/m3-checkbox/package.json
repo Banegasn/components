@@ -23,8 +23,9 @@
     "postpack": "node ../../scripts/package-license.js clean",
     "clean": "rm -rf dist",
     "lint": "eslint src --max-warnings 0",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node ../../scripts/no-tests.mjs"
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run --config ../../vitest.browser.config.ts",
+    "test:watch": "vitest --config ../../vitest.browser.config.ts"
   },
   "repository": {
     "type": "git",
@@ -46,9 +47,16 @@
     "access": "public"
   },
   "dependencies": {
+    "@banegasn/m3-form-associated": "workspace:^",
     "lit": "^3.3.3"
   },
   "devDependencies": {
+    "@banegasn/m3-button": "workspace:^",
+    "@banegasn/m3-radio-button": "workspace:^",
+    "@banegasn/m3-search-bar": "workspace:^",
+    "@banegasn/m3-slider": "workspace:^",
+    "@banegasn/m3-switch": "workspace:^",
+    "@banegasn/m3-text-field": "workspace:^",
     "typescript": "^5.9.3"
   }
 }

@@ -1,22 +1,24 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property, state, query } from 'lit/decorators.js';
+import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3SliderStyles } from './m3-slider.styles.js';
 
 /**
  * Material Design 3 Slider Component
  * 
- * @fires slider-change - Fired when the slider value changes
+ * Emits native `input` while dragging and `change` on a committed value.
  */
 @customElement('m3-slider')
-export class M3Slider extends LitElement {
+export class M3Slider extends FormAssociatedElement {
   static styles = m3SliderStyles;
+  static readonly formAssociated = true;
 
   @property({ type: Number }) min = 0;
   @property({ type: Number }) max = 100;
   @property({ type: Number }) value = 50;
   @property({ type: Boolean, reflect: true }) disabled = false;
   @property({ type: Number }) step = 1;
-  @property({ type: String }) name: string | null = null;
+  @property({ type: String, reflect: true }) name: string | null = null;
   @property({ type: String, attribute: 'aria-label' }) ariaLabel: string | null = null;
   
   @query('.slider-input') inputEl!: HTMLInputElement;
@@ -24,6 +26,7 @@ export class M3Slider extends LitElement {
   @state() private _focused = false;
   @state() private _hovered = false;
   @state() private _active = false;
+  private _defaultValue = this.value;
 
   render() {
     const fraction = Math.max(0, Math.min(1, (this.value - this.min) / (this.max - this.min)));
@@ -52,9 +55,8 @@ export class M3Slider extends LitElement {
           max=${this.max}
           step=${this.step}
           .value=${String(this.value)}
-          ?disabled=${this.disabled}
+          ?disabled=${this.isFormDisabled}
           aria-label=${this.ariaLabel || ''}
-          name=${this.name || ''}
           @input=${this._handleInput}
           @change=${this._handleChange}
           @focus=${this._handleFocus}
@@ -68,8 +70,17 @@ export class M3Slider extends LitElement {
     `;
   }
 
+  firstUpdated(): void {
+    this._defaultValue = this.value;
+    this._syncFormState();
+  }
+
+  updated(): void {
+    this._syncFormState();
+  }
+
   private _handleMouseEnter() {
-    if (!this.disabled) this._hovered = true;
+    if (!this.isFormDisabled) this._hovered = true;
   }
 
   private _handleMouseLeave() {
@@ -77,7 +88,7 @@ export class M3Slider extends LitElement {
   }
 
   private _handleFocus() {
-    if (!this.disabled) this._focused = true;
+    if (!this.isFormDisabled) this._focused = true;
   }
 
   private _handleBlur() {
@@ -85,7 +96,7 @@ export class M3Slider extends LitElement {
   }
 
   private _handleMouseDown() {
-    if (!this.disabled) this._active = true;
+    if (!this.isFormDisabled) this._active = true;
   }
 
   private _handleMouseUp() {
@@ -93,25 +104,29 @@ export class M3Slider extends LitElement {
   }
 
   private _handleInput(e: Event) {
+    e.stopPropagation();
     const target = e.target as HTMLInputElement;
     this.value = Number(target.value);
-    
-    this.dispatchEvent(new CustomEvent('slider-input', {
-      bubbles: true,
-      composed: true,
-      detail: { value: this.value }
-    }));
+    this.emitInput();
   }
 
   private _handleChange(e: Event) {
+    e.stopPropagation();
     const target = e.target as HTMLInputElement;
     this.value = Number(target.value);
+    this.emitChange();
+  }
 
-    this.dispatchEvent(new CustomEvent('slider-change', {
-      bubbles: true,
-      composed: true,
-      detail: { value: this.value, name: this.name }
-    }));
+  private _syncFormState(): void {
+    this.setFormValue(this.isFormDisabled ? null : String(this.value), String(this.value));
+  }
+
+  protected resetFormControl(): void {
+    this.value = this._defaultValue;
+  }
+
+  protected restoreFormControlState(state: string | File | FormData | null): void {
+    if (typeof state === 'string' && state !== '') this.value = Number(state);
   }
 }
 

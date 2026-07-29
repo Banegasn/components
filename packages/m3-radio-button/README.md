@@ -63,7 +63,7 @@ yarn add @banegasn/m3-radio-button
 
   <script>
     document.querySelectorAll('m3-radio-button[name="theme"]').forEach(radio => {
-      radio.addEventListener('radio-change', (e) => {
+      radio.addEventListener('change', (e) => {
         document.getElementById('result').textContent = 'Selected: ' + e.detail.value;
       });
     });
@@ -101,7 +101,7 @@ import '@banegasn/m3-radio-button';
 
 const radioButtons = document.querySelectorAll('m3-radio-button[name="option"]');
 radioButtons.forEach(radio => {
-  radio.addEventListener('radio-change', (e) => {
+  radio.addEventListener('change', (e) => {
     console.log('Selected:', e.detail.value);
   });
 });
@@ -145,7 +145,7 @@ import '@banegasn/m3-radio-button';
       name="group"
       value="option1"
       [checked]="selected === 'option1'"
-      (radio-change)="onRadioChange($event)"
+      (change)="onRadioChange($event)"
     ></m3-radio-button>
   `
 })
@@ -166,7 +166,7 @@ export class MyComponent {
     name="group"
     value="option1"
     :checked="selected === 'option1'"
-    @radio-change="onRadioChange"
+    @change="onRadioChange"
   />
 </template>
 
@@ -190,15 +190,18 @@ const onRadioChange = (event) => {
 | `disabled` | `boolean` | `false` | Disables the radio button |
 | `name` | `string` | `null` | Name attribute for radio group (required for grouping) |
 | `value` | `string` | `null` | Value attribute for form submission |
-| `form` | `string` | `null` | Form attribute to associate radio with a form |
+| `form` | `HTMLFormElement \| null` | `null` | Current owner form; set the native `form` attribute to associate by ID |
 | `aria-label` | `string` | `null` | ARIA label for accessibility |
 | `aria-labelledby` | `string` | `null` | ARIA labelled by for accessibility |
 
 ## Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `radio-change` | `{ checked: boolean, name: string \| null, value: string \| null }` | Fired when the radio button state changes |
+| Event | Description |
+|-------|-------------|
+| `input` | Native event fired on the newly selected radio. |
+| `change` | Native event fired after a radio selection is committed. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ## Methods
 

@@ -202,6 +202,9 @@ importers:
 
   packages/m3-button:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -222,10 +225,31 @@ importers:
 
   packages/m3-checkbox:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3
     devDependencies:
+      '@banegasn/m3-button':
+        specifier: workspace:^
+        version: link:../m3-button
+      '@banegasn/m3-radio-button':
+        specifier: workspace:^
+        version: link:../m3-radio-button
+      '@banegasn/m3-search-bar':
+        specifier: workspace:^
+        version: link:../m3-search-bar
+      '@banegasn/m3-slider':
+        specifier: workspace:^
+        version: link:../m3-slider
+      '@banegasn/m3-switch':
+        specifier: workspace:^
+        version: link:../m3-switch
+      '@banegasn/m3-text-field':
+        specifier: workspace:^
+        version: link:../m3-text-field
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -261,6 +285,16 @@ importers:
         version: 5.9.3
 
   packages/m3-fab-menu:
+    dependencies:
+      lit:
+        specifier: ^3.3.3
+        version: 3.3.3
+    devDependencies:
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/m3-form-associated:
     dependencies:
       lit:
         specifier: ^3.3.3
@@ -342,6 +376,9 @@ importers:
 
   packages/m3-radio-button:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -352,6 +389,9 @@ importers:
 
   packages/m3-search-bar:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -362,6 +402,9 @@ importers:
 
   packages/m3-slider:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -392,6 +435,9 @@ importers:
 
   packages/m3-switch:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -412,6 +458,9 @@ importers:
 
   packages/m3-text-field:
     dependencies:
+      '@banegasn/m3-form-associated':
+        specifier: workspace:^
+        version: link:../m3-form-associated
       lit:
         specifier: ^3.3.3
         version: 3.3.3

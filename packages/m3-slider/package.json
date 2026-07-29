@@ -46,6 +46,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@banegasn/m3-form-associated": "workspace:^",
     "lit": "^3.3.3"
   },
   "devDependencies": {

@@ -51,10 +51,10 @@ yarn add @banegasn/m3-search-bar
 
   <script>
     const search = document.getElementById('search');
-    search.addEventListener('search-input', (e) => {
+    search.addEventListener('input', (e) => {
       document.getElementById('results').textContent = 'Searching for: ' + e.detail.value;
     });
-    search.addEventListener('search-clear', () => {
+    search.addEventListener('change', () => {
       document.getElementById('results').textContent = 'Start typing to search...';
     });
   </script>
@@ -145,15 +145,15 @@ Or with Material Icons directly:
 ```javascript
 const searchBar = document.querySelector('m3-search-bar');
 
-searchBar.addEventListener('search-input', (e) => {
+searchBar.addEventListener('input', (e) => {
   console.log('Search value:', e.detail.value);
 });
 
-searchBar.addEventListener('search-submit', (e) => {
+searchBar.addEventListener('change', (e) => {
   console.log('Search submitted:', e.detail.value);
 });
 
-searchBar.addEventListener('search-clear', () => {
+searchBar.addEventListener('change', () => {
   console.log('Search cleared');
 });
 ```
@@ -166,7 +166,7 @@ searchBar.addEventListener('search-clear', () => {
 | `value` | `string` | `''` | Current value of the input |
 | `disabled` | `boolean` | `false` | Disables the search bar |
 | `name` | `string \| null` | `null` | Name attribute for form submission |
-| `form` | `string \| null` | `null` | Form attribute to associate with a form |
+| `form` | `HTMLFormElement \| null` | `null` | Current owner form; set the native `form` attribute to associate by ID |
 | `aria-label` | `string \| null` | `null` | ARIA label for accessibility |
 | `aria-labelledby` | `string \| null` | `null` | ARIA labelled by for accessibility |
 | `maxLength` | `number \| null` | `null` | Maximum length of input |
@@ -184,11 +184,12 @@ searchBar.addEventListener('search-clear', () => {
 
 ## Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `search-input` | `{ value: string, name: string \| null }` | Fired when the input value changes |
-| `search-submit` | `{ value: string, name: string \| null }` | Fired when Enter is pressed |
-| `search-clear` | `{ name: string \| null }` | Fired when the search is cleared (Escape key) |
+| Event | Description |
+|-------|-------------|
+| `input` | Native event fired when the query changes or is cleared. |
+| `change` | Native event fired when the query is committed or cleared. |
+
+See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ## Methods
 

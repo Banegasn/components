@@ -1,5 +1,6 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3SwitchStyles } from './m3-switch.styles.js';
 
 /**
@@ -8,7 +9,7 @@ import { m3SwitchStyles } from './m3-switch.styles.js';
  * A switch component following Material Design 3 specifications that allows
  * users to toggle between on and off states.
  * 
- * @fires switch-change - Fired when the switch state changes
+ * Emits native `input` and `change` events when the checked state changes.
  * 
  * @cssprop --md-comp-switch-track-width - Width of the switch track (default: 52px)
  * @cssprop --md-comp-switch-track-height - Height of the switch track (default: 32px)
@@ -19,8 +20,9 @@ import { m3SwitchStyles } from './m3-switch.styles.js';
  * @cssprop --md-sys-color-surface-container-highest - Surface color for disabled state
  */
 @customElement('m3-switch')
-export class M3Switch extends LitElement {
+export class M3Switch extends FormAssociatedElement {
   static styles = m3SwitchStyles;
+  static readonly formAssociated = true;
 
   /**
    * Whether the switch is checked (on)
@@ -37,20 +39,17 @@ export class M3Switch extends LitElement {
   /**
    * Name attribute for form submission
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   name: string | null = null;
 
   /**
    * Value attribute for form submission
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   value: string | null = null;
 
-  /**
-   * Form attribute to associate switch with a form
-   */
-  @property({ type: String })
-  form: string | null = null;
+  @property({ type: Boolean, reflect: true })
+  required = false;
 
   /**
    * ARIA label for accessibility
@@ -75,6 +74,7 @@ export class M3Switch extends LitElement {
    */
   @state()
   private _hovered = false;
+  private _defaultChecked = false;
 
   render() {
     return html`
@@ -82,10 +82,10 @@ export class M3Switch extends LitElement {
         class="switch-container"
         role="switch"
         aria-checked=${this.checked}
-        aria-disabled=${this.disabled}
+        aria-disabled=${this.isFormDisabled}
         aria-label=${this.ariaLabel || ''}
         aria-labelledby=${this.ariaLabelledBy || ''}
-        tabindex=${this.disabled ? -1 : 0}
+        tabindex=${this.isFormDisabled ? -1 : 0}
         @click=${this._handleClick}
         @keydown=${this._handleKeyDown}
         @keyup=${this._handleKeyUp}
@@ -94,8 +94,8 @@ export class M3Switch extends LitElement {
         @mousedown=${this._handleMouseDown}
         @mouseup=${this._handleMouseUp}
       >
-        <div class="track" ?checked=${this.checked} ?disabled=${this.disabled}>
-          <div class="thumb" ?checked=${this.checked} ?disabled=${this.disabled} ?pressed=${this._pressed}>
+        <div class="track" ?checked=${this.checked} ?disabled=${this.isFormDisabled}>
+          <div class="thumb" ?checked=${this.checked} ?disabled=${this.isFormDisabled} ?pressed=${this._pressed}>
             ${this.checked ? html`
               <svg class="checkmark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/>
@@ -104,22 +104,20 @@ export class M3Switch extends LitElement {
           </div>
         </div>
       </div>
-      <input
-        type="checkbox"
-        ?checked=${this.checked}
-        ?disabled=${this.disabled}
-        name=${this.name || ''}
-        value=${this.value || ''}
-        form=${this.form || ''}
-        aria-hidden="true"
-        tabindex="-1"
-        @change=${this._handleInputChange}
-      />
     `;
   }
 
+  firstUpdated(): void {
+    this._defaultChecked = this.checked;
+    this._syncFormState();
+  }
+
+  updated(): void {
+    this._syncFormState();
+  }
+
   private _handleClick(e: MouseEvent) {
-    if (this.disabled) {
+    if (this.isFormDisabled) {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -129,7 +127,7 @@ export class M3Switch extends LitElement {
   }
 
   private _handleKeyDown(e: KeyboardEvent) {
-    if (this.disabled) {
+    if (this.isFormDisabled) {
       return;
     }
 
@@ -140,7 +138,7 @@ export class M3Switch extends LitElement {
   }
 
   private _handleKeyUp(e: KeyboardEvent) {
-    if (this.disabled) {
+    if (this.isFormDisabled) {
       return;
     }
 
@@ -152,7 +150,7 @@ export class M3Switch extends LitElement {
   }
 
   private _handleMouseEnter() {
-    if (!this.disabled) {
+    if (!this.isFormDisabled) {
       this._hovered = true;
     }
   }
@@ -163,7 +161,7 @@ export class M3Switch extends LitElement {
   }
 
   private _handleMouseDown() {
-    if (!this.disabled) {
+    if (!this.isFormDisabled) {
       this._pressed = true;
     }
   }
@@ -172,32 +170,30 @@ export class M3Switch extends LitElement {
     this._pressed = false;
   }
 
-  private _handleInputChange(e: Event) {
-    // Sync with internal checkbox for form submission
-    const input = e.target as HTMLInputElement;
-    if (input.checked !== this.checked) {
-      this.checked = input.checked;
-    }
-  }
-
   private _toggle() {
     this.checked = !this.checked;
-    
-    // Update the hidden input for form submission
-    const input = this.shadowRoot?.querySelector('input[type="checkbox"]') as HTMLInputElement;
-    if (input) {
-      input.checked = this.checked;
-    }
+    this.emitInput();
+    this.emitChange();
+  }
 
-    this.dispatchEvent(new CustomEvent('switch-change', {
-      bubbles: true,
-      composed: true,
-      detail: {
-        checked: this.checked,
-        name: this.name,
-        value: this.value
-      }
-    }));
+  private _syncFormState(): void {
+    const disabled = this.isFormDisabled;
+    this.setFormValue(!disabled && this.checked ? this.value ?? 'on' : null, this.checked ? 'checked' : 'unchecked');
+    this.setFormValidity(
+      !disabled && this.required && !this.checked ? { valueMissing: true } : {},
+      !disabled && this.required && !this.checked ? 'Please turn this switch on.' : '',
+      this.shadowRoot?.querySelector<HTMLElement>('.switch-container') ?? undefined,
+    );
+  }
+
+  protected resetFormControl(): void {
+    this.checked = this._defaultChecked;
+  }
+
+  protected restoreFormControlState(state: string | File | FormData | null): void {
+    if (typeof state === 'string') {
+      this.checked = state === 'checked';
+    }
   }
 
   /**
