@@ -1,88 +1,47 @@
 import { css } from 'lit';
 
 export const m3TooltipStyles = css`
-  :host {
-    display: inline-block;
-    position: relative;
-    --_show-delay: var(--md-sys-motion-duration-long2);
-    --_hide-delay: var(--md-sys-motion-duration-short2);
-  }
+  :host { display: inline-block; }
 
   .tooltip-surface {
-    position: absolute;
+    position: fixed;
     z-index: 999;
+    max-width: min(320px, calc(100vw - 16px));
+    max-height: calc(100vh - 16px);
+    overflow: auto;
     padding: 4px 8px;
     border-radius: var(--md-comp-tooltip-shape, 4px);
     font-size: 0.75rem;
     line-height: 1rem;
-    white-space: nowrap;
-    pointer-events: none;
     opacity: 0;
-    transform: scale(0.8);
+    pointer-events: none;
+    transform: scale(0.96);
     transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate), transform var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate);
   }
 
-  /* Plain tooltip */
-  :host([variant="plain"]) .tooltip-surface,
-  :host(:not([variant])) .tooltip-surface {
+  .tooltip-surface:not([positioned]) { visibility: hidden; }
+  .tooltip-surface[visible] { opacity: 1; transform: scale(1); }
+
+  :host([variant="plain"]) .tooltip-surface {
     background-color: var(--md-sys-color-inverse-surface, #322f35);
     color: var(--md-sys-color-inverse-on-surface, #f5eff7);
-    max-width: 200px;
-    white-space: normal;
   }
 
-  /* Rich tooltip */
   :host([variant="rich"]) .tooltip-surface {
+    padding: 12px 16px;
+    border-radius: var(--md-comp-tooltip-shape, 12px);
     background-color: var(--md-sys-color-surface-container, #f3edf7);
     color: var(--md-sys-color-on-surface, #1d1b20);
-    border-radius: var(--md-comp-tooltip-shape, 12px);
-    padding: 12px 16px;
-    max-width: 320px;
-    white-space: normal;
-    box-shadow: 0 2px 6px 2px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
   }
 
-  .tooltip-surface[visible] {
-    opacity: 1;
-    transform: scale(1);
-  }
+  .rich-title { margin-bottom: 4px; font-weight: 700; }
+  .rich-content { font-size: 0.875rem; line-height: 1.25rem; }
+  .tooltip-surface[data-placement="top"] { transform-origin: bottom center; }
+  .tooltip-surface[data-placement="bottom"] { transform-origin: top center; }
+  .tooltip-surface[data-placement="left"] { transform-origin: center right; }
+  .tooltip-surface[data-placement="right"] { transform-origin: center left; }
 
-  /* Placement */
-  :host([placement="top"]) .tooltip-surface {
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-  }
-  :host([placement="top"]) .tooltip-surface[visible] {
-    transform: translateX(-50%) scale(1);
-  }
-
-  :host([placement="bottom"]) .tooltip-surface,
-  :host(:not([placement])) .tooltip-surface {
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-  }
-  :host([placement="bottom"]) .tooltip-surface[visible],
-  :host(:not([placement])) .tooltip-surface[visible] {
-    transform: translateX(-50%) scale(1);
-  }
-
-  :host([placement="left"]) .tooltip-surface {
-    right: calc(100% + 8px);
-    top: 50%;
-    transform: translateY(-50%) scale(0.8);
-  }
-  :host([placement="left"]) .tooltip-surface[visible] {
-    transform: translateY(-50%) scale(1);
-  }
-
-  :host([placement="right"]) .tooltip-surface {
-    left: calc(100% + 8px);
-    top: 50%;
-    transform: translateY(-50%) scale(0.8);
-  }
-  :host([placement="right"]) .tooltip-surface[visible] {
-    transform: translateY(-50%) scale(1);
-  }
+  @media (prefers-reduced-motion: reduce) { .tooltip-surface { transition: none; } }
 `;

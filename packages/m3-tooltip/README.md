@@ -8,14 +8,15 @@
 [![npm version](https://img.shields.io/npm/v/@banegasn/m3-tooltip.svg)](https://www.npmjs.com/package/@banegasn/m3-tooltip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
-An accessible **M3 Tooltip** web component following the [Material Design 3 tooltip specifications](https://m3.material.io/components/tooltips/overview). Supports plain and rich tooltip variants with smart positioning. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
+An accessible **M3 Tooltip** web component following the [Material Design 3 tooltip specifications](https://m3.material.io/components/tooltips/overview). It supports descriptive plain tooltips and interactive rich tooltips with viewport-aware positioning. Works in Angular, React, Vue, Svelte, or plain HTML — no build step required.
 
 ## Features
 
 - Plain and rich tooltip variants
-- Smart auto-positioning (top, bottom, left, right)
-- Keyboard and hover triggered
-- Accessible with ARIA `tooltip` role
+- Preferred placement with viewport-edge flipping
+- Hover and keyboard-focus triggers with a generated `aria-describedby` relationship
+- Escape dismissal that leaves trigger focus in place
+- Interactive rich tooltip content
 - Framework-agnostic custom element
 
 ## Installation
@@ -48,8 +49,8 @@ yarn add @banegasn/m3-tooltip
     <m3-button variant="filled">Save</m3-button>
   </m3-tooltip>
 
-  <!-- Tooltip with bottom placement -->
-  <m3-tooltip text="Delete this item" placement="bottom">
+  <!-- Tooltip with bottom placement and a 300ms hover delay -->
+  <m3-tooltip text="Delete this item" placement="bottom" delay="300">
     <m3-button variant="outlined">Delete</m3-button>
   </m3-tooltip>
 
@@ -77,16 +78,33 @@ import '@banegasn/m3-tooltip';
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `text` | `string` | `''` | Plain tooltip text |
-| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Preferred tooltip position |
-| `delay` | `number` | `500` | Show delay in milliseconds |
+| `variant` | `'plain' \| 'rich'` | `'plain'` | Plain descriptive tooltip or interactive rich tooltip |
+| `placement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Preferred position; flips when it would overflow the viewport |
+| `delay` | `number` | `500` | Pointer-hover show delay in milliseconds; keyboard focus shows immediately |
 
 ### Slots
 
 | Slot | Description |
 |------|-------------|
-| (default) | The trigger element |
-| `title` | Rich tooltip title (activates rich variant) |
-| `content` | Rich tooltip body content |
+| (default) | The single trigger element. Its `aria-describedby` receives the generated tooltip ID. |
+| `title` | Rich-tooltip heading. Use with `variant="rich"`. |
+| `content` | Rich-tooltip body and optional interactive content. Use with `variant="rich"`. |
+
+## Rich tooltip
+
+Rich tooltips use a dialog surface so links, buttons, and other controls remain usable. Moving between the trigger and the rich surface, or focusing content inside it, keeps it open. Pressing <kbd>Escape</kbd> dismisses either variant without moving focus.
+
+```html
+<m3-tooltip variant="rich" placement="right">
+  <button aria-label="More details">Details</button>
+  <strong slot="title">Storage limit</strong>
+  <span slot="content">You have 2 GB remaining. <a href="/storage">Manage storage</a></span>
+</m3-tooltip>
+```
+
+## Trigger ownership
+
+`m3-tooltip` owns exactly one direct, un-slotted element child as its trigger. It adds its stable generated ID to that element’s `aria-describedby` list and removes only its own ID when the trigger changes or the tooltip disconnects. This keeps existing ID references intact.
 
 ### CSS Custom Properties
 

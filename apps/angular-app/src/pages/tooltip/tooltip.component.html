@@ -14,4 +14,17 @@
       <app-code-block [code]="basicExample" language="html" variant="sample"></app-code-block>
     </div>
   </section>
+
+  <section class="demo-section">
+    <h2>Interactive Rich Tooltip</h2>
+    <p>Move from the trigger into the surface, or use the link with the keyboard. Press Escape to dismiss.</p>
+    <div class="interactive-demo">
+      <m3-tooltip variant="rich" placement="right">
+        <m3-button variant="outlined">More details</m3-button>
+        <strong slot="title">Storage limit</strong>
+        <span slot="content">You have 2 GB remaining. <a href="/storage">Manage storage</a></span>
+      </m3-tooltip>
+      <app-code-block [code]="richExample" language="html" variant="sample"></app-code-block>
+    </div>
+  </section>
 </div>
