@@ -10,3 +10,4 @@ import { chaiA11yAxe } from 'chai-a11y-axe';
 chai.use(chaiA11yAxe);
 
 export * from '@open-wc/testing/pure';
+export * from './lit-browser-contracts.js';

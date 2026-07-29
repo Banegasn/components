@@ -163,12 +163,14 @@ pnpm dev
 ### Pull-request quality gate
 
 Every pull request to `main` runs the immutable, least-privilege `Quality`
- workflow. Its required status check is **`quality`**. It verifies the
-pinned Node 24.18.0/pnpm 11.12.0 install, linting, type checks, Chromium
-Vitest and Angular tests, generated token and motion files, build output,
+workflow. Its required status check is **`quality`**. It verifies the
+pinned Node 24.18.0/pnpm 11.12.0 install, linting, type checks, Chromium,
+Firefox, and WebKit Vitest and Angular tests, generated token and motion files, build output,
 production dependency audit, packed-package imports (including the Svelte Vite
 consumer), and package licenses. It keeps only dependency and Turbo caches—no
-test artifacts or coverage archives are retained.
+test artifacts or coverage archives are retained. The navigation browser
+contract batch prints its Istanbul coverage summary in the quality log and
+ratchets both covered packages at 100% across the supported browser matrix.
 
 Configure `main` branch protection to require **`quality`** before
 merging, require the branch to be up to date, and restrict bypasses to
@@ -239,9 +241,13 @@ pnpm test
 pnpm build
 ```
 
-`pnpm test` runs the existing browser suites with Playwright. Workspaces that
-do not have tests yet print an explicit temporary status instead of being
-silently skipped; adding their behavioral coverage is tracked in issue #12.
+`pnpm test` runs the existing browser suites with Playwright across Chromium,
+Firefox, and WebKit. Workspaces that do not have tests yet print an explicit
+temporary status instead of being silently skipped; each focused contract batch
+removes that status only for the packages it covers. The first navigation batch
+for issue #12 adds executable layout, event, and cleanup contracts for the
+navigation bar and navigation rail; the remaining public packages stay tracked
+for later focused batches rather than being counted as covered.
 
 Formatting uses the shared Prettier policy:
 
