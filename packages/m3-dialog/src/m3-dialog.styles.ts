@@ -5,52 +5,38 @@ export const m3DialogStyles = css`
     display: contents;
   }
 
-  .scrim {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
+  .dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.32);
-    opacity: 0;
-    transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
-    pointer-events: none;
-  }
-
-  .scrim[open] {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .dialog-container {
-    position: fixed;
-    inset: 0;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
   }
 
   .dialog {
-    position: relative;
+    border: 0;
+    padding: 0;
     min-width: 280px;
     max-width: 560px;
     width: calc(100% - 48px);
     max-height: calc(100% - 48px);
     background-color: var(--md-sys-color-surface-container-high, #ece6f0);
     border-radius: var(--md-comp-dialog-container-shape, 28px);
-    box-shadow: 0 8px 12px 6px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 8px 12px 6px rgba(0, 0, 0, 0.15),
+      0 4px 4px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    transform: scale(0.9);
-    opacity: 0;
-    transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-emphasized-decelerate), opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-emphasized-decelerate);
-    pointer-events: none;
+    animation: m3-dialog-enter var(--md-sys-motion-duration-short4)
+      var(--md-sys-motion-easing-emphasized-decelerate);
   }
 
-  .dialog[open] {
-    transform: scale(1);
-    opacity: 1;
-    pointer-events: auto;
+  @keyframes m3-dialog-enter {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
   .icon-slot {
