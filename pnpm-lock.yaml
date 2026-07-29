@@ -383,6 +383,9 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
     devDependencies:
+      '@open-wc/testing':
+        specifier: 5.0.0
+        version: 5.0.0
       typescript:
         specifier: ^5.9.3
         version: 5.9.3

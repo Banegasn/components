@@ -2,7 +2,6 @@
 
 ![Preview](images/preview.png)
 
-
 > Material Design 3 Radio Button web component — framework-agnostic, built with Lit.
 
 [![npm version](https://img.shields.io/npm/v/@banegasn/m3-radio-button.svg)](https://www.npmjs.com/package/@banegasn/m3-radio-button)
@@ -12,7 +11,7 @@ An accessible **M3 Radio Button** web component following the [Material Design 3
 
 ## Features
 
-- Single-selection from a group via `name` attribute
+- Single-selection from a scoped group via a non-empty `name` attribute
 - Checked and disabled states
 - Form integration (name, value, form attributes)
 - Accessible with ARIA `radio` role
@@ -34,41 +33,79 @@ yarn add @banegasn/m3-radio-button
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>M3 Radio Button Demo</title>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@banegasn/m3-radio-button/+esm"></script>
-  <style>
-    body { font-family: Roboto, sans-serif; padding: 32px; background: #fef7ff; }
-    .row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    label { font-size: 16px; color: #1d1b20; }
-    #result { margin-top: 16px; font-size: 14px; color: #6750a4; }
-  </style>
-</head>
-<body>
-  <p style="font-weight:500;color:#1d1b20;">Choose a theme:</p>
-  <div class="row">
-    <m3-radio-button name="theme" value="light" checked></m3-radio-button>
-    <label>Light</label>
-  </div>
-  <div class="row">
-    <m3-radio-button name="theme" value="dark"></m3-radio-button>
-    <label>Dark</label>
-  </div>
-  <div class="row">
-    <m3-radio-button name="theme" value="auto"></m3-radio-button>
-    <label>System default</label>
-  </div>
-  <p id="result">Selected: light</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>M3 Radio Button Demo</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@banegasn/m3-radio-button/+esm"
+    ></script>
+    <style>
+      body {
+        font-family: Roboto, sans-serif;
+        padding: 32px;
+        background: #fef7ff;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      label {
+        font-size: 16px;
+        color: #1d1b20;
+      }
+      #result {
+        margin-top: 16px;
+        font-size: 14px;
+        color: #6750a4;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="font-weight:500;color:#1d1b20;">Choose a theme:</p>
+    <div class="row">
+      <m3-radio-button
+        id="theme-light"
+        name="theme"
+        value="light"
+        checked
+        aria-labelledby="theme-light-label"
+      ></m3-radio-button>
+      <label id="theme-light-label" for="theme-light">Light</label>
+    </div>
+    <div class="row">
+      <m3-radio-button
+        id="theme-dark"
+        name="theme"
+        value="dark"
+        aria-labelledby="theme-dark-label"
+      ></m3-radio-button>
+      <label id="theme-dark-label" for="theme-dark">Dark</label>
+    </div>
+    <div class="row">
+      <m3-radio-button
+        id="theme-auto"
+        name="theme"
+        value="auto"
+        aria-labelledby="theme-auto-label"
+      ></m3-radio-button>
+      <label id="theme-auto-label" for="theme-auto">System default</label>
+    </div>
+    <p id="result">Selected: light</p>
 
-  <script>
-    document.querySelectorAll('m3-radio-button[name="theme"]').forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        document.getElementById('result').textContent = 'Selected: ' + e.detail.value;
-      });
-    });
-  </script>
-</body>
+    <script>
+      document
+        .querySelectorAll('m3-radio-button[name="theme"]')
+        .forEach((radio) => {
+          radio.addEventListener('change', (e) => {
+            document.getElementById('result').textContent =
+              'Selected: ' + radio.value;
+          });
+        });
+    </script>
+  </body>
 </html>
 ```
 
@@ -86,7 +123,9 @@ import '@banegasn/m3-radio-button';
 
 ### Radio Group
 
-Radio buttons with the same `name` attribute form a group where only one can be selected:
+Radio buttons with the same non-empty `name`, in the same tree root and with
+the same owner form, form a group where only one can be selected. Radios in
+different forms or shadow roots stay independent even when their names match:
 
 ```html
 <m3-radio-button name="theme" value="light" checked>Light</m3-radio-button>
@@ -99,8 +138,10 @@ Radio buttons with the same `name` attribute form a group where only one can be 
 ```javascript
 import '@banegasn/m3-radio-button';
 
-const radioButtons = document.querySelectorAll('m3-radio-button[name="option"]');
-radioButtons.forEach(radio => {
+const radioButtons = document.querySelectorAll(
+  'm3-radio-button[name="option"]',
+);
+radioButtons.forEach((radio) => {
   radio.addEventListener('change', (e) => {
     console.log('Selected:', e.detail.value);
   });
@@ -147,7 +188,7 @@ import '@banegasn/m3-radio-button';
       [checked]="selected === 'option1'"
       (change)="onRadioChange($event)"
     ></m3-radio-button>
-  `
+  `,
 })
 export class MyComponent {
   selected = 'option1';
@@ -184,31 +225,31 @@ const onRadioChange = (event) => {
 
 ## Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Whether the radio button is checked |
-| `disabled` | `boolean` | `false` | Disables the radio button |
-| `name` | `string` | `null` | Name attribute for radio group (required for grouping) |
-| `value` | `string` | `null` | Value attribute for form submission |
-| `form` | `HTMLFormElement \| null` | `null` | Current owner form; set the native `form` attribute to associate by ID |
-| `aria-label` | `string` | `null` | ARIA label for accessibility |
-| `aria-labelledby` | `string` | `null` | ARIA labelled by for accessibility |
+| Property          | Type                      | Default | Description                                                            |
+| ----------------- | ------------------------- | ------- | ---------------------------------------------------------------------- |
+| `checked`         | `boolean`                 | `false` | Whether the radio button is checked                                    |
+| `disabled`        | `boolean`                 | `false` | Disables the radio button                                              |
+| `name`            | `string`                  | `null`  | Name attribute for radio group (required for grouping)                 |
+| `value`           | `string`                  | `null`  | Value attribute for form submission                                    |
+| `form`            | `HTMLFormElement \| null` | `null`  | Current owner form; set the native `form` attribute to associate by ID |
+| `aria-label`      | `string`                  | `null`  | ARIA label for accessibility                                           |
+| `aria-labelledby` | `string`                  | `null`  | ARIA labelled by for accessibility                                     |
 
 ## Events
 
-| Event | Description |
-|-------|-------------|
-| `input` | Native event fired on the newly selected radio. |
+| Event    | Description                                              |
+| -------- | -------------------------------------------------------- |
+| `input`  | Native event fired on the newly selected radio.          |
 | `change` | Native event fired after a radio selection is committed. |
 
 See the [form-associated control migration guide](../../docs/FORM_ASSOCIATED_CONTROLS.md).
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
-| `focus()` | Focuses the radio button |
-| `blur()` | Removes focus from the radio button |
+| Method    | Description                         |
+| --------- | ----------------------------------- |
+| `focus()` | Focuses the radio button            |
+| `blur()`  | Removes focus from the radio button |
 
 ## CSS Custom Properties
 
@@ -225,9 +266,31 @@ m3-radio-button {
 }
 ```
 
-## Radio Groups
+## Radio groups and external labels
 
-Radio buttons with the same `name` attribute automatically form a group. When one radio button in a group is selected, all others in the same group are automatically deselected.
+Radio buttons with the same non-empty `name`, owner form, and tree root form a
+local group. Selecting one clears checked peers in that local group only. The
+selected radio is the group's tab stop; if none is selected, the first enabled
+radio is the tab stop. Arrow keys move selection and focus, wrapping around
+and skipping disabled radios.
+
+Use the explicit native `for`/`id` association for an external clickable
+label. Because the interactive ARIA radio is inside the component's shadow
+root, also reference the label with `aria-labelledby` (or use `aria-label`):
+
+```html
+<label id="plan-pro-label" for="plan-pro">Pro plan</label>
+<m3-radio-button
+  id="plan-pro"
+  name="plan"
+  value="pro"
+  aria-labelledby="plan-pro-label"
+></m3-radio-button>
+```
+
+Only labels explicitly associated with the host through `for`/`id` are
+observed; those listeners are removed when the radio disconnects. No
+neighboring elements are changed.
 
 ## Accessibility
 
