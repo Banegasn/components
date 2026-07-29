@@ -31,6 +31,29 @@ const browserPorts: Record<string, number> = {
   'm3-button': 63_335,
   'm3-chip': 63_336,
   'm3-badge': 63_337,
+  'm3-navigation-bar': 63_338,
+  'm3-navigation-rail': 63_339,
+};
+
+const browserCoverageThresholds: Record<
+  string,
+  { branches: number; functions: number; lines: number; statements: number }
+> = {
+  // This first issue #12 batch ratchets the two newly covered navigation
+  // packages. Future batches add their own baseline only after browser tests
+  // exercise every included production source file.
+  'm3-navigation-bar': {
+    branches: 100,
+    functions: 100,
+    lines: 100,
+    statements: 100,
+  },
+  'm3-navigation-rail': {
+    branches: 100,
+    functions: 100,
+    lines: 100,
+    statements: 100,
+  },
 };
 
 const port = browserPorts[workspaceName];
@@ -54,6 +77,15 @@ export default defineConfig({
     globals: false,
     passWithNoTests: false,
     setupFiles: [path.join(configDirectory, 'test/vitest-browser-setup.ts')],
+    // Istanbul instruments browser bundles in every Playwright engine. V8
+    // coverage would restrict this contract lane to Chromium.
+    coverage: {
+      provider: 'istanbul',
+      reporter: ['text', 'json-summary'],
+      include: ['src/**/*.ts'],
+      exclude: ['src/**/*.test.ts', 'src/index.ts'],
+      thresholds: browserCoverageThresholds[workspaceName],
+    },
     browser: {
       enabled: true,
       headless: true,

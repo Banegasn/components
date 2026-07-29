@@ -82,6 +82,11 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Navigation browser coverage ratchet
+        run: |
+          pnpm --filter @banegasn/m3-navigation-bar test:coverage
+          pnpm --filter @banegasn/m3-navigation-rail test:coverage
+
       - name: Token and motion guard
         run: pnpm tokens:check
 
