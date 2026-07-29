@@ -92,10 +92,13 @@ jobs:
         run: pnpm audit:prod
 
       - name: Packed package smoke test
+        timeout-minutes: 5
         run: pnpm smoke:packages
 
       - name: Svelte Vite consumer smoke test
+        timeout-minutes: 5
         run: pnpm smoke:svelte-vite
 
       - name: Verify package licenses
+        timeout-minutes: 5
         run: pnpm verify:package-licenses

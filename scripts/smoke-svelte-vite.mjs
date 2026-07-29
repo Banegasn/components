@@ -226,15 +226,44 @@ async function waitForServer(server, url) {
 
 async function stopServer(server) {
   if (server.exitCode !== null) return;
+
+  const waitForExit = (timeoutMs) => {
+    if (server.exitCode !== null) return Promise.resolve(true);
+    return new Promise((resolve) => {
+      const onExit = () => {
+        clearTimeout(timeout);
+        resolve(true);
+      };
+      const timeout = setTimeout(() => {
+        server.off('exit', onExit);
+        resolve(false);
+      }, timeoutMs);
+      server.once('exit', onExit);
+    });
+  };
+
   server.kill('SIGTERM');
-  const exitedAfterTerm = await Promise.race([
-    once(server, 'exit').then(() => true),
-    new Promise((resolve) => setTimeout(() => resolve(false), 5_000)),
-  ]);
+  const exitedAfterTerm = await waitForExit(5_000);
   if (exitedAfterTerm || server.exitCode !== null) return;
 
   server.kill('SIGKILL');
-  await once(server, 'exit');
+  if (!(await waitForExit(5_000))) {
+    throw new Error('Timed out stopping the Vite smoke-test server.');
+  }
+}
+
+async function closeBrowser(browser) {
+  let timeout;
+  const closed = await Promise.race([
+    browser.close().then(() => true),
+    new Promise((resolve) => {
+      timeout = setTimeout(() => resolve(false), 10_000);
+    }),
+  ]).finally(() => clearTimeout(timeout));
+
+  if (!closed) {
+    throw new Error('Timed out closing the Vite smoke-test browser.');
+  }
 }
 
 async function startServer(fixture) {
@@ -328,9 +357,27 @@ async function main() {
       'Svelte Vite smoke test passed for package-root and .svelte subpath exports.',
     );
   } finally {
-    await browser?.close();
-    if (server) await stopServer(server);
-    await rm(temporaryRoot, { recursive: true, force: true });
+    let cleanupFailure;
+    if (browser) {
+      try {
+        await closeBrowser(browser);
+      } catch (error) {
+        cleanupFailure = error;
+      }
+    }
+    if (server) {
+      try {
+        await stopServer(server);
+      } catch (error) {
+        cleanupFailure ??= error;
+      }
+    }
+    try {
+      await rm(temporaryRoot, { recursive: true, force: true });
+    } catch (error) {
+      cleanupFailure ??= error;
+    }
+    if (cleanupFailure) throw cleanupFailure;
   }
 }
 
