@@ -1,4 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
+import { userEvent } from 'vitest/browser';
 import { describe, it } from 'vitest';
 import './m3-menu.js';
 import type { M3Menu } from './m3-menu.js';
@@ -25,7 +26,7 @@ describe('M3Menu public interaction contract', () => {
     expect(changes[1]).to.deep.equal({ open: false, reason: 'escape' });
   });
 
-  it('handles keyboard navigation, Escape focus return, and Tab dismissal', async () => {
+  it('handles keyboard navigation and Escape focus return', async () => {
     const trigger = await fixture<HTMLButtonElement>(html`<button>Open</button>`);
     const el = await fixture<M3Menu>(html`
       <m3-menu>
@@ -46,11 +47,29 @@ describe('M3Menu public interaction contract', () => {
     await el.updateComplete;
     expect(document.activeElement).to.equal(trigger);
 
-    el.show('trigger');
+  });
+
+  it('synchronously hides and escapes the menu when a real Tab key moves focus', async () => {
+    const container = await fixture<HTMLDivElement>(html`
+      <div>
+        <button id="trigger">Open</button>
+        <m3-menu><m3-menu-item>First</m3-menu-item></m3-menu>
+        <button id="after">After menu</button>
+      </div>
+    `);
+    const trigger = container.querySelector<HTMLButtonElement>('#trigger')!;
+    const after = container.querySelector<HTMLButtonElement>('#after')!;
+    const el = container.querySelector<M3Menu>('m3-menu')!;
+    el.show('trigger', trigger);
     await el.updateComplete;
-    keydown(surface, 'Tab');
-    await el.updateComplete;
+    await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+    expect((el.querySelector('m3-menu-item') as HTMLElement).shadowRoot!.activeElement).to.exist;
+
+    await userEvent.keyboard('{Tab}');
+
     expect(el.open).to.be.false;
+    expect(el.shadowRoot!.querySelector<HTMLElement>('.surface')!.hidden).to.be.true;
+    expect(document.activeElement).to.equal(after);
   });
 
   it('dismisses on outside press, preserves nested menu targets, and supports multiple menus', async () => {
@@ -69,5 +88,40 @@ describe('M3Menu public interaction contract', () => {
     await second.updateComplete;
     expect(first.open).to.be.false;
     expect(second.open).to.be.false;
+  });
+
+  it('only exempts its defined opener, not siblings or a menu mounted on body', async () => {
+    const container = await fixture<HTMLDivElement>(html`
+      <div>
+        <button id="opener">Open</button>
+        <button id="sibling">Sibling control</button>
+        <m3-menu><m3-menu-item>Item</m3-menu-item></m3-menu>
+      </div>
+    `);
+    const opener = container.querySelector<HTMLButtonElement>('#opener')!;
+    const sibling = container.querySelector<HTMLButtonElement>('#sibling')!;
+    const el = container.querySelector<M3Menu>('m3-menu')!;
+    el.show('trigger', opener);
+    await el.updateComplete;
+
+    await userEvent.click(opener);
+    expect(el.open).to.be.true;
+
+    await userEvent.click(sibling);
+    await el.updateComplete;
+    expect(el.open).to.be.false;
+
+    const bodyMenu = document.createElement('m3-menu') as M3Menu;
+    bodyMenu.innerHTML = '<m3-menu-item>Body menu item</m3-menu-item>';
+    document.body.append(bodyMenu);
+    try {
+      bodyMenu.open = true;
+      await bodyMenu.updateComplete;
+      await userEvent.click(document.body);
+      await bodyMenu.updateComplete;
+      expect(bodyMenu.open).to.be.false;
+    } finally {
+      bodyMenu.remove();
+    }
   });
 });

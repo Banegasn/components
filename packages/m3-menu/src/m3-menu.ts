@@ -38,6 +38,7 @@ export class M3Menu extends LitElement {
 
     private _pendingOpenReason: M3MenuOpenReason | undefined;
     private _returnFocus: HTMLElement | null = null;
+    private _opener: HTMLElement | null = null;
 
     connectedCallback() {
         super.connectedCallback();
@@ -92,6 +93,7 @@ export class M3Menu extends LitElement {
                     this._returnFocus?.focus();
                 }
                 this._returnFocus = null;
+                this._opener = null;
             }
         }
     }
@@ -120,11 +122,17 @@ export class M3Menu extends LitElement {
     }
 
     /** Opens the menu and moves focus to its first enabled item. */
-    show(reason: Extract<M3MenuOpenReason, 'trigger' | 'programmatic'> = 'programmatic') {
+    show(
+        reason: Extract<M3MenuOpenReason, 'trigger' | 'programmatic'> = 'programmatic',
+        opener: HTMLElement | null = document.activeElement instanceof HTMLElement && document.activeElement !== document.body
+            ? document.activeElement
+            : null
+    ) {
         if (this.open) {
             return;
         }
-        this._returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        this._returnFocus = opener;
+        this._opener = opener;
         this._setOpen(true, reason);
     }
 
@@ -143,11 +151,11 @@ export class M3Menu extends LitElement {
 
         const path = event.composedPath();
         const pathIncludesMenu = path.includes(this);
-        const pathIncludesAnchor = this.parentElement != null && path.includes(this.parentElement);
+        const pathIncludesOpener = this._opener != null && path.includes(this._opener);
         const pathIncludesSlottedContent = path.some(
             (node) => node instanceof Node && this.contains(node)
         );
-        if (pathIncludesMenu || pathIncludesAnchor || pathIncludesSlottedContent) {
+        if (pathIncludesMenu || pathIncludesOpener || pathIncludesSlottedContent) {
             return;
         }
 
@@ -159,35 +167,41 @@ export class M3Menu extends LitElement {
             return;
         }
 
-        const items = this._enabledItems();
-        if (items.length === 0) {
-            return;
-        }
-
-        const activeIndex = items.findIndex((item) => item.shadowRoot?.activeElement || item === document.activeElement);
-
         switch (event.key) {
             case 'ArrowDown':
+                if (this._enabledItems().length === 0) return;
                 event.preventDefault();
-                this._focusItem(activeIndex < 0 ? 0 : (activeIndex + 1) % items.length);
+                {
+                    const items = this._enabledItems();
+                    const activeIndex = items.findIndex((item) => item.shadowRoot?.activeElement || item === document.activeElement);
+                    this._focusItem(activeIndex < 0 ? 0 : (activeIndex + 1) % items.length);
+                }
                 break;
             case 'ArrowUp':
+                if (this._enabledItems().length === 0) return;
                 event.preventDefault();
-                this._focusItem(activeIndex < 0 ? items.length - 1 : (activeIndex - 1 + items.length) % items.length);
+                {
+                    const items = this._enabledItems();
+                    const activeIndex = items.findIndex((item) => item.shadowRoot?.activeElement || item === document.activeElement);
+                    this._focusItem(activeIndex < 0 ? items.length - 1 : (activeIndex - 1 + items.length) % items.length);
+                }
                 break;
             case 'Home':
+                if (this._enabledItems().length === 0) return;
                 event.preventDefault();
                 this._focusItem(0);
                 break;
             case 'End':
+                if (this._enabledItems().length === 0) return;
                 event.preventDefault();
-                this._focusItem(items.length - 1);
+                this._focusItem(this._enabledItems().length - 1);
                 break;
             case 'Escape':
                 event.preventDefault();
                 this.dismiss('escape');
                 break;
             case 'Tab':
+                this.shadowRoot?.querySelector<HTMLElement>('.surface')?.setAttribute('hidden', '');
                 this.dismiss('tab');
                 break;
             default:

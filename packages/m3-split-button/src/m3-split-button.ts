@@ -7,7 +7,7 @@ type MenuOpenReason = 'trigger' | 'programmatic' | 'escape' | 'outside' | 'selec
 
 interface MenuElement extends HTMLElement {
     open: boolean;
-    show(reason?: 'trigger' | 'programmatic'): void;
+    show(reason?: 'trigger' | 'programmatic', opener?: HTMLElement | null): void;
     dismiss(reason?: MenuOpenReason): void;
     focusFirstItem(): void;
     focusLastItem(): void;
@@ -59,7 +59,7 @@ export class M3SplitButton extends LitElement {
         const menu = this._menu();
         if (menu && menu.open !== this.open) {
             if (this.open) {
-                menu.show(reason === 'programmatic' ? 'programmatic' : 'trigger');
+                menu.show(reason === 'programmatic' ? 'programmatic' : 'trigger', this._menuTrigger());
             } else {
                 menu.dismiss(reason);
             }
@@ -184,6 +184,10 @@ export class M3SplitButton extends LitElement {
 
     private _menu(): MenuElement | null {
         return (this._menus?.find((element) => element.tagName === 'M3-MENU') as MenuElement | undefined) ?? null;
+    }
+
+    private _menuTrigger(): HTMLButtonElement | null {
+        return this.shadowRoot?.querySelector<HTMLButtonElement>('.menu-button') ?? null;
     }
 }
 
