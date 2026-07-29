@@ -38,6 +38,11 @@ export const m3TopAppBarStyles = css`
     margin-right: 8px;
   }
 
+  .navigation-icon[hidden],
+  .actions[hidden] {
+    display: none;
+  }
+
   /* Headline / title */
   .headline {
     flex: 1;

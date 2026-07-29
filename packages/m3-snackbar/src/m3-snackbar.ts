@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { m3SnackbarStyles } from './m3-snackbar.styles.js';
 import { motionDuration } from './motion-duration.js';
 
@@ -57,6 +57,9 @@ export class M3Snackbar extends LitElement {
 
   private _dismissTimer: ReturnType<typeof setTimeout> | null = null;
   private _isLeaving = false;
+
+  @state()
+  private _hasAction = false;
 
   updated(changedProperties: Map<string, unknown>) {
     if (changedProperties.has('open')) {
@@ -126,8 +129,6 @@ export class M3Snackbar extends LitElement {
   render() {
     if (!this.open) return html``;
 
-    const hasAction = this.querySelector('[slot="action"]');
-
     return html`
       <div
         class="snackbar ${this._isLeaving ? 'leaving' : ''}"
@@ -138,13 +139,28 @@ export class M3Snackbar extends LitElement {
         <span class="message">
           <slot>${this.message}</slot>
         </span>
-        ${hasAction ? html`
-          <span class="action" @click=${this._handleActionClick}>
-            <slot name="action"></slot>
-          </span>
-        ` : ''}
+        <span class="action" ?hidden=${!this._hasAction} @click=${this._handleActionClick}>
+          <slot name="action" @slotchange=${this._handleActionSlotChange}></slot>
+        </span>
       </div>
     `;
+  }
+
+  firstUpdated() {
+    this._hasAction = this._slotHasContent();
+  }
+
+  private _handleActionSlotChange = () => {
+    queueMicrotask(() => {
+      this._hasAction = this._slotHasContent();
+    });
+  };
+
+  private _slotHasContent(): boolean {
+    return this.shadowRoot
+      ?.querySelector<HTMLSlotElement>('slot[name="action"]')
+      ?.assignedNodes({ flatten: true })
+      .some((node) => node.nodeType === Node.ELEMENT_NODE || (node.textContent ?? '').trim().length > 0) ?? false;
   }
 }
 

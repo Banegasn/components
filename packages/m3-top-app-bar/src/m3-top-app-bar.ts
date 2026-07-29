@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { m3TopAppBarStyles } from './m3-top-app-bar.styles.js';
 
 /**
@@ -56,27 +56,43 @@ export class M3TopAppBar extends LitElement {
   @property({ type: String })
   headline = '';
 
-  render() {
-    const hasNav = this.querySelector('[slot="navigation-icon"]');
-    const hasActions = this.querySelector('[slot="actions"]');
+  @state() private _hasNavigationIcon = false;
+  @state() private _hasActions = false;
 
+  render() {
     return html`
       <header class="app-bar" part="app-bar">
-        ${hasNav ? html`
-          <div class="navigation-icon">
-            <slot name="navigation-icon"></slot>
-          </div>
-        ` : ''}
+        <div class="navigation-icon" ?hidden=${!this._hasNavigationIcon}>
+          <slot name="navigation-icon" @slotchange=${this._handleSlotChange}></slot>
+        </div>
         <h1 class="headline">
           <slot>${this.headline}</slot>
         </h1>
-        ${hasActions ? html`
-          <div class="actions">
-            <slot name="actions"></slot>
-          </div>
-        ` : ''}
+        <div class="actions" ?hidden=${!this._hasActions}>
+          <slot name="actions" @slotchange=${this._handleSlotChange}></slot>
+        </div>
       </header>
     `;
+  }
+
+  firstUpdated() {
+    this._syncSlotState();
+  }
+
+  private _handleSlotChange = () => {
+    queueMicrotask(() => this._syncSlotState());
+  };
+
+  private _syncSlotState() {
+    this._hasNavigationIcon = this._slotHasContent('navigation-icon');
+    this._hasActions = this._slotHasContent('actions');
+  }
+
+  private _slotHasContent(name: string): boolean {
+    return this.shadowRoot
+      ?.querySelector<HTMLSlotElement>(`slot[name="${name}"]`)
+      ?.assignedNodes({ flatten: true })
+      .some((node) => node.nodeType === Node.ELEMENT_NODE || (node.textContent ?? '').trim().length > 0) ?? false;
   }
 }
 

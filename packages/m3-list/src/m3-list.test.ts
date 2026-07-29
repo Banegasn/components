@@ -5,6 +5,11 @@ import './m3-list-item.js';
 import type { M3List } from './m3-list.js';
 import type { M3ListItem } from './m3-list-item.js';
 
+async function settleSlotChange(el: M3ListItem) {
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  await el.updateComplete;
+}
+
 describe('M3List', () => {
   it('renders a list container', async () => {
     const el = await fixture<M3List>(html`<m3-list></m3-list>`);
@@ -84,6 +89,7 @@ describe('M3ListItem', () => {
     `);
     const leading = el.shadowRoot!.querySelector('.leading');
     expect(leading).to.exist;
+    expect(leading!.hasAttribute('hidden')).to.be.false;
   });
 
   it('supports trailing slot', async () => {
@@ -95,6 +101,42 @@ describe('M3ListItem', () => {
     `);
     const trailing = el.shadowRoot!.querySelector('.trailing');
     expect(trailing).to.exist;
+    expect(trailing!.hasAttribute('hidden')).to.be.false;
+  });
+
+  it('keeps initially absent optional regions collapsed', async () => {
+    const el = await fixture<M3ListItem>(html`<m3-list-item>Headline</m3-list-item>`);
+    for (const selector of ['.leading', '.supporting-text', '.tertiary-text', '.trailing']) {
+      expect(el.shadowRoot!.querySelector(selector)!.hasAttribute('hidden')).to.be.true;
+    }
+  });
+
+  it('reacts to optional content add, remove, reassignment, and reconnect', async () => {
+    const el = await fixture<M3ListItem>(html`<m3-list-item>Headline</m3-list-item>`);
+    const content = document.createElement('span');
+    content.slot = 'leading';
+    content.textContent = 'Icon';
+
+    el.append(content);
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.leading')!.hasAttribute('hidden')).to.be.false;
+
+    content.slot = 'trailing';
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.leading')!.hasAttribute('hidden')).to.be.true;
+    expect(el.shadowRoot!.querySelector('.trailing')!.hasAttribute('hidden')).to.be.false;
+
+    content.slot = 'supporting-text';
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.trailing')!.hasAttribute('hidden')).to.be.true;
+    expect(el.shadowRoot!.querySelector('.supporting-text')!.hasAttribute('hidden')).to.be.false;
+
+    el.remove();
+    document.body.append(el);
+    content.remove();
+    await settleSlotChange(el);
+    expect(el.shadowRoot!.querySelector('.supporting-text')!.hasAttribute('hidden')).to.be.true;
+    el.remove();
   });
 
   it('supports shape variants', async () => {

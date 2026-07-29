@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { FormAssociatedElement } from '@banegasn/m3-form-associated';
 import { m3ButtonStyles } from './m3-button.styles.js';
 
@@ -119,6 +119,9 @@ export class M3Button extends FormAssociatedElement {
   @property({ type: String, reflect: true })
   value: string | null = null;
 
+  @state()
+  private _hasIcon = false;
+
   render() {
     return html`
       <button
@@ -129,11 +132,9 @@ export class M3Button extends FormAssociatedElement {
         @click=${this._handleClick}
       >
         ${this.loading ? html`<span class="loading-spinner"></span>` : ''}
-        ${this._hasIcon() ? html`
-          <span class="icon">
-            <slot name="icon"></slot>
-          </span>
-        ` : ''}
+        <span class="icon" ?hidden=${!this._hasIcon}>
+          <slot name="icon" @slotchange=${this._handleIconSlotChange}></slot>
+        </span>
         ${!this.iconOnly ? html`
           <span class="label">
             <slot></slot>
@@ -143,8 +144,21 @@ export class M3Button extends FormAssociatedElement {
     `;
   }
 
-  private _hasIcon(): boolean {
-    return this.querySelector('[slot="icon"]') !== null;
+  firstUpdated() {
+    this._hasIcon = this._slotHasContent('icon');
+  }
+
+  private _handleIconSlotChange = () => {
+    queueMicrotask(() => {
+      this._hasIcon = this._slotHasContent('icon');
+    });
+  };
+
+  private _slotHasContent(name: string): boolean {
+    return this.shadowRoot
+      ?.querySelector<HTMLSlotElement>(`slot[name="${name}"]`)
+      ?.assignedNodes({ flatten: true })
+      .some((node) => node.nodeType === Node.ELEMENT_NODE || (node.textContent ?? '').trim().length > 0) ?? false;
   }
 
   private _handleClick(e: MouseEvent) {
