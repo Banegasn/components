@@ -17,6 +17,9 @@ export type M3MenuPlacement =
     | 'left-center'
     | 'left-end';
 
+export type M3MenuDismissReason = 'escape' | 'outside' | 'selection' | 'tab';
+export type M3MenuOpenReason = 'trigger' | 'programmatic' | M3MenuDismissReason;
+
 @customElement('m3-menu')
 export class M3Menu extends LitElement {
     static styles = m3MenuStyles;
@@ -32,6 +35,9 @@ export class M3Menu extends LitElement {
 
     @queryAssignedElements({ flatten: true })
     private _assignedElements!: HTMLElement[];
+
+    private _pendingOpenReason: M3MenuOpenReason | undefined;
+    private _returnFocus: HTMLElement | null = null;
 
     connectedCallback() {
         super.connectedCallback();
@@ -52,7 +58,7 @@ export class M3Menu extends LitElement {
         const detail = ce.detail ?? {};
         event.stopPropagation();
         this.dispatchEvent(new CustomEvent('menu-item-select', { bubbles: true, composed: true, detail }));
-        queueMicrotask(() => this._requestDismiss('selection'));
+        queueMicrotask(() => this.dismiss('selection'));
     };
 
     updated(changedProperties: Map<string, unknown>) {
@@ -60,8 +66,33 @@ export class M3Menu extends LitElement {
             this._syncOffset();
         }
 
-        if (changedProperties.has('open') && this.open) {
-            queueMicrotask(() => this.focusFirstItem());
+        if (changedProperties.has('open')) {
+            const reason = this._pendingOpenReason ?? 'programmatic';
+            this._pendingOpenReason = undefined;
+            this.dispatchEvent(new CustomEvent('menu-open-change', {
+                bubbles: true,
+                composed: true,
+                detail: { open: this.open, reason }
+            }));
+
+            if (this.open) {
+                if (!this._returnFocus && document.activeElement instanceof HTMLElement) {
+                    this._returnFocus = document.activeElement;
+                }
+                queueMicrotask(() => this.focusFirstItem());
+            } else {
+                if (reason !== 'programmatic') {
+                    this.dispatchEvent(new CustomEvent('menu-dismiss', {
+                        bubbles: true,
+                        composed: true,
+                        detail: { reason }
+                    }));
+                }
+                if (reason !== 'tab') {
+                    this._returnFocus?.focus();
+                }
+                this._returnFocus = null;
+            }
         }
     }
 
@@ -88,13 +119,25 @@ export class M3Menu extends LitElement {
         this._focusItem(items.length - 1);
     }
 
-    private _handleDocumentPointerDown = (event: Event) => {
+    /** Opens the menu and moves focus to its first enabled item. */
+    show(reason: Extract<M3MenuOpenReason, 'trigger' | 'programmatic'> = 'programmatic') {
+        if (this.open) {
+            return;
+        }
+        this._returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        this._setOpen(true, reason);
+    }
+
+    /** Closes the menu, reports the reason, and restores trigger focus except on Tab. */
+    dismiss(reason: M3MenuOpenReason = 'programmatic') {
         if (!this.open) {
             return;
         }
+        this._setOpen(false, reason);
+    }
 
-        // Ignore events if the menu is hidden (e.g., its parent is display: none due to responsive CSS)
-        if (this.getClientRects().length === 0) {
+    private _handleDocumentPointerDown = (event: Event) => {
+        if (!this.open) {
             return;
         }
 
@@ -108,7 +151,7 @@ export class M3Menu extends LitElement {
             return;
         }
 
-        this._requestDismiss('outside');
+        this.dismiss('outside');
     };
 
     private _handleKeydown = (event: KeyboardEvent) => {
@@ -142,10 +185,10 @@ export class M3Menu extends LitElement {
                 break;
             case 'Escape':
                 event.preventDefault();
-                this._requestDismiss('escape');
+                this.dismiss('escape');
                 break;
             case 'Tab':
-                this._requestDismiss('tab');
+                this.dismiss('tab');
                 break;
             default:
                 break;
@@ -153,7 +196,7 @@ export class M3Menu extends LitElement {
     };
 
     private _handleItemSelect = () => {
-        this._requestDismiss('selection');
+        this.dismiss('selection');
     };
 
     private _enabledItems() {
@@ -171,12 +214,9 @@ export class M3Menu extends LitElement {
         items[index].focus();
     }
 
-    private _requestDismiss(reason: 'escape' | 'outside' | 'selection' | 'tab') {
-        this.dispatchEvent(new CustomEvent('menu-dismiss', {
-            bubbles: true,
-            composed: true,
-            detail: { reason }
-        }));
+    private _setOpen(open: boolean, reason: M3MenuOpenReason) {
+        this._pendingOpenReason = reason;
+        this.open = open;
     }
 
     private _syncOffset() {

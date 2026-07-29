@@ -1,108 +1,33 @@
 <div class="page-container docs-page">
-    <header class="page-header">
-        <h1>Split Button</h1>
-        <p class="subtitle">
-            A split button groups a primary action with a related menu of options.
-            Material 3 Expressive adds shape morphing and rotation animations.
-        </p>
-    </header>
+  <header class="page-header">
+    <h1>Split Button</h1>
+    <p class="subtitle">A primary action paired with a keyboard-complete menu trigger.</p>
+  </header>
 
-    <section class="demo-section">
-        <h2>Variants</h2>
-        <p>Split buttons come in the same variants as standard buttons: filled, tonal, elevated, and outlined.</p>
+  <section class="demo-section">
+    <h2>Interactive Demo</h2>
+    <div class="variant-card">
+      <m3-split-button [open]="menuOpen" menu-label="More send options"
+        (split-button-click)="handlePrimaryAction()"
+        (split-button-open-change)="handleMenuChange($event)">
+        Send
+        <m3-menu slot="menu" placement="bottom-end" (menu-item-select)="handleMenuItemSelect($event)">
+          <m3-menu-item value="schedule-send">Schedule send</m3-menu-item>
+          <m3-menu-item value="save-draft">Save draft</m3-menu-item>
+          <m3-menu-item value="send-test">Send test</m3-menu-item>
+        </m3-menu>
+      </m3-split-button>
+      <p style="margin: 12px 0 0;">Last interaction: <code>{{ lastInteraction }}</code></p>
+      <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
+    </div>
+  </section>
 
-        <div class="variant-card">
-            <div class="variant-header">
-                <h3>Interactive Demo</h3>
-                <span class="emphasis-badge high">Try clicking both sides</span>
-            </div>
-            <div class="demo-row split-button-row" style="gap: 24px; flex-wrap: wrap;">
-                <div class="split-button-demo">
-                    <m3-split-button menu-id="split-button-send-menu" [attr.menu-open]="menuState['send'] ? '' : null"
-                        (split-button-click)="handleMenuToggle('send', $event)">
-                        Send
-                    </m3-split-button>
-                    <m3-menu id="split-button-send-menu" placement="bottom-end" [attr.open]="menuState['send'] ? '' : null"
-                        (menu-dismiss)="handleMenuDismiss('send')"
-                        (menu-item-select)="handleMenuItemSelect('send', $event)">
-                        <m3-menu-item value="schedule-send">Schedule send</m3-menu-item>
-                        <m3-menu-item value="save-draft">Save draft</m3-menu-item>
-                        <m3-menu-item value="send-test">Send test</m3-menu-item>
-                    </m3-menu>
-                </div>
-
-                <div class="split-button-demo">
-                    <m3-split-button variant="outlined" menu-id="split-button-save-menu"
-                        [attr.menu-open]="menuState['save'] ? '' : null"
-                        (split-button-click)="handleMenuToggle('save', $event)">
-                        Save
-                    </m3-split-button>
-                    <m3-menu id="split-button-save-menu" placement="bottom-end" [attr.open]="menuState['save'] ? '' : null"
-                        (menu-dismiss)="handleMenuDismiss('save')"
-                        (menu-item-select)="handleMenuItemSelect('save', $event)">
-                        <m3-menu-item value="save-as">Save as</m3-menu-item>
-                        <m3-menu-item value="export-pdf">Export PDF</m3-menu-item>
-                    </m3-menu>
-                </div>
-
-                <div class="split-button-demo">
-                    <m3-split-button variant="tonal" menu-id="split-button-edit-menu"
-                        [attr.menu-open]="menuState['edit'] ? '' : null"
-                        (split-button-click)="handleMenuToggle('edit', $event)">
-                        Edit
-                    </m3-split-button>
-                    <m3-menu id="split-button-edit-menu" placement="bottom-end" [attr.open]="menuState['edit'] ? '' : null"
-                        (menu-dismiss)="handleMenuDismiss('edit')"
-                        (menu-item-select)="handleMenuItemSelect('edit', $event)">
-                        <m3-menu-item value="rename">Rename</m3-menu-item>
-                        <m3-menu-item value="duplicate">Duplicate</m3-menu-item>
-                    </m3-menu>
-                </div>
-
-                <div class="split-button-demo">
-                    <m3-split-button variant="elevated" menu-id="split-button-create-menu"
-                        [attr.menu-open]="menuState['create'] ? '' : null"
-                        (split-button-click)="handleMenuToggle('create', $event)">
-                        Create
-                    </m3-split-button>
-                    <m3-menu id="split-button-create-menu" placement="bottom-end"
-                        [attr.open]="menuState['create'] ? '' : null"
-                        (menu-dismiss)="handleMenuDismiss('create')"
-                        (menu-item-select)="handleMenuItemSelect('create', $event)">
-                        <m3-menu-item value="new-doc">New document</m3-menu-item>
-                        <m3-menu-item value="new-folder">New folder</m3-menu-item>
-                    </m3-menu>
-                </div>
-            </div>
-            <p style="margin: 12px 0 0;">Last interaction: <code>{{ lastInteraction }}</code></p>
-            <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
-        </div>
-    </section>
-
-    <section class="demo-section">
-        <h2>Usage</h2>
-        <p>Use split buttons when you have a primary action and related secondary actions. The left side triggers the
-            primary action, while the right side (arrow) opens a menu.</p>
-
-        <div class="pattern-card">
-            <h4>Common Use Cases</h4>
-            <ul class="feature-list">
-                <li><strong>Send / Schedule Send:</strong> Primary action sends immediately, menu offers scheduling.
-                </li>
-                <li><strong>Save / Save As:</strong> Primary action saves, menu offers formats.</li>
-                <li><strong>Merge / Squash & Merge:</strong> GitHub-style pull request actions.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="demo-section accessibility">
-        <h2>♿ Accessibility</h2>
-        <ul class="feature-list">
-            <li><strong>Keyboard Navigation:</strong> Tab to focus, Enter/Space to activate.</li>
-            <li><strong>Screen Readers:</strong> The two parts are semantically separate buttons.</li>
-            <li><strong>ARIA:</strong> The menu trigger has <code>aria-haspopup="menu"</code> and
-                <code>aria-expanded</code> states.
-            </li>
-        </ul>
-    </section>
+  <section class="demo-section accessibility">
+    <h2>♿ Accessibility</h2>
+    <ul class="feature-list">
+      <li><strong>Keyboard:</strong> Arrow keys, Home, and End open and enter the menu.</li>
+      <li><strong>Focus:</strong> Escape and outside click return focus to the menu trigger.</li>
+      <li><strong>ARIA:</strong> The trigger exposes a real <code>aria-controls</code> relationship.</li>
+    </ul>
+  </section>
 </div>
