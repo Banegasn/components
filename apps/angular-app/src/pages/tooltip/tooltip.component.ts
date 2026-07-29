@@ -15,4 +15,10 @@ export class TooltipComponent {
   readonly basicExample = `<m3-tooltip text="Save" placement="top">
   <m3-button>Save</m3-button>
 </m3-tooltip>`;
+
+  readonly richExample = `<m3-tooltip variant="rich" placement="right">
+  <m3-button>More details</m3-button>
+  <strong slot="title">Storage limit</strong>
+  <span slot="content">You have 2 GB remaining. <a href="/storage">Manage storage</a></span>
+</m3-tooltip>`;
 }
