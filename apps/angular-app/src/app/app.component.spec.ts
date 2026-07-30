@@ -4,9 +4,9 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import '@banegasn/m3-button';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { AppComponent } from './app.component';
 
@@ -16,6 +16,13 @@ import { AppComponent } from './app.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 class CustomElementHostComponent {}
+
+type ComponentsMenuElement = HTMLElement & {
+  open: boolean;
+  updateComplete: Promise<boolean>;
+};
+
+const settle = () => new Promise<void>((resolve) => setTimeout(resolve));
 
 describe('AppComponent', () => {
   it('creates the application shell', async () => {
@@ -53,5 +60,74 @@ describe('AppComponent', () => {
     expect(button.variant).toBe('tonal');
     expect(button.shadowRoot?.querySelector('button')).not.toBeNull();
     expect(button.textContent?.trim()).toBe('Integrated button');
+  });
+
+  it('keeps the Components submenu open across its pointer bridge, navigates selections, and returns focus on Escape', async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+      providers: [provideRouter([])],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(AppComponent);
+    const router = TestBed.inject(Router);
+    const navigateByUrl = vi
+      .spyOn(router, 'navigateByUrl')
+      .mockResolvedValue(true);
+    fixture.detectChanges();
+
+    const trigger = fixture.nativeElement.querySelector(
+      '#desktop-components-trigger',
+    ) as HTMLElement;
+    const desktopMenuTrigger = fixture.nativeElement.querySelector(
+      '.desktop-components-trigger',
+    ) as HTMLElement;
+    const menu = fixture.nativeElement.querySelector(
+      'm3-menu[placement="right-start"]',
+    ) as ComponentsMenuElement;
+    await menu.updateComplete;
+
+    desktopMenuTrigger.dispatchEvent(new MouseEvent('mouseenter'));
+    fixture.detectChanges();
+    await menu.updateComplete;
+    expect(menu.open).toBe(true);
+
+    desktopMenuTrigger.dispatchEvent(new MouseEvent('mouseleave'));
+    fixture.nativeElement
+      .querySelector('.desktop-components-menu-bridge')
+      .dispatchEvent(new MouseEvent('mouseenter'));
+    await new Promise((resolve) => setTimeout(resolve, 175));
+    expect(menu.open).toBe(true);
+
+    const firstMenuItem = menu.querySelector('m3-menu-item') as HTMLElement;
+    firstMenuItem.shadowRoot!.querySelector('button')!.click();
+    await settle();
+    expect(navigateByUrl).toHaveBeenCalledWith('/components');
+    expect(fixture.componentInstance.componentsMenuOpen()).toBe(false);
+
+    trigger.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 'Enter',
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+      }),
+    );
+    fixture.detectChanges();
+    await menu.updateComplete;
+    expect(menu.open).toBe(true);
+
+    const surface = menu.shadowRoot!.querySelector<HTMLElement>('.surface')!;
+    surface.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+      }),
+    );
+    fixture.detectChanges();
+    await menu.updateComplete;
+    expect(menu.open).toBe(false);
+    expect(trigger.shadowRoot!.activeElement?.tagName).toBe('BUTTON');
   });
 });

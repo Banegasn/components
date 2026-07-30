@@ -33,6 +33,10 @@ export class M3Menu extends LitElement {
     @property({ type: Number, reflect: true })
     offset = 8;
 
+    /** Whether a programmatic open should move focus into the menu. */
+    @property({ type: Boolean, attribute: 'focus-on-open' })
+    focusOnOpen = true;
+
     @queryAssignedElements({ flatten: true })
     private _assignedElements!: HTMLElement[];
 
@@ -77,10 +81,14 @@ export class M3Menu extends LitElement {
             }));
 
             if (this.open) {
-                if (!this._returnFocus && document.activeElement instanceof HTMLElement) {
-                    this._returnFocus = document.activeElement;
+                // Pointer-driven menus can opt out of moving keyboard focus on
+                // open, while explicit trigger activation always enters the menu.
+                if (reason === 'trigger' || this.focusOnOpen) {
+                    if (!this._returnFocus && document.activeElement instanceof HTMLElement) {
+                        this._returnFocus = document.activeElement;
+                    }
+                    queueMicrotask(() => this.focusFirstItem());
                 }
-                queueMicrotask(() => this.focusFirstItem());
             } else {
                 if (reason !== 'programmatic') {
                     this.dispatchEvent(new CustomEvent('menu-dismiss', {
@@ -129,6 +137,11 @@ export class M3Menu extends LitElement {
             : null
     ) {
         if (this.open) {
+            if (reason === 'trigger') {
+                this._returnFocus = opener;
+                this._opener = opener;
+                this.focusFirstItem();
+            }
             return;
         }
         this._returnFocus = opener;
@@ -201,7 +214,10 @@ export class M3Menu extends LitElement {
                 this.dismiss('escape');
                 break;
             case 'Tab':
-                this.shadowRoot?.querySelector<HTMLElement>('.surface')?.setAttribute('hidden', '');
+                // The focused item is inside a shadow tree. Explicitly move
+                // focus before hiding it so WebKit cannot fall back to body.
+                event.preventDefault();
+                this._focusAfterTab(event.shiftKey);
                 this.dismiss('tab');
                 break;
             default:
@@ -226,6 +242,29 @@ export class M3Menu extends LitElement {
         }
 
         items[index].focus();
+    }
+
+    private _focusAfterTab(backwards: boolean) {
+        const focusableSelector = [
+            'a[href]',
+            'button:not([disabled])',
+            'input:not([disabled])',
+            'select:not([disabled])',
+            'textarea:not([disabled])',
+            '[tabindex]:not([tabindex="-1"])',
+        ].join(',');
+        const candidates = Array.from(
+            document.querySelectorAll<HTMLElement>(focusableSelector),
+        ).filter((element) => !this.contains(element) && !element.hasAttribute('hidden'));
+        const following = (element: HTMLElement) =>
+            Boolean(this.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING);
+        const preceding = (element: HTMLElement) =>
+            Boolean(this.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING);
+        const destination = backwards
+            ? candidates.filter(preceding).at(-1)
+            : candidates.find(following);
+
+        destination?.focus();
     }
 
     private _setOpen(open: boolean, reason: M3MenuOpenReason) {
