@@ -49,7 +49,20 @@ describe('M3Menu public interaction contract', () => {
 
   });
 
-  it('synchronously hides and escapes the menu when a real Tab key moves focus', async () => {
+  it('can preserve focus when a menu opens programmatically for pointer interaction', async () => {
+    const trigger = await fixture<HTMLButtonElement>(html`<button>Open</button>`);
+    const el = await fixture<M3Menu>(html`<m3-menu><m3-menu-item>First</m3-menu-item></m3-menu>`);
+    trigger.focus();
+
+    el.focusOnOpen = false;
+    el.open = true;
+    await el.updateComplete;
+    await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+
+    expect(document.activeElement).to.equal(trigger);
+  });
+
+  it('dismisses on a real Tab key and moves focus to the next control', async () => {
     const container = await fixture<HTMLDivElement>(html`
       <div>
         <button id="trigger">Open</button>

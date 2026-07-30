@@ -47,6 +47,16 @@
   width: 100%;
 }
 
+/* Covers the positioning offset so moving from the rail item into its menu
+   never leaves the submenu's hover boundary. */
+.desktop-components-menu-bridge {
+  position: absolute;
+  z-index: 999;
+  inset-block: 0;
+  inset-inline-start: 100%;
+  width: var(--components-menu-offset);
+}
+
 m3-navigation-rail {
   opacity: 1;
   transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard-decelerate);
