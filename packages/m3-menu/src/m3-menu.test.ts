@@ -7,6 +7,24 @@ import type { M3Menu } from './m3-menu.js';
 const keydown = (element: Element, key: string) =>
   element.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, composed: true }));
 
+const shadowControlName = 'test-menu-shadow-control';
+
+if (!customElements.get(shadowControlName)) {
+  customElements.define(
+    shadowControlName,
+    class extends HTMLElement {
+      constructor() {
+        super();
+        this.tabIndex = 0;
+        this.attachShadow({ mode: 'open' }).innerHTML = '<button type="button">Control</button>';
+      }
+    },
+  );
+}
+
+const shadowButton = (element: HTMLElement) =>
+  element.shadowRoot!.querySelector<HTMLButtonElement>('button')!;
+
 describe('M3Menu public interaction contract', () => {
   it('keeps public open state and rendered visibility in sync while reporting changes', async () => {
     const el = await fixture<M3Menu>(html`<m3-menu><m3-menu-item>One</m3-menu-item></m3-menu>`);
@@ -62,27 +80,70 @@ describe('M3Menu public interaction contract', () => {
     expect(document.activeElement).to.equal(trigger);
   });
 
-  it('dismisses on a real Tab key and moves focus to the next control', async () => {
+  it('navigates wrapped menu items with first and last item commands', async () => {
+    const trigger = await fixture<HTMLButtonElement>(html`<button>Open</button>`);
+    const el = await fixture<M3Menu>(html`
+      <m3-menu>
+        <a href="#first"><m3-menu-item>First</m3-menu-item></a>
+        <a href="#last"><m3-menu-item>Last</m3-menu-item></a>
+      </m3-menu>
+    `);
+    const items = el.querySelectorAll<HTMLElement>('m3-menu-item');
+
+    el.show('trigger', trigger);
+    await el.updateComplete;
+    await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+
+    expect(items[0].shadowRoot!.activeElement).to.exist;
+    keydown(el.shadowRoot!.querySelector<HTMLElement>('.surface')!, 'End');
+    expect(items[1].shadowRoot!.activeElement).to.exist;
+  });
+
+  it('uses native forward and reverse Tab navigation across shadow-root controls', async () => {
     const container = await fixture<HTMLDivElement>(html`
       <div>
-        <button id="trigger">Open</button>
+        <test-menu-shadow-control id="before"></test-menu-shadow-control>
         <m3-menu><m3-menu-item>First</m3-menu-item></m3-menu>
-        <button id="after">After menu</button>
+        <test-menu-shadow-control id="after"></test-menu-shadow-control>
       </div>
     `);
-    const trigger = container.querySelector<HTMLButtonElement>('#trigger')!;
-    const after = container.querySelector<HTMLButtonElement>('#after')!;
+    const before = container.querySelector<HTMLElement>('#before')!;
+    const after = container.querySelector<HTMLElement>('#after')!;
     const el = container.querySelector<M3Menu>('m3-menu')!;
-    el.show('trigger', trigger);
+    el.show('trigger', shadowButton(before));
     await el.updateComplete;
     await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
     expect((el.querySelector('m3-menu-item') as HTMLElement).shadowRoot!.activeElement).to.exist;
 
     await userEvent.keyboard('{Tab}');
+    await el.updateComplete;
 
     expect(el.open).to.be.false;
     expect(el.shadowRoot!.querySelector<HTMLElement>('.surface')!.hidden).to.be.true;
     expect(document.activeElement).to.equal(after);
+
+    el.show('trigger', shadowButton(before));
+    await el.updateComplete;
+    await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+    await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
+    await el.updateComplete;
+
+    expect(el.open).to.be.false;
+    expect(document.activeElement).to.equal(before);
+  });
+
+  it('dismisses when native Tab has no sequential focus destination', async () => {
+    const el = await fixture<M3Menu>(html`<m3-menu><m3-menu-item>First</m3-menu-item></m3-menu>`);
+    el.show('trigger', null);
+    await el.updateComplete;
+    await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+
+    await userEvent.keyboard('{Tab}');
+    await el.updateComplete;
+
+    expect(el.open).to.be.false;
+    expect(el.shadowRoot!.querySelector<HTMLElement>('.surface')!.hidden).to.be.true;
+    expect(document.activeElement).to.equal(document.body);
   });
 
   it('dismisses on outside press, preserves nested menu targets, and supports multiple menus', async () => {
