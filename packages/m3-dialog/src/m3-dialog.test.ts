@@ -229,12 +229,18 @@ describe('M3Dialog modal contract', () => {
 
     first.open = true;
     await settleDialog(first);
+    expect(
+      first.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!.open,
+    ).to.equal(true);
     expect(background.inert).to.equal(true);
     expect(insideBackground.inert).to.equal(true);
     expect(document.body.style.overflow).to.equal('hidden');
 
     second.open = true;
     await settleDialog(second);
+    expect(
+      second.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!.open,
+    ).to.equal(true);
     document.dispatchEvent(
       new KeyboardEvent('keydown', {
         key: 'Escape',
@@ -252,6 +258,39 @@ describe('M3Dialog modal contract', () => {
     expect(insideBackground.inert).to.equal(false);
     expect(document.body.style.overflow).to.equal('');
     background.remove();
+  });
+
+  it('restores native modal containment when an open dialog reconnects', async () => {
+    const wrapper = await fixture<HTMLDivElement>(html`
+      <div>
+        <button id="background">Background</button>
+        <m3-dialog open><button>Dismiss</button></m3-dialog>
+      </div>
+    `);
+    const background = wrapper.querySelector<HTMLButtonElement>('#background')!;
+    const dialog = wrapper.querySelector<M3Dialog>('m3-dialog')!;
+    const surface =
+      dialog.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
+    await settleDialog(dialog);
+
+    expect(surface.open).to.equal(true);
+    expect(background.inert).to.equal(true);
+
+    dialog.remove();
+    expect(surface.open).to.equal(false);
+    expect(background.inert).to.equal(false);
+
+    wrapper.append(dialog);
+    await settleDialog(dialog);
+
+    expect(dialog.open).to.equal(true);
+    expect(surface.open).to.equal(true);
+    expect(surface.getAttribute('aria-modal')).to.equal('true');
+    expect(background.inert).to.equal(true);
+    const bounds = surface.getBoundingClientRect();
+    expect(document.elementFromPoint(bounds.x + 8, bounds.y + 8)).to.equal(
+      dialog,
+    );
   });
 
   it('puts the most recently opened dialog above an earlier DOM sibling across stacking contexts', async () => {

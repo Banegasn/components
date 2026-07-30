@@ -99,12 +99,17 @@ export class M3Dialog extends LitElement {
   private readonly descriptionId = `m3-dialog-description-${this.instanceId}`;
   private opener: HTMLElement | null = null;
   private closeReason: M3DialogCloseReason = 'programmatic';
+  private modalActivationComplete = Promise.resolve();
+  private modalActivationPending = false;
 
   connectedCallback() {
     super.connectedCallback();
 
     if (this.open) {
       this.activate();
+      if (this.dialogElement) {
+        this.activateNativeModal();
+      }
     }
   }
 
@@ -150,9 +155,23 @@ export class M3Dialog extends LitElement {
 
     if (this.open) {
       this.activate();
+      this.activateNativeModal();
     } else if (changedProperties.get('open') === true) {
       this.deactivate();
     }
+  }
+
+  protected firstUpdated() {
+    if (this.open) {
+      this.activate();
+      this.activateNativeModal();
+    }
+  }
+
+  protected override async getUpdateComplete(): Promise<boolean> {
+    const completed = await super.getUpdateComplete();
+    await this.modalActivationComplete;
+    return completed;
   }
 
   /** Opens the dialog and returns after Lit has rendered the open state. */
@@ -207,17 +226,42 @@ export class M3Dialog extends LitElement {
     M3Dialog.openDialogs.push(this);
 
     M3Dialog.updatePageContainment();
-    this.dispatchEvent(
-      new CustomEvent('dialog-open', {
-        bubbles: true,
-        composed: true,
-        detail: { opener: this.opener },
-      }),
-    );
+  }
+
+  private activateNativeModal() {
+    if (this.modalActivationPending) {
+      return;
+    }
+
+    this.modalActivationPending = true;
+    this.modalActivationComplete = new Promise((resolve) => {
+      queueMicrotask(() => {
+        this.modalActivationPending = false;
+
+        if (
+          this.open &&
+          M3Dialog.openDialogs.includes(this) &&
+          this.showNativeModal()
+        ) {
+          this.dispatchEvent(
+            new CustomEvent('dialog-open', {
+              bubbles: true,
+              composed: true,
+              detail: { opener: this.opener },
+            }),
+          );
+        }
+
+        resolve();
+      });
+    });
 
     void this.updateComplete.then(() => {
-      this.showNativeModal();
-      if (this.open && M3Dialog.topDialog === this) {
+      if (
+        this.open &&
+        this.dialogElement?.open &&
+        M3Dialog.topDialog === this
+      ) {
         this.focusInitial();
       }
     });
@@ -309,12 +353,16 @@ export class M3Dialog extends LitElement {
    * The native modal dialog top layer is ordered by showModal() calls, not DOM
    * order or ancestor stacking contexts. Calling it from the modal stack makes
    * the most recently opened component the visual and pointer-event topmost.
+   * It runs after containment has restored the active dialog from inertness.
    */
-  private showNativeModal() {
+  private showNativeModal(): boolean {
     const dialog = this.dialogElement;
     if (dialog && !dialog.open) {
       dialog.showModal();
+      return true;
     }
+
+    return false;
   }
 
   private closeNativeModal() {
