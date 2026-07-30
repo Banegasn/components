@@ -11,6 +11,8 @@ import {
   effect,
   PLATFORM_ID,
   ChangeDetectionStrategy,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
@@ -26,6 +28,11 @@ import { DialogService } from './services/dialog.service';
 import { SettingsComponent } from './components/settings/settings.component';
 
 import { SeoLinkComponent } from './components/seo-link/seo-link.component';
+
+type ComponentsMenuElement = HTMLElement & {
+  open: boolean;
+  show(reason: 'trigger', opener: HTMLElement): void;
+};
 
 @Component({
   selector: 'app-root',
@@ -47,6 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
   currentRoute = signal('/');
   componentsMenuOpen = signal(false);
   railExpanded = signal(true);
+
+  @ViewChild('desktopComponentsMenu')
+  private desktopComponentsMenu?: ElementRef<ComponentsMenuElement>;
+
+  @ViewChild('desktopComponentsTrigger')
+  private desktopComponentsTrigger?: ElementRef<HTMLElement>;
 
   constructor() {
     if (isPlatformBrowser(this.#platformId)) {
@@ -254,6 +267,17 @@ export class AppComponent implements OnInit, OnDestroy {
     this.componentsMenuOpen.set(true);
   }
 
+  openComponentsMenuFromKeyboard() {
+    const menu = this.desktopComponentsMenu?.nativeElement;
+    const trigger = this.desktopComponentsTrigger?.nativeElement;
+    const opener = trigger?.shadowRoot?.querySelector<HTMLElement>('button');
+
+    if (menu && opener) {
+      menu.show('trigger', opener);
+    }
+    this.openComponentsMenu();
+  }
+
   toggleComponentsMenu() {
     this.componentsMenuOpen.update((open) => !open);
   }
@@ -347,6 +371,20 @@ export class AppComponent implements OnInit, OnDestroy {
       this.desktopComponentsCloseTimer = null;
       this.closeComponentsMenu();
     }, 150); // motion-literal-exempt: pointer-intent debounce, not animation timing.
+  }
+
+  onDesktopComponentsTriggerKeydown(event: KeyboardEvent) {
+    if (!['Enter', ' ', 'ArrowRight'].includes(event.key)) {
+      return;
+    }
+
+    event.preventDefault();
+    this.openComponentsMenuFromKeyboard();
+  }
+
+  onDesktopComponentsTriggerClick(event: Event) {
+    event.preventDefault();
+    this.openComponentsMenuFromKeyboard();
   }
 
   onMobileComponentsPointerDown(_event: Event) {

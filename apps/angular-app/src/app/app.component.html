@@ -15,15 +15,20 @@
       </m3-navigation-rail-item>
     </app-seo-link>
 
-    <div class="desktop-components-trigger" (mouseenter)="onDesktopComponentsMouseEnter()"
-      (mouseleave)="onDesktopComponentsMouseLeave()" (menu-item-select)="onComponentsMenuItemSelect($event)">
-      <app-seo-link href="components">
-        <m3-navigation-rail-item label="Components" [active]="isComponentsRoute()">
-          <span slot="icon" class="material-symbols-outlined">browse</span>
-        </m3-navigation-rail-item>
-      </app-seo-link>
+    <div class="desktop-components-trigger" [style.--components-menu-offset.px]="railExpanded() ? 24 : 8"
+      (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
+      (menu-item-select)="onComponentsMenuItemSelect($event)">
+      <m3-navigation-rail-item #desktopComponentsTrigger id="desktop-components-trigger" label="Components"
+        [active]="isComponentsRoute()" aria-haspopup="menu" [attr.aria-expanded]="componentsMenuOpen()"
+        (item-click)="onDesktopComponentsTriggerClick($event)"
+        (keydown)="onDesktopComponentsTriggerKeydown($event)">
+        <span slot="icon" class="material-symbols-outlined">browse</span>
+      </m3-navigation-rail-item>
 
-      <m3-menu placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()"
+      <div class="desktop-components-menu-bridge" aria-hidden="true"
+        (mouseenter)="onDesktopComponentsMouseEnter()"></div>
+
+      <m3-menu #desktopComponentsMenu placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()" [focusOnOpen]="false"
         (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
         (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-comp-menu-max-height: calc(100vh - 400px);">
         @for (item of componentMenuItems; track item.path) {
