@@ -52,14 +52,16 @@ export class M3TextField extends FormAssociatedElement {
   @state() private _focused = false;
   @state() private _hasLeadingIcon = false;
   @state() private _hasTrailingIcon = false;
+  @state() private _invalid = false;
+  @state() private _validationMessage = '';
   @query('input') private _input!: HTMLInputElement;
 
   private readonly _id = `m3-text-field-${(M3TextField._nextId += 1)}`;
   private _defaultValue = '';
 
   render() {
-    const invalid = this._isInvalid();
-    const supportingText = invalid ? this._errorMessage() : this.helperText;
+    const invalid = this._invalid;
+    const supportingText = invalid ? this._validationMessage : this.helperText;
     const describedBy = [
       this.ariaDescribedBy,
       supportingText ? `${this._id}-supporting` : null,
@@ -126,12 +128,12 @@ export class M3TextField extends FormAssociatedElement {
               >
                 <span class="supporting-text">${supportingText}</span>
                 ${
-                this._showsCounter()
-                  ? html`<span class="counter"
-                      >${this.value.length}/${this.maxLength}</span
-                    >`
-                  : nothing
-              }
+                  this._showsCounter()
+                    ? html`<span class="counter"
+                        >${this.value.length}/${this.maxLength}</span
+                      >`
+                    : nothing
+                }
               </div>
             `
           : nothing
@@ -179,10 +181,6 @@ export class M3TextField extends FormAssociatedElement {
     return this.showCounter && this.maxLength !== null && this.maxLength >= 0;
   }
 
-  private _isInvalid(): boolean {
-    return this.error || Boolean(this._input && !this._input.validity.valid);
-  }
-
   private _errorMessage(): string {
     if (this.error) return this.errorText || 'Invalid value.';
     return this._input?.validationMessage || 'Invalid value.';
@@ -190,12 +188,15 @@ export class M3TextField extends FormAssociatedElement {
 
   private _syncFormState(): void {
     const input = this._input;
-    const flags =
-      !this.isFormDisabled && input ? validityFlags(input.validity) : {};
-    if (this.error && !this.isFormDisabled) flags.customError = true;
+    const disabled = this.isFormDisabled;
+    const flags = !disabled && input ? validityFlags(input.validity) : {};
+    if (this.error && !disabled) flags.customError = true;
     const invalid = Object.keys(flags).length > 0;
-    this.setFormValue(this.isFormDisabled ? null : this.value, this.value);
-    this.setFormValidity(flags, invalid ? this._errorMessage() : '', input);
+    const message = invalid ? this._errorMessage() : '';
+    this.setFormValue(disabled ? null : this.value, this.value);
+    this.setFormValidity(flags, message, input);
+    if (this._invalid !== invalid) this._invalid = invalid;
+    if (this._validationMessage !== message) this._validationMessage = message;
   }
 
   protected resetFormControl(): void {

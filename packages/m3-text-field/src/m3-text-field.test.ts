@@ -4,6 +4,22 @@ import './m3-text-field.js';
 import type { M3TextField } from './m3-text-field.js';
 
 describe('m3-text-field', () => {
+  it('renders an initial required error after synchronizing form validity', async () => {
+    const field = await fixture<M3TextField>(html`
+      <m3-text-field label="Email" required></m3-text-field>
+    `);
+    await field.updateComplete;
+    await field.updateComplete;
+
+    const input = field.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+    expect(field.validity.valueMissing).to.equal(true);
+    expect(input.getAttribute('aria-invalid')).to.equal('true');
+    expect(input.getAttribute('aria-errormessage')).to.match(/supporting$/);
+    expect(
+      field.shadowRoot!.querySelector('.supporting-row')!.textContent,
+    ).to.not.equal('');
+  });
+
   it('implements the documented variant, slot, supporting-text, and ARIA contract', async () => {
     const field = await fixture<M3TextField>(html`
       <m3-text-field
@@ -106,6 +122,57 @@ describe('m3-text-field', () => {
     await field.updateComplete;
     expect(field.validity.valid).to.equal(true);
     expect(new FormData(form).get('username')).to.equal('Ada');
+  });
+
+  it('updates rendered validity when required and pattern constraints change', async () => {
+    const field = await fixture<M3TextField>(html`
+      <m3-text-field label="Username" value="123"></m3-text-field>
+    `);
+    await field.updateComplete;
+    const input = field.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+
+    field.required = true;
+    field.value = '';
+    await field.updateComplete;
+    await field.updateComplete;
+    expect(input.getAttribute('aria-invalid')).to.equal('true');
+
+    field.required = false;
+    field.value = '123';
+    field.pattern = '[A-Za-z]+';
+    await field.updateComplete;
+    await field.updateComplete;
+    expect(field.validity.patternMismatch).to.equal(true);
+    expect(input.getAttribute('aria-invalid')).to.equal('true');
+
+    field.pattern = null;
+    await field.updateComplete;
+    await field.updateComplete;
+    expect(field.validity.valid).to.equal(true);
+    expect(input.hasAttribute('aria-invalid')).to.equal(false);
+    expect(field.shadowRoot!.querySelector('.supporting-row')).to.equal(null);
+  });
+
+  it('clears rendered errors and ARIA error references when disabled', async () => {
+    const field = await fixture<M3TextField>(html`
+      <m3-text-field
+        label="Email"
+        error
+        error-text="Use a work address."
+      ></m3-text-field>
+    `);
+    await field.updateComplete;
+    await field.updateComplete;
+    const input = field.shadowRoot!.querySelector<HTMLInputElement>('input')!;
+    expect(input.getAttribute('aria-invalid')).to.equal('true');
+
+    field.disabled = true;
+    await field.updateComplete;
+    await field.updateComplete;
+    expect(field.validity.valid).to.equal(true);
+    expect(input.hasAttribute('aria-invalid')).to.equal(false);
+    expect(input.hasAttribute('aria-errormessage')).to.equal(false);
+    expect(field.shadowRoot!.querySelector('.supporting-row')).to.equal(null);
   });
 
   it('emits exactly one native input/change pair and no removed custom aliases', async () => {
