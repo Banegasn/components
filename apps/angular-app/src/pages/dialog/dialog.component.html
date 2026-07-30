@@ -14,23 +14,25 @@
     <div class="interactive-demo">
       <div class="demo-row">
         <m3-button (click)="openDialog()">Open Dialog</m3-button>
-        <m3-dialog
-          #dialog
-          [open]="dialogOpen"
-          headline="Confirm Action"
-          (dialog-close)="closeDialog($event)"
-        >
-          <p>Are you sure you want to proceed with this action?</p>
-          <m3-button
-            slot="actions"
-            variant="text"
-            (click)="closeFromAction(dialog)"
-            >Cancel</m3-button
+        @if (dialogOpen) {
+          <m3-dialog
+            #dialog
+            open
+            headline="Confirm Action"
+            (dialog-close)="closeDialog($event)"
           >
-          <m3-button slot="actions" (click)="closeFromAction(dialog)"
-            >Confirm</m3-button
-          >
-        </m3-dialog>
+            <p>Are you sure you want to proceed with this action?</p>
+            <m3-button
+              slot="actions"
+              variant="text"
+              (click)="closeFromAction(dialog)"
+              >Cancel</m3-button
+            >
+            <m3-button slot="actions" (click)="closeFromAction(dialog)"
+              >Confirm</m3-button
+            >
+          </m3-dialog>
+        }
       </div>
       <p class="demo-note">
         Last close reason: <code>{{ lastCloseReason }}</code
