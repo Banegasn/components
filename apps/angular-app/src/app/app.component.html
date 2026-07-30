@@ -32,12 +32,10 @@
         (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
         (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-comp-menu-max-height: calc(100vh - 400px);">
         @for (item of componentMenuItems; track item.path) {
-        <app-seo-link [href]="item.path.substring(1)">
-          <m3-menu-item [value]="item.path">
-            <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
-            {{ item.label }}
-          </m3-menu-item>
-        </app-seo-link>
+        <m3-menu-item [value]="item.path">
+          <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
+          {{ item.label }}
+        </m3-menu-item>
         }
       </m3-menu>
     </div>
@@ -81,12 +79,10 @@
     <m3-menu placement="top-center" [offset]="12" [open]="componentsMenuOpen()"
       (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-comp-menu-max-height: calc(100dvh - 200px);">
       @for (item of componentMenuItems; track item.path) {
-      <app-seo-link [href]="item.path.substring(1)">
-        <m3-menu-item [value]="item.path">
-          <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
-          {{ item.label }}
-        </m3-menu-item>
-      </app-seo-link>
+      <m3-menu-item [value]="item.path">
+        <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
+        {{ item.label }}
+      </m3-menu-item>
       }
     </m3-menu>
   </div>

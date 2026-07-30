@@ -99,11 +99,14 @@ describe('M3Menu public interaction contract', () => {
     expect(items[1].shadowRoot!.activeElement).to.exist;
   });
 
-  it('uses native forward and reverse Tab navigation across shadow-root controls', async () => {
+  it('uses native forward and reverse Tab navigation across shadow-root controls for multi-item menus', async () => {
     const container = await fixture<HTMLDivElement>(html`
       <div>
         <test-menu-shadow-control id="before"></test-menu-shadow-control>
-        <m3-menu><m3-menu-item>First</m3-menu-item></m3-menu>
+        <m3-menu>
+          <m3-menu-item>First</m3-menu-item>
+          <m3-menu-item>Last</m3-menu-item>
+        </m3-menu>
         <test-menu-shadow-control id="after"></test-menu-shadow-control>
       </div>
     `);
@@ -125,6 +128,7 @@ describe('M3Menu public interaction contract', () => {
     el.show('trigger', shadowButton(before));
     await el.updateComplete;
     await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
+    el.focusLastItem();
     await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
     await el.updateComplete;
 

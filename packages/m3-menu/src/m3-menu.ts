@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
 import { m3MenuStyles } from './m3-menu.styles.js';
 import './m3-menu-item.js';
+import type { M3MenuItem } from './m3-menu-item.js';
 
 export type M3MenuPlacement =
     | 'bottom-start'
@@ -82,6 +83,7 @@ export class M3Menu extends LitElement {
             }));
 
             if (this.open) {
+                this._setRovingTabstop(0);
                 // Pointer-driven menus can opt out of moving keyboard focus on
                 // open, while explicit trigger activation always enters the menu.
                 if (reason === 'trigger' || this.focusOnOpen) {
@@ -244,13 +246,13 @@ export class M3Menu extends LitElement {
         });
     };
 
-    private _enabledItems() {
+    private _enabledItems(): M3MenuItem[] {
         return (this._assignedElements ?? []).flatMap((element) => {
             if (element.tagName === 'M3-MENU-ITEM') {
                 return [element];
             }
             return Array.from(element.querySelectorAll<HTMLElement>('m3-menu-item'));
-        }).filter((element) => !element.hasAttribute('disabled'));
+        }).filter((element) => !element.hasAttribute('disabled')) as M3MenuItem[];
     }
 
     private _focusItem(index: number) {
@@ -259,7 +261,12 @@ export class M3Menu extends LitElement {
             return;
         }
 
+        this._setRovingTabstop(index);
         items[index].focus();
+    }
+
+    private _setRovingTabstop(activeIndex: number) {
+        this._enabledItems().forEach((item, itemIndex) => item.setTabbable(itemIndex === activeIndex));
     }
 
     private _setOpen(open: boolean, reason: M3MenuOpenReason) {
