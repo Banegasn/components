@@ -20,7 +20,7 @@
       (menu-item-select)="onComponentsMenuItemSelect($event)">
       <m3-navigation-rail-item #desktopComponentsTrigger id="desktop-components-trigger" label="Components"
         [active]="isComponentsRoute()" aria-haspopup="menu" [attr.aria-expanded]="componentsMenuOpen()"
-        (item-click)="onDesktopComponentsTriggerClick($event)"
+        (click)="onDesktopComponentsTriggerClick($event)"
         (keydown)="onDesktopComponentsTriggerKeydown($event)">
         <span slot="icon" class="material-symbols-outlined">browse</span>
       </m3-navigation-rail-item>
@@ -28,7 +28,7 @@
       <div class="desktop-components-menu-bridge" aria-hidden="true"
         (mouseenter)="onDesktopComponentsMouseEnter()"></div>
 
-      <m3-menu #desktopComponentsMenu placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()" [focusOnOpen]="false"
+      <m3-menu id="desktop-components-menu" placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()" [focusOnOpen]="false"
         (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
         (menu-dismiss)="onComponentsMenuDismiss($event)" style="--md-comp-menu-max-height: calc(100vh - 400px);">
         @for (item of componentMenuItems; track item.path) {
