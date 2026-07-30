@@ -217,11 +217,9 @@ export class M3Dialog extends LitElement {
 
     void this.updateComplete.then(() => {
       this.showNativeModal();
-      requestAnimationFrame(() => {
-        if (this.open && M3Dialog.topDialog === this) {
-          this.focusInitial();
-        }
-      });
+      if (this.open && M3Dialog.topDialog === this) {
+        this.focusInitial();
+      }
     });
   }
 

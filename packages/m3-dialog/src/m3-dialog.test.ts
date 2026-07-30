@@ -8,12 +8,8 @@ import type {
   M3DialogCloseReason,
 } from './m3-dialog.js';
 
-const nextFrame = () =>
-  new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
-
 async function settleDialog(dialog: M3Dialog) {
   await dialog.updateComplete;
-  await nextFrame();
 }
 
 describe('M3Dialog modal contract', () => {
