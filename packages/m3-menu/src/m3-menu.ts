@@ -43,6 +43,7 @@ export class M3Menu extends LitElement {
     private _pendingOpenReason: M3MenuOpenReason | undefined;
     private _returnFocus: HTMLElement | null = null;
     private _opener: HTMLElement | null = null;
+    private _pendingTabDismiss = false;
 
     connectedCallback() {
         super.connectedCallback();
@@ -90,6 +91,7 @@ export class M3Menu extends LitElement {
                     queueMicrotask(() => this.focusFirstItem());
                 }
             } else {
+                this._pendingTabDismiss = false;
                 if (reason !== 'programmatic') {
                     this.dispatchEvent(new CustomEvent('menu-dismiss', {
                         bubbles: true,
@@ -114,6 +116,7 @@ export class M3Menu extends LitElement {
         role="menu"
         ?hidden=${!this.open}
         @keydown=${this._handleKeydown}
+        @focusout=${this._handleFocusOut}
       >
         <slot @menu-item-select=${this._handleItemSelect}></slot>
       </div>
@@ -214,11 +217,10 @@ export class M3Menu extends LitElement {
                 this.dismiss('escape');
                 break;
             case 'Tab':
-                // The focused item is inside a shadow tree. Explicitly move
-                // focus before hiding it so WebKit cannot fall back to body.
-                event.preventDefault();
-                this._focusAfterTab(event.shiftKey);
-                this.dismiss('tab');
+                // Keep the focused item available while the browser performs
+                // its native sequential focus navigation. _handleFocusOut
+                // dismisses once focus has actually left the menu.
+                this._pendingTabDismiss = true;
                 break;
             default:
                 break;
@@ -229,10 +231,26 @@ export class M3Menu extends LitElement {
         this.dismiss('selection');
     };
 
+    private _handleFocusOut = () => {
+        queueMicrotask(() => {
+            if (!this._pendingTabDismiss) {
+                return;
+            }
+
+            this._pendingTabDismiss = false;
+            if (this.open && !this.matches(':focus-within')) {
+                this.dismiss('tab');
+            }
+        });
+    };
+
     private _enabledItems() {
-        return (this._assignedElements ?? []).filter((element) =>
-            element.tagName === 'M3-MENU-ITEM' && !element.hasAttribute('disabled')
-        );
+        return (this._assignedElements ?? []).flatMap((element) => {
+            if (element.tagName === 'M3-MENU-ITEM') {
+                return [element];
+            }
+            return Array.from(element.querySelectorAll<HTMLElement>('m3-menu-item'));
+        }).filter((element) => !element.hasAttribute('disabled'));
     }
 
     private _focusItem(index: number) {
@@ -242,29 +260,6 @@ export class M3Menu extends LitElement {
         }
 
         items[index].focus();
-    }
-
-    private _focusAfterTab(backwards: boolean) {
-        const focusableSelector = [
-            'a[href]',
-            'button:not([disabled])',
-            'input:not([disabled])',
-            'select:not([disabled])',
-            'textarea:not([disabled])',
-            '[tabindex]:not([tabindex="-1"])',
-        ].join(',');
-        const candidates = Array.from(
-            document.querySelectorAll<HTMLElement>(focusableSelector),
-        ).filter((element) => !this.contains(element) && !element.hasAttribute('hidden'));
-        const following = (element: HTMLElement) =>
-            Boolean(this.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING);
-        const preceding = (element: HTMLElement) =>
-            Boolean(this.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING);
-        const destination = backwards
-            ? candidates.filter(preceding).at(-1)
-            : candidates.find(following);
-
-        destination?.focus();
     }
 
     private _setOpen(open: boolean, reason: M3MenuOpenReason) {

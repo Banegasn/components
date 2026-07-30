@@ -11,8 +11,6 @@ import {
   effect,
   PLATFORM_ID,
   ChangeDetectionStrategy,
-  ElementRef,
-  ViewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
@@ -54,12 +52,6 @@ export class AppComponent implements OnInit, OnDestroy {
   currentRoute = signal('/');
   componentsMenuOpen = signal(false);
   railExpanded = signal(true);
-
-  @ViewChild('desktopComponentsMenu')
-  private desktopComponentsMenu?: ElementRef<ComponentsMenuElement>;
-
-  @ViewChild('desktopComponentsTrigger')
-  private desktopComponentsTrigger?: ElementRef<HTMLElement>;
 
   constructor() {
     if (isPlatformBrowser(this.#platformId)) {
@@ -179,6 +171,12 @@ export class AppComponent implements OnInit, OnDestroy {
       true,
     );
     this.#document.removeEventListener('click', this.boundMenuClick, true);
+    if (this.desktopComponentsCloseTimer !== null) {
+      clearTimeout(this.desktopComponentsCloseTimer);
+    }
+    if (this.mobileComponentsLongPressTimer !== null) {
+      clearTimeout(this.mobileComponentsLongPressTimer);
+    }
   }
 
   initializeTheme() {
@@ -268,8 +266,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openComponentsMenuFromKeyboard() {
-    const menu = this.desktopComponentsMenu?.nativeElement;
-    const trigger = this.desktopComponentsTrigger?.nativeElement;
+    const menu = this.#document.querySelector<ComponentsMenuElement>(
+      '#desktop-components-menu',
+    );
+    const trigger = this.#document.querySelector<HTMLElement>(
+      '#desktop-components-trigger',
+    );
     const opener = trigger?.shadowRoot?.querySelector<HTMLElement>('button');
 
     if (menu && opener) {
