@@ -20,6 +20,10 @@
       "dependsOn": ["^build"],
       "env": ["VITEST_BROWSER_CHANNEL"]
     },
+    "test:e2e": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
     "clean": {
       "cache": false
     }

@@ -77,6 +77,13 @@ export class M3MenuItem extends LitElement {
     @property({ type: Boolean, reflect: true })
     disabled = false;
 
+    /**
+     * Whether this item's internal control participates in sequential focus
+     * navigation. M3Menu manages this as a roving tab stop while it is open.
+     */
+    @property({ type: Boolean, reflect: true })
+    tabbable = true;
+
     @state()
     private _hasLeadingIcon = false;
 
@@ -95,6 +102,7 @@ export class M3MenuItem extends LitElement {
         class=${itemClasses}
         type="button"
         role="menuitem"
+        tabindex=${this.tabbable ? 0 : -1}
         ?disabled=${this.disabled}
         @click=${this._handleClick}
       >
@@ -117,6 +125,15 @@ export class M3MenuItem extends LitElement {
 
     focus(options?: FocusOptions) {
         this.shadowRoot?.querySelector<HTMLButtonElement>('button')?.focus(options);
+    }
+
+    /** Updates the roving tab stop synchronously before native Tab runs. */
+    setTabbable(tabbable: boolean) {
+        this.tabbable = tabbable;
+        const button = this.shadowRoot?.querySelector<HTMLButtonElement>('button');
+        if (button) {
+            button.tabIndex = tabbable ? 0 : -1;
+        }
     }
 
     private _handleClick() {

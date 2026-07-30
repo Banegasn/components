@@ -79,7 +79,7 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Test
+      - name: Test (unit and end-to-end)
         run: pnpm test
 
       - name: Navigation browser coverage ratchet
