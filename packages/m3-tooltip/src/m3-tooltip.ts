@@ -173,10 +173,17 @@ export class M3Tooltip extends LitElement {
   private _scheduleHide() {
     this._clearShowTimeout();
     if (!this._visible || this._hideTimeout !== null) return;
+    // Plain tooltips are not interactive, so they must dismiss as soon as the
+    // trigger is left. Only rich tooltips need a grace period for a pointer
+    // moving from the trigger into their interactive content.
+    if (this.variant !== 'rich') {
+      this._hideNow();
+      return;
+    }
     this._hideTimeout = setTimeout(() => {
       this._hideTimeout = null;
       this._hideNow();
-    }, this.variant === 'rich' ? RICH_HIDE_DELAY : 0);
+    }, RICH_HIDE_DELAY);
   }
 
   private _showNow() {

@@ -28,7 +28,7 @@ describe('M3Tooltip public interaction contract', () => {
     expect(surface(tooltip).hasAttribute('visible')).to.equal(true);
 
     trigger.dispatchEvent(new MouseEvent('mouseleave', { relatedTarget: document.body }));
-    await settle(tooltip);
+    await tooltip.updateComplete;
     expect(surface(tooltip).hasAttribute('visible')).to.equal(false);
 
     trigger.focus();
