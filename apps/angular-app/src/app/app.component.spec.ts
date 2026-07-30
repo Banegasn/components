@@ -95,6 +95,7 @@ describe('AppComponent', () => {
     fixture.nativeElement
       .querySelector('.desktop-components-menu-bridge')
       .dispatchEvent(new MouseEvent('mouseenter'));
+    // motion-literal-exempt: test-only dwell exceeds the non-motion close delay.
     await new Promise((resolve) => setTimeout(resolve, 175));
     expect(menu.open).toBe(true);
 
