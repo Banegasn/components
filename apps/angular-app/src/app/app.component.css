@@ -57,6 +57,12 @@
   width: var(--components-menu-offset);
 }
 
+.components-menu-link {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
 m3-navigation-rail {
   opacity: 1;
   transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard-decelerate);
