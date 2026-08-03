@@ -12,13 +12,16 @@ const nextFrame = () =>
   new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 
 async function settleDialog(dialog: M3Dialog) {
-  await dialog.updateComplete;
-  // Initial focus is a presentation-frame concern. Keeping it outside Lit's
-  // update promise avoids making fixture() wait on WebKit's native dialog
-  // focus processing, while still asserting the completed modal contract.
-  await nextFrame();
-  // A dialog opened immediately after another native dialog closes may wait
-  // for WebKit to release the prior top-layer entry before it can focus.
+  const surface =
+    dialog.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
+  if (!surface.open) {
+    const opened = new Promise<void>((resolve) => {
+      dialog.addEventListener('dialog-open', () => resolve(), { once: true });
+    });
+    await dialog.updateComplete;
+    await opened;
+  }
+  // Focus runs on the presentation frame after the actual native activation.
   await nextFrame();
 }
 
