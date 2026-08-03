@@ -11,7 +11,7 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "pretest": "node scripts/install-test-browser.mjs",
-    "test": "turbo run test test:e2e",
+    "test": "turbo run test && turbo run test:e2e",
     "test:e2e": "turbo run test:e2e",
     "smoke:packages": "node scripts/smoke-packages.mjs",
     "smoke:svelte-vite": "pnpm --filter @banegasn/svelte-components build && node scripts/smoke-svelte-vite.mjs",
