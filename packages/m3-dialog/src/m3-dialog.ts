@@ -231,6 +231,7 @@ export class M3Dialog extends LitElement {
     }
 
     if (
+      !this.isConnected ||
       !this.open ||
       !M3Dialog.openDialogs.includes(this) ||
       !this.showNativeModal()
