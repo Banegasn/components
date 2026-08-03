@@ -103,15 +103,17 @@ export class M3Dialog extends LitElement {
   private nativeActivationFrame: number | undefined;
   private nativeActivationEpoch = 0;
   private resolveModalActivation: (() => void) | undefined;
+  private isInitialUpdate = true;
 
   connectedCallback() {
     super.connectedCallback();
 
-    if (this.open) {
+    // Initial declarative [open] is activated from firstUpdated(), after
+    // lit-html has finished inserting the host. Reconnection is different:
+    // the rendered native dialog already exists and must regain containment.
+    if (this.hasUpdated && this.open) {
       this.activate();
-      if (this.dialogElement) {
-        this.scheduleNativeModalActivation();
-      }
+      this.scheduleNativeModalActivation();
     }
   }
 
@@ -151,6 +153,11 @@ export class M3Dialog extends LitElement {
   }
 
   updated(changedProperties: Map<string, unknown>) {
+    if (this.isInitialUpdate) {
+      this.isInitialUpdate = false;
+      return;
+    }
+
     if (!changedProperties.has('open')) {
       return;
     }

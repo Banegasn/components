@@ -12,16 +12,8 @@ const nextFrame = () =>
   new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 
 async function settleDialog(dialog: M3Dialog) {
-  const surface =
-    dialog.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
-  if (!surface.open) {
-    const opened = new Promise<void>((resolve) => {
-      dialog.addEventListener('dialog-open', () => resolve(), { once: true });
-    });
-    await dialog.updateComplete;
-    await opened;
-  }
-  // Focus runs on the presentation frame after the actual native activation.
+  await dialog.whenOpened();
+  // Focus runs on the presentation frame after native activation.
   await nextFrame();
 }
 
@@ -32,8 +24,12 @@ describe('M3Dialog modal contract', () => {
     );
     const surface =
       dialog.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
+    const opened = new Promise<void>((resolve) => {
+      dialog.addEventListener('dialog-open', () => resolve(), { once: true });
+    });
 
     await dialog.show();
+    await opened;
 
     expect(dialog.open).to.equal(true);
     expect(surface.open).to.equal(true);
