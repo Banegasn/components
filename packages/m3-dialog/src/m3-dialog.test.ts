@@ -26,6 +26,19 @@ async function settleDialog(dialog: M3Dialog) {
 }
 
 describe('M3Dialog modal contract', () => {
+  it('resolves show after entering the native modal state', async () => {
+    const dialog = await fixture<M3Dialog>(
+      html`<m3-dialog><button>Dismiss</button></m3-dialog>`,
+    );
+    const surface =
+      dialog.shadowRoot!.querySelector<HTMLDialogElement>('.dialog')!;
+
+    await dialog.show();
+
+    expect(dialog.open).to.equal(true);
+    expect(surface.open).to.equal(true);
+  });
+
   it('focuses the first slotted control and contains Tab and Shift+Tab', async () => {
     const dialog = await fixture<M3Dialog>(html`
       <m3-dialog open headline="Remove item">
