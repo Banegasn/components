@@ -70,6 +70,8 @@ export class M3Dialog extends LitElement {
   private static pageStyleSnapshot:
     { bodyOverflow: string; documentOverflow: string } | undefined;
   private static bodyObserver: MutationObserver | undefined;
+  private static nativeModalReleasePending = false;
+  private static nativeModalReleaseComplete = Promise.resolve();
 
   /** Whether the dialog is open. Prefer show(), close(), or requestClose() for lifecycle events. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -221,6 +223,13 @@ export class M3Dialog extends LitElement {
   }
 
   private activateNativeModal() {
+    if (M3Dialog.nativeModalReleasePending) {
+      void M3Dialog.nativeModalReleaseComplete.then(() =>
+        this.activateNativeModal(),
+      );
+      return;
+    }
+
     if (
       !this.open ||
       !M3Dialog.openDialogs.includes(this) ||
@@ -350,7 +359,26 @@ export class M3Dialog extends LitElement {
     const dialog = this.dialogElement;
     if (dialog?.open) {
       dialog.close();
+      M3Dialog.waitForNativeModalRelease();
     }
+  }
+
+  /**
+   * WebKit does not always release a closed native dialog from the top layer
+   * until its next presentation frame. A modal requested during that window
+   * waits for the release; ordinary and stacked modal activation stays sync.
+   */
+  private static waitForNativeModalRelease() {
+    M3Dialog.nativeModalReleasePending = true;
+    const release = new Promise<void>((resolve) => {
+      requestAnimationFrame(() => {
+        if (M3Dialog.nativeModalReleaseComplete === release) {
+          M3Dialog.nativeModalReleasePending = false;
+        }
+        resolve();
+      });
+    });
+    M3Dialog.nativeModalReleaseComplete = release;
   }
 
   /** Finds focusable descendants across the light DOM and open component shadows. */

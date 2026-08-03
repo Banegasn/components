@@ -17,6 +17,9 @@ async function settleDialog(dialog: M3Dialog) {
   // update promise avoids making fixture() wait on WebKit's native dialog
   // focus processing, while still asserting the completed modal contract.
   await nextFrame();
+  // A dialog opened immediately after another native dialog closes may wait
+  // for WebKit to release the prior top-layer entry before it can focus.
+  await nextFrame();
 }
 
 describe('M3Dialog modal contract', () => {
