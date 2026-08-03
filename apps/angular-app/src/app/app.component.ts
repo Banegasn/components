@@ -288,20 +288,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.componentsMenuOpen.set(false);
   }
 
-  onComponentsMenuItemSelect(event: Event) {
-    const e = event as CustomEvent<{ value?: string; text?: string }>;
-    const value = e.detail?.value;
-    if (value) {
-      this.navigate(value);
-      return;
-    }
-    const text = e.detail?.text ?? '';
-    const item = this.componentMenuItems.find((i) => i.label === text);
-    if (item) {
-      this.navigate(item.path);
-    }
-  }
-
   onDesktopComponentsMouseEnter() {
     if (this.desktopComponentsCloseTimer !== null) {
       clearTimeout(this.desktopComponentsCloseTimer);

@@ -4,9 +4,9 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import '@banegasn/m3-button';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { AppComponent } from './app.component';
 
@@ -62,17 +62,13 @@ describe('AppComponent', () => {
     expect(button.textContent?.trim()).toBe('Integrated button');
   });
 
-  it('keeps the Components submenu open across its pointer bridge, navigates selections, and returns focus on Escape', async () => {
+  it('keeps the Components submenu open across its pointer bridge, exposes native links, and returns focus on Escape', async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [provideRouter([])],
     }).compileComponents();
 
     const fixture = TestBed.createComponent(AppComponent);
-    const router = TestBed.inject(Router);
-    const navigateByUrl = vi
-      .spyOn(router, 'navigateByUrl')
-      .mockResolvedValue(true);
     fixture.detectChanges();
 
     const trigger = fixture.nativeElement.querySelector(
@@ -100,9 +96,10 @@ describe('AppComponent', () => {
     expect(menu.open).toBe(true);
 
     const firstMenuItem = menu.querySelector('m3-menu-item') as HTMLElement;
+    const firstMenuLink = firstMenuItem.closest('a');
+    expect(firstMenuLink?.getAttribute('href')).toBe('components');
     firstMenuItem.shadowRoot!.querySelector('button')!.click();
     await settle();
-    expect(navigateByUrl).toHaveBeenCalledWith('/components');
     expect(fixture.componentInstance.componentsMenuOpen()).toBe(false);
 
     trigger.dispatchEvent(
