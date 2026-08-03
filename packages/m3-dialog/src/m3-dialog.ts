@@ -99,8 +99,7 @@ export class M3Dialog extends LitElement {
   private readonly descriptionId = `m3-dialog-description-${this.instanceId}`;
   private opener: HTMLElement | null = null;
   private closeReason: M3DialogCloseReason = 'programmatic';
-  private modalActivationComplete = Promise.resolve();
-  private modalActivationPending = false;
+  private initialFocusComplete = Promise.resolve();
 
   connectedCallback() {
     super.connectedCallback();
@@ -170,7 +169,7 @@ export class M3Dialog extends LitElement {
 
   protected override async getUpdateComplete(): Promise<boolean> {
     const completed = await super.getUpdateComplete();
-    await this.modalActivationComplete;
+    await this.initialFocusComplete;
     return completed;
   }
 
@@ -229,41 +228,33 @@ export class M3Dialog extends LitElement {
   }
 
   private activateNativeModal() {
-    if (this.modalActivationPending) {
+    if (
+      !this.open ||
+      !M3Dialog.openDialogs.includes(this) ||
+      !this.showNativeModal()
+    ) {
       return;
     }
 
-    this.modalActivationPending = true;
-    this.modalActivationComplete = new Promise((resolve) => {
-      queueMicrotask(() => {
-        this.modalActivationPending = false;
+    this.dispatchEvent(
+      new CustomEvent('dialog-open', {
+        bubbles: true,
+        composed: true,
+        detail: { opener: this.opener },
+      }),
+    );
 
+    this.initialFocusComplete = new Promise((resolve) => {
+      requestAnimationFrame(() => {
         if (
           this.open &&
-          M3Dialog.openDialogs.includes(this) &&
-          this.showNativeModal()
+          this.dialogElement?.open &&
+          M3Dialog.topDialog === this
         ) {
-          this.dispatchEvent(
-            new CustomEvent('dialog-open', {
-              bubbles: true,
-              composed: true,
-              detail: { opener: this.opener },
-            }),
-          );
+          this.focusInitial();
         }
-
         resolve();
       });
-    });
-
-    void this.updateComplete.then(() => {
-      if (
-        this.open &&
-        this.dialogElement?.open &&
-        M3Dialog.topDialog === this
-      ) {
-        this.focusInitial();
-      }
     });
   }
 
