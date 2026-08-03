@@ -8,8 +8,15 @@ import type {
   M3DialogCloseReason,
 } from './m3-dialog.js';
 
+const nextFrame = () =>
+  new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
 async function settleDialog(dialog: M3Dialog) {
   await dialog.updateComplete;
+  // Initial focus is a presentation-frame concern. Keeping it outside Lit's
+  // update promise avoids making fixture() wait on WebKit's native dialog
+  // focus processing, while still asserting the completed modal contract.
+  await nextFrame();
 }
 
 describe('M3Dialog modal contract', () => {

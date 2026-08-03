@@ -99,7 +99,6 @@ export class M3Dialog extends LitElement {
   private readonly descriptionId = `m3-dialog-description-${this.instanceId}`;
   private opener: HTMLElement | null = null;
   private closeReason: M3DialogCloseReason = 'programmatic';
-  private initialFocusComplete = Promise.resolve();
 
   connectedCallback() {
     super.connectedCallback();
@@ -165,12 +164,6 @@ export class M3Dialog extends LitElement {
       this.activate();
       this.activateNativeModal();
     }
-  }
-
-  protected override async getUpdateComplete(): Promise<boolean> {
-    const completed = await super.getUpdateComplete();
-    await this.initialFocusComplete;
-    return completed;
   }
 
   /** Opens the dialog and returns after Lit has rendered the open state. */
@@ -244,17 +237,14 @@ export class M3Dialog extends LitElement {
       }),
     );
 
-    this.initialFocusComplete = new Promise((resolve) => {
-      requestAnimationFrame(() => {
-        if (
-          this.open &&
-          this.dialogElement?.open &&
-          M3Dialog.topDialog === this
-        ) {
-          this.focusInitial();
-        }
-        resolve();
-      });
+    requestAnimationFrame(() => {
+      if (
+        this.open &&
+        this.dialogElement?.open &&
+        M3Dialog.topDialog === this
+      ) {
+        this.focusInitial();
+      }
     });
   }
 
