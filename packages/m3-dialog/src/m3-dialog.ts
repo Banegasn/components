@@ -70,8 +70,6 @@ export class M3Dialog extends LitElement {
   private static pageStyleSnapshot:
     { bodyOverflow: string; documentOverflow: string } | undefined;
   private static bodyObserver: MutationObserver | undefined;
-  private static nativeModalReleasePending = false;
-  private static nativeModalReleaseComplete = Promise.resolve();
 
   /** Whether the dialog is open. Prefer show(), close(), or requestClose() for lifecycle events. */
   @property({ type: Boolean, reflect: true }) open = false;
@@ -101,6 +99,10 @@ export class M3Dialog extends LitElement {
   private readonly descriptionId = `m3-dialog-description-${this.instanceId}`;
   private opener: HTMLElement | null = null;
   private closeReason: M3DialogCloseReason = 'programmatic';
+  private modalActivationComplete = Promise.resolve();
+  private nativeActivationFrame: number | undefined;
+  private nativeActivationEpoch = 0;
+  private resolveModalActivation: (() => void) | undefined;
 
   connectedCallback() {
     super.connectedCallback();
@@ -108,7 +110,7 @@ export class M3Dialog extends LitElement {
     if (this.open) {
       this.activate();
       if (this.dialogElement) {
-        this.activateNativeModal();
+        this.scheduleNativeModalActivation();
       }
     }
   }
@@ -155,7 +157,7 @@ export class M3Dialog extends LitElement {
 
     if (this.open) {
       this.activate();
-      this.activateNativeModal();
+      this.scheduleNativeModalActivation();
     } else if (changedProperties.get('open') === true) {
       this.deactivate();
     }
@@ -164,14 +166,20 @@ export class M3Dialog extends LitElement {
   protected firstUpdated() {
     if (this.open) {
       this.activate();
-      this.activateNativeModal();
+      this.scheduleNativeModalActivation();
     }
   }
 
-  /** Opens the dialog and returns after Lit has rendered the open state. */
+  /** Opens the dialog and returns after it has entered the native modal state. */
   async show(): Promise<void> {
     this.open = true;
+    await this.whenOpened();
+  }
+
+  /** Waits until a rendered open dialog has entered the native modal state. */
+  async whenOpened(): Promise<void> {
     await this.updateComplete;
+    await this.modalActivationComplete;
   }
 
   /**
@@ -222,43 +230,53 @@ export class M3Dialog extends LitElement {
     M3Dialog.updatePageContainment();
   }
 
-  private activateNativeModal() {
-    if (M3Dialog.nativeModalReleasePending) {
-      void M3Dialog.nativeModalReleaseComplete.then(() =>
-        this.activateNativeModal(),
-      );
+  private scheduleNativeModalActivation() {
+    if (this.nativeActivationFrame !== undefined) {
       return;
     }
 
-    if (
-      !this.isConnected ||
-      !this.open ||
-      !M3Dialog.openDialogs.includes(this) ||
-      !this.showNativeModal()
-    ) {
-      return;
-    }
+    const activationEpoch = this.nativeActivationEpoch;
+    this.modalActivationComplete = new Promise((resolve) => {
+      this.resolveModalActivation = resolve;
+      this.nativeActivationFrame = requestAnimationFrame(() => {
+        this.nativeActivationFrame = undefined;
+        const resolveActivation = this.resolveModalActivation;
+        this.resolveModalActivation = undefined;
 
-    this.dispatchEvent(
-      new CustomEvent('dialog-open', {
-        bubbles: true,
-        composed: true,
-        detail: { opener: this.opener },
-      }),
-    );
+        if (
+          activationEpoch === this.nativeActivationEpoch &&
+          this.isConnected &&
+          this.open &&
+          M3Dialog.openDialogs.includes(this) &&
+          this.showNativeModal()
+        ) {
+          this.dispatchEvent(
+            new CustomEvent('dialog-open', {
+              bubbles: true,
+              composed: true,
+              detail: { opener: this.opener },
+            }),
+          );
+        }
 
-    requestAnimationFrame(() => {
-      if (
-        this.open &&
-        this.dialogElement?.open &&
-        M3Dialog.topDialog === this
-      ) {
-        this.focusInitial();
-      }
+        resolveActivation?.();
+
+        requestAnimationFrame(() => {
+          if (
+            activationEpoch === this.nativeActivationEpoch &&
+            this.open &&
+            this.dialogElement?.open &&
+            M3Dialog.topDialog === this
+          ) {
+            this.focusInitial();
+          }
+        });
+      });
     });
   }
 
   private deactivate(restoreFocus = true) {
+    this.cancelNativeModalActivation();
     const dialogIndex = M3Dialog.openDialogs.indexOf(this);
 
     if (dialogIndex === -1) {
@@ -360,26 +378,18 @@ export class M3Dialog extends LitElement {
     const dialog = this.dialogElement;
     if (dialog?.open) {
       dialog.close();
-      M3Dialog.waitForNativeModalRelease();
     }
   }
 
-  /**
-   * WebKit does not always release a closed native dialog from the top layer
-   * until its next presentation frame. A modal requested during that window
-   * waits for the release; ordinary and stacked modal activation stays sync.
-   */
-  private static waitForNativeModalRelease() {
-    M3Dialog.nativeModalReleasePending = true;
-    const release = new Promise<void>((resolve) => {
-      requestAnimationFrame(() => {
-        if (M3Dialog.nativeModalReleaseComplete === release) {
-          M3Dialog.nativeModalReleasePending = false;
-        }
-        resolve();
-      });
-    });
-    M3Dialog.nativeModalReleaseComplete = release;
+  private cancelNativeModalActivation() {
+    this.nativeActivationEpoch += 1;
+    if (this.nativeActivationFrame !== undefined) {
+      cancelAnimationFrame(this.nativeActivationFrame);
+      this.nativeActivationFrame = undefined;
+    }
+    this.resolveModalActivation?.();
+    this.resolveModalActivation = undefined;
+    this.modalActivationComplete = Promise.resolve();
   }
 
   /** Finds focusable descendants across the light DOM and open component shadows. */
