@@ -6,10 +6,14 @@ export default defineConfig({
   timeout: 30_000,
   use: {
     baseURL: 'http://127.0.0.1:4301',
-    browserName: 'chromium',
     headless: true,
     viewport: { width: 1280, height: 900 },
   },
+  projects: [
+    { name: 'chromium', use: { browserName: 'chromium' } },
+    { name: 'firefox', use: { browserName: 'firefox' } },
+    { name: 'webkit', use: { browserName: 'webkit' } },
+  ],
   webServer: {
     command: 'pnpm exec ng serve --host 127.0.0.1 --port 4301',
     url: 'http://127.0.0.1:4301/home',

@@ -19,7 +19,7 @@
       (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
       >
       <m3-navigation-rail-item #desktopComponentsTrigger id="desktop-components-trigger" label="Components"
-        [active]="isComponentsRoute()" aria-haspopup="menu" [attr.aria-expanded]="componentsMenuOpen()"
+        [active]="isComponentsRoute()" aria-haspopup="menu" [attr.aria-expanded]="desktopComponentsMenuOpen()"
         (click)="onDesktopComponentsTriggerClick($event)"
         (keydown)="onDesktopComponentsTriggerKeydown($event)">
         <span slot="icon" class="material-symbols-outlined">browse</span>
@@ -28,16 +28,15 @@
       <div class="desktop-components-menu-bridge" aria-hidden="true"
         (mouseenter)="onDesktopComponentsMouseEnter()"></div>
 
-      <m3-menu id="desktop-components-menu" placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="componentsMenuOpen()" [focusOnOpen]="false"
+      <m3-menu id="desktop-components-menu" placement="right-start" [offset]="railExpanded() ? 24 : 8" [open]="desktopComponentsMenuOpen()" [focusOnOpen]="false"
         (mouseenter)="onDesktopComponentsMouseEnter()" (mouseleave)="onDesktopComponentsMouseLeave()"
-        (menu-dismiss)="onComponentsMenuDismiss($event)" (menu-item-select)="onComponentsMenuItemSelect($event)"
+        (menu-dismiss)="onDesktopComponentsMenuDismiss($event)"
         style="--md-comp-menu-max-height: calc(100vh - 400px);">
         @for (item of componentMenuItems; track item.path) {
-        <a class="components-menu-link" [href]="item.path.substring(1)">
-          <m3-menu-item [value]="item.path">
-            <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
-            {{ item.label }}
-          </m3-menu-item>
+        <a class="components-menu-link" role="menuitem" tabindex="-1" [attr.href]="item.path"
+          (click)="onComponentsMenuLinkClick($event, item.path)">
+          <span class="material-symbols-outlined">{{ item.icon }}</span>
+          {{ item.label }}
         </a>
         }
       </m3-menu>
@@ -79,15 +78,14 @@
 
 <div class="mobile-nav-shell">
   <div class="mobile-components-anchor">
-    <m3-menu placement="top-center" [offset]="12" [open]="componentsMenuOpen()"
-      (menu-dismiss)="onComponentsMenuDismiss($event)" (menu-item-select)="onComponentsMenuItemSelect($event)"
+    <m3-menu placement="top-center" [offset]="12" [open]="mobileComponentsMenuOpen()"
+      (menu-dismiss)="onMobileComponentsMenuDismiss($event)"
       style="--md-comp-menu-max-height: calc(100dvh - 200px);">
       @for (item of componentMenuItems; track item.path) {
-      <a class="components-menu-link" [href]="item.path.substring(1)">
-        <m3-menu-item [value]="item.path">
-          <span slot="leading-icon" class="material-symbols-outlined">{{ item.icon }}</span>
-          {{ item.label }}
-        </m3-menu-item>
+      <a class="components-menu-link" role="menuitem" tabindex="-1" [attr.href]="item.path"
+        (click)="onComponentsMenuLinkClick($event, item.path)">
+        <span class="material-symbols-outlined">{{ item.icon }}</span>
+        {{ item.label }}
       </a>
       }
     </m3-menu>
@@ -108,6 +106,7 @@
 
     <app-seo-link href="components">
       <m3-navigation-bar-item id="mobile-components-trigger" label="Components" [active]="isComponentsRoute()"
+        aria-haspopup="menu" [attr.aria-expanded]="mobileComponentsMenuOpen()"
         (pointerdown)="onMobileComponentsPointerDown($event)" (pointerup)="onMobileComponentsPointerUp($event)"
         (pointercancel)="onMobileComponentsPointerCancel($event)" (contextmenu)="onMobileComponentsContextMenu($event)">
         <span slot="icon" class="material-symbols-outlined">browse</span>
