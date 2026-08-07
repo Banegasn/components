@@ -35,41 +35,46 @@ describe('M3Dialog modal contract', () => {
     expect(surface.open).to.equal(true);
   });
 
-  it('focuses the first slotted control and contains Tab and Shift+Tab', async () => {
-    const dialog = await fixture<M3Dialog>(html`
-      <m3-dialog open headline="Remove item">
-        <button id="first">Cancel</button>
-        <input id="last" aria-label="Name" />
-      </m3-dialog>
-    `);
-    await settleDialog(dialog);
+  it(
+    'focuses the first slotted control and contains Tab and Shift+Tab',
+    async () => {
+      const dialog = await fixture<M3Dialog>(html`
+        <m3-dialog open headline="Remove item">
+          <button id="first">Cancel</button>
+          <input id="last" aria-label="Name" />
+        </m3-dialog>
+      `);
+      await settleDialog(dialog);
 
-    const first = dialog.querySelector<HTMLButtonElement>('#first')!;
-    const last = dialog.querySelector<HTMLInputElement>('#last')!;
-    expect(document.activeElement).to.equal(first);
+      const first = dialog.querySelector<HTMLButtonElement>('#first')!;
+      const last = dialog.querySelector<HTMLInputElement>('#last')!;
+      expect(document.activeElement).to.equal(first);
 
-    last.focus();
-    const tab = new KeyboardEvent('keydown', {
-      key: 'Tab',
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-    });
-    last.dispatchEvent(tab);
-    expect(tab.defaultPrevented).to.equal(true);
-    expect(document.activeElement).to.equal(first);
+      last.focus();
+      const tab = new KeyboardEvent('keydown', {
+        key: 'Tab',
+        bubbles: true,
+        cancelable: true,
+        composed: true,
+      });
+      last.dispatchEvent(tab);
+      expect(tab.defaultPrevented).to.equal(true);
+      expect(document.activeElement).to.equal(first);
 
-    const reverseTab = new KeyboardEvent('keydown', {
-      key: 'Tab',
-      shiftKey: true,
-      bubbles: true,
-      cancelable: true,
-      composed: true,
-    });
-    first.dispatchEvent(reverseTab);
-    expect(reverseTab.defaultPrevented).to.equal(true);
-    expect(document.activeElement).to.equal(last);
-  });
+      const reverseTab = new KeyboardEvent('keydown', {
+        key: 'Tab',
+        shiftKey: true,
+        bubbles: true,
+        cancelable: true,
+        composed: true,
+      });
+      first.dispatchEvent(reverseTab);
+      expect(reverseTab.defaultPrevented).to.equal(true);
+      expect(document.activeElement).to.equal(last);
+    },
+    // WebKit can defer native-dialog presentation frames on a busy CI runner.
+    30_000,
+  );
 
   it('uses autofocus when supplied and focuses the dialog container when it has no focusable content', async () => {
     const autofocusDialog = await fixture<M3Dialog>(html`
