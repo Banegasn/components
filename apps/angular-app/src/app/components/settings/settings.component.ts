@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { DialogRef } from '../../services/dialog.service';
-import '@banegasn/m3-switch';
+import { M3Switch } from '@banegasn/m3-switch';
 
 @Component({
   selector: 'app-settings',
@@ -72,14 +72,14 @@ export class SettingsComponent implements OnInit {
   }
 
   onDarkModeChange(event: Event) {
-    this.darkModeEnabled = (event as CustomEvent).detail.checked;
+    this.darkModeEnabled = this.#getSwitchChecked(event);
     this.#applyTheme(
       this.#buildTheme(this.activePalette, this.darkModeEnabled),
     );
   }
 
   onRTLChange(event: Event) {
-    this.isRTL = (event as CustomEvent).detail.checked;
+    this.isRTL = this.#getSwitchChecked(event);
     if (this.isRTL) {
       this.#document.documentElement.setAttribute('dir', 'rtl');
     } else {
@@ -90,7 +90,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onReducedMotionChange(event: Event) {
-    this.reducedMotionEnabled = (event as CustomEvent).detail.checked;
+    this.reducedMotionEnabled = this.#getSwitchChecked(event);
     if (this.reducedMotionEnabled) {
       this.#document.documentElement.setAttribute('data-motion', 'reduced');
     } else {
@@ -99,5 +99,10 @@ export class SettingsComponent implements OnInit {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('motion', this.reducedMotionEnabled ? 'reduced' : 'system');
     }
+  }
+
+  #getSwitchChecked(event: Event): boolean {
+    const switchElement = event.currentTarget ?? event.target;
+    return switchElement instanceof M3Switch && switchElement.checked;
   }
 }
