@@ -8,7 +8,7 @@
     <div class="setting-control">
       <m3-switch
         [checked]="darkModeEnabled"
-        (switch-change)="onDarkModeChange($event)"
+        (change)="onDarkModeChange($event)"
         aria-label="Enable dark mode">
       </m3-switch>
     </div>
@@ -45,7 +45,7 @@
     <div class="setting-control">
       <m3-switch
         [checked]="reducedMotionEnabled"
-        (switch-change)="onReducedMotionChange($event)"
+        (change)="onReducedMotionChange($event)"
         aria-label="Enable reduced motion verification">
       </m3-switch>
     </div>
@@ -61,7 +61,7 @@
     <div class="setting-control">
       <m3-switch
         [checked]="isRTL"
-        (switch-change)="onRTLChange($event)"
+        (change)="onRTLChange($event)"
         aria-label="Enable RTL layout">
       </m3-switch>
     </div>

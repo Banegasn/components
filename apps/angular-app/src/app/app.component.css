@@ -39,6 +39,7 @@
 .desktop-nav-shell {
   display: flex;
   position: relative;
+  z-index: 1001;
 }
 
 .desktop-components-trigger {
@@ -55,6 +56,27 @@
   inset-block: 0;
   inset-inline-start: 100%;
   width: var(--components-menu-offset);
+}
+
+.components-menu-link {
+  align-items: center;
+  border-radius: 20px;
+  color: inherit;
+  display: flex;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 12px;
+  text-decoration: none;
+}
+
+.components-menu-link:hover,
+.components-menu-link:focus-visible {
+  background: var(--md-sys-color-secondary-container);
+  outline: none;
+}
+
+.components-menu-link .material-symbols-outlined {
+  font-size: 20px;
 }
 
 m3-navigation-rail {

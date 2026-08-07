@@ -11,6 +11,7 @@ import {
   effect,
   PLATFORM_ID,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
@@ -47,10 +48,12 @@ export class AppComponent implements OnInit, OnDestroy {
   #ngZone = inject(NgZone);
   #destroyRef = inject(DestroyRef);
   #platformId = inject(PLATFORM_ID);
+  #changeDetectorRef = inject(ChangeDetectorRef);
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
   currentRoute = signal('/');
-  componentsMenuOpen = signal(false);
+  desktopComponentsMenuOpen = signal(false);
+  mobileComponentsMenuOpen = signal(false);
   railExpanded = signal(true);
 
   constructor() {
@@ -73,10 +76,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private mobileComponentsLongPressFired = false;
   private desktopComponentsCloseTimer: ReturnType<typeof setTimeout> | null =
     null;
-  private boundMenuClick = (event: Event) =>
-    this.handleComponentsMenuClick(event);
-  private boundMenuItemSelect = (event: Event) =>
-    this.handleMenuItemSelectCapture(event);
 
   onRailToggle(event: Event) {
     const e = event as CustomEvent<{ expanded: boolean }>;
@@ -138,17 +137,9 @@ export class AppComponent implements OnInit, OnDestroy {
     if (typeof window !== 'undefined') {
       window.addEventListener('theme-changed', ((event: CustomEvent) => {
         this.currentTheme = event.detail;
+        this.#changeDetectorRef.markForCheck();
       }) as EventListener);
     }
-
-    // Capture menu-item-select at document so we handle it before the menu (menu stays open until we close it)
-    this.#document.addEventListener(
-      'menu-item-select',
-      this.boundMenuItemSelect,
-      true,
-    );
-    // Fallback: click on menu item
-    this.#document.addEventListener('click', this.boundMenuClick, true);
 
     // Track route changes for navigation bar active state
     this.currentRoute.set(this.#router.url);
@@ -165,12 +156,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.#document.removeEventListener(
-      'menu-item-select',
-      this.boundMenuItemSelect,
-      true,
-    );
-    this.#document.removeEventListener('click', this.boundMenuClick, true);
     if (this.desktopComponentsCloseTimer !== null) {
       clearTimeout(this.desktopComponentsCloseTimer);
     }
@@ -178,7 +163,6 @@ export class AppComponent implements OnInit, OnDestroy {
       clearTimeout(this.mobileComponentsLongPressTimer);
     }
   }
-
   initializeTheme() {
     let savedTheme = null;
     if (typeof localStorage !== 'undefined') {
@@ -261,8 +245,8 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.currentTheme === 'dark' || this.currentTheme.endsWith('-dark');
   }
 
-  openComponentsMenu() {
-    this.componentsMenuOpen.set(true);
+  openDesktopComponentsMenu() {
+    this.desktopComponentsMenuOpen.set(true);
   }
 
   openComponentsMenuFromKeyboard() {
@@ -277,87 +261,46 @@ export class AppComponent implements OnInit, OnDestroy {
     if (menu && opener) {
       menu.show('trigger', opener);
     }
-    this.openComponentsMenu();
+    this.openDesktopComponentsMenu();
   }
 
-  toggleComponentsMenu() {
-    this.componentsMenuOpen.update((open) => !open);
+  openMobileComponentsMenu() {
+    this.mobileComponentsMenuOpen.set(true);
   }
 
-  onComponentsMenuDismiss(event: Event) {
+  onDesktopComponentsMenuDismiss(event: Event) {
+    this.handleComponentsMenuDismiss(event, () =>
+      this.closeDesktopComponentsMenu(),
+    );
+  }
+
+  onMobileComponentsMenuDismiss(event: Event) {
+    this.handleComponentsMenuDismiss(event, () =>
+      this.mobileComponentsMenuOpen.set(false),
+    );
+  }
+
+  private handleComponentsMenuDismiss(event: Event, close: () => void) {
     const reason =
       (event as CustomEvent<{ reason: string }>)?.detail?.reason ?? 'unknown';
-    const wasOpen = this.componentsMenuOpen();
-    if (!wasOpen) return;
-    // Defer close when user selected an item so menu-item-select can bubble and be handled first
     if (reason === 'selection') {
-      queueMicrotask(() => this.closeComponentsMenu());
+      queueMicrotask(close);
     } else {
-      this.closeComponentsMenu();
+      close();
     }
   }
 
   closeComponentsMenu() {
-    const wasOpen = this.componentsMenuOpen();
-    if (!wasOpen) return;
+    this.closeDesktopComponentsMenu();
+    this.mobileComponentsMenuOpen.set(false);
+  }
 
+  private closeDesktopComponentsMenu() {
     if (this.desktopComponentsCloseTimer !== null) {
       clearTimeout(this.desktopComponentsCloseTimer);
       this.desktopComponentsCloseTimer = null;
     }
-    this.componentsMenuOpen.set(false);
-  }
-
-  private isFromAppComponentsMenu(path: unknown[]): boolean {
-    return path.some(
-      (n) =>
-        n instanceof Element &&
-        ((n as Element).closest?.('.desktop-components-trigger') ||
-          (n as Element).closest?.('.mobile-nav-shell')),
-    );
-  }
-
-  handleComponentsMenuClick(event: Event) {
-    const path = event.composedPath?.() ?? [];
-    if (!this.isFromAppComponentsMenu(path)) return;
-
-    const menuItem = path.find(
-      (n): n is HTMLElement =>
-        n instanceof HTMLElement && n.tagName === 'M3-MENU-ITEM',
-    );
-    if (!menuItem) return;
-
-    const value =
-      (menuItem as unknown as { value?: string }).value ??
-      menuItem.getAttribute('value') ??
-      '';
-    if (value) this.navigate(value);
-  }
-
-  onComponentsMenuItemSelect(event: Event) {
-    this.handleMenuItemSelectCapture(event);
-  }
-
-  handleMenuItemSelectCapture(event: Event) {
-    const path = event.composedPath?.() ?? [];
-    const fromOurMenu = this.isFromAppComponentsMenu(path);
-    if (!fromOurMenu) return;
-
-    const e = event as CustomEvent<{ value?: string; text?: string }>;
-    const value = e.detail?.value;
-    if (value) {
-      event.stopPropagation();
-      event.preventDefault();
-      this.navigate(value);
-      return;
-    }
-    const text = e.detail?.text ?? '';
-    const item = this.componentMenuItems.find((i) => i.label === text);
-    if (item) {
-      event.stopPropagation();
-      event.preventDefault();
-      this.navigate(item.path);
-    }
+    this.desktopComponentsMenuOpen.set(false);
   }
 
   onDesktopComponentsMouseEnter() {
@@ -365,13 +308,13 @@ export class AppComponent implements OnInit, OnDestroy {
       clearTimeout(this.desktopComponentsCloseTimer);
       this.desktopComponentsCloseTimer = null;
     }
-    this.openComponentsMenu();
+    this.openDesktopComponentsMenu();
   }
 
   onDesktopComponentsMouseLeave() {
     this.desktopComponentsCloseTimer = setTimeout(() => {
       this.desktopComponentsCloseTimer = null;
-      this.closeComponentsMenu();
+      this.desktopComponentsMenuOpen.set(false);
     }, 150); // motion-literal-exempt: pointer-intent debounce, not animation timing.
   }
 
@@ -389,12 +332,27 @@ export class AppComponent implements OnInit, OnDestroy {
     this.openComponentsMenuFromKeyboard();
   }
 
+  onComponentsMenuLinkClick(event: MouseEvent, path: string) {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    this.navigate(path);
+  }
+
   onMobileComponentsPointerDown(_event: Event) {
     this.mobileComponentsLongPressFired = false;
     this.mobileComponentsLongPressTimer = setTimeout(() => {
       this.mobileComponentsLongPressTimer = null;
       this.mobileComponentsLongPressFired = true;
-      this.openComponentsMenu();
+      this.openMobileComponentsMenu();
     }, 500); // motion-literal-exempt: long-press interaction threshold, not animation timing.
   }
 

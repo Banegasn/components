@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
-import '@banegasn/m3-switch';
+import { M3Switch } from '@banegasn/m3-switch';
 import '@banegasn/m3-card';
 
 @Component({
@@ -26,14 +26,15 @@ export class SwitchComponent {
 
   readonly interactiveExample = `<m3-switch
   [checked]="notificationsEnabled"
-  (switch-change)="onSwitchChange($event, 'notifications')">
+  (change)="onSwitchChange($event, 'notifications')">
 </m3-switch>`;
 
   readonly ariaExample = `<m3-switch aria-label="Enable Wi-Fi"></m3-switch>
 <m3-switch aria-labelledby="wifi-label"></m3-switch>`;
 
   onSwitchChange(event: Event, switchName: string) {
-    const checked = (event as CustomEvent).detail.checked;
+    const switchElement = event.currentTarget ?? event.target;
+    const checked = switchElement instanceof M3Switch && switchElement.checked;
     console.log(`${switchName} is now:`, checked);
     
     // Update the corresponding property
@@ -53,4 +54,3 @@ export class SwitchComponent {
     }
   }
 }
-

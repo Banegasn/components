@@ -80,23 +80,23 @@ describe('M3Menu public interaction contract', () => {
     expect(document.activeElement).to.equal(trigger);
   });
 
-  it('navigates wrapped menu items with first and last item commands', async () => {
+  it('navigates native link menu items with first and last item commands', async () => {
     const trigger = await fixture<HTMLButtonElement>(html`<button>Open</button>`);
     const el = await fixture<M3Menu>(html`
       <m3-menu>
-        <a href="#first"><m3-menu-item>First</m3-menu-item></a>
-        <a href="#last"><m3-menu-item>Last</m3-menu-item></a>
+        <a role="menuitem" href="#first">First</a>
+        <a role="menuitem" href="#last">Last</a>
       </m3-menu>
     `);
-    const items = el.querySelectorAll<HTMLElement>('m3-menu-item');
+    const items = el.querySelectorAll<HTMLElement>('[role="menuitem"]');
 
     el.show('trigger', trigger);
     await el.updateComplete;
     await new Promise<void>((resolve) => queueMicrotask(() => resolve()));
 
-    expect(items[0].shadowRoot!.activeElement).to.exist;
+    expect(document.activeElement).to.equal(items[0]);
     keydown(el.shadowRoot!.querySelector<HTMLElement>('.surface')!, 'End');
-    expect(items[1].shadowRoot!.activeElement).to.exist;
+    expect(document.activeElement).to.equal(items[1]);
   });
 
   it('uses native forward and reverse Tab navigation across shadow-root controls for multi-item menus', async () => {
