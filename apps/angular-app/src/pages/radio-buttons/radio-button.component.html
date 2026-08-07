@@ -50,7 +50,7 @@
             name="theme"
             value="light"
             [checked]="selectedTheme === 'light'"
-            (radio-change)="onRadioChange($event, 'theme')"
+            (change)="onRadioChange($event, 'theme')"
             aria-label="Light theme">
           </m3-radio-button>
           <label>Light</label>
@@ -60,7 +60,7 @@
             name="theme"
             value="dark"
             [checked]="selectedTheme === 'dark'"
-            (radio-change)="onRadioChange($event, 'theme')"
+            (change)="onRadioChange($event, 'theme')"
             aria-label="Dark theme">
           </m3-radio-button>
           <label>Dark</label>
@@ -70,7 +70,7 @@
             name="theme"
             value="auto"
             [checked]="selectedTheme === 'auto'"
-            (radio-change)="onRadioChange($event, 'theme')"
+            (change)="onRadioChange($event, 'theme')"
             aria-label="Auto theme">
           </m3-radio-button>
           <label>Auto</label>
@@ -103,7 +103,7 @@
             value="small"
             size="small"
             [checked]="selectedSize === 'small'"
-            (radio-change)="onRadioChange($event, 'size')"
+            (change)="onRadioChange($event, 'size')"
             aria-label="Small size">
           </m3-radio-button>
         </div>
@@ -118,7 +118,7 @@
             value="medium"
             size="medium"
             [checked]="selectedSize === 'medium'"
-            (radio-change)="onRadioChange($event, 'size')"
+            (change)="onRadioChange($event, 'size')"
             aria-label="Medium size">
           </m3-radio-button>
         </div>
@@ -133,7 +133,7 @@
             value="large"
             size="large"
             [checked]="selectedSize === 'large'"
-            (radio-change)="onRadioChange($event, 'size')"
+            (change)="onRadioChange($event, 'size')"
             aria-label="Large size">
           </m3-radio-button>
         </div>
@@ -262,8 +262,8 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>radio-change</code></td>
-            <td><code>&#123; checked: boolean, name: string | null, value: string | null &#125;</code></td>
+            <td><code>change</code></td>
+            <td>Read <code>checked</code> and <code>value</code> from the radio element</td>
             <td>Fired when the radio button state changes</td>
           </tr>
         </tbody>
@@ -271,4 +271,3 @@
     </div>
   </section>
 </div>
-

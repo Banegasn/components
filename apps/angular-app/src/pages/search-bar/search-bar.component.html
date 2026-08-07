@@ -15,9 +15,8 @@
                 <m3-search-bar
                     placeholder="Search in your files"
                     [value]="searchValue"
-                    (search-input)="onSearchInput($event)"
-                    (search-submit)="onSearchSubmit($event)"
-                    (search-clear)="onSearchClear()"
+                    (input)="onSearchInput($event)"
+                    (keydown.enter)="onSearchSubmit($event)"
                     aria-label="Search">
                 </m3-search-bar>
             </div>
@@ -32,9 +31,8 @@
                 <m3-search-bar
                     placeholder="Search products..."
                     [value]="searchValue"
-                    (search-input)="onSearchInput($event)"
-                    (search-submit)="onSearchSubmit($event)"
-                    (search-clear)="onSearchClear()"
+                    (input)="onSearchInput($event)"
+                    (keydown.enter)="onSearchSubmit($event)"
                     aria-label="Search products">
                     <span slot="leading" class="material-symbols-outlined">search</span>
                 </m3-search-bar>
@@ -51,17 +49,16 @@
                     #searchBarWithClear
                     placeholder="Search with clear button..."
                     [value]="searchValue"
-                    (search-input)="onSearchInput($event)"
-                    (search-submit)="onSearchSubmit($event)"
-                    (search-clear)="onSearchClear()"
+                    (input)="onSearchInput($event)"
+                    (keydown.enter)="onSearchSubmit($event)"
                     aria-label="Search with clear">
                     <span slot="leading" class="material-symbols-outlined">search</span>
                     @if (searchValue) {
-                        <m3-button icon-only slot="trailing" variant="text" (button-click)="clearSearch(searchBarWithClear)">
+                        <m3-button aria-label="Clear search" icon-only slot="trailing" variant="text" (click)="clearSearch(searchBarWithClear)">
                             <span slot="icon" class="material-symbols-outlined">close</span>
                         </m3-button>
                     }
-                    <m3-button icon-only slot="trailing" variant="text">
+                    <m3-button aria-label="Search options" icon-only slot="trailing" variant="text">
                         <span slot="icon" class="material-symbols-outlined">more_vert</span>
                     </m3-button>
                 </m3-search-bar>
@@ -77,11 +74,10 @@
                 <m3-search-bar
                     placeholder="Search with menu..."
                     [value]="searchValue"
-                    (search-input)="onSearchInput($event)"
-                    (search-submit)="onSearchSubmit($event)"
-                    (search-clear)="onSearchClear()"
+                    (input)="onSearchInput($event)"
+                    (keydown.enter)="onSearchSubmit($event)"
                     aria-label="Search with menu">
-                    <m3-button icon-only slot="leading" variant="text" class="menu-button" size="small">
+                    <m3-button aria-label="Search menu" icon-only slot="leading" variant="text" class="menu-button" size="small">
                         <span slot="icon" class="material-symbols-outlined">menu</span>
                     </m3-button>
                 </m3-search-bar>
@@ -169,13 +165,13 @@
             </div>
             <div class="properties-list">
                 <div class="property-item">
-                    <strong>search-input</strong>: Fired when the input value changes
+                    <strong>input</strong>: Native event fired when the input value changes
                 </div>
                 <div class="property-item">
-                    <strong>search-submit</strong>: Fired when Enter is pressed
+                    <strong>change</strong>: Native event fired when the value is committed or cleared
                 </div>
                 <div class="property-item">
-                    <strong>search-clear</strong>: Fired when the search is cleared (Escape key)
+                    <strong>submit</strong>: Use the owner form's native submit event
                 </div>
             </div>
         </div>

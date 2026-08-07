@@ -41,12 +41,12 @@ export class AppComponent {}`;
 import '@banegasn/m3-button';
 
 function App() {
-  const handleClick = (e) => {
-    console.log('Button clicked', e.detail);
+  const handleClick = (event) => {
+    console.log('Button clicked', event);
   };
 
   return (
-    <m3-button variant="filled" onbutton-click={handleClick}>
+    <m3-button variant="filled" onClick={handleClick}>
       React Button
     </m3-button>
   );
@@ -57,13 +57,13 @@ export default App;`;
   readonly vueCode = `<script setup>
 import '@banegasn/m3-button';
 
-const handleClick = (e) => {
-  console.log('Button clicked', e.detail);
+const handleClick = (event) => {
+  console.log('Button clicked', event);
 };
 </script>
 
 <template>
-  <m3-button variant="filled" @button-click="handleClick">
+  <m3-button variant="filled" @click="handleClick">
     Vue Button
   </m3-button>
 </template>`;
