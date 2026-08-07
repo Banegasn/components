@@ -2,7 +2,9 @@ import { LitElement, html } from 'lit';
 import { customElement, property, queryAssignedElements } from 'lit/decorators.js';
 import { m3MenuStyles } from './m3-menu.styles.js';
 import './m3-menu-item.js';
-import type { M3MenuItem } from './m3-menu-item.js';
+type FocusableMenuItem = HTMLElement & {
+    setTabbable?: (tabbable: boolean) => void;
+};
 
 export type M3MenuPlacement =
     | 'bottom-start'
@@ -145,7 +147,7 @@ export class M3Menu extends LitElement {
             if (reason === 'trigger') {
                 this._returnFocus = opener;
                 this._opener = opener;
-                this.focusFirstItem();
+                queueMicrotask(() => this.focusFirstItem());
             }
             return;
         }
@@ -246,13 +248,23 @@ export class M3Menu extends LitElement {
         });
     };
 
-    private _enabledItems(): M3MenuItem[] {
+    private _enabledItems(): FocusableMenuItem[] {
         return (this._assignedElements ?? []).flatMap((element) => {
-            if (element.tagName === 'M3-MENU-ITEM') {
+            if (this._isMenuItem(element)) {
                 return [element];
             }
-            return Array.from(element.querySelectorAll<HTMLElement>('m3-menu-item'));
-        }).filter((element) => !element.hasAttribute('disabled')) as M3MenuItem[];
+            return Array.from(
+                element.querySelectorAll<FocusableMenuItem>('m3-menu-item, [role="menuitem"]')
+            );
+        }).filter(
+            (element) =>
+                !element.hasAttribute('disabled') &&
+                element.getAttribute('aria-disabled') !== 'true'
+        );
+    }
+
+    private _isMenuItem(element: HTMLElement) {
+        return element.tagName === 'M3-MENU-ITEM' || element.getAttribute('role') === 'menuitem';
     }
 
     private _focusItem(index: number) {
@@ -266,7 +278,14 @@ export class M3Menu extends LitElement {
     }
 
     private _setRovingTabstop(activeIndex: number) {
-        this._enabledItems().forEach((item, itemIndex) => item.setTabbable(itemIndex === activeIndex));
+        this._enabledItems().forEach((item, itemIndex) => {
+            const tabbable = itemIndex === activeIndex;
+            if (typeof item.setTabbable === 'function') {
+                item.setTabbable(tabbable);
+            } else {
+                item.tabIndex = tabbable ? 0 : -1;
+            }
+        });
     }
 
     private _setOpen(open: boolean, reason: M3MenuOpenReason) {

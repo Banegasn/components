@@ -90,6 +90,8 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     await menu.updateComplete;
     expect(menu.open).toBe(true);
+    expect(fixture.componentInstance.desktopComponentsMenuOpen()).toBe(true);
+    expect(fixture.componentInstance.mobileComponentsMenuOpen()).toBe(false);
 
     desktopMenuTrigger.dispatchEvent(new MouseEvent('mouseleave'));
     fixture.nativeElement
@@ -99,13 +101,15 @@ describe('AppComponent', () => {
     await new Promise((resolve) => setTimeout(resolve, 175));
     expect(menu.open).toBe(true);
 
-    const firstMenuItem = menu.querySelector('m3-menu-item') as HTMLElement;
-    const firstMenuLink = firstMenuItem.closest('a');
-    expect(firstMenuLink?.getAttribute('href')).toBe('components');
-    firstMenuItem.shadowRoot!.querySelector('button')!.click();
+    const firstMenuLink = menu.querySelector<HTMLAnchorElement>(
+      '[role="menuitem"]',
+    )!;
+    expect(firstMenuLink.getAttribute('href')).toBe('/components');
+    firstMenuLink.click();
     await settle();
     expect(navigateByUrl).toHaveBeenCalledWith('/components');
-    expect(fixture.componentInstance.componentsMenuOpen()).toBe(false);
+    expect(fixture.componentInstance.desktopComponentsMenuOpen()).toBe(false);
+    expect(fixture.componentInstance.mobileComponentsMenuOpen()).toBe(false);
 
     trigger.dispatchEvent(
       new KeyboardEvent('keydown', {

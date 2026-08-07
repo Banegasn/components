@@ -50,7 +50,8 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
   currentRoute = signal('/');
-  componentsMenuOpen = signal(false);
+  desktopComponentsMenuOpen = signal(false);
+  mobileComponentsMenuOpen = signal(false);
   railExpanded = signal(true);
 
   constructor() {
@@ -241,8 +242,8 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.currentTheme === 'dark' || this.currentTheme.endsWith('-dark');
   }
 
-  openComponentsMenu() {
-    this.componentsMenuOpen.set(true);
+  openDesktopComponentsMenu() {
+    this.desktopComponentsMenuOpen.set(true);
   }
 
   openComponentsMenuFromKeyboard() {
@@ -257,49 +258,46 @@ export class AppComponent implements OnInit, OnDestroy {
     if (menu && opener) {
       menu.show('trigger', opener);
     }
-    this.openComponentsMenu();
+    this.openDesktopComponentsMenu();
   }
 
-  toggleComponentsMenu() {
-    this.componentsMenuOpen.update((open) => !open);
+  openMobileComponentsMenu() {
+    this.mobileComponentsMenuOpen.set(true);
   }
 
-  onComponentsMenuDismiss(event: Event) {
+  onDesktopComponentsMenuDismiss(event: Event) {
+    this.handleComponentsMenuDismiss(event, () =>
+      this.closeDesktopComponentsMenu(),
+    );
+  }
+
+  onMobileComponentsMenuDismiss(event: Event) {
+    this.handleComponentsMenuDismiss(event, () =>
+      this.mobileComponentsMenuOpen.set(false),
+    );
+  }
+
+  private handleComponentsMenuDismiss(event: Event, close: () => void) {
     const reason =
       (event as CustomEvent<{ reason: string }>)?.detail?.reason ?? 'unknown';
-    const wasOpen = this.componentsMenuOpen();
-    if (!wasOpen) return;
-    // Defer close when user selected an item so menu-item-select can bubble and be handled first
     if (reason === 'selection') {
-      queueMicrotask(() => this.closeComponentsMenu());
+      queueMicrotask(close);
     } else {
-      this.closeComponentsMenu();
+      close();
     }
   }
 
   closeComponentsMenu() {
-    const wasOpen = this.componentsMenuOpen();
-    if (!wasOpen) return;
+    this.closeDesktopComponentsMenu();
+    this.mobileComponentsMenuOpen.set(false);
+  }
 
+  private closeDesktopComponentsMenu() {
     if (this.desktopComponentsCloseTimer !== null) {
       clearTimeout(this.desktopComponentsCloseTimer);
       this.desktopComponentsCloseTimer = null;
     }
-    this.componentsMenuOpen.set(false);
-  }
-
-  onComponentsMenuItemSelect(event: Event) {
-    const detail = (event as CustomEvent<{ value?: string; text?: string }>)
-      .detail;
-    const item = this.componentMenuItems.find(
-      (menuItem) =>
-        menuItem.path === detail?.value ||
-        menuItem.label === detail?.value ||
-        menuItem.label === detail?.text,
-    );
-    if (item) {
-      this.navigate(item.path);
-    }
+    this.desktopComponentsMenuOpen.set(false);
   }
 
   onDesktopComponentsMouseEnter() {
@@ -307,13 +305,13 @@ export class AppComponent implements OnInit, OnDestroy {
       clearTimeout(this.desktopComponentsCloseTimer);
       this.desktopComponentsCloseTimer = null;
     }
-    this.openComponentsMenu();
+    this.openDesktopComponentsMenu();
   }
 
   onDesktopComponentsMouseLeave() {
     this.desktopComponentsCloseTimer = setTimeout(() => {
       this.desktopComponentsCloseTimer = null;
-      this.closeComponentsMenu();
+      this.desktopComponentsMenuOpen.set(false);
     }, 150); // motion-literal-exempt: pointer-intent debounce, not animation timing.
   }
 
@@ -331,12 +329,27 @@ export class AppComponent implements OnInit, OnDestroy {
     this.openComponentsMenuFromKeyboard();
   }
 
+  onComponentsMenuLinkClick(event: MouseEvent, path: string) {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    this.navigate(path);
+  }
+
   onMobileComponentsPointerDown(_event: Event) {
     this.mobileComponentsLongPressFired = false;
     this.mobileComponentsLongPressTimer = setTimeout(() => {
       this.mobileComponentsLongPressTimer = null;
       this.mobileComponentsLongPressFired = true;
-      this.openComponentsMenu();
+      this.openMobileComponentsMenu();
     }, 500); // motion-literal-exempt: long-press interaction threshold, not animation timing.
   }
 

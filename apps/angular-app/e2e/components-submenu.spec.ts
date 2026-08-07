@@ -12,16 +12,18 @@ test('keeps the Components menu open through the offset bridge and routes a sele
   const trigger = page.locator('#desktop-components-trigger');
   const bridge = page.locator('.desktop-components-menu-bridge');
   const menu = page.locator(menuSelector);
+  const mobileMenu = page.locator('m3-menu[placement="top-center"]');
 
   await trigger.hover();
   await expect(menu).toHaveAttribute('open', '');
+  await expect(mobileMenu).not.toHaveAttribute('open', '');
 
   await bridge.hover();
   await page.waitForTimeout(225);
   await menu.hover();
   await expect(menu).toHaveAttribute('open', '');
 
-  await page.getByRole('menuitem', { name: 'smart_button Buttons' }).click();
+  await menu.getByRole('menuitem', { name: 'smart_button Buttons' }).click();
   await expect(page).toHaveURL(/\/buttons$/);
   await expect(menu).not.toHaveAttribute('open', '');
 });
@@ -31,7 +33,7 @@ test('opens from physical and keyboard trigger activation and restores focus on 
 }) => {
   const triggerButton = page.locator('#desktop-components-trigger').locator('button');
   const menu = page.locator(menuSelector);
-  const firstItem = menu.locator('m3-menu-item').first().locator('button');
+  const firstItem = menu.getByRole('menuitem').first();
 
   await triggerButton.click();
   await expect(menu).toHaveAttribute('open', '');
