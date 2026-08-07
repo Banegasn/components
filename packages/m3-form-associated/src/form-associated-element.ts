@@ -1,4 +1,4 @@
-import { LitElement } from 'lit';
+import { LitElement, type PropertyValues } from 'lit';
 
 /** A value that ElementInternals can contribute to FormData. */
 export type FormAssociatedValue = File | FormData | string | null;
@@ -31,11 +31,14 @@ export function validityFlags(validity: ValidityState): FormValidityFlags {
 export abstract class FormAssociatedElement extends LitElement {
   static readonly formAssociated = true;
 
+  /** Direct disabled state owned by each concrete form control. */
+  abstract disabled: boolean;
+
   private readonly _internals = typeof this.attachInternals === 'function'
     ? this.attachInternals()
     : undefined;
 
-  private _fieldsetDisabled = false;
+  private _formDisabled = false;
 
   /** The form owner, including an owner selected with the host `form` attribute. */
   get form(): HTMLFormElement | null {
@@ -66,11 +69,20 @@ export abstract class FormAssociatedElement extends LitElement {
 
   /** True when this control is disabled directly or through a disabled fieldset. */
   protected get formDisabled(): boolean {
-    return this._fieldsetDisabled;
+    return this._formDisabled;
   }
 
   protected get isFormDisabled(): boolean {
-    return this._fieldsetDisabled || this.hasAttribute('disabled');
+    return this._formDisabled || this.disabled;
+  }
+
+  protected willUpdate(changedProperties: PropertyValues<this>): void {
+    if (changedProperties.has('disabled')) {
+      // Lit normally reflects after render. Form-associated controls need the
+      // browser disabled callback before render so their internal control and
+      // visual state cannot lag one update behind a property binding.
+      this.toggleAttribute('disabled', this.disabled);
+    }
   }
 
   checkValidity(): boolean {
@@ -119,8 +131,10 @@ export abstract class FormAssociatedElement extends LitElement {
   }
 
   formDisabledCallback(disabled: boolean): void {
-    this._fieldsetDisabled = disabled;
-    this.requestUpdate();
+    if (this._formDisabled !== disabled) {
+      this._formDisabled = disabled;
+      this.requestUpdate();
+    }
   }
 
   formResetCallback(): void {

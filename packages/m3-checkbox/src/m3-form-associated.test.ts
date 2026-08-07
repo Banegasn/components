@@ -57,6 +57,88 @@ describe('form-associated controls', () => {
     expect(new FormData(container.querySelector<HTMLFormElement>('#disabled-owner')!).has('skip')).to.equal(false);
   });
 
+  it('renders programmatic disabled state before another interaction for every control', async () => {
+    const container = await fixture<HTMLDivElement>(html`
+      <div>
+        <m3-button>Save</m3-button>
+        <m3-checkbox aria-label="Terms"></m3-checkbox>
+        <m3-radio-button aria-label="Theme"></m3-radio-button>
+        <m3-search-bar aria-label="Search"></m3-search-bar>
+        <m3-slider aria-label="Volume"></m3-slider>
+        <m3-switch aria-label="Alerts"></m3-switch>
+        <m3-text-field label="Name"></m3-text-field>
+      </div>
+    `);
+    const button = container.querySelector<M3Button>('m3-button')!;
+    const checkbox = container.querySelector<M3Checkbox>('m3-checkbox')!;
+    const radio = container.querySelector<M3RadioButton>('m3-radio-button')!;
+    const search = container.querySelector<M3SearchBar>('m3-search-bar')!;
+    const slider = container.querySelector<M3Slider>('m3-slider')!;
+    const controlSwitch = container.querySelector<M3Switch>('m3-switch')!;
+    const text = container.querySelector<M3TextField>('m3-text-field')!;
+    const controls = [
+      button,
+      checkbox,
+      radio,
+      search,
+      slider,
+      controlSwitch,
+      text,
+    ];
+
+    await Promise.all(controls.map((control) => control.updateComplete));
+    controls.forEach((control) => {
+      control.disabled = true;
+    });
+    await Promise.all(controls.map((control) => control.updateComplete));
+
+    expect(button.shadowRoot!.querySelector('button')!.disabled).to.equal(true);
+    expect(
+      checkbox.shadowRoot!
+        .querySelector('[role="checkbox"]')!
+        .getAttribute('aria-disabled'),
+    ).to.equal('true');
+    expect(
+      radio.shadowRoot!
+        .querySelector('[role="radio"]')!
+        .getAttribute('aria-disabled'),
+    ).to.equal('true');
+    expect(search.shadowRoot!.querySelector('input')!.disabled).to.equal(true);
+    expect(slider.shadowRoot!.querySelector('input')!.disabled).to.equal(true);
+    expect(
+      controlSwitch.shadowRoot!
+        .querySelector('[role="switch"]')!
+        .getAttribute('aria-disabled'),
+    ).to.equal('true');
+    expect(text.shadowRoot!.querySelector('input')!.disabled).to.equal(true);
+
+    controls.forEach((control) => {
+      control.disabled = false;
+    });
+    await Promise.all(controls.map((control) => control.updateComplete));
+    await Promise.all(controls.map((control) => control.updateComplete));
+
+    expect(button.shadowRoot!.querySelector('button')!.disabled).to.equal(false);
+    expect(
+      checkbox.shadowRoot!
+        .querySelector('[role="checkbox"]')!
+        .hasAttribute('aria-disabled'),
+    ).to.equal(false);
+    expect(
+      radio.shadowRoot!
+        .querySelector('[role="radio"]')!
+        .hasAttribute('aria-disabled'),
+    ).to.equal(false);
+    expect(search.shadowRoot!.querySelector('input')!.disabled).to.equal(false);
+    expect(slider.shadowRoot!.querySelector('input')!.disabled).to.equal(false);
+    expect(
+      controlSwitch.shadowRoot!
+        .querySelector('[role="switch"]')!
+        .hasAttribute('aria-disabled'),
+    ).to.equal(false);
+    expect(text.shadowRoot!.querySelector('input')!.disabled).to.equal(false);
+  });
+
   it('enforces required fields through native form validity', async () => {
     const form = await fixture<HTMLFormElement>(html`
       <form><m3-text-field name="email" required></m3-text-field></form>
