@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
-import '@banegasn/m3-search-bar';
+import { M3SearchBar } from '@banegasn/m3-search-bar';
 import '@banegasn/m3-card';
 import '@banegasn/m3-button';
 
@@ -43,7 +43,9 @@ export class SearchBarComponent {
 </m3-search-bar>`;
 
   onSearchInput(event: Event) {
-    const value = (event as CustomEvent).detail.value;
+    const target = event.currentTarget ?? event.target;
+    if (!(target instanceof M3SearchBar)) return;
+    const value = target.value;
     this.searchValue = value;
     console.log('Search input:', value);
     
@@ -60,22 +62,15 @@ export class SearchBarComponent {
   }
 
   onSearchSubmit(event: Event) {
-    const value = (event as CustomEvent).detail.value;
+    const target = event.currentTarget ?? event.target;
+    if (!(target instanceof M3SearchBar)) return;
+    const value = target.value;
     console.log('Search submitted:', value);
     alert(`Searching for: ${value}`);
   }
 
-  onSearchClear() {
-    this.searchValue = '';
-    this.searchResults = [];
-    console.log('Search cleared');
-  }
-
-  clearSearch(searchBar: any) {
-    if (searchBar && typeof searchBar.clear === 'function') {
-      searchBar.clear();
-    }
+  clearSearch(searchBar: M3SearchBar) {
+    searchBar.clear();
   }
 }
-
 

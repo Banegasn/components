@@ -369,7 +369,7 @@
       const allMenus = document.querySelectorAll('.dropdown-menu');
 
       menuTriggers.forEach((trigger, index) => {
-        trigger.addEventListener('button-click', (e) => {
+        trigger.addEventListener('click', () => {
           // Close other menus first
           allMenus.forEach((menu, i) => {
             if (i !== index) menu.removeAttribute('open');
@@ -396,8 +396,8 @@
       // Handle Task Completion via Radio Buttons
       const radios = document.querySelectorAll('m3-radio-button');
       radios.forEach(radio => {
-        radio.addEventListener('radio-change', (e) => {
-          if (e.detail.checked) {
+        radio.addEventListener('change', () => {
+          if (radio.checked) {
             const taskCard = radio.closest('.task-card');
             taskCard.classList.add('completed');
             // Uncheck after short delay to simulate completion and removal
@@ -414,14 +414,14 @@
       // Handle Fab Actions
       const fabButtons = document.querySelectorAll('m3-fab-menu m3-button');
       fabButtons.forEach(btn => {
-        btn.addEventListener('button-click', (e) => {
+        btn.addEventListener('click', () => {
           alert(`Triggered action: ${btn.getAttribute('aria-label')}`);
         });
       });
 
       // Handle Sync Button (Loading Indicator)
       const syncBtn = document.getElementById('sync-btn');
-      syncBtn.addEventListener('button-click', () => {
+      syncBtn.addEventListener('click', () => {
         if (syncBtn.hasAttribute('loading')) return;
         
         // Disable button and show loading state
@@ -456,8 +456,8 @@
       const searchBar = document.getElementById('task-search');
       const allTaskCards = document.querySelectorAll('.task-card');
 
-      searchBar.addEventListener('search-input', (e) => {
-        const query = e.detail.value.toLowerCase();
+      searchBar.addEventListener('input', () => {
+        const query = searchBar.value.toLowerCase();
         
         allTaskCards.forEach(card => {
           const text = card.querySelector('.task-text').textContent.toLowerCase();
@@ -466,12 +466,6 @@
           } else {
             card.style.display = 'none';
           }
-        });
-      });
-
-      searchBar.addEventListener('search-clear', () => {
-        allTaskCards.forEach(card => {
-          card.style.display = 'flex';
         });
       });
 

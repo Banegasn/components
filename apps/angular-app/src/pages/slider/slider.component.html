@@ -31,12 +31,12 @@
 
   <section class="demo-section">
     <h2>Interactive Example</h2>
-    <p>Listen to the <code>slider-change</code> event to respond to user interaction.</p>
+    <p>Listen to the native <code>input</code> event to respond while the value changes.</p>
     <div class="interactive-demo">
       <div class="demo-row" style="width: 100%; max-width: 400px; padding: 24px 0; flex-direction: column; gap: 16px;">
         <div style="width: 100%; display: flex; align-items: center; gap: 16px;">
             <span class="material-symbols-outlined" style="color: var(--md-sys-color-on-surface-variant)">volume_down</span>
-            <m3-slider min="0" max="100" [value]="volume" (slider-change)="onSliderChange($event, 'volume')" style="flex: 1;"></m3-slider>
+            <m3-slider aria-label="Volume" min="0" max="100" [value]="volume" (input)="onSliderChange($event, 'volume')" style="flex: 1;"></m3-slider>
             <span class="material-symbols-outlined" style="color: var(--md-sys-color-on-surface-variant)">volume_up</span>
         </div>
         <div style="color: var(--md-sys-color-on-surface); font-weight: 500;">Volume Value: {{ volume }}</div>

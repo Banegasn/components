@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
-import '@banegasn/m3-radio-button';
+import { M3RadioButton } from '@banegasn/m3-radio-button';
 import '@banegasn/m3-card';
 
 @Component({
@@ -28,34 +28,32 @@ export class RadioButtonComponent {
   name="theme"
   value="light"
   [checked]="selectedTheme === 'light'"
-  (radio-change)="onRadioChange($event, 'theme')">
+  (change)="onRadioChange($event, 'theme')">
 </m3-radio-button>`;
 
   readonly ariaExample = `<m3-radio-button aria-label="Option A"></m3-radio-button>
 <m3-radio-button aria-labelledby="label-id"></m3-radio-button>`;
 
   onRadioChange(event: Event, groupName: string) {
-    const checked = (event as CustomEvent).detail.checked;
-    const value = (event as CustomEvent).detail.value;
+    const target = event.currentTarget ?? event.target;
+    if (!(target instanceof M3RadioButton) || !target.checked) return;
+    const value = target.value ?? '';
+
+    console.log(`${groupName} is now:`, value);
     
-    if (checked) {
-      console.log(`${groupName} is now:`, value);
-      
-      switch (groupName) {
-        case 'theme':
-          this.selectedTheme = value;
-          break;
-        case 'size':
-          this.selectedSize = value;
-          break;
-        case 'color':
-          this.selectedColor = value;
-          break;
-        case 'option':
-          this.selectedOption = value;
-          break;
-      }
+    switch (groupName) {
+      case 'theme':
+        this.selectedTheme = value;
+        break;
+      case 'size':
+        this.selectedSize = value;
+        break;
+      case 'color':
+        this.selectedColor = value;
+        break;
+      case 'option':
+        this.selectedOption = value;
+        break;
     }
   }
 }
-

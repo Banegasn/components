@@ -19,7 +19,7 @@
             <div class="menu-demo">
                 <div class="demo-toolbar">
                     <div class="menu-anchor">
-                        <m3-button variant="filled" (button-click)="toggleMenu()">Open menu</m3-button>
+                        <m3-button variant="filled" (click)="toggleMenu()">Open menu</m3-button>
                         <m3-menu [attr.open]="menuOpen ? '' : null" [placement]="examplePlacement"
                             (menu-dismiss)="closeMenu()" (menu-item-select)="handleMenuSelect($event)">
                             <m3-menu-item value="profile">
@@ -37,7 +37,7 @@
                         </m3-menu>
                     </div>
                     <div class="menu-anchor placement-anchor">
-                        <m3-button variant="tonal" (button-click)="togglePlacementMenu()">
+                        <m3-button variant="tonal" (click)="togglePlacementMenu()">
                             Position: {{ examplePlacement }}
                         </m3-button>
                         <m3-menu placement="bottom-start" [attr.open]="placementMenuOpen ? '' : null"

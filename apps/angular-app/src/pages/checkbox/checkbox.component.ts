@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
-import '@banegasn/m3-checkbox';
+import { M3Checkbox } from '@banegasn/m3-checkbox';
 import '@banegasn/m3-card';
 
 @Component({
@@ -27,11 +27,13 @@ export class CheckboxComponent {
 
   readonly interactiveExample = `<m3-checkbox
   [checked]="termsAccepted"
-  (checkbox-change)="onCheckboxChange($event, 'terms')">
+  (change)="onCheckboxChange($event, 'terms')">
 </m3-checkbox>`;
 
   onCheckboxChange(event: Event, checkboxName: string) {
-    const detail = (event as CustomEvent).detail;
-    console.log(`${checkboxName} checked state is now:`, detail.checked);
+    const target = event.currentTarget ?? event.target;
+    if (!(target instanceof M3Checkbox)) return;
+    if (checkboxName === 'terms') this.termsAccepted = target.checked;
+    console.log(`${checkboxName} checked state is now:`, target.checked);
   }
 }
