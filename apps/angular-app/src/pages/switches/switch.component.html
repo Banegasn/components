@@ -1,15 +1,12 @@
 <div class="page-container docs-page">
-  <header class="page-header">
-    <h1>Switches</h1>
-    <p class="subtitle">
-      Switches toggle the state of a single setting on or off. They are the preferred way to adjust settings on mobile.
-    </p>
-  </header>
-
   <!-- Basic Usage -->
   <section class="demo-section">
     <h2>Basic Usage</h2>
-    <p>Switches allow users to toggle between on and off states. They follow Material Design 3 specifications with smooth animations and accessibility support.</p>
+    <p>
+      Switches allow users to toggle between on and off states. They follow
+      Material Design 3 specifications with smooth animations and accessibility
+      support.
+    </p>
 
     <div class="variant-card">
       <div class="variant-header">
@@ -26,20 +23,29 @@
           <m3-switch checked></m3-switch>
         </div>
       </div>
-      <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
+      <app-code-block
+        language="html"
+        variant="sample"
+        [code]="basicExample"
+      ></app-code-block>
     </div>
   </section>
 
   <!-- States -->
   <section class="demo-section">
     <h2>States</h2>
-    <p>Switches can be in different states: enabled, disabled, checked, and unchecked.</p>
+    <p>
+      Switches can be in different states: enabled, disabled, checked, and
+      unchecked.
+    </p>
 
     <div class="variant-card">
       <div class="variant-header">
         <h3>Disabled State</h3>
       </div>
-      <p>Disabled switches cannot be interacted with and have reduced opacity.</p>
+      <p>
+        Disabled switches cannot be interacted with and have reduced opacity.
+      </p>
       <div class="demo-switches">
         <div class="switch-item">
           <label>Disabled Off</label>
@@ -50,14 +56,21 @@
           <m3-switch checked disabled></m3-switch>
         </div>
       </div>
-      <app-code-block language="html" variant="sample" [code]="disabledExample"></app-code-block>
+      <app-code-block
+        language="html"
+        variant="sample"
+        [code]="disabledExample"
+      ></app-code-block>
     </div>
   </section>
 
   <!-- Interactive Examples -->
   <section class="demo-section">
     <h2>Interactive Examples</h2>
-    <p>Switches emit events when their state changes, allowing you to react to user interactions.</p>
+    <p>
+      Switches emit events when their state changes, allowing you to react to
+      user interactions.
+    </p>
 
     <div class="variant-card">
       <div class="variant-header">
@@ -70,10 +83,11 @@
             <h4>Enable Notifications</h4>
             <p>Receive push notifications for important updates</p>
           </div>
-          <m3-switch 
+          <m3-switch
             [checked]="notificationsEnabled"
             (change)="onSwitchChange($event, 'notifications')"
-            aria-label="Enable notifications">
+            aria-label="Enable notifications"
+          >
           </m3-switch>
         </div>
         <div class="setting-item">
@@ -81,10 +95,11 @@
             <h4>Dark Mode</h4>
             <p>Switch to dark theme for better viewing in low light</p>
           </div>
-          <m3-switch 
+          <m3-switch
             [checked]="darkModeEnabled"
             (change)="onSwitchChange($event, 'darkMode')"
-            aria-label="Enable dark mode">
+            aria-label="Enable dark mode"
+          >
           </m3-switch>
         </div>
         <div class="setting-item">
@@ -92,10 +107,11 @@
             <h4>Auto-save</h4>
             <p>Automatically save your work as you type</p>
           </div>
-          <m3-switch 
+          <m3-switch
             [checked]="autoSaveEnabled"
             (change)="onSwitchChange($event, 'autoSave')"
-            aria-label="Enable auto-save">
+            aria-label="Enable auto-save"
+          >
           </m3-switch>
         </div>
         <div class="setting-item">
@@ -103,28 +119,38 @@
             <h4>Location Services</h4>
             <p>Allow apps to access your location</p>
           </div>
-          <m3-switch 
+          <m3-switch
             [checked]="locationEnabled"
             (change)="onSwitchChange($event, 'location')"
-            aria-label="Enable location services">
+            aria-label="Enable location services"
+          >
           </m3-switch>
         </div>
       </div>
-      <app-code-block language="html" variant="sample" [code]="interactiveExample"></app-code-block>
+      <app-code-block
+        language="html"
+        variant="sample"
+        [code]="interactiveExample"
+      ></app-code-block>
     </div>
   </section>
 
   <!-- Accessibility -->
   <section class="demo-section">
     <h2>Accessibility</h2>
-    <p>The switch component follows Material Design 3 accessibility guidelines:</p>
+    <p>
+      The switch component follows Material Design 3 accessibility guidelines:
+    </p>
 
     <div class="variant-card">
       <div class="variant-header">
         <h3>ARIA Support</h3>
       </div>
       <ul class="feature-list">
-        <li>✓ Uses proper ARIA attributes (role="switch", aria-checked, aria-disabled)</li>
+        <li>
+          ✓ Uses proper ARIA attributes (role="switch", aria-checked,
+          aria-disabled)
+        </li>
         <li>✓ Supports keyboard navigation (Space and Enter keys)</li>
         <li>✓ Provides focus indicators</li>
         <li>✓ Supports screen readers with aria-label and aria-labelledby</li>
@@ -138,14 +164,18 @@
           <m3-switch aria-label="Enable Bluetooth"></m3-switch>
         </div>
       </div>
-      <app-code-block language="html" variant="sample" [code]="ariaExample"></app-code-block>
+      <app-code-block
+        language="html"
+        variant="sample"
+        [code]="ariaExample"
+      ></app-code-block>
     </div>
   </section>
 
   <!-- Properties & Events -->
   <section class="demo-section">
     <h2>Properties & Events</h2>
-    
+
     <div class="variant-card">
       <div class="variant-header">
         <h3>Properties</h3>

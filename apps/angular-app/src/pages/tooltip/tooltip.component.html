@@ -1,30 +1,42 @@
 <div class="page-container docs-page">
-  <header class="page-header">
-    <h1>Tooltip</h1>
-    <p class="subtitle">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
-  </header>
-
   <section class="demo-section">
     <h2>Plain Tooltip</h2>
     <div class="interactive-demo">
       <div class="demo-row">
-        <m3-tooltip text="Save document" placement="top"><m3-button>Hover me</m3-button></m3-tooltip>
-        <m3-tooltip text="Delete item" placement="bottom"><m3-button variant="outlined">Bottom</m3-button></m3-tooltip>
+        <m3-tooltip text="Save document" placement="top"
+          ><m3-button>Hover me</m3-button></m3-tooltip
+        >
+        <m3-tooltip text="Delete item" placement="bottom"
+          ><m3-button variant="outlined">Bottom</m3-button></m3-tooltip
+        >
       </div>
-      <app-code-block [code]="basicExample" language="html" variant="sample"></app-code-block>
+      <app-code-block
+        [code]="basicExample"
+        language="html"
+        variant="sample"
+      ></app-code-block>
     </div>
   </section>
 
   <section class="demo-section">
     <h2>Interactive Rich Tooltip</h2>
-    <p>Move from the trigger into the surface, or use the link with the keyboard. Press Escape to dismiss.</p>
+    <p>
+      Move from the trigger into the surface, or use the link with the keyboard.
+      Press Escape to dismiss.
+    </p>
     <div class="interactive-demo">
       <m3-tooltip variant="rich" placement="right">
         <m3-button variant="outlined">More details</m3-button>
         <strong slot="title">Storage limit</strong>
-        <span slot="content">You have 2 GB remaining. <a href="/storage">Manage storage</a></span>
+        <span slot="content"
+          >You have 2 GB remaining. <a href="/storage">Manage storage</a></span
+        >
       </m3-tooltip>
-      <app-code-block [code]="richExample" language="html" variant="sample"></app-code-block>
+      <app-code-block
+        [code]="richExample"
+        language="html"
+        variant="sample"
+      ></app-code-block>
     </div>
   </section>
 </div>

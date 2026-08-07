@@ -1,0 +1,174 @@
+app-home .hero-preview {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid
+    color-mix(in srgb, var(--md-sys-color-outline) 75%, transparent);
+  border-radius: 26px;
+  background: var(--md-sys-color-surface);
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--md-sys-color-on-surface) 7%, transparent),
+    0 28px 70px
+      color-mix(in srgb, var(--md-sys-color-on-surface) 16%, transparent);
+  transform: rotate(1.5deg);
+}
+
+app-home .preview-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 46px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-container-low);
+}
+
+app-home .preview-toolbar > span {
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: var(--md-sys-color-outline);
+}
+
+app-home .preview-toolbar > span:first-child {
+  background: var(--md-sys-color-primary);
+}
+
+app-home .preview-address {
+  min-width: 0;
+  margin-inline-start: 8px;
+  padding: 5px 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+app-home .preview-content {
+  padding: clamp(24px, 4vw, 40px);
+}
+
+app-home .preview-label {
+  color: var(--md-sys-color-primary);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+app-home .preview-content h2 {
+  margin: 8px 0;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  letter-spacing: -0.035em;
+}
+
+app-home .preview-content > p {
+  margin: 0 0 28px;
+  font-size: 0.875rem;
+}
+
+app-home .preview-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 18px;
+  background: var(--md-sys-color-surface-container-low);
+}
+
+app-home .preview-setting > span {
+  display: grid;
+  gap: 2px;
+}
+
+app-home .preview-setting strong {
+  font-size: 0.82rem;
+}
+
+app-home .preview-setting small {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.7rem;
+}
+
+app-home .preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+app-home .home-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 4px 0;
+}
+
+app-home .frameworks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 22px;
+}
+
+app-home .frameworks-label {
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+app-home .framework-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+app-home .framework-badge {
+  padding: 5px 12px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 999px;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+app-home .home-footer p {
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 980px) {
+  app-home .hero-preview {
+    width: min(100%, 560px);
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  app-home .hero-preview {
+    border-radius: 20px;
+  }
+
+  app-home .preview-content {
+    padding: 22px 18px;
+  }
+
+  app-home .preview-setting small {
+    display: none;
+  }
+
+  app-home .home-footer {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
