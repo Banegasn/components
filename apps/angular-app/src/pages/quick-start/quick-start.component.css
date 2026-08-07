@@ -1,7 +1,8 @@
 .qs-sections {
   display: flex;
   flex-direction: column;
-  max-width: 760px;
+  gap: clamp(16px, 2.4vw, 24px);
+  max-width: 860px;
 }
 
 /* ─── Install grid ───────────────────────────────────────── */
@@ -23,7 +24,7 @@
 /* ─── Demo showcase ──────────────────────────────────────── */
 .demo-showcase {
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 24px;
   background: var(--md-sys-color-surface-container-low);
   display: flex;
@@ -41,15 +42,20 @@
 }
 
 .demo-image {
-  border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px
+    color-mix(in srgb, var(--md-sys-color-on-surface) 10%, transparent);
   border: 1px solid var(--md-sys-color-outline-variant);
   object-fit: contain;
   max-height: 360px;
 }
 
-.demo-image--desktop { width: 65%; }
-.demo-image--mobile  { width: 22%; }
+.demo-image--desktop {
+  width: 65%;
+}
+.demo-image--mobile {
+  width: 22%;
+}
 
 .demo-cta {
   text-decoration: none;

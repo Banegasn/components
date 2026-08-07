@@ -1,33 +1,50 @@
 <div class="page-container docs-page">
-  <header class="page-header">
-    <h1>Split Button</h1>
-    <p class="subtitle">A primary action paired with a keyboard-complete menu trigger.</p>
-  </header>
-
   <section class="demo-section">
     <h2>Interactive Demo</h2>
     <div class="variant-card">
-      <m3-split-button [open]="menuOpen" menu-label="More send options"
+      <m3-split-button
+        [open]="menuOpen"
+        menu-label="More send options"
         (split-button-click)="handlePrimaryAction()"
-        (split-button-open-change)="handleMenuChange($event)">
+        (split-button-open-change)="handleMenuChange($event)"
+      >
         Send
-        <m3-menu slot="menu" placement="bottom-end" (menu-item-select)="handleMenuItemSelect($event)">
+        <m3-menu
+          slot="menu"
+          placement="bottom-end"
+          (menu-item-select)="handleMenuItemSelect($event)"
+        >
           <m3-menu-item value="schedule-send">Schedule send</m3-menu-item>
           <m3-menu-item value="save-draft">Save draft</m3-menu-item>
           <m3-menu-item value="send-test">Send test</m3-menu-item>
         </m3-menu>
       </m3-split-button>
-      <p style="margin: 12px 0 0;">Last interaction: <code>{{ lastInteraction }}</code></p>
-      <app-code-block language="html" variant="sample" [code]="basicExample"></app-code-block>
+      <p style="margin: 12px 0 0">
+        Last interaction: <code>{{ lastInteraction }}</code>
+      </p>
+      <app-code-block
+        language="html"
+        variant="sample"
+        [code]="basicExample"
+      ></app-code-block>
     </div>
   </section>
 
   <section class="demo-section accessibility">
     <h2>♿ Accessibility</h2>
     <ul class="feature-list">
-      <li><strong>Keyboard:</strong> Arrow keys, Home, and End open and enter the menu.</li>
-      <li><strong>Focus:</strong> Escape and outside click return focus to the menu trigger.</li>
-      <li><strong>ARIA:</strong> The trigger exposes a real <code>aria-controls</code> relationship.</li>
+      <li>
+        <strong>Keyboard:</strong> Arrow keys, Home, and End open and enter the
+        menu.
+      </li>
+      <li>
+        <strong>Focus:</strong> Escape and outside click return focus to the
+        menu trigger.
+      </li>
+      <li>
+        <strong>ARIA:</strong> The trigger exposes a real
+        <code>aria-controls</code> relationship.
+      </li>
     </ul>
   </section>
 </div>

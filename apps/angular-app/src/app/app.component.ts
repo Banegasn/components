@@ -27,6 +27,14 @@ import { DialogService } from './services/dialog.service';
 import { SettingsComponent } from './components/settings/settings.component';
 
 import { SeoLinkComponent } from './components/seo-link/seo-link.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+
+interface PageMeta {
+  title: string;
+  description: string;
+  eyebrow: string;
+  icon: string;
+}
 
 type ComponentsMenuElement = HTMLElement & {
   open: boolean;
@@ -35,7 +43,7 @@ type ComponentsMenuElement = HTMLElement & {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SeoLinkComponent],
+  imports: [RouterOutlet, SeoLinkComponent, PageHeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -52,6 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
   currentRoute = signal('/');
+  pageMeta = signal<PageMeta | null>(null);
   desktopComponentsMenuOpen = signal(false);
   mobileComponentsMenuOpen = signal(false);
   railExpanded = signal(true);
@@ -142,17 +151,44 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     // Track route changes for navigation bar active state
-    this.currentRoute.set(this.#router.url);
+    this.syncRouteState(this.#router.url);
     this.#router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         takeUntilDestroyed(this.#destroyRef),
       )
       .subscribe((event: any) => {
-        this.currentRoute.set(event.url);
+        this.syncRouteState(event.urlAfterRedirects);
         this.closeComponentsMenu();
         this.scrollToTop();
       });
+  }
+
+  private syncRouteState(url: string) {
+    const path = url.split(/[?#]/, 1)[0];
+    this.currentRoute.set(path);
+
+    let snapshot = this.#router.routerState.snapshot.root;
+    while (snapshot.firstChild) snapshot = snapshot.firstChild;
+
+    const title = snapshot.routeConfig?.title;
+    const description = snapshot.data['description'];
+    if (typeof title !== 'string' || typeof description !== 'string') {
+      this.pageMeta.set(null);
+      return;
+    }
+
+    const contextualMeta: Record<string, Pick<PageMeta, 'eyebrow' | 'icon'>> = {
+      '/quick-start': { eyebrow: 'Getting started', icon: 'rocket_launch' },
+      '/components': { eyebrow: 'Component library', icon: 'widgets' },
+      '/contact': { eyebrow: 'Community', icon: 'forum' },
+    };
+    const context = contextualMeta[path] ?? {
+      eyebrow: 'Component reference',
+      icon: 'deployed_code',
+    };
+
+    this.pageMeta.set({ title, description, ...context });
   }
 
   ngOnDestroy() {

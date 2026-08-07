@@ -1,16 +1,20 @@
-@import "highlight.js/styles/github-dark.css";
-@import "../../../tokens/generated/light.css";
-@import "../../../tokens/generated/dark.css";
-@import "../../../tokens/generated/high-contrast.css";
+@import 'highlight.js/styles/github-dark.css';
+@import '../../../tokens/generated/light.css';
+@import '../../../tokens/generated/dark.css';
+@import '../../../tokens/generated/high-contrast.css';
+@import './pages/home/home-preview.css';
 
 /* ─── Reset ─────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -20,7 +24,9 @@ html, body {
    duration override from the generated token stylesheets. */
 @media (prefers-reduced-motion: reduce) {
   /* motion-literal-exempt: static reduced-motion final states. */
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 1ms !important;
     animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
@@ -30,9 +36,9 @@ html, body {
   }
 }
 
-:root[data-motion="reduced"] *,
-:root[data-motion="reduced"] *::before,
-:root[data-motion="reduced"] *::after {
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
   /* motion-literal-exempt: demo verification mode resolves to static states. */
   animation-duration: 1ms !important;
   animation-delay: 0ms !important;
@@ -78,15 +84,18 @@ html, body {
   --md-sys-color-outline-variant: #e5e7eb;
 
   /* Elevation */
-  --md-sys-elevation-level2: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --md-sys-elevation-level2:
+    0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
 
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:
+    'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
 }
 
 /* ─── Design tokens – dark ──────────────────────────────── */
-:root[theme="dark"] {
+:root[theme='dark'] {
   --md-sys-color-primary: #818cf8;
   --md-sys-color-primary-hover: #939cf9;
   --md-sys-color-on-primary: #1e1b4b;
@@ -115,11 +124,12 @@ html, body {
   --md-sys-color-outline: #374151;
   --md-sys-color-outline-variant: #1f2937;
 
-  --md-sys-elevation-level2: 0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
+  --md-sys-elevation-level2:
+    0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* ─── Theme: Emerald (light) ────────────────────────────── */
-:root[theme="emerald"] {
+:root[theme='emerald'] {
   --md-sys-color-primary: #059669;
   --md-sys-color-primary-hover: #047857;
   --md-sys-color-on-primary: #ffffff;
@@ -145,7 +155,7 @@ html, body {
 }
 
 /* ─── Theme: Emerald (dark) ─────────────────────────────── */
-:root[theme="emerald-dark"] {
+:root[theme='emerald-dark'] {
   --md-sys-color-primary: #34d399;
   --md-sys-color-primary-hover: #6ee7b7;
   --md-sys-color-on-primary: #064e3b;
@@ -171,7 +181,7 @@ html, body {
 }
 
 /* ─── Theme: Rose (light) ───────────────────────────────── */
-:root[theme="rose"] {
+:root[theme='rose'] {
   --md-sys-color-primary: #e11d48;
   --md-sys-color-primary-hover: #be123c;
   --md-sys-color-on-primary: #ffffff;
@@ -197,7 +207,7 @@ html, body {
 }
 
 /* ─── Theme: Rose (dark) ────────────────────────────────── */
-:root[theme="rose-dark"] {
+:root[theme='rose-dark'] {
   --md-sys-color-primary: #fb7185;
   --md-sys-color-primary-hover: #fda4af;
   --md-sys-color-on-primary: #881337;
@@ -223,7 +233,7 @@ html, body {
 }
 
 /* ─── Theme: Amber (light) ──────────────────────────────── */
-:root[theme="amber"] {
+:root[theme='amber'] {
   --md-sys-color-primary: #d97706;
   --md-sys-color-primary-hover: #b45309;
   --md-sys-color-on-primary: #ffffff;
@@ -249,7 +259,7 @@ html, body {
 }
 
 /* ─── Theme: Amber (dark) ───────────────────────────────── */
-:root[theme="amber-dark"] {
+:root[theme='amber-dark'] {
   --md-sys-color-primary: #fbbf24;
   --md-sys-color-primary-hover: #fcd34d;
   --md-sys-color-on-primary: #78350f;
@@ -275,17 +285,23 @@ html, body {
 }
 
 /* ─── Theme transition ───────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   transition:
-    background-color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard),
-    border-color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard),
-    color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard),
-    box-shadow var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-standard);
+    background-color var(--md-sys-motion-duration-medium1)
+      var(--md-sys-motion-easing-standard),
+    border-color var(--md-sys-motion-duration-medium1)
+      var(--md-sys-motion-easing-standard),
+    color var(--md-sys-motion-duration-medium1)
+      var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-medium1)
+      var(--md-sys-motion-easing-standard);
 }
 
 /* Exclude elements where transition would look wrong */
 *:where(
-  [class*="material-symbols"],
+  [class*='material-symbols'],
   m3-button,
   m3-switch,
   m3-slider,
@@ -306,7 +322,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-sans);
   font-weight: 600;
   color: var(--md-sys-color-on-surface);
@@ -314,9 +335,19 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 0.75rem; }
-h2 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); margin-top: 1.5rem; margin-bottom: 0.75rem; }
-h3 { font-size: 1.125rem; margin-bottom: 0.5rem; }
+h1 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
 
 p {
   margin-bottom: 1rem;
@@ -324,12 +355,15 @@ p {
   color: var(--md-sys-color-on-surface-variant);
 }
 
-ul, ol {
+ul,
+ol {
   margin: 0.75rem 0;
   padding-inline-start: 1.5rem;
 }
 
-li { line-height: 1.7; }
+li {
+  line-height: 1.7;
+}
 
 code {
   font-family: var(--font-mono);
@@ -343,7 +377,11 @@ code {
 
 /* ─── Material Symbols ───────────────────────────────────── */
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 20;
   vertical-align: middle;
   display: inline-flex;
   align-items: center;
@@ -351,7 +389,8 @@ code {
   font-size: 20px;
   /* Hide icon text until font is loaded to prevent FOUT */
   opacity: 0;
-  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+  transition: opacity var(--md-sys-motion-duration-short3)
+    var(--md-sys-motion-easing-standard);
   -webkit-user-select: none;
   user-select: none;
 }
@@ -359,7 +398,7 @@ code {
 /* Disable tap highlight and text selection on interactive elements */
 button,
 a,
-[role="button"],
+[role='button'],
 m3-button,
 m3-navigation-rail-item,
 m3-navigation-rail-toggle,
@@ -382,69 +421,86 @@ m3-radio-button {
 
 /* Fallback: reveal after the extra-long motion role so icons never stay invisible. */
 @keyframes icons-reveal {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 .material-symbols-outlined {
-  animation: icons-reveal var(--md-sys-motion-duration-short1) var(--md-sys-motion-duration-extra-long4) forwards;
+  animation: icons-reveal var(--md-sys-motion-duration-short1)
+    var(--md-sys-motion-duration-extra-long4) forwards;
 }
 
-/* ─── Docs page layout ───────────────────────────────────── */
-.docs-page .page-header {
-  margin-bottom: clamp(12px, 2vw, 20px);
-  padding-bottom: clamp(12px, 2vw, 20px);
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+/* ─── Shared documentation layout ───────────────────────── */
+.page-container,
+.docs-page {
+  min-width: 0;
 }
 
-.docs-page .page-header h1 {
-  margin: 0;
-  font-size: clamp(1.375rem, 4vw, 2.25rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+.docs-page {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 28px);
 }
 
-.docs-page .subtitle,
-.docs-page .page-header > p {
-  margin: 0.5rem 0 0;
-  max-width: 75ch;
-  font-size: clamp(0.875rem, 1.5vw, 0.9375rem);
-  line-height: 1.7;
-  color: var(--md-sys-color-on-surface-variant);
-}
-
-/* Demo sections */
+/* Primary content surfaces: all component pages use this contract. */
 .docs-page :is(.demo-section, .section, .doc-section) {
-  margin-top: clamp(16px, 2.5vw, 24px);
-  padding: clamp(16px, 2vw, 22px);
-  background: var(--md-sys-color-surface-container-low);
+  min-width: 0;
+  margin: 0;
+  padding: clamp(20px, 3vw, 32px);
+  overflow: clip;
+  background: var(--md-sys-color-surface);
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 12px;
+  border-radius: clamp(20px, 2.5vw, 28px);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--md-sys-color-on-surface) 4%, transparent),
+    0 12px 32px
+      color-mix(in srgb, var(--md-sys-color-on-surface) 4%, transparent);
 }
 
-.docs-page :is(.demo-section, .section, .doc-section):first-of-type {
-  margin-top: 0;
+.docs-page :is(.demo-section, .section, .doc-section) > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 680;
+  letter-spacing: -0.025em;
 }
 
-.docs-page :is(.demo-section, .section, .doc-section) h2 {
-  margin: 0 0 0.5rem;
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  font-weight: 600;
+.docs-page :is(.demo-section, .section, .doc-section) > h2::before {
+  content: '';
+  inline-size: 5px;
+  block-size: 1.15em;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--md-sys-color-primary);
 }
 
 .docs-page :is(.demo-section, .section, .doc-section) > p:first-of-type,
 .docs-page .section-description {
-  margin-bottom: 1rem;
   max-width: 72ch;
+  margin: 10px 0 20px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.925rem;
 }
 
-/* Variant / pattern cards */
+/* Secondary surfaces hold live controls, variants, and patterns. */
 .docs-page :is(.variant-card, .pattern-card, .interactive-demo) {
-  margin-top: 0.875rem;
-  padding: clamp(14px, 1.5vw, 18px);
+  min-width: 0;
+  margin-top: 18px;
+  padding: clamp(16px, 2.2vw, 24px);
+  background: var(--md-sys-color-surface-container-low);
+  border: 1px solid
+    color-mix(in srgb, var(--md-sys-color-outline-variant) 80%, transparent);
+  border-radius: clamp(16px, 2vw, 20px);
+}
+
+.docs-page :is(.variant-card, .pattern-card, .interactive-demo):first-child {
+  margin-top: 0;
+}
+
+.docs-page :is(.variant-card, .pattern-card) > .interactive-demo {
   background: var(--md-sys-color-surface);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 10px;
 }
 
 .docs-page .variant-header {
@@ -453,14 +509,15 @@ m3-radio-button {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 0.5rem;
+  margin-bottom: 12px;
 }
 
 .docs-page .variant-header h3,
 .docs-page .pattern-card h4 {
   margin: 0;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 680;
+  letter-spacing: -0.01em;
 }
 
 .docs-page :is(.demo-row, .demo-buttons, .button-group) {
@@ -468,69 +525,86 @@ m3-radio-button {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 0.875rem;
+  margin-top: 16px;
+}
+
+.docs-page :is(.demo-row, .demo-buttons) {
+  min-height: 52px;
 }
 
 .docs-page .feature-list {
-  margin: 0.75rem 0 0;
+  margin: 14px 0 0;
 }
 
 .docs-page .feature-list li + li {
-  margin-top: 0.375rem;
+  margin-top: 6px;
+}
+
+.docs-page .accessibility {
+  background: linear-gradient(
+    135deg,
+    color-mix(
+      in srgb,
+      var(--md-sys-color-primary-container) 34%,
+      var(--md-sys-color-surface)
+    ),
+    var(--md-sys-color-surface)
+  );
 }
 
 .docs-page .accessibility .feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
   list-style: none;
   padding: 0;
 }
 
-.docs-page .accessibility .feature-list li {
-  margin: 0;
-  padding: 0.75rem 1rem;
-  background: var(--md-sys-color-surface);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 8px;
-}
-
+.docs-page .accessibility .feature-list li,
 .docs-page .accessibility .feature-list li + li {
-  margin-top: 0.5rem;
+  margin: 0;
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--md-sys-color-surface) 84%, transparent);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 14px;
 }
 
 .docs-page .accessibility .feature-list strong {
   color: var(--md-sys-color-primary);
 }
 
-.docs-page .code-sample {
-  margin-top: 0.875rem;
-  border-radius: 10px;
+.docs-page :is(.code-sample, app-code-block) {
+  display: block;
+  min-width: 0;
+  margin-top: 16px;
 }
 
-/* ─── Shared page section pattern ───────────────────────── */
-/* Used by quick-start, contact, and similar content pages   */
+/* Guides and community pages use the same card primitive. */
 .page-section {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
-  max-width: 760px;
-}
-
-.page-section:last-child {
-  border-bottom: none;
+  width: 100%;
+  max-width: 860px;
+  padding: clamp(20px, 3vw, 30px);
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 22px;
+  box-shadow: 0 10px 28px
+    color-mix(in srgb, var(--md-sys-color-on-surface) 4%, transparent);
 }
 
 .page-section h2,
 .comp-section h2 {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--md-sys-color-on-surface-variant);
   margin: 0 0 12px;
+  color: var(--md-sys-color-primary);
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
 }
 
 .page-section > p {
-  font-size: 0.9375rem;
+  margin: 0 0 18px;
   color: var(--md-sys-color-on-surface-variant);
-  margin: 0 0 16px;
+  font-size: 0.9375rem;
   line-height: 1.7;
 }
 
@@ -539,8 +613,23 @@ m3-radio-button {
 }
 
 @media (max-width: 600px) {
+  .docs-page {
+    gap: 16px;
+  }
+
+  .docs-page :is(.demo-section, .section, .doc-section) {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .docs-page :is(.variant-card, .pattern-card, .interactive-demo) {
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+
   .page-section {
-    padding: 18px 0;
+    padding: 20px 17px;
+    border-radius: 18px;
   }
 }
 .button-group {
