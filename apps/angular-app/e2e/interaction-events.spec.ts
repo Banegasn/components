@@ -71,6 +71,22 @@ test('updates and clears search results through native input events', async ({
   await expect(page.getByText('Result 1 for "alpha"')).not.toBeVisible();
 });
 
+test('renders the disabled search bar before any user interaction', async ({
+  page,
+}) => {
+  await page.goto('/search-bar');
+
+  const disabledSearch = page.getByRole('searchbox', {
+    name: 'Disabled search',
+  });
+  await expect(disabledSearch).toBeDisabled();
+  await expect(
+    page.locator(
+      'm3-search-bar[aria-label="Disabled search"] .search-bar',
+    ),
+  ).toHaveCSS('opacity', '0.38');
+});
+
 test('starts the button loading demo from a native click', async ({ page }) => {
   await page.goto('/buttons');
 
