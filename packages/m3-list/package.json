@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 List and List Item web components with expressive interactions",
   "type": "module",
   "main": "./dist/index.js",

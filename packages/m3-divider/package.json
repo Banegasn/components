@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-divider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 Divider web component with expressive animations",
   "type": "module",
   "main": "./dist/index.js",

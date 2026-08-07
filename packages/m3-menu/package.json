@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-menu",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Material Design 3 menu web component",
   "type": "module",
   "main": "./dist/index.js",
