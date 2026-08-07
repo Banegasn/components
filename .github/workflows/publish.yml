@@ -37,6 +37,7 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24.18.0'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Enable pinned pnpm with Corepack
         run: |
@@ -77,6 +78,13 @@ jobs:
         run: pnpm run publish:npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Configure GitHub Packages registry
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.18.0'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@banegasn'
 
       - name: Publish to GitHub Packages
         run: pnpm run publish:github

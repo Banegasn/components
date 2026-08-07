@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-top-app-bar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 Top App Bar web component",
   "type": "module",
   "main": "./dist/index.js",

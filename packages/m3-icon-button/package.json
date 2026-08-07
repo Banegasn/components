@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-icon-button",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 Icon Button web component with expressive interactions",
   "type": "module",
   "main": "./dist/index.js",
