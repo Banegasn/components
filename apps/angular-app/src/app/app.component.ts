@@ -11,6 +11,7 @@ import {
   effect,
   PLATFORM_ID,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
   #ngZone = inject(NgZone);
   #destroyRef = inject(DestroyRef);
   #platformId = inject(PLATFORM_ID);
+  #changeDetectorRef = inject(ChangeDetectorRef);
   title = 'Multi-Framework Components Demo';
   currentTheme = 'light';
   currentRoute = signal('/');
@@ -135,6 +137,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (typeof window !== 'undefined') {
       window.addEventListener('theme-changed', ((event: CustomEvent) => {
         this.currentTheme = event.detail;
+        this.#changeDetectorRef.markForCheck();
       }) as EventListener);
     }
 
