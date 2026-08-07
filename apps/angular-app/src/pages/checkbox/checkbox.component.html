@@ -48,12 +48,13 @@
 
   <section class="demo-section">
     <h2>Interactive Example</h2>
-    <p>Listen to the <code>checkbox-change</code> event to respond to user interaction.</p>
+    <p>Listen to the native <code>change</code> event to respond to user interaction.</p>
     <div class="interactive-demo">
       <div class="demo-row" style="gap: 12px; align-items: center;">
-        <m3-checkbox (checkbox-change)="onCheckboxChange($event, 'terms')"></m3-checkbox>
+        <m3-checkbox aria-label="Accept terms" (change)="onCheckboxChange($event, 'terms')"></m3-checkbox>
         <span style="color: var(--md-sys-color-on-surface)">I accept the terms and conditions</span>
       </div>
+      <p>Accepted: <strong>{{ termsAccepted ? 'Yes' : 'No' }}</strong></p>
       <app-code-block [code]="interactiveExample" language="html" variant="sample"></app-code-block>
     </div>
   </section>

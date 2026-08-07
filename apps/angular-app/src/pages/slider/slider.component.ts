@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CodeBlockComponent } from "../../app/components/code-block/code-block.component";
 
-import '@banegasn/m3-slider';
+import { M3Slider } from '@banegasn/m3-slider';
 import '@banegasn/m3-card';
 
 @Component({
@@ -25,14 +25,13 @@ export class SliderComponent {
   min="0"
   max="100"
   [value]="volume"
-  (slider-change)="onSliderChange($event, 'volume')">
+  (input)="onSliderChange($event, 'volume')">
 </m3-slider>
 <p>Volume: {{volume}}</p>`;
 
   onSliderChange(event: Event, sliderName: string) {
-    const detail = (event as CustomEvent).detail;
-    if (sliderName === 'volume') {
-      this.volume = detail.value;
-    }
+    const target = event.currentTarget ?? event.target;
+    if (sliderName === 'volume' && target instanceof M3Slider)
+      this.volume = target.value;
   }
 }

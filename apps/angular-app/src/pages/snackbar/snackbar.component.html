@@ -8,7 +8,7 @@
     <h2>Basic</h2>
     <div class="interactive-demo">
       <div class="demo-row">
-        <m3-button variant="filled" (button-click)="showBasic.set(true)">Show Snackbar</m3-button>
+        <m3-button variant="filled" (click)="showBasic.set(true)">Show Snackbar</m3-button>
       </div>
       <div class="demo-row snackbar-demo">
         <m3-snackbar [attr.open]="showBasic() ? '' : null" duration="3000" (snackbar-dismiss)="showBasic.set(false)">
@@ -23,7 +23,7 @@
     <h2>With Action</h2>
     <div class="interactive-demo">
       <div class="demo-row">
-        <m3-button variant="filled" (button-click)="showAction.set(true)">Show Snackbar</m3-button>
+        <m3-button variant="filled" (click)="showAction.set(true)">Show Snackbar</m3-button>
       </div>
       <div class="demo-row snackbar-demo">
         <m3-snackbar [attr.open]="showAction() ? '' : null" duration="5000" (snackbar-dismiss)="showAction.set(false)">
@@ -39,7 +39,7 @@
     <h2>Two-Line</h2>
     <div class="interactive-demo">
       <div class="demo-row">
-        <m3-button variant="filled" (button-click)="showTwoLine.set(true)">Show Snackbar</m3-button>
+        <m3-button variant="filled" (click)="showTwoLine.set(true)">Show Snackbar</m3-button>
       </div>
       <div class="demo-row snackbar-demo">
         <m3-snackbar [attr.open]="showTwoLine() ? '' : null" lines="2" duration="6000" (snackbar-dismiss)="showTwoLine.set(false)">
