@@ -37,6 +37,10 @@ Leaving `package_name` blank checks every public package. Publishing to an
 existing GitHub package requires this repository's Actions token to have write
 access to that package.
 
+Choose `registry_target=npm` when releasing to npm without the GitHub Packages
+step. This is useful for an all-package bump while older GitHub packages lack
+write access for this repository.
+
 The npm step uses the repository's `NPM_TOKEN` secret. The GitHub Packages step
 uses `GITHUB_TOKEN` with `packages: write` permission. A `403
 permission_denied: write_package` error means the repository needs write access

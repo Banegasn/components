@@ -42,7 +42,9 @@ if (selected.length === 0) {
 }
 
 const bumped = new Map();
+const previousVersions = new Map();
 for (const { value } of selected) {
+  previousVersions.set(value.name, value.version);
   bumped.set(value.name, bump(value.version));
 }
 
@@ -74,5 +76,5 @@ if (install.error) throw install.error;
 if (install.status !== 0) process.exit(install.status ?? 1);
 
 for (const { value } of selected) {
-  console.log(`${value.name}: ${value.version} → ${bumped.get(value.name)}`);
+  console.log(`${value.name}: ${previousVersions.get(value.name)} → ${bumped.get(value.name)}`);
 }

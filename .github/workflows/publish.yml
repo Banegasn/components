@@ -9,6 +9,14 @@ on:
         description: 'Optional package to publish (for example @banegasn/m3-navigation-rail)'
         required: false
         type: string
+      registry_target:
+        description: 'Publish to npm only or to both registries'
+        required: true
+        type: choice
+        options:
+          - both
+          - npm
+        default: both
 
 jobs:
   quality:
@@ -65,6 +73,7 @@ jobs:
           PUBLISH_PACKAGE_NAME: ${{ inputs.package_name }}
 
       - name: Configure GitHub Packages registry
+        if: ${{ inputs.registry_target != 'npm' }}
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24.18.0'
@@ -72,6 +81,7 @@ jobs:
           scope: '@banegasn'
 
       - name: Publish to GitHub Packages
+        if: ${{ inputs.registry_target != 'npm' }}
         run: pnpm run publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
