@@ -1,0 +1,70 @@
+name: Prepare Package Versions
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      package_name:
+        description: 'Optional single package (leave blank to bump all public packages)'
+        required: false
+        type: string
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Require main
+        run: test "$GITHUB_REF" = 'refs/heads/main'
+
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24.18.0'
+
+      - name: Enable pinned pnpm with Corepack
+        run: |
+          npm install --global corepack@0.35.0
+          corepack enable
+          corepack install --global pnpm@11.12.0
+          test "$(node --version)" = "v24.18.0"
+          test "$(pnpm --version)" = "11.12.0"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump versions and workspace references
+        env:
+          VERSION_TYPE: ${{ inputs.version_type }}
+          PACKAGE_NAME: ${{ inputs.package_name }}
+        run: node scripts/bump-package-versions.mjs "$VERSION_TYPE" "$PACKAGE_NAME"
+
+      - name: Check release branch
+        run: |
+          git diff --check
+          pnpm install --frozen-lockfile
+
+      - name: Push version branch
+        env:
+          VERSION_TYPE: ${{ inputs.version_type }}
+        run: |
+          branch="codex/version-${VERSION_TYPE}-${GITHUB_RUN_ID}"
+          git switch -c "$branch"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add package.json apps packages pnpm-lock.yaml
+          git commit -m "chore: prepare ${VERSION_TYPE} package versions"
+          git push origin "HEAD:refs/heads/$branch"
+          echo "Open a PR for [\`$branch\`](https://github.com/$GITHUB_REPOSITORY/compare/main...$branch?expand=1), then publish after it merges." >> "$GITHUB_STEP_SUMMARY"

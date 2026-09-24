@@ -5,20 +5,18 @@ on:
     types: [created]
   workflow_dispatch:
     inputs:
-      version_type:
-        description: 'Version bump type'
-        required: false
-        type: choice
-        options:
-          - none
-          - patch
-          - minor
-          - major
-        default: 'none'
       package_name:
         description: 'Optional package to publish (for example @banegasn/m3-navigation-rail)'
         required: false
         type: string
+      registry_target:
+        description: 'Publish to npm only or to both registries'
+        required: true
+        type: choice
+        options:
+          - both
+          - npm
+        default: both
 
 jobs:
   quality:
@@ -28,16 +26,10 @@ jobs:
     needs: quality
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       packages: write
 
     steps:
-      - name: Validate release selection
-        if: ${{ inputs.package_name != '' && inputs.version_type != 'none' }}
-        run: |
-          echo 'A package_name requires version_type=none; bump and commit its version first.' >&2
-          exit 1
-
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -74,16 +66,6 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Bump version
-        if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          pnpm version:${{ github.event.inputs.version_type }}
-          git add .
-          git commit -m "chore: bump version (${{ github.event.inputs.version_type }})"
-          git push
-
       - name: Publish to NPM Registry
         run: pnpm run publish:npm
         env:
@@ -91,6 +73,7 @@ jobs:
           PUBLISH_PACKAGE_NAME: ${{ inputs.package_name }}
 
       - name: Configure GitHub Packages registry
+        if: ${{ inputs.registry_target != 'npm' }}
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24.18.0'
@@ -98,14 +81,8 @@ jobs:
           scope: '@banegasn'
 
       - name: Publish to GitHub Packages
+        if: ${{ inputs.registry_target != 'npm' }}
         run: pnpm run publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_PACKAGE_NAME: ${{ inputs.package_name }}
-
-      - name: Create git tags
-        if: github.event.inputs.version_type != 'none' && github.event.inputs.version_type != ''
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          git tag "v${VERSION}" || true
-          git push --tags || true

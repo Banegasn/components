@@ -1,175 +1,56 @@
-# Publishing to GitHub Packages
+# Publishing components
 
-This guide explains how to publish the component packages from this monorepo to GitHub Packages.
+Package versions must be committed to `main` through a pull request before
+publishing. The branch is protected and rejects a version commit pushed directly
+from a release job.
 
-## Prerequisites
+## Prepare versions
 
-1. **GitHub Personal Access Token (PAT)**
-   - Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-   - Generate a new token with the following scopes:
-     - `write:packages` - Upload packages to GitHub Package Registry
-     - `read:packages` - Download packages from GitHub Package Registry
-     - `delete:packages` - Delete packages from GitHub Package Registry (optional)
-   - Save your token securely
+In GitHub Actions, run **Prepare Package Versions** on `main`. Choose `patch`,
+`minor`, or `major` and optionally enter one full package name, such as
+`@banegasn/m3-navigation-rail`. Leaving the name blank bumps every public
+package. The workflow creates a branch and shows a link to open a pull request.
+Merge that pull request after its `quality` check passes.
 
-2. **Authentication Setup**
-   
-   Set your GitHub token as an environment variable:
-   
-   ```bash
-   # Linux/macOS
-   export NODE_AUTH_TOKEN=your_github_token_here
-   
-   # Windows (Command Prompt)
-   set NODE_AUTH_TOKEN=your_github_token_here
-   
-   # Windows (PowerShell)
-   $env:NODE_AUTH_TOKEN="your_github_token_here"
-   ```
-
-   Alternatively, create a `.npmrc` file in your home directory:
-   ```
-   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
-   ```
-
-## Package Configuration
-
-All packages are configured to publish to GitHub Packages with the following settings:
-
-- **Scope**: `@banegasn`
-- **Registry**: `https://npm.pkg.github.com`
-- **Access**: `public`
-
-## Publishing Workflow
-
-For an individual package whose version is already committed to `main`, run
-the GitHub Actions workflow with a package name:
+To prepare the same changes locally, run one of:
 
 ```bash
-gh workflow run publish.yml --ref main -f version_type=none -f package_name=@banegasn/m3-navigation-rail
-```
-
-The package filter applies to both npm and GitHub Packages. Omit
-`package_name` only when publishing every missing package version; that also
-requires this repository to have write access to each existing GitHub package.
-
-### 1. Build the Packages
-
-Ensure all packages are built before publishing:
-
-```bash
-pnpm build
-```
-
-### 2. Update Version
-
-Use the provided version scripts to bump versions across all packages:
-
-```bash
-# Patch version (1.0.0 → 1.0.1)
 pnpm version:patch
-
-# Minor version (1.0.0 → 1.1.0)
-pnpm version:minor
-
-# Major version (1.0.0 → 2.0.0)
-pnpm version:major
+node scripts/bump-package-versions.mjs patch @banegasn/m3-navigation-rail
 ```
 
-Or update versions manually in each package's `package.json`.
+The bump script updates package versions, exact workspace references, and
+`pnpm-lock.yaml` together. Commit those files in a pull request.
 
-### 3. Publish All Packages
+## Publish from GitHub Actions
+
+Run **Publish Packages** on `main` after the version pull request merges. Enter
+the full `package_name` for a single package:
 
 ```bash
-pnpm publish:packages
+gh workflow run publish.yml --ref main -f package_name=@banegasn/m3-navigation-rail
 ```
 
-This command will:
-- Build all packages using Turbo
-- Publish all packages in the `packages/` directory
-- Skip git checks (useful for CI/CD)
+The workflow runs quality checks and a build, then publishes missing versions
+to npm and GitHub Packages. It skips versions that are already published.
+Leaving `package_name` blank checks every public package. Publishing to an
+existing GitHub package requires this repository's Actions token to have write
+access to that package.
 
-### 4. Publish Individual Package
+Choose `registry_target=npm` when releasing to npm without the GitHub Packages
+step. This is useful for an all-package bump while older GitHub packages lack
+write access for this repository.
 
-To publish a specific package:
+The npm step uses the repository's `NPM_TOKEN` secret. The GitHub Packages step
+uses `GITHUB_TOKEN` with `packages: write` permission. A `403
+permission_denied: write_package` error means the repository needs write access
+to that GitHub package.
+
+## Verify a release
 
 ```bash
-# From the root directory
-pnpm --filter @banegasn/example-component publish
-
-# Or navigate to the package directory
-cd packages/example-component
-pnpm publish
+npm view @banegasn/m3-navigation-rail@3.2.5 version --registry https://registry.npmjs.org
+npm view @banegasn/m3-navigation-rail@3.2.5 version --registry https://npm.pkg.github.com
 ```
 
-## Installing Published Packages
-
-Users can install your packages by first configuring their `.npmrc`:
-
-```
-@banegasn:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=GITHUB_TOKEN
-```
-
-Then install with:
-
-```bash
-npm install @banegasn/example-component
-# or
-pnpm add @banegasn/example-component
-# or
-yarn add @banegasn/example-component
-```
-
-### Authentication Issues
-
-If you get `401 Unauthorized` or `403 Forbidden` errors:
-1. Verify your token has the correct scopes
-2. Check that `NODE_AUTH_TOKEN` environment variable is set
-3. Ensure the package name scope matches your GitHub username/org (`@banegasn`)
-
-### Package Already Exists
-
-GitHub Packages doesn't allow overwriting existing package versions. You must:
-1. Bump the version number
-2. Or delete the existing version from GitHub (requires `delete:packages` scope)
-
-### Registry Issues
-
-If packages aren't publishing to the correct registry:
-1. Check `publishConfig.registry` in each package's `package.json`
-2. Verify the `.npmrc` configuration
-3. Ensure you're authenticated with the correct registry
-
-## Package Visibility
-
-Published packages are set to `public` access. To view them:
-- Go to your GitHub profile
-- Click on "Packages" tab
-- You should see `@banegasn/example-component` and `@banegasn/svelte-components`
-
-## Best Practices
-
-1. **Semantic Versioning**: Follow semver (major.minor.patch)
-2. **Changelog**: Keep a CHANGELOG.md for each package
-3. **Git Tags**: Tag releases in git: `git tag v1.0.0 && git push --tags`
-4. **Test Before Publishing**: Always build and test before publishing
-5. **README Updates**: Keep package READMEs up to date with usage examples
-
-## Quick Reference
-
-```bash
-# Build all packages
-pnpm build
-
-# Bump versions
-pnpm version:patch    # 1.0.0 → 1.0.1
-pnpm version:minor    # 1.0.0 → 1.1.0
-pnpm version:major    # 1.0.0 → 2.0.0
-
-# Publish all packages
-pnpm publish:packages
-
-# Publish single package
-pnpm --filter @banegasn/example-component publish
-```
+Versions cannot be overwritten. Bump the version again for the next release.
