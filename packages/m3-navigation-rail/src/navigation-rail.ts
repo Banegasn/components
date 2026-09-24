@@ -3,16 +3,21 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 @customElement('m3-navigation-rail')
 export class M3NavigationRail extends LitElement {
-    
   static styles = css`
     :host {
+      /* motion-literal-exempt: standalone consumers may not load the token stylesheet. */
+      --_rail-duration: var(--md-sys-motion-duration-long1, 450ms);
+      --_rail-easing: var(
+        --md-sys-motion-easing-emphasized,
+        cubic-bezier(0.2, 0, 0, 1)
+      );
       display: flex;
       flex-direction: column;
       width: 80px;
       height: 100%;
       background-color: var(--md-sys-color-surface, #fef7ff);
       border-inline-end: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
-      transition: width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard);
+      transition: width var(--_rail-duration) var(--_rail-easing);
     }
 
     :host([expanded]) {
@@ -21,19 +26,17 @@ export class M3NavigationRail extends LitElement {
 
     .rail {
       display: flex;
+      width: 100%;
       height: 100%;
+      box-sizing: border-box;
       flex-direction: column;
-      align-items: center;
-      padding: 16px 0;
+      padding: 16px 8px;
       gap: 12px;
-      min-width: 80px;
+      transition: padding-inline var(--_rail-duration) var(--_rail-easing);
     }
 
     :host([expanded]) .rail {
-      min-width: 256px;
-      align-items: flex-start;
-      padding: 16px 12px;
-      box-sizing: border-box;
+      padding-inline: 12px;
     }
 
     .fab-slot {
@@ -63,13 +66,13 @@ export class M3NavigationRail extends LitElement {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      align-items: center;
+      align-items: stretch;
       width: 100%;
     }
 
     .bottom-items {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       flex-direction: column;
       gap: 12px;
       width: 100%;
@@ -77,9 +80,13 @@ export class M3NavigationRail extends LitElement {
       border-top: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
     }
 
-    :host([expanded]) .items {
-      align-items: flex-start;
+    @media (prefers-reduced-motion: reduce) {
+      :host {
+        /* motion-literal-exempt: reduced motion settles at the final state. */
+        --_rail-duration: 1ms;
+      }
     }
+
   `;
 
   @property({ type: Boolean, reflect: true })

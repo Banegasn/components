@@ -37,11 +37,42 @@
         t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
       document.documentElement.setAttribute('theme', t);
+      document.documentElement.setAttribute(
+        'data-rail-expanded',
+        localStorage.getItem('railExpanded') === 'false' ? 'false' : 'true'
+      );
     })();
   </script>
   <!-- Inline critical CSS to prevent FOUC -->
   <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html,body{height:100%;width:100%}:root{--md-sys-color-primary:#5b5bd6;--md-sys-color-on-primary:#fff;--md-sys-color-primary-container:#ebebff;--md-sys-color-on-primary-container:#1e1e6e;--md-sys-color-secondary:#5b5bd6;--md-sys-color-on-secondary:#fff;--md-sys-color-secondary-container:#ebebff;--md-sys-color-on-secondary-container:#1e1e6e;--md-sys-color-tertiary:#6b7280;--md-sys-color-on-tertiary:#fff;--md-sys-color-tertiary-container:#f3f4f6;--md-sys-color-on-tertiary-container:#374151;--md-sys-color-surface:#fff;--md-sys-color-surface-variant:#f9fafb;--md-sys-color-surface-container:#f3f4f6;--md-sys-color-surface-container-low:#f9fafb;--md-sys-color-surface-container-highest:#e5e7eb;--md-sys-color-on-surface:#111827;--md-sys-color-on-surface-variant:#6b7280;--md-sys-color-outline:#d1d5db;--md-sys-color-outline-variant:#e5e7eb;--md-sys-elevation-level2:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);--font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-mono:'JetBrains Mono','Fira Code','Cascadia Code',ui-monospace,monospace}body{font-family:var(--font-sans);font-size:15px;line-height:1.6;background-color:var(--md-sys-color-surface);color:var(--md-sys-color-on-surface);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}app-root{display:block}h1,h2,h3,h4,h5,h6{font-family:var(--font-sans);font-weight:600;color:var(--md-sys-color-on-surface);line-height:1.25;letter-spacing:-.01em}p{margin-bottom:1rem;line-height:1.7;color:var(--md-sys-color-on-surface-variant)}
+  </style>
+  <style>
+    :root { --app-rail-width: 256px; }
+    :root[data-rail-expanded='false'] { --app-rail-width: 80px; }
+    app-root { display: flex; width: 100%; height: 100%; }
+    app-root .desktop-nav-shell {
+      flex: 0 0 var(--app-rail-width);
+      width: var(--app-rail-width);
+    }
+    app-root .desktop-nav-shell m3-navigation-rail {
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+    :root[data-rail-ready] app-root .desktop-nav-shell {
+      transition: width var(--md-sys-motion-duration-long1)
+        var(--md-sys-motion-easing-emphasized);
+    }
+    :root[data-rail-ready] app-root .desktop-nav-shell m3-navigation-rail {
+      opacity: 1;
+      transition: opacity var(--md-sys-motion-duration-short3)
+        var(--md-sys-motion-easing-standard-decelerate);
+    }
+    @media (max-width: 768px) {
+      app-root .desktop-nav-shell { display: none; width: 0; flex-basis: 0; }
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

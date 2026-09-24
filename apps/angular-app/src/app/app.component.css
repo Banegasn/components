@@ -60,6 +60,8 @@
   display: flex;
   position: relative;
   z-index: 1001;
+  flex: none;
+  width: var(--app-rail-width, 256px);
 }
 
 .desktop-components-trigger {
@@ -100,13 +102,7 @@
 }
 
 m3-navigation-rail {
-  opacity: 1;
-  transition: opacity var(--md-sys-motion-duration-short3)
-    var(--md-sys-motion-easing-standard-decelerate);
-}
-
-m3-navigation-rail:not(:defined) {
-  opacity: 0;
+  width: 100%;
 }
 
 m3-navigation-bar {

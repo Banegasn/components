@@ -9,13 +9,10 @@ publicHoistPattern:
   - svelte
 
 overrides:
-  browserslist: 4.28.1
+  browserslist: 4.29.0
 
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
   lmdb: true
   msgpackr-extract: true
-
-minimumReleaseAgeExclude:
-  - svelte-check@4.7.4

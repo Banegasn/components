@@ -138,4 +138,23 @@ describe('M3NavigationRail browser contract', () => {
     expect(item.shadowRoot!.querySelector('.badge')).to.not.exist;
     expect(item.shadowRoot!.querySelector('.badge-expanded')).to.not.exist;
   });
+
+  it('moves a badge without a label between compact and expanded layouts', async () => {
+    const item = await fixture<M3NavigationRailItem>(html`
+      <m3-navigation-rail-item badge="3"></m3-navigation-rail-item>
+    `);
+    await settleLitElement(item);
+
+    expect(item.shadowRoot!.querySelector('.badge')!.textContent).to.equal('3');
+    expect(item.shadowRoot!.querySelector('.label-group')).to.not.exist;
+
+    item.expanded = true;
+    await settleLitElement(item);
+
+    expect(item.shadowRoot!.querySelector('.badge')).to.not.exist;
+    expect(item.shadowRoot!.querySelector('.label')).to.not.exist;
+    expect(
+      item.shadowRoot!.querySelector('.badge-expanded')!.textContent,
+    ).to.equal('3');
+  });
 });
