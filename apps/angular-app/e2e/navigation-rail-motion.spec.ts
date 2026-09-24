@@ -15,28 +15,23 @@ test('restores the saved rail width and animates opening and closing', async ({
   await expect(root).toHaveAttribute('data-rail-expanded', 'false');
   await expect(shell).toHaveCSS('width', '80px');
 
-  const widthAfterTwoFrames = () =>
-    shell.evaluate(
-      (element) =>
-        new Promise<number>((resolve) => {
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() =>
-              resolve(element.getBoundingClientRect().width),
-            ),
-          );
-        }),
-    );
+  await shell.evaluate((element) => {
+    element.addEventListener('transitionrun', (event) => {
+      if (event.target === element && event.propertyName === 'width') {
+        element.setAttribute(
+          'data-width-transition-runs',
+          String(Number(element.getAttribute('data-width-transition-runs') ?? 0) + 1),
+        );
+      }
+    });
+  });
 
   await page.getByRole('button', { name: 'Expand navigation' }).click();
-  const openingWidth = await widthAfterTwoFrames();
-  expect(openingWidth).toBeGreaterThan(80);
-  expect(openingWidth).toBeLessThan(256);
+  await expect(shell).toHaveAttribute('data-width-transition-runs', '1');
   await expect(shell).toHaveCSS('width', '256px');
 
   await page.getByRole('button', { name: 'Collapse navigation' }).click();
-  const closingWidth = await widthAfterTwoFrames();
-  expect(closingWidth).toBeGreaterThan(80);
-  expect(closingWidth).toBeLessThan(256);
+  await expect(shell).toHaveAttribute('data-width-transition-runs', '2');
   await expect(shell).toHaveCSS('width', '80px');
   await expect(root).toHaveAttribute('data-rail-expanded', 'false');
 });
