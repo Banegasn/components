@@ -34,6 +34,8 @@ $FORCE && echo "Force mode: skipping published check"
 
 PACKAGES_DIR="packages"
 to_publish=()
+package_filter="${PUBLISH_PACKAGE_NAME:-}"
+matched_package=false
 
 for pkg_dir in "$PACKAGES_DIR"/*/; do
   pkg_json="$pkg_dir/package.json"
@@ -44,6 +46,10 @@ for pkg_dir in "$PACKAGES_DIR"/*/; do
   private=$(node -p "require('./$pkg_json').private ?? false")
 
   [[ "$private" == "true" ]] && continue
+  if [[ -n "$package_filter" && "$name" != "$package_filter" ]]; then
+    continue
+  fi
+  matched_package=true
 
   if $FORCE; then
     echo "QUEUED (force):       ${name}@${version}"
@@ -55,6 +61,11 @@ for pkg_dir in "$PACKAGES_DIR"/*/; do
     to_publish+=("$name")
   fi
 done
+
+if [[ -n "$package_filter" && "$matched_package" != true ]]; then
+  echo "Unknown publishable package: $package_filter" >&2
+  exit 1
+fi
 
 if [[ ${#to_publish[@]} -eq 0 ]]; then
   echo -e "\nAll packages are already published."

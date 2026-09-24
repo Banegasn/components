@@ -42,6 +42,17 @@ All packages are configured to publish to GitHub Packages with the following set
 
 ## Publishing Workflow
 
+For an individual package whose version is already committed to `main`, run
+the GitHub Actions workflow with a package name:
+
+```bash
+gh workflow run publish.yml --ref main -f version_type=none -f package_name=@banegasn/m3-navigation-rail
+```
+
+The package filter applies to both npm and GitHub Packages. Omit
+`package_name` only when publishing every missing package version; that also
+requires this repository to have write access to each existing GitHub package.
+
 ### 1. Build the Packages
 
 Ensure all packages are built before publishing:
@@ -162,4 +173,3 @@ pnpm publish:packages
 # Publish single package
 pnpm --filter @banegasn/example-component publish
 ```
-
