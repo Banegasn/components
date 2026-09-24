@@ -1,6 +1,6 @@
 {
   "name": "@banegasn/m3-badge",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Material Design 3 badge web component",
   "type": "module",
   "main": "./dist/index.js",
