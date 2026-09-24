@@ -1,6 +1,7 @@
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  AfterViewInit,
   inject,
   OnInit,
   OnDestroy,
@@ -19,6 +20,10 @@ import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import '@banegasn/m3-navigation-rail';
+import type {
+  M3NavigationRail,
+  M3NavigationRailItem,
+} from '@banegasn/m3-navigation-rail';
 import '@banegasn/m3-navigation-bar';
 import '@banegasn/m3-button';
 import '@banegasn/m3-menu';
@@ -49,7 +54,7 @@ type ComponentsMenuElement = HTMLElement & {
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   #document = inject(DOCUMENT);
   #dialogService = inject(DialogService);
   #router = inject(Router);
@@ -67,10 +72,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor() {
     if (isPlatformBrowser(this.#platformId)) {
-      const railExpanded = localStorage.getItem('railExpanded');
-      if (railExpanded !== null) {
-        this.railExpanded.set(JSON.parse(railExpanded));
-      }
+      this.railExpanded.set(
+        this.#document.documentElement.getAttribute('data-rail-expanded') !==
+          'false',
+      );
 
       effect(() => {
         localStorage.setItem(
@@ -88,7 +93,31 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onRailToggle(event: Event) {
     const e = event as CustomEvent<{ expanded: boolean }>;
-    this.railExpanded.set(e.detail?.expanded ?? false);
+    const expanded = e.detail?.expanded ?? false;
+    this.#document.documentElement.setAttribute(
+      'data-rail-expanded',
+      String(expanded),
+    );
+    this.railExpanded.set(expanded);
+  }
+
+  async ngAfterViewInit() {
+    if (!isPlatformBrowser(this.#platformId)) return;
+
+    const rail = this.#document.querySelector<M3NavigationRail>(
+      'm3-navigation-rail.desktop-nav',
+    );
+    if (!rail) return;
+
+    await rail.updateComplete;
+    await Promise.all(
+      [...rail.querySelectorAll<M3NavigationRailItem>('m3-navigation-rail-item')].map(
+        (item) => item.updateComplete,
+      ),
+    );
+    this.#document.defaultView?.requestAnimationFrame(() => {
+      this.#document.documentElement.setAttribute('data-rail-ready', '');
+    });
   }
 
   readonly componentMenuItems = [

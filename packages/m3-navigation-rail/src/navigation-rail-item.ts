@@ -31,8 +31,14 @@ export class M3NavigationRailItem extends LitElement {
           <slot name="icon"></slot>
           ${this.badge !== undefined && !this.expanded ? html`<span class="badge">${this.badge}</span>` : ''}
         </div>
-        ${this.label ? html`<span class="label">${this.label}</span>` : ''}
-        ${this.badge !== undefined && this.expanded ? html`<span class="badge-expanded">${this.badge}</span>` : ''}
+        ${this.label || (this.badge !== undefined && this.expanded)
+          ? html`<span class="label-group">
+              ${this.label ? html`<span class="label">${this.label}</span>` : nothing}
+              ${this.badge !== undefined && this.expanded
+                ? html`<span class="badge-expanded">${this.badge}</span>`
+                : nothing}
+            </span>`
+          : nothing}
       </button>
     `;
   }
